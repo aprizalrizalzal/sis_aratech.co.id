@@ -1,0 +1,71 @@
+<script setup>
+import { onMounted } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import DropdownSelect from '@/Components/DropdownSelect.vue';
+import TextInput from '@/Components/TextInput.vue';
+
+const props = defineProps({
+    deviceTypes: {
+        type: Array,
+        required: true
+    }
+});
+
+const form = useForm({
+    device_type_id: '',
+    model: '',
+    serial_number: '',
+});
+
+const submitForm = () => {
+    form.post(route('store.device'), {
+        preserveScroll: true,
+        onSuccess: () => form.reset(),
+        onError: (errors) => {
+            if (errors.model || errors.serial_number) {
+                alert('Device added failed!');
+            } else {
+                console.error('An error occurred:', errors);
+            }
+        }
+    });
+};
+
+onMounted(() => {
+    console.log('deviceTypes:', props.deviceTypes);
+});
+</script>
+
+<template>
+    <div class="relative flex w-full flex-1 items-stretch">
+        <div class="w-full">
+            <form @submit.prevent="submitForm" class="mt-3 space-y-3">
+                <div>
+                    <DropdownSelect id="device_type_id" label="Device Type" optionProperty="type_name"
+                        valueProperty="id" :options="deviceTypes" v-model="form.device_type_id"
+                        placeholder="Select Device Type" />
+                </div>
+                <div>
+                    <InputLabel class="mt-3" for="model" value="Model" />
+                    <TextInput id="model" type="text" class="mt-1 block w-full" v-model="form.model" placeholder="Model"
+                        required autofocus />
+                    <InputError class="mt-3" :message="form.errors.model" />
+                </div>
+                <div>
+                    <InputLabel class="mt-3" for="serial_number" value="Serial Number" />
+                    <TextInput id="serial_number" type="text" class="mt-1 block w-full" v-model="form.serial_number"
+                        placeholder="Serial Number" required autofocus />
+                    <InputError class="mt-3" :message="form.errors.serial_number" />
+                </div>
+                <div>
+                    <PrimaryButton class="mt-3">Add Device</PrimaryButton><span v-if="form.recentlySuccessful"
+                        class="text-green-500 ml-2">Device added
+                        successfully!</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
