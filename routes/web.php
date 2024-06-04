@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // CustomerController
     Route::get('/customers', [CustomerController::class, 'show'])->name('show.customers');
+    Route::put('/customer', [CustomerController::class, 'update'])->name('update.customer');
     Route::delete('/customer', [CustomerController::class, 'destroy'])->name('destroy.customer');
 
     // DeviceTypeController

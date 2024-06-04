@@ -18,6 +18,27 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+        ]);
+
+        $customer = Customer::find($request->input('id'));
+
+        $customer->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

@@ -15,7 +15,7 @@ const submitForm = () => {
         onSuccess: () => form.reset(),
         onError: (errors) => {
             if (errors.type_name) {
-                alert('Device Type added failed!');
+                alert('Device Type addition failed!');
             } else {
                 console.error('An error occurred:', errors);
             }

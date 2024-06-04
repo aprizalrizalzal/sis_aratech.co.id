@@ -26,7 +26,7 @@ const submitForm = () => {
         onSuccess: () => form.reset(),
         onError: (errors) => {
             if (errors.model || errors.serial_number) {
-                alert('Device added failed!');
+                alert('Device addition failed!');
             } else {
                 console.error('An error occurred:', errors);
             }

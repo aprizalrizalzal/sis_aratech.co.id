@@ -41,7 +41,7 @@ const submitForm = () => {
         onSuccess: () => form.reset(),
         onError: (errors) => {
             if (errors.date_received || errors.items_brought || errors.estimated_completion || errors.status) {
-                alert('Service added failed!');
+                alert('Service addition failed!');
             } else {
                 console.error('An error occurred:', errors);
             }

@@ -17,7 +17,7 @@ const submitForm = () => {
         onSuccess: () => form.reset(),
         onError: (errors) => {
             if (errors.name || errors.price) {
-                alert('Spare part added failed!');
+                alert('Spare part addition failed!');
             } else {
                 console.error('An error occurred:', errors);
             }

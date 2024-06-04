@@ -12,18 +12,48 @@ const form = useForm({
     email: '',
 });
 
+const props = defineProps({
+    customers: {
+        type: Array,
+        required: true
+    },
+    customer: Object,
+});
+
+if (props.customer) {
+    form.name = props.customer.name;
+    form.address = props.customer.address;
+    form.phone = props.customer.phone;
+    form.email = props.customer.email;
+}
+
 const submitForm = () => {
-    form.post(route('store.customer'), {
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
-        onError: (errors) => {
-            if (errors.name || errors.address || errors.phone || errors.email) {
-                alert('Customer added failed!');
-            } else {
-                console.error('There was an error!', errors);
+    if (!props.customer) {
+        form.post(route('store.customer'), {
+            preserveScroll: true,
+            onSuccess: () => form.reset(),
+            onError: (errors) => {
+                if (errors.name || errors.address || errors.phone || errors.email) {
+                    alert('Customer addition failed!');
+                } else {
+                    console.error('There was an error!', errors);
+                }
             }
-        }
-    });
+        });
+    } else {
+        const customerId = props.customer.id; 
+        form.put(route('update.customer', { id: customerId }), { 
+            preserveScroll: true,
+            onSuccess: () => form.reset(),
+            onError: (errors) => {
+                if (errors.name || errors.address || errors.phone || errors.email) {
+                    alert('Customer update failed!');
+                } else {
+                    console.error('There was an error!', errors);
+                }
+            }
+        });
+    }
 };
 </script>
 
@@ -53,9 +83,8 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.email" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">Add Customer</PrimaryButton><span v-if="form.recentlySuccessful"
-                        class="text-green-500 ml-2">Customer added
-                        successfully!</span>
+                    <PrimaryButton class="mt-3">{{ props.customer ? 'Update Customer' : 'Add Customer' }}</PrimaryButton>
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-2">{{ props.customer ? 'Customer update successfully!' : 'Customer added successfully!' }}</span>
                 </div>
             </form>
         </div>

@@ -31,7 +31,7 @@ const submitForm = () => {
         onSuccess: () => form.reset(),
         onError: (errors) => {
             if (errors.problem_description || errors.repair_description || errors.cost) {
-                alert('Service detail added failed!');
+                alert('Service detail addition failed!');
             } else {
                 console.error('An error occurred:', errors);
             }
