@@ -28,7 +28,7 @@ onMounted(() => {
 <style scoped>
 input {
     padding: 0.5rem;
-    border: 0.5px solid #2C7373;
+    border: 0.5px solid #256125;
     border-radius: 4px;
     width: 100%;
 }

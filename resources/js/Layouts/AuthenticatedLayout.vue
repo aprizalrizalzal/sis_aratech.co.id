@@ -18,7 +18,7 @@ const toggleButtonStyle = computed(() => ({
 
 <template>
     <div>
-        <div class="min-h-screen bg-green-100 ">
+        <div class="min-h-screen bg-green-50 ">
             <nav class="bg-white border-b border-green-100 ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -38,8 +38,8 @@ const toggleButtonStyle = computed(() => ({
                             <div class="flex items-center bg-white">
                                 <button @click="showingSidebarNavigation = !showingSidebarNavigation"
                                     :style="toggleButtonStyle"
-                                    class="inline-flex items-center justify-center p-2 m-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-100 focus:outline-none focus:text-green-500 transition duration-150 ease-in-out z-50">
-                                    <svg class="h-6 w-6" stroke="#2C7373" fill="none" viewBox="0 0 24 24">
+                                    class="inline-flex items-center justify-center p-2 m-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:text-green-500 transition duration-150 ease-in-out z-50">
+                                    <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                                         <path :class="{
                                             hidden: showingSidebarNavigation,
                                             'inline-flex': !showingSidebarNavigation,
@@ -88,8 +88,8 @@ const toggleButtonStyle = computed(() => ({
                         <!-- Hamburger -->
                         <div class="-me-2 flex items-center sm:hidden">
                             <button @click="showingNavigationDropdown = !showingNavigationDropdown"
-                                class="inline-flex items-center justify-center p-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-100 focus:outline-none focus:bg-green-100 focus:text-green-500 transition duration-150 ease-in-out">
-                                <svg class="h-6 w-6" stroke="#2C7373" fill="none" viewBox="0 0 24 24">
+                                class="inline-flex items-center justify-center p-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
+                                <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                                     <path :class="{
                                         hidden: showingNavigationDropdown,
                                         'inline-flex': !showingNavigationDropdown,

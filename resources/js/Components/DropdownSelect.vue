@@ -15,7 +15,7 @@
                 class="absolute z-10 bg-white border border-green-700 rounded mt-1 w-full max-h-20 overflow-auto">
                 <ul>
                     <li v-for="option in filteredOptions" :key="option[valueProperty]" @click="selectOption(option)"
-                        class="p-2 text-sm hover:bg-green-100 cursor-pointer">
+                        class="p-2 text-sm hover:bg-green-50 cursor-pointer">
                         {{ option[optionProperty] }}
                     </li>
                 </ul>
@@ -86,7 +86,7 @@ const handleClickOutside = (event) => {
 <style scoped>
 select {
     padding: 0.5rem;
-    border: 0.5px solid #2C7373;
+    border: 0.5px solid #256125;
     border-radius: 4px;
     width: 100%;
 }

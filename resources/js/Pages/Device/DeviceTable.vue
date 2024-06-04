@@ -51,7 +51,7 @@ td {
 }
 
 th {
-  background-color: #2C7373;
+  background-color: #256125;
   color: white;
 }
 
