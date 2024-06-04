@@ -41,10 +41,10 @@ const submitForm = () => {
             }
         });
     } else {
-        const customerId = props.customer.id; 
-        form.put(route('update.customer', { id: customerId }), { 
+        const customerId = props.customer.id;
+        form.put(route('update.customer', { id: customerId }), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.name || errors.address || errors.phone || errors.email) {
                     alert('Customer update failed!');
@@ -83,8 +83,12 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.email" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">{{ props.customer ? 'Update Customer' : 'Add Customer' }}</PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-2">{{ props.customer ? 'Customer update successfully!' : 'Customer added successfully!' }}</span>
+                    <PrimaryButton class="mt-3">
+                        {{ props.customer ? 'Update Customer' : 'Add Customer' }}
+                    </PrimaryButton>
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-2">
+                        {{ props.customer ? 'Customer update successfully!' : 'Customer added successfully!' }}
+                    </span>
                 </div>
             </form>
         </div>

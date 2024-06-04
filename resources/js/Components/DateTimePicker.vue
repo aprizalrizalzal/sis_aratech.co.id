@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
     id: String,
@@ -18,10 +18,6 @@ const emit = defineEmits(['update:modelValue']);
 
 watch(modelValue, (value) => {
     emit('update:modelValue', value);
-});
-
-onMounted(() => {
-    console.log('Initialized DateTimePicker component');
 });
 </script>
 

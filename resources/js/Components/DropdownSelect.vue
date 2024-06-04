@@ -52,7 +52,6 @@ watch(modelValue, (value) => {
 });
 
 onMounted(() => {
-    console.log('optionProperty:', props.optionProperty);
     document.addEventListener('click', handleClickOutside);
 });
 

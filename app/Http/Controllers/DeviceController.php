@@ -19,6 +19,25 @@ class DeviceController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'device_type_id' => 'required|exists:device_types,id',
+            'model' => 'required|string|max:255',
+            'serial_number' => 'required|string|max:255',
+        ]);
+
+        $device = Device::find($request->input('id'));
+
+        $device->update([
+            'device_type_id' => $request->device_type_id,
+            'model' => $request->model,
+            'serial_number' => $request->serial_number,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

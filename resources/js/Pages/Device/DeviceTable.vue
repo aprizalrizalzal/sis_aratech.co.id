@@ -1,7 +1,9 @@
 <script setup>
+import DeviceForm from '@/Pages/Device/DeviceForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,6 +13,16 @@ const props = defineProps({
     required: true
   }
 });
+
+const showingModelDeviceUpdate = ref(false);
+const selectedDevice = ref(null);
+const selectedDeviceType = ref(null);
+
+const showModalDeviceUpdate = (device) => {
+  selectedDevice.value = device;
+  selectedDeviceType.value = device.device_type;
+  showingModelDeviceUpdate.value = true;
+};
 
 const confirmingDeviceDeletion = ref(false);
 
@@ -79,12 +91,20 @@ td {
           <td class="py-2 px-4 border-b border-gray-300">{{ device.model }}</td>
           <td class="py-2 px-4 border-b border-gray-300">{{ device.serial_number }}</td>
           <td class="py-2 px-4 border-b border-gray-300">
-            <SecondaryButton @click="updateDevice(device.id)" class="m-2">Update</SecondaryButton>
+            <SecondaryButton @click="showModalDeviceUpdate(device)" class="m-2">Update</SecondaryButton>
             <DangerButton @click="confirmDeviceDeletion(device.id)" class="m-2">Delete</DangerButton>
           </td>
         </tr>
       </tbody>
     </table>
+    <ModalForm v-model:show="showingModelDeviceUpdate">
+      <div class="m-6">
+        <div class="flex justify-end">
+          <DangerButton @click="showingModelDeviceUpdate = false">X</DangerButton>
+        </div>
+        <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" />
+      </div>
+    </ModalForm>
     <Modal :show="confirmingDeviceDeletion" @close="closeModal">
       <div class="p-6">
         <h2 class="text-lg font-medium text-green-900">
@@ -105,5 +125,6 @@ td {
         </div>
       </div>
     </Modal>
+
   </div>
 </template>
