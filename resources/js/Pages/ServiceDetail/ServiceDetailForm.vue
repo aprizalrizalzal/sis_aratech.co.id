@@ -6,17 +6,6 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
-const props = defineProps({
-    users: {
-        type: Array,
-        required: true
-    },
-    services: {
-        type: Array,
-        required: true
-    }
-});
-
 const form = useForm({
     user_id: '',
     service_id: '',
@@ -25,18 +14,55 @@ const form = useForm({
     cost: '',
 });
 
+const props = defineProps({
+    users: {
+        type: Array,
+        required: true
+    },
+    services: {
+        type: Array,
+        required: true
+    },
+    serviceDetail: Object,
+    user: Object,
+    service: Object
+});
+
+if (props.serviceDetail) {
+    form.user_id = props.serviceDetail.user_id;
+    form.service_id = props.serviceDetail.service_id;
+    form.problem_description = props.serviceDetail.problem_description;
+    form.repair_description = props.serviceDetail.repair_description;
+    form.cost = props.serviceDetail.cost;
+}
+
 const submitForm = () => {
-    form.post(route('store.service.detail'), {
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
-        onError: (errors) => {
-            if (errors.problem_description || errors.repair_description || errors.cost) {
-                alert('Service detail addition failed!');
-            } else {
-                console.error('An error occurred:', errors);
+    if (!props.serviceDetail) {
+        form.post(route('store.service.detail'), {
+            preserveScroll: true,
+            onSuccess: () => form.reset(),
+            onError: (errors) => {
+                if (errors.problem_description || errors.repair_description || errors.cost) {
+                    alert('Service detail addition failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
             }
-        }
-    });
+        });
+    } else {
+        const serviceDetailId = props.serviceDetail.id
+        form.put(route('update.service.detail', { id: serviceDetailId }), {
+            preserveScroll: true,
+            onSuccess: () => form.data(),
+            onError: (errors) => {
+                if (errors.problem_description || errors.repair_description || errors.cost) {
+                    alert('Service detail update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    }
 };
 </script>
 
@@ -44,11 +70,11 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div>
+                <div v-if="!props.user">
                     <DropdownSelect id="user_id" label="Technician" optionProperty="email" valueProperty="id"
                         :options="users" v-model="form.user_id" placeholder="Select Email" />
                 </div>
-                <div>
+                <div v-if="!props.service">
                     <DropdownSelect id="service_id" label="Service Code" optionProperty="service_code"
                         valueProperty="id" :options="services" v-model="form.service_id"
                         placeholder="Select Service Code" />
@@ -72,9 +98,13 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.cost" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">Add Service Detail</PrimaryButton><span v-if="form.recentlySuccessful"
-                        class="text-green-500 ml-2">Service Detail added
-                        successfully!</span>
+                    <PrimaryButton class="mt-3">
+                        {{ props.user ? 'Update Service Detail' : 'Add Service Detail' }}
+                    </PrimaryButton>
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
+                        {{ props.service ? 'Service Detail update successfully!' : 'Service Detail added successfully!'
+                        }}
+                    </span>
                 </div>
             </form>
         </div>

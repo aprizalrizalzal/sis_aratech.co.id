@@ -18,6 +18,32 @@ class ServiceDetailController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'service_id' => 'required|exists:services,id',
+            'problem_description' => 'required|string|max:255',
+            'repair_description' => 'required|string|max:255',
+            'cost' => 'required|integer',
+        ]);
+
+        $serviceDetail = ServiceDetail::find($request->input('id'));
+
+        $serviceDetail->update([
+            'user_id' => $request->user_id,
+            'service_id' => $request->service_id,
+            'problem_description' => $request->problem_description,
+            'repair_description' => $request->repair_description,
+            'cost' => $request->cost,
+        ]);
+
+
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

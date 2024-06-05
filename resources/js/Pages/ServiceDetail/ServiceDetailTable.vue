@@ -1,7 +1,9 @@
 <script setup>
+import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,6 +13,18 @@ const props = defineProps({
         required: true
     }
 });
+
+const showingModelServiceDetailUpdate = ref(false);
+const selectedServiceDetail = ref(null);
+const selectedUser = ref(null);
+const selectedService = ref(null);
+
+const showModalServiceDetailUpdate = (serviceDetail) => {
+    selectedServiceDetail.value = serviceDetail;
+    selectedUser.value = serviceDetail.user;
+    selectedService.value = serviceDetail.service;
+    showingModelServiceDetailUpdate.value = true;
+};
 
 const confirmingServiceDetailDeletion = ref(false);
 
@@ -85,13 +99,23 @@ td {
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.repair_description }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.cost }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">
-                        <SecondaryButton @click="updateService(serviceDetail.id)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
+                        </SecondaryButton>
                         <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
                         </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ModalForm v-model:show="showingModelServiceDetailUpdate">
+            <div class="m-6">
+                <div class="flex justify-end">
+                    <DangerButton @click="showingModelServiceDetailUpdate = false">X</DangerButton>
+                </div>
+                <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser"
+                    :service="selectedService" />
+            </div>
+        </ModalForm>
         <Modal :show="confirmingServiceDetailDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

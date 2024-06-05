@@ -62,6 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // ServiceDetailController
     Route::get('/service/details', [ServiceDetailController::class, 'show'])->name('show.service.details');
+    Route::put('/service/detail', [ServiceDetailController::class, 'update'])->name('update.service.detail');
     Route::delete('/service/detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
 
     // SparePartController
