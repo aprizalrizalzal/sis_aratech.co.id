@@ -18,6 +18,25 @@ class PartUsageController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'service_detail_id' => 'required|exists:service_details,id',
+            'spare_part_id' => 'required|exists:spare_parts,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $partUsage = PartUsage::find($request->input('id'));
+
+        $partUsage->update([
+            'service_detail_id' => $request->service_detail_id,
+            'spare_part_id' => $request->spare_part_id,
+            'quantity' => $request->quantity,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

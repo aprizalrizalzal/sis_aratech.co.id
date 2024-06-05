@@ -1,7 +1,9 @@
 <script setup>
+import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,6 +13,18 @@ const props = defineProps({
         required: true
     }
 });
+
+const showingModelPartUsageUpdate = ref(false);
+const selectedPartUsage = ref(null);
+const selectedServiceDetail = ref(null);
+const selectedSparePart = ref(null);
+
+const showModalPartUsageUpdate = (partUsage) => {
+    selectedPartUsage.value = partUsage;
+    selectedServiceDetail.value = partUsage.service_detail;
+    selectedSparePart.value = partUsage.spare_part;
+    showingModelPartUsageUpdate.value = true;
+};
 
 const confirmingPartUsageDeletion = ref(false);
 
@@ -80,13 +94,23 @@ td {
                     <td class="py-2 px-4 border-b border-gray-300">{{ partUsage.spare_part.name }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ partUsage.quantity }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">
-                        <SecondaryButton @click="updatePartUsage(partUsage.id)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update
+                        </SecondaryButton>
                         <DangerButton @click="confirmPartUsageDeletion(partUsage.id)" class="m-2">Delete
                         </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ModalForm v-model:show="showingModelPartUsageUpdate">
+            <div class="m-6">
+                <div class="flex justify-end">
+                    <DangerButton @click="showingModelPartUsageUpdate = false">X</DangerButton>
+                </div>
+                <PartUsageForm :partUsage="selectedPartUsage" :serviceDetail="selectedPartUsage"
+                    :sparePart="selectedPartUsage" />
+            </div>
+        </ModalForm>
         <Modal :show="confirmingPartUsageDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

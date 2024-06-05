@@ -69,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // PartUsageController
     Route::get('/part/usages', [PartUsageController::class, 'show'])->name('show.part.usages');
+    Route::put('/part/usage', [PartUsageController::class, 'update'])->name('update.part.usage');
     Route::delete('/part/usage', [PartUsageController::class, 'destroy'])->name('destroy.part.usage');
 });
 
