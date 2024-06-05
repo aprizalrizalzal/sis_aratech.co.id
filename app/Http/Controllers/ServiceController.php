@@ -46,7 +46,7 @@ class ServiceController extends Controller
     public function destroy(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:service,id',
+            'id' => 'required|exists:services,id',
         ]);
 
         $service = Service::find($request->input('id'));

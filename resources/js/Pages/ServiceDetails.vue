@@ -1,7 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import ServiceDetailTable from '@/Pages/ServiceDetail/ServiceDetailTable.vue';
+import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   serviceDetails: {
@@ -10,6 +12,19 @@ const props = defineProps({
   }
 });
 
+const searchQuery = ref('');
+
+const filteredServiceDetails = computed(() => {
+  if (!searchQuery.value) {
+    return props.serviceDetails;
+  }
+  return props.serviceDetails.filter(serviceDetail =>
+    serviceDetail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.repair_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.cost.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>
 
 <template>
@@ -17,7 +32,14 @@ const props = defineProps({
   <Head title="Service Details" />
   <AuthenticatedLayout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">Service Details</h2>
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-none">Service Details</h2>
+        </div>
+        <div class="flex items-center">
+          <SearchInput v-model:searchQuery="searchQuery" />
+        </div>
+      </div>
     </template>
     <div class="flex">
       <!-- Main Content -->
@@ -25,7 +47,7 @@ const props = defineProps({
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
-            <ServiceDetailTable :serviceDetails="serviceDetails" />
+            <ServiceDetailTable :serviceDetails="filteredServiceDetails" />
           </div>
         </div>
       </div>

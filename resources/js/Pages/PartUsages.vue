@@ -1,7 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PartUsageTable from '@/Pages/PartUsage/PartUsageTable.vue';
+import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   partUsages: {
@@ -10,6 +12,16 @@ const props = defineProps({
   }
 });
 
+const searchQuery = ref('');
+
+const filteredPartUsages = computed(() => {
+  if (!searchQuery.value) {
+    return props.partUsages;
+  }
+  return props.partUsages.filter(partUsage =>
+    partUsage.quantity.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>
 
 <template>
@@ -17,7 +29,14 @@ const props = defineProps({
   <Head title="Part Usages" />
   <AuthenticatedLayout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">Part Usages</h2>
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-none">Part Usages</h2>
+        </div>
+        <div class="flex items-center">
+          <SearchInput v-model:searchQuery="searchQuery" />
+        </div>
+      </div>
     </template>
     <div class="flex">
       <!-- Main Content -->
@@ -25,7 +44,7 @@ const props = defineProps({
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
-            <PartUsageTable :partUsages="partUsages" />
+            <PartUsageTable :partUsages="filteredPartUsages" />
           </div>
         </div>
       </div>

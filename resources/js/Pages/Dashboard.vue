@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
+import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 import DeviceTypeIcon from '@/Components/Icon/DeviceTypeIcon.vue';
 import DeviceIcon from '@/Components/Icon/DeviceIcon.vue';
 import ServiceIcon from '@/Components/Icon/ServiceIcon.vue';
@@ -81,30 +82,35 @@ const props = defineProps({
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4 p-4">
               <LineChart />
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <PrimaryButton @click="showModalAddDeviceType = true">
-                  <DeviceTypeIcon /><span class="mx-2">Add Device Type </span>
-                </PrimaryButton>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <PrimaryButton @click="showModalAddDeviceType = true">
+                    <DeviceTypeIcon /><span class="mx-2">Add Device Type</span>
+                  </PrimaryButton>
+                  <PrimaryButton @click="showModalAddSparePart = true">
+                    <SparePartIcon /><span class="mx-2">Add Spare Part</span>
+                  </PrimaryButton>
+                </div>
                 <PrimaryButton @click="showModalAddSparePart = true">
-                  <SparePartIcon /><span class="mx-2">Add Spare Part </span>
+                  <ImagesIcon /><span class="mx-2">Add Carousel Image</span>
                 </PrimaryButton>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <PrimaryButton @click="showModalAddCustomer = true">
-                  <CustomerIcon /><span class="mx-2">Add Customer </span>
+                  <CustomerIcon /><span class="mx-2">Add Customer</span>
                 </PrimaryButton>
                 <PrimaryButton @click="showModalAddDevice = true">
-                  <DeviceIcon /><span class="mx-2">Add Device </span>
+                  <DeviceIcon /><span class="mx-2">Add Device</span>
                 </PrimaryButton>
                 <PrimaryButton @click="showModalAddService = true">
-                  <ServiceIcon /><span class="mx-2">Add Service </span>
+                  <ServiceIcon /><span class="mx-2">Add Service</span>
                 </PrimaryButton>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <PrimaryButton @click="showModalAddServiceDetail = true">
-                  <ServiceDetailIcon /><span class="mx-2">Add Service Detail </span>
+                  <ServiceDetailIcon /><span class="mx-2">Add Service Detail</span>
                 </PrimaryButton>
                 <PrimaryButton @click="showModalAddPartUsage = true">
-                  <PartUsageIcon /><span class="mx-2">Add Part Usage </span>
+                  <PartUsageIcon /><span class="mx-2">Add Part Usage</span>
                 </PrimaryButton>
               </div>
             </div>

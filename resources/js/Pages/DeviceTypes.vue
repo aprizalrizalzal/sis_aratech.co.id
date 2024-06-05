@@ -1,7 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import DeviceTypeTable from '@/Pages/DeviceType/DeviceTypeTable.vue';
+import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   deviceTypes: {
@@ -10,6 +12,16 @@ const props = defineProps({
   }
 });
 
+const searchQuery = ref('');
+
+const filteredDeviceTypes = computed(() => {
+  if (!searchQuery.value) {
+    return props.deviceTypes;
+  }
+  return props.deviceTypes.filter(deviceType =>
+    deviceType.type_name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>
 
 <template>
@@ -17,7 +29,14 @@ const props = defineProps({
   <Head title="Device Types" />
   <AuthenticatedLayout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">Device Types</h2>
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-none">Device Types</h2>
+        </div>
+        <div class="flex items-center">
+          <SearchInput v-model:searchQuery="searchQuery" />
+        </div>
+      </div>
     </template>
     <div class="flex">
       <!-- Main Content -->
@@ -25,7 +44,7 @@ const props = defineProps({
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
-            <DeviceTypeTable :deviceTypes="deviceTypes" />
+            <DeviceTypeTable :deviceTypes="filteredDeviceTypes" />
           </div>
         </div>
       </div>
