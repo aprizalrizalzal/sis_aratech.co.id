@@ -80,7 +80,7 @@ td {
             <thead>
                 <tr>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">#</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Detail</th>
+                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Detail Code</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Spare Part</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Quantity</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Action</th>

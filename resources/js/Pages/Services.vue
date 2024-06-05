@@ -20,6 +20,8 @@ const filteredServices = computed(() => {
   }
   return props.services.filter(service =>
     service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.customer.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||

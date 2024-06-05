@@ -82,7 +82,7 @@ td {
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">#</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Detail Code</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Technician</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service</th>
+                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Code</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Problem Description</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Repair Description</th>
                     <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Cost</th>
@@ -94,7 +94,7 @@ td {
                     <td class="py-2 px-4 border-b border-gray-300">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.service_detail_code }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.service.status }}</td>
+                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.problem_description }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.repair_description }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.cost }}</td>

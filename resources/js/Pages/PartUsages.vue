@@ -19,6 +19,8 @@ const filteredPartUsages = computed(() => {
     return props.partUsages;
   }
   return props.partUsages.filter(partUsage =>
+    partUsage.service_detail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    partUsage.spare_part.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     partUsage.quantity.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });

@@ -19,6 +19,7 @@ const filteredDevices = computed(() => {
     return props.devices;
   }
   return props.devices.filter(device =>
+    device.device_type.type_name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
