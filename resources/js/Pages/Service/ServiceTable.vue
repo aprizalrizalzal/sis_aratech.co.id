@@ -1,7 +1,9 @@
 <script setup>
+import ServiceForm from '@/Pages/Service/ServiceForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,6 +13,18 @@ const props = defineProps({
         required: true
     }
 });
+
+const showingModelServiceUpdate = ref(false);
+const selectedService = ref(null);
+const selectedCustomer = ref(null);
+const selectedDevice = ref(null);
+
+const showModalServiceUpdate = (service) => {
+    selectedService.value = service;
+    selectedCustomer.value = service.customer;
+    selectedDevice.value = service.device;
+    showingModelServiceUpdate.value = true;
+};
 
 const confirmingServiceDeletion = ref(false);
 
@@ -87,13 +101,22 @@ td {
                     <td class="py-2 px-4 border-b border-gray-300">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ service.status }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">
-                        <SecondaryButton @click="updateService(service.id)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
+                        </SecondaryButton>
                         <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete
                         </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ModalForm v-model:show="showingModelServiceUpdate">
+            <div class="m-6">
+                <div class="flex justify-end">
+                    <DangerButton @click="showingModelServiceUpdate = false">X</DangerButton>
+                </div>
+                <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice" />
+            </div>
+        </ModalForm>
         <Modal :show="confirmingServiceDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

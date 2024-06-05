@@ -18,6 +18,31 @@ class ServiceController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+            'device_id' => 'required|exists:devices,id',
+            'date_received' => 'date',
+            'items_brought' => 'required|string|max:255',
+            'estimated_completion' => 'date',
+            'status' => 'required|string|max:255',
+        ]);
+
+        $service = Service::find($request->input('id'));
+
+        $service->update([
+            'customer_id' => $request->customer_id,
+            'device_id' => $request->device_id,
+            'date_received' => $request->date_received,
+            'items_brought' => $request->items_brought,
+            'estimated_completion' => $request->estimated_completion,
+            'status' => $request->status,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

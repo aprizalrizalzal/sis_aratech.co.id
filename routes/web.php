@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // ServiceController
     Route::get('/services', [ServiceController::class, 'show'])->name('show.services');
+    Route::put('/service', [ServiceController::class, 'update'])->name('update.service');
     Route::delete('/service', [ServiceController::class, 'destroy'])->name('destroy.service');
 
     // ServiceDetailController

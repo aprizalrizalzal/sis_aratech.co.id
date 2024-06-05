@@ -27,8 +27,8 @@ const props = defineProps({
 });
 
 if (props.partUsage) {
-    form.service_detail_id = props.partUsage.service_detail.id;
-    form.spare_part_id = props.partUsage.spare_part.id;
+    form.service_detail_id = props.partUsage.service_detail_id;
+    form.spare_part_id = props.partUsage.spare_part_id;
     form.quantity = props.partUsage.quantity;
 }
 
