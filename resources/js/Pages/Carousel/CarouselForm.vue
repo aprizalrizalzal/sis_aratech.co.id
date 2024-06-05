@@ -4,7 +4,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-
+// Belum Selesai
 const form = useForm({
     url: '',
 });
@@ -59,7 +59,7 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.url" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">
+                    <PrimaryButton class="mt-6 mb-3">
                         {{ props.url ? 'Update Image Url' : 'Add Image Url' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">

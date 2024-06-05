@@ -111,7 +111,7 @@ const submitForm = () => {
                         valueProperty="name" v-model="form.status" placeholder="Select Status" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">
+                    <PrimaryButton class="mt-6 mb-3">
                         {{ props.service ? 'Update Service' : 'Add Service' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">

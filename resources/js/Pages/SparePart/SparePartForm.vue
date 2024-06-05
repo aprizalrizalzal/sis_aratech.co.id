@@ -66,7 +66,7 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.price" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">
+                    <PrimaryButton class="mt-6 mb-3">
                         {{ props.sparePart ? 'Update Spare Part' : 'Add Spare Part' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">

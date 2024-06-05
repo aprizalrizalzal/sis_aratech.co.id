@@ -80,7 +80,7 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.serial_number" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">
+                    <PrimaryButton class="mt-6 mb-3">
                         {{ props.device ? 'Update Device' : 'Add Device' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">

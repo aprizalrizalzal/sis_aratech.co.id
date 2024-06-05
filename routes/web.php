@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/part/usage', [DashboardController::class, 'store_part_usage'])->name('store.part.usage');
 
     // CarouselController
+    // Belum Selesai
     Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
 
     // UserController

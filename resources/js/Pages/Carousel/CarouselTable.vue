@@ -5,7 +5,7 @@ import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 import { ref } from 'vue';
-
+// Belum Selesai
 const props = defineProps({
     carousels: {
         type: Array,

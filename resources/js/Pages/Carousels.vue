@@ -4,7 +4,7 @@ import CarouselTable from '@/Pages/Carousel/CarouselTable.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
-
+// Belum Selesai
 const props = defineProps({
     carousels: {
         type: Array,

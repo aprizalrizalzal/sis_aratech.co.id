@@ -46,35 +46,6 @@ const closeModalService = () => {
 
 </script>
 
-<style scoped>
-.table-auto {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table-auto th,
-.table-auto td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.table-auto tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.table-auto tr:hover {
-    background-color: #ddd;
-}
-
-.table-auto th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
-
 <template>
 
     <Head title="SIService" />
@@ -139,7 +110,7 @@ const closeModalService = () => {
                                                         <InputError class="mt-3" :message="form.errors.service_code" />
                                                     </div>
                                                     <div class="flex justify-end">
-                                                        <PrimaryButton class="mt-3">Search</PrimaryButton>
+                                                        <PrimaryButton class="mt-6 mb-3">Search</PrimaryButton>
                                                     </div>
                                                 </form>
                                             </div>
@@ -147,67 +118,80 @@ const closeModalService = () => {
                                         <ModalService v-if="service" :show="showModalService"
                                             @close="closeModalService">
                                             <div class="p-6">
-                                                <div class="flex justify-end">
-                                                    <DangerButton @click="closeModalService">X</DangerButton>
-                                                </div>
-                                                <table class="table-auto w-full mt-6">
+                                                <p
+                                                    class="py-2 px-4 mb-2 border-green-300 font-bold text-red-900 text-center">
+                                                    Service
+                                                    Code {{ service.service_code }}</p>
+                                                <table class="table-auto w-full">
                                                     <tbody>
-                                                        <tr class="font-bold text-green-900">
-                                                            <td class="border px-4 py-2">Service Code</td>
-                                                            <td class="border px-4 py-2">{{
-                                                                service.service_code }}</td>
+
+                                                        <tr>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Customers
+                                                            </td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.customer.name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Customers</td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.customer.name }}</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Phone</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.customer.phone }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Phone</td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.customer.phone }}</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Model</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.device.model }}</td>
+                                                        </tr>
+                                                        <tr class="font-bold text-red-900">
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Serial
+                                                                Number</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.device.serial_number }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Model</td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.device.model }}</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Date
+                                                                Received</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.date_received }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Serial Number
-                                                            </td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.device.serial_number }}</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Items
+                                                                Brought</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.items_brought }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Date Received
-                                                            </td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.date_received }}
-                                                            </td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Estimated
+                                                                Completion</td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.estimated_completion }}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Items Brought
+                                                        <tr class="font-bold text-red-900">
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                Status
                                                             </td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.items_brought }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">Estimated
-                                                                Completion
-                                                            </td>
-                                                            <td class="border px-4 py-2 text-sm/relaxed">{{
-                                                                service.estimated_completion
-                                                            }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="font-bold text-green-900">
-                                                            <td class="border px-4 py-2">Status</td>
-                                                            <td class="border px-4 py-2 italic">{{ service.status }}
-                                                            </td>
+                                                            <td class="py-2 px-4 border border-green-300 text-center">
+                                                                {{
+                                                                    service.status }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <div class="flex justify-end mt-6">
+                                                    <DangerButton @click="closeModalService">Close</DangerButton>
+                                                </div>
                                             </div>
                                         </ModalService>
                                         <div v-else>

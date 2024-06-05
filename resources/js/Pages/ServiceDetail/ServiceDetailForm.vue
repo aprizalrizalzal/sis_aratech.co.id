@@ -98,7 +98,7 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.cost" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">
+                    <PrimaryButton class="mt-6 mb-3">
                         {{ props.user ? 'Update Service Detail' : 'Add Service Detail' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
