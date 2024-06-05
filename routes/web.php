@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // DeviceTypeController
     Route::get('/device/types', [DeviceTypeController::class, 'show'])->name('show.device.types');
+    Route::put('/device/type', [DeviceTypeController::class, 'update'])->name('update.device.type');
     Route::delete('/device/type', [DeviceTypeController::class, 'destroy'])->name('destroy.device.type');
 
     // DeviceController

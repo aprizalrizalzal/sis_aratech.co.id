@@ -27,8 +27,6 @@ if (props.device) {
     form.serial_number = props.device.serial_number;
 }
 
-
-
 const submitForm = () => {
     if (!props.device) {
         form.post(route('store.device'), {
@@ -85,7 +83,7 @@ const submitForm = () => {
                     <PrimaryButton class="mt-3">
                         {{ props.device ? 'Update Device' : 'Add Device' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-2">
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.device ? 'Device update successfully!' : 'Device added successfully!' }}
                     </span>
                 </div>

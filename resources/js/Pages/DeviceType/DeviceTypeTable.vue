@@ -1,7 +1,9 @@
 <script setup>
+import DeviceTypeForm from '@/Pages/DeviceType/DeviceTypeForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,6 +13,14 @@ const props = defineProps({
         required: true
     }
 });
+
+const showingModelDeviceTypeUpdate = ref(false);
+const selectedDeviceType = ref(null);
+
+const showModalDeviceTypeUpdate = (deviceType) => {
+    selectedDeviceType.value = deviceType;
+    showingModelDeviceTypeUpdate.value = true;
+};
 
 const confirmingDeviceTypeDeletion = ref(false);
 
@@ -75,13 +85,22 @@ td {
                     <td class="py-2 px-4 border-b border-gray-300">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ deviceType.type_name }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">
-                        <SecondaryButton @click="updateDeviceType(deviceType.id)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalDeviceTypeUpdate(deviceType)" class="m-2">Update
+                        </SecondaryButton>
                         <DangerButton @click="confirmDeviceTypeDeletion(deviceType.id)" class="m-2">Delete
                         </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ModalForm v-model:show="showingModelDeviceTypeUpdate">
+            <div class="m-6">
+                <div class="flex justify-end">
+                    <DangerButton @click="showingModelDeviceTypeUpdate = false">X</DangerButton>
+                </div>
+                <DeviceTypeForm :deviceType="selectedDeviceType" />
+            </div>
+        </ModalForm>
         <Modal :show="confirmingDeviceTypeDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

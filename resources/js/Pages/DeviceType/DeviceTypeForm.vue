@@ -9,18 +9,42 @@ const form = useForm({
     type_name: '',
 });
 
+const props = defineProps({
+    deviceType: Object,
+});
+
+if (props.deviceType) {
+    form.type_name = props.deviceType.type_name;
+}
+
 const submitForm = () => {
-    form.post(route('store.device.type'), {
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
-        onError: (errors) => {
-            if (errors.type_name) {
-                alert('Device Type addition failed!');
-            } else {
-                console.error('An error occurred:', errors);
+    if (!props.deviceType) {
+        form.post(route('store.device.type'), {
+            preserveScroll: true,
+            onSuccess: () => form.reset(),
+            onError: (errors) => {
+                if (errors.type_name) {
+                    alert('Device Type addition failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
             }
-        }
-    });
+        });
+    } else {
+        const deviceTypeId = props.deviceType.id;
+        form.put(route('update.device.type', { id: deviceTypeId }), {
+            preserveScroll: true,
+            onSuccess: () => form.data(),
+            onError: (errors) => {
+                if (errors.type_name) {
+                    alert('Device Type update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    }
+
 };
 </script>
 
@@ -35,9 +59,12 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.type_name" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">Add Device Type</PrimaryButton><span v-if="form.recentlySuccessful"
-                        class="text-green-500 ml-2">Device Type added
-                        successfully!</span>
+                    <PrimaryButton class="mt-3">
+                        {{ props.deviceType ? 'Update Device Type' : 'Add Device Type' }}
+                    </PrimaryButton>
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
+                        {{ props.deviceType ? 'Device Type update successfully!' : 'Device Type added successfully!' }}
+                    </span>
                 </div>
             </form>
         </div>
