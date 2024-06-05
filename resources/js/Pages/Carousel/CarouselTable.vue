@@ -3,28 +3,28 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
+import { defineProps } from 'vue';
 import { ref } from 'vue';
 
 const props = defineProps({
-    users: {
+    carousels: {
         type: Array,
         required: true
     }
 });
 
-const confirmingUserDeletion = ref(false);
-
+const confirmingCarouselDeletion = ref(false);
 const form = useForm({
     id: null,
 });
 
-const confirmUserDeletion = (userId) => {
-    confirmingUserDeletion.value = true;
-    form.id = userId;
+const confirmCarouselDeletion = (carouselId) => {
+    confirmingCarouselDeletion.value = true;
+    form.id = carouselId;
 };
 
-const deleteUser = () => {
-    form.delete(route('destroy.user'), {
+const deleteCarousel = () => {
+    form.delete(route('carousel.destroy', { carousel: form.id }), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: (errors) => {
@@ -38,7 +38,7 @@ const deleteUser = () => {
 };
 
 const closeModal = () => {
-    confirmingUserDeletion.value = false;
+    confirmingCarouselDeletion.value = false;
 };
 </script>
 
@@ -48,42 +48,38 @@ const closeModal = () => {
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">#</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Role</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Alternative</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(user, index) in users" :key="user.id" class="hover:bg-green-100">
+                <tr v-for="(carousel, index) in carousels" :key="carousel.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.role }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ carousel.img }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ carousel.alt }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="updateService(user.id)" class="m-2">Update</SecondaryButton>
-                        <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete
-                        </DangerButton>
+                        <DangerButton @click="confirmCarouselDeletion(carousel.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <Modal :show="confirmingUserDeletion" @close="closeModal">
+        <Modal :show="confirmingCarouselDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
-                    Are you sure you want to delete your User?
+                    Are you sure you want to delete your carousel?
                 </h2>
 
                 <p class="mt-1 text-sm text-green-600">
-                    Once your Service Detai is deleted, all of its resources and data will be permanently deleted.
+                    Once your carousel is deleted, all of its resources and data will be permanently deleted.
                 </p>
 
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
 
                     <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                        @click="deleteUser">
-                        Delete User
+                        @click="deleteCarousel">
+                        Delete Carousel
                     </DangerButton>
                 </div>
             </div>

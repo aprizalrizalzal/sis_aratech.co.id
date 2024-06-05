@@ -18,8 +18,8 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'relative flex flex-row items-center h-11 focus:outline-none bg-green-50 text-green-800 border-l-4 border-green-500 pr-6'
-        : 'relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-50 text-green-600 hover:text-green-800 border-l-4 border-transparent hover:border-green-500 pr-6'
+        ? 'relative flex flex-row items-center h-11 focus:outline-none bg-green-50 text-green-800 border-l-4 border-green-300 pr-6'
+        : 'relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-50 text-green-600 hover:text-green-800 border-l-4 border-transparent hover:border-green-300 pr-6'
 );
 </script>
 

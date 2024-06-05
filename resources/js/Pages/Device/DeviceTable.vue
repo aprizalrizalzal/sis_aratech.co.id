@@ -77,20 +77,20 @@ td {
     <table class="min-w-full bg-white border-collapse">
       <thead>
         <tr>
-          <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">#</th>
-          <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Device Type</th>
-          <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Model</th>
-          <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Serial Number</th>
-          <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Action</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300">#</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(device, index) in devices" :key="device.id" class="hover:bg-gray-100">
-          <td class="py-2 px-4 border-b border-gray-300">{{ index + 1 }}</td>
-          <td class="py-2 px-4 border-b border-gray-300">{{ device.device_type.type_name }}</td>
-          <td class="py-2 px-4 border-b border-gray-300">{{ device.model }}</td>
-          <td class="py-2 px-4 border-b border-gray-300">{{ device.serial_number }}</td>
-          <td class="py-2 px-4 border-b border-gray-300">
+        <tr v-for="(device, index) in devices" :key="device.id" class="hover:bg-green-100">
+          <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+          <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.device_type.type_name }}</td>
+          <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.model }}</td>
+          <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.serial_number }}</td>
+          <td class="py-2 px-4 border-b border-green-300 text-center">
             <SecondaryButton @click="showModalDeviceUpdate(device)" class="m-2">Update</SecondaryButton>
             <DangerButton @click="confirmDeviceDeletion(device.id)" class="m-2">Delete</DangerButton>
           </td>

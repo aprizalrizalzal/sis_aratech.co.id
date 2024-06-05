@@ -32,7 +32,7 @@ const filteredSpareParts = computed(() => {
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-none">Spare Parts</h2>
+          <h2 class="font-semibold text-xl text-green-800 leading-tight flex-none">Spare Parts</h2>
         </div>
         <div class="flex items-center">
           <SearchInput v-model:searchQuery="searchQuery" />

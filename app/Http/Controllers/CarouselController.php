@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CarouselImage;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
-class CarouselImageController extends Controller
+class CarouselController extends Controller
 {
-    public function index()
+    public function show()
     {
-        $images = CarouselImage::all();
-        return response()->json($images);
+        $carousels = Carousel::all();
+        return Inertia::render('Carousels', ['carousels' => $carousels]);
     }
 
     public function store(Request $request)
@@ -19,7 +20,7 @@ class CarouselImageController extends Controller
             'url' => 'required|url'
         ]);
 
-        $image = CarouselImage::create([
+        $image = Carousel::create([
             'url' => $request->url
         ]);
 
@@ -28,7 +29,7 @@ class CarouselImageController extends Controller
 
     public function destroy($id)
     {
-        $image = CarouselImage::findOrFail($id);
+        $image = Carousel::findOrFail($id);
         $image->delete();
 
         return response()->json(null, 204);

@@ -57,20 +57,20 @@ const closeModal = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">#</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Name</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Email</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Phone</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">#</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(customer, index) in customers" :key="customer.id" class="hover:bg-gray-100">
-                    <td class="py-2 px-4 border-b border-gray-300">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ customer.name }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ customer.email }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">
+                <tr v-for="(customer, index) in customers" :key="customer.id" class="hover:bg-green-100">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCustomerUpdate(customer)" class="m-2">Update</SecondaryButton>
                         <DangerButton @click="confirmCustomerDeletion(customer.id)" class="m-2">Delete</DangerButton>
                     </td>

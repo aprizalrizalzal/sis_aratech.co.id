@@ -111,8 +111,8 @@ const closeModalService = () => {
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
                         <div id="docs-card"
                             class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
-                            <img src="https://diskop.ntbprov.go.id/wp-content/uploads/2024/05/8.jpg"
-                                alt="Laravel documentation screenshot"
+                            <img src="https://drive.google.com/file/d/1Fof8GEpfh7S88F0MUq8OUd-wW5eww0Yy/view?usp=sharing"
+                                alt="Documentation Service"
                                 class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden" />
                             <div class="relative flex items-center gap-6 lg:items-end">
                                 <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
@@ -198,7 +198,7 @@ const closeModalService = () => {
                                                             </td>
                                                             <td class="border px-4 py-2 text-sm/relaxed">{{
                                                                 service.estimated_completion
-                                                                }}
+                                                            }}
                                                             </td>
                                                         </tr>
                                                         <tr class="font-bold text-green-900">

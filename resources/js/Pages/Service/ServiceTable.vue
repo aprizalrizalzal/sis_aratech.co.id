@@ -56,51 +56,33 @@ const closeModal = () => {
 };
 </script>
 
-<style scoped>
-/* Tambahkan beberapa styling dasar untuk tabel */
-th,
-td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #256125;
-    color: white;
-}
-
-td {
-    border-bottom: 1px solid #e2e8f0;
-}
-</style>
-
 <template>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">#</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Code</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Customer</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Device</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Date Received</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Items Brought</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Estimated Completion</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Status</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">#</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in services" :key="service.id" class="hover:bg-gray-100">
-                    <td class="py-2 px-4 border-b border-gray-300">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.customer.name }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.device.model }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.date_received }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.items_brought }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.estimated_completion }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ service.status }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">
+                <tr v-for="(service, index) in services" :key="service.id" class="hover:bg-green-100">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
                         </SecondaryButton>
                         <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete

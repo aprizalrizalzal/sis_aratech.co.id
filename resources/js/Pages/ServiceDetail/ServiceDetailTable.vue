@@ -56,49 +56,35 @@ const closeModal = () => {
 };
 </script>
 
-<style scoped>
-/* Tambahkan beberapa styling dasar untuk tabel */
-th,
-td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #256125;
-    color: white;
-}
-
-td {
-    border-bottom: 1px solid #e2e8f0;
-}
-</style>
-
 <template>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">#</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Detail Code</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Technician</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Service Code</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Problem Description</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Repair Description</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Cost</th>
-                    <th class="py-2 px-4 border-b border-gray-300 bg-gray-100">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">#</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Technician</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id" class="hover:bg-gray-100">
-                    <td class="py-2 px-4 border-b border-gray-300">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.service_detail_code }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.problem_description }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.repair_description }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">{{ serviceDetail.cost }}</td>
-                    <td class="py-2 px-4 border-b border-gray-300">
+                <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id" class="hover:bg-green-100">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.cost }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
                         </SecondaryButton>
                         <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete

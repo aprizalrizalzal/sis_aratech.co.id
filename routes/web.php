@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
@@ -35,6 +36,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/service/detail', [DashboardController::class, 'store_service_detail'])->name('store.service.detail');
     Route::post('/dashboard/spare/part', [DashboardController::class, 'store_spare_part'])->name('store.spare.part');
     Route::post('/dashboard/part/usage', [DashboardController::class, 'store_part_usage'])->name('store.part.usage');
+
+    // CarouselController
+    Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
 
     // UserController
     Route::get('/users', [UserController::class, 'show'])->name('show.users');

@@ -12,6 +12,7 @@ import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
 import SidebarLink from '@/Components/SidebarLink.vue';
 import { Link } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
+import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 
 const props = defineProps({
   isVisible: {
@@ -53,6 +54,10 @@ const props = defineProps({
             <SidebarLink :href="route('show.spare.parts')" :active="route().current('show.spare.parts')"
               label="Spare Parts">
               <SparePartIcon />
+            </SidebarLink>
+
+            <SidebarLink :href="route('show.carousels')" :active="route().current('show.carousels')" label="Carousels">
+              <ImagesIcon />
             </SidebarLink>
           </div>
 
