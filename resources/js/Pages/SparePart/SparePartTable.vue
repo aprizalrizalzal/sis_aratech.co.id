@@ -1,7 +1,9 @@
 <script setup>
+import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -11,6 +13,14 @@ const props = defineProps({
         required: true
     }
 });
+
+const showingModelSparePartUpdate = ref(false);
+const selectedSparePart = ref(null);
+
+const showModalSparePartUpdate = (sparePart) => {
+    selectedSparePart.value = sparePart;
+    showingModelSparePartUpdate.value = true;
+};
 
 const confirmingSparePartDeletion = ref(false);
 
@@ -77,13 +87,22 @@ td {
                     <td class="py-2 px-4 border-b border-gray-300">{{ sparePart.name }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">{{ sparePart.price }}</td>
                     <td class="py-2 px-4 border-b border-gray-300">
-                        <SecondaryButton @click="updateService(sparePart.id)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update
+                        </SecondaryButton>
                         <DangerButton @click="confirmSparePartDeletion(sparePart.id)" class="m-2">Delete
                         </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ModalForm v-model:show="showingModelSparePartUpdate">
+            <div class="m-6">
+                <div class="flex justify-end">
+                    <DangerButton @click="showingModelSparePartUpdate = false">X</DangerButton>
+                </div>
+                <SparePartForm :sparePart="selectedSparePart" />
+            </div>
+        </ModalForm>
         <Modal :show="confirmingSparePartDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

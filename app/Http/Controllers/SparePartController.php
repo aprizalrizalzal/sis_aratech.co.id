@@ -18,6 +18,23 @@ class SparePartController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer',
+        ]);
+
+        $sparePart = SparePart::find($request->input('id'));
+
+        $sparePart->update([
+            'name' => $request->name,
+            'price' => $request->price,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

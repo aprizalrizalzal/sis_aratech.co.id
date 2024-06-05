@@ -1,6 +1,5 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
-import DropdownSelect from '@/Components/DropdownSelect.vue'
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -11,18 +10,42 @@ const form = useForm({
     price: '',
 });
 
+const props = defineProps({
+    sparePart: Object,
+});
+
+if (props.sparePart) {
+    form.name = props.sparePart.name;
+    form.price = props.sparePart.price;
+}
+
 const submitForm = () => {
-    form.post(route('store.spare.part'), {
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
-        onError: (errors) => {
-            if (errors.name || errors.price) {
-                alert('Spare part addition failed!');
-            } else {
-                console.error('An error occurred:', errors);
+    if (!props.sparePart) {
+        form.post(route('store.spare.part'), {
+            preserveScroll: true,
+            onSuccess: () => form.reset(),
+            onError: (errors) => {
+                if (errors.name || errors.price) {
+                    alert('Spare part addition failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
             }
-        }
-    });
+        });
+    } else {
+        const sparePartId = props.sparePart.id;
+        form.put(route('update.spare.part', { id: sparePartId }), {
+            preserveScroll: true,
+            onSuccess: () => form.data(),
+            onError: (errors) => {
+                if (errors.name || errors.price) {
+                    alert('Spare part update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    }
 };
 </script>
 
@@ -43,9 +66,12 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.price" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3">Add Spare Part</PrimaryButton><span v-if="form.recentlySuccessful"
-                        class="text-green-500 ml-2">Spare Part added
-                        successfully!</span>
+                    <PrimaryButton class="mt-3">
+                        {{ props.sparePart ? 'Update Spare Part' : 'Add Spare Part' }}
+                    </PrimaryButton>
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
+                        {{ props.sparePart ? 'Spare Part update successfully!' : 'Spare Part added successfully!' }}
+                    </span>
                 </div>
             </form>
         </div>

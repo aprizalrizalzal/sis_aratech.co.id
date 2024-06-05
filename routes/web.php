@@ -67,6 +67,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // SparePartController
     Route::get('/spare/parts', [SparePartController::class, 'show'])->name('show.spare.parts');
+    Route::put('/spare/part', [SparePartController::class, 'update'])->name('update.spare.part');
     Route::delete('/spare/part', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
 
     // PartUsageController
