@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -9,7 +9,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 
-defineProps({
+const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
 
@@ -17,6 +17,48 @@ defineProps({
     service: Object,
 
     message: String
+});
+
+const currentIndex = ref(0);
+const intervalId = ref(null);
+
+const next = () => {
+    currentIndex.value = (currentIndex.value + 1) % props.carousels.length;
+    toggleCarouselVisibility();
+};
+
+const prev = () => {
+    currentIndex.value = (currentIndex.value - 1 + props.carousels.length) % props.carousels.length;
+    toggleCarouselVisibility();
+};
+
+const toggleCarouselVisibility = () => {
+    props.carousels.forEach((carousel, index) => {
+        const element = document.getElementById(`carousel-${index}`);
+        if (element) {
+            if (index === currentIndex.value) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        }
+    });
+};
+
+const startAutoSlide = () => {
+    intervalId.value = setInterval(next, 5000);
+};
+
+const stopAutoSlide = () => {
+    clearInterval(intervalId.value);
+};
+
+onMounted(() => {
+    startAutoSlide();
+});
+
+onUnmounted(() => {
+    stopAutoSlide();
 });
 
 const showModal = ref(false);
@@ -82,12 +124,51 @@ const closeModal = () => {
                 </header>
 
                 <main class="mt-4">
+                    <div id="default-carousel" class="relative w-full" data-carousel="slide">
+                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                            <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
+                                v-show="index === currentIndex" class="duration-700 ease-in-out">
+                                <img :src="carousel.image_path" :alt="carousel.alt"
+                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                            </div>
+                        </div>
+                        <div
+                            class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                            <button v-for="(carousel, index) in carousels" :key="index" type="button"
+                                :aria-label="'Slide ' + (index + 1)" class="w-3 h-3 rounded-full"
+                                :aria-current="(index === currentIndex).toString()" :data-carousel-slide-to="index"
+                                @click="currentIndex = index; toggleCarouselVisibility();"></button>
+                        </div>
+                        <button type="button"
+                            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                            data-carousel-prev @click="prev">
+                            <span
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
+                                <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                                <span class="sr-only">Previous</span>
+                            </span>
+                        </button>
+                        <button type="button"
+                            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                            data-carousel-next @click="next">
+                            <span
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
+                                <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                                <span class="sr-only">Next</span>
+                            </span>
+                        </button>
+                    </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
                         <div id="docs-card"
                             class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
-                            <img src="https://drive.google.com/file/d/1Fof8GEpfh7S88F0MUq8OUd-wW5eww0Yy/view?usp=sharing"
-                                alt="Documentation Service"
-                                class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden" />
                             <div class="relative flex items-center gap-6 lg:items-end">
                                 <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
                                     <div
@@ -301,15 +382,10 @@ const closeModal = () => {
                         </div>
                     </div>
                 </main>
-
-
                 <footer class="py-8 text-center text-sm text-black dark:text-white/70">
                     SIService-AMITech &copy;2024
                 </footer>
             </div>
         </div>
     </div>
-
-
-
 </template>
