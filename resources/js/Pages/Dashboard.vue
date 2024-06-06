@@ -10,7 +10,7 @@ import ServiceIcon from '@/Components/Icon/ServiceIcon.vue';
 import ServiceDetailIcon from '@/Components/Icon/ServiceDetailIcon.vue';
 import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
 import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
-import ModalForm from '@/Components/ModalForm.vue';
+import Modal from '@/Components/Modal.vue';
 import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import DeviceTypeForm from '@/Pages/DeviceType/DeviceTypeForm.vue';
 import DeviceForm from '@/Pages/Device/DeviceForm.vue';
@@ -120,60 +120,60 @@ const props = defineProps({
     </div>
   </AuthenticatedLayout>
 
-  <ModalForm v-model:show="showModalAddDeviceType">
+  <Modal v-model:show="showModalAddDeviceType">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddDeviceType = false">X</DangerButton>
       </div>
       <DeviceTypeForm />
     </div>
-  </ModalForm>
-  <ModalForm v-model:show="showModalAddSparePart">
+  </Modal>
+  <Modal v-model:show="showModalAddSparePart">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddSparePart = false">X</DangerButton>
       </div>
       <SparePartForm />
     </div>
-  </ModalForm>
-  <ModalForm v-model:show="showModalAddCustomer">
+  </Modal>
+  <Modal v-model:show="showModalAddCustomer">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddCustomer = false">X</DangerButton>
       </div>
       <CustomerForm />
     </div>
-  </ModalForm>
-  <ModalForm v-model:show="showModalAddDevice">
+  </Modal>
+  <Modal v-model:show="showModalAddDevice">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddDevice = false">X</DangerButton>
       </div>
       <DeviceForm :deviceTypes="deviceTypes" />
     </div>
-  </ModalForm>
-  <ModalForm v-model:show="showModalAddService">
+  </Modal>
+  <Modal v-model:show="showModalAddService">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddService = false">X</DangerButton>
       </div>
       <ServiceForm :customers="customers" :devices="devices" />
     </div>
-  </ModalForm>
-  <ModalForm v-model:show="showModalAddServiceDetail">
+  </Modal>
+  <Modal v-model:show="showModalAddServiceDetail">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddServiceDetail = false">X</DangerButton>
       </div>
       <ServiceDetailForm :users="users" :services="services" />
     </div>
-  </ModalForm>
-  <ModalForm v-model:show="showModalAddPartUsage">
+  </Modal>
+  <Modal v-model:show="showModalAddPartUsage">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddPartUsage = false">X</DangerButton>
       </div>
       <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" />
     </div>
-  </ModalForm>
+  </Modal>
 </template>

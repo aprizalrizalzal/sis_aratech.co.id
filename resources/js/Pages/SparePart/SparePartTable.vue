@@ -3,7 +3,7 @@ import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import ModalForm from '@/Components/ModalForm.vue';
+
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -77,14 +77,14 @@ const closeModal = () => {
                 </tr>
             </tbody>
         </table>
-        <ModalForm v-model:show="showingModelSparePartUpdate">
+        <Modal v-model:show="showingModelSparePartUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelSparePartUpdate = false">X</DangerButton>
                 </div>
                 <SparePartForm :sparePart="selectedSparePart" />
             </div>
-        </ModalForm>
+        </Modal>
         <Modal :show="confirmingSparePartDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

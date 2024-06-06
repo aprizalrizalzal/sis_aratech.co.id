@@ -6,7 +6,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import ModalService from '@/Components/ModalService.vue';
+import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 
 defineProps({
@@ -16,7 +16,7 @@ defineProps({
     message: String
 });
 
-const showModalService = ref(false);
+const showModal = ref(false);
 
 const form = useForm({
     service_code: '',
@@ -26,7 +26,7 @@ const submitForm = () => {
     form.post(route('show'), {
         preserveScroll: true,
         onSuccess: () => {
-            showModalService.value = true;
+            showModal.value = true;
             form.reset;
         },
         onError: (errors) => {
@@ -39,8 +39,8 @@ const submitForm = () => {
     });
 };
 
-const closeModalService = () => {
-    showModalService.value = false;
+const closeModal = () => {
+    showModal.value = false;
     form.reset;
 };
 
@@ -115,8 +115,7 @@ const closeModalService = () => {
                                                 </form>
                                             </div>
                                         </div>
-                                        <ModalService v-if="service" :show="showModalService"
-                                            @close="closeModalService">
+                                        <Modal v-if="service" :show="showModal" @close="closeModal">
                                             <div class="p-6">
                                                 <p
                                                     class="py-2 px-4 mb-2 border-green-300 font-bold text-red-900 text-center">
@@ -190,10 +189,10 @@ const closeModalService = () => {
                                                     </tbody>
                                                 </table>
                                                 <div class="flex justify-end mt-6">
-                                                    <DangerButton @click="closeModalService">Close</DangerButton>
+                                                    <DangerButton @click="closeModal">Close</DangerButton>
                                                 </div>
                                             </div>
-                                        </ModalService>
+                                        </Modal>
                                         <div v-else>
                                             <p class="font-bold text-red-700">{{ message }}</p>
                                         </div>

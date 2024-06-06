@@ -3,7 +3,6 @@ import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import ModalForm from '@/Components/ModalForm.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -93,7 +92,7 @@ const closeModal = () => {
                 </tr>
             </tbody>
         </table>
-        <ModalForm v-model:show="showingModelServiceDetailUpdate">
+        <Modal v-model:show="showingModelServiceDetailUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelServiceDetailUpdate = false">X</DangerButton>
@@ -101,7 +100,7 @@ const closeModal = () => {
                 <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser"
                     :service="selectedService" />
             </div>
-        </ModalForm>
+        </Modal>
         <Modal :show="confirmingServiceDetailDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

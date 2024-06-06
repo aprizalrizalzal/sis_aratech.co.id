@@ -3,7 +3,7 @@ import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import ModalForm from '@/Components/ModalForm.vue';
+
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -85,7 +85,7 @@ const closeModal = () => {
                 </tr>
             </tbody>
         </table>
-        <ModalForm v-model:show="showingModelPartUsageUpdate">
+        <Modal v-model:show="showingModelPartUsageUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelPartUsageUpdate = false">X</DangerButton>
@@ -93,7 +93,7 @@ const closeModal = () => {
                 <PartUsageForm :partUsage="selectedPartUsage" :serviceDetail="selectedPartUsage"
                     :sparePart="selectedPartUsage" />
             </div>
-        </ModalForm>
+        </Modal>
         <Modal :show="confirmingPartUsageDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

@@ -3,7 +3,7 @@ import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import ModalForm from '@/Components/ModalForm.vue';
+
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -77,14 +77,14 @@ const closeModal = () => {
                 </tr>
             </tbody>
         </table>
-        <ModalForm v-model:show="showingModelCustomerUpdate">
+        <Modal v-model:show="showingModelCustomerUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelCustomerUpdate = false">X</DangerButton>
                 </div>
                 <CustomerForm :customer="selectedCustomer" />
             </div>
-        </ModalForm>
+        </Modal>
         <Modal :show="confirmingCustomerDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

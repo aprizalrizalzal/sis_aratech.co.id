@@ -3,7 +3,7 @@ import DeviceForm from '@/Pages/Device/DeviceForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import ModalForm from '@/Components/ModalForm.vue';
+
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -97,14 +97,14 @@ td {
         </tr>
       </tbody>
     </table>
-    <ModalForm v-model:show="showingModelDeviceUpdate">
+    <Modal v-model:show="showingModelDeviceUpdate">
       <div class="m-6">
         <div class="flex justify-end">
           <DangerButton @click="showingModelDeviceUpdate = false">X</DangerButton>
         </div>
         <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" />
       </div>
-    </ModalForm>
+    </Modal>
     <Modal :show="confirmingDeviceDeletion" @close="closeModal">
       <div class="p-6">
         <h2 class="text-lg font-medium text-green-900">
