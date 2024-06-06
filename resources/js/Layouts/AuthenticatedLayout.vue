@@ -31,9 +31,11 @@ const toggleButtonStyle = computed(() => ({
                                 </Link>
                             </div>
 
-                            <div class="p-4 text-sm flex items-center font-bold">
-                                <span>AMITech</span>
-                            </div>
+                            <Link :href="route('welcome.show.carousel')"
+                                class="p-3 text-sm flex items-center font-bold">
+                            <span>SIService</span>
+                            </Link>
+
                             <!-- Toggle Button -->
                             <div class="flex items-center bg-white">
                                 <button @click="showingSidebarNavigation = !showingSidebarNavigation"

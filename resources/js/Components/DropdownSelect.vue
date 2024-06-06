@@ -60,8 +60,10 @@ const handleClickOutside = (event) => {
     <div ref="dropdownContainer">
         <label class="block font-medium text-sm text-green-700 mb-2" :for="id">{{ label }}</label>
         <div class="relative">
-            <input type="text" class="text-green-700 w-full p-2 border border-green-700 rounded" :id="id"
-                v-model="searchTerm" @input="filterOptions" @focus="showDropdown = true" :placeholder="placeholder" />
+            <input type="text"
+                class="w-full border-green-300 focus:border-green-300 focus:ring-green-500 rounded-md shadow-sm"
+                :id="id" v-model="searchTerm" @input="filterOptions" @focus="showDropdown = true"
+                :placeholder="placeholder" />
             <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer" @click="toggleDropdown">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-down" viewBox="0 0 16 16">

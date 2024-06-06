@@ -94,29 +94,33 @@ const closeModal = () => {
 <template>
 
     <Head title="SIService" />
-    <div class="bg-green-50 text-black/50 dark:bg-black dark:text-white/50">
+    <div class="bg-green-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
         <div
             class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#256125] selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <header
-                    class="text-lg font-semibold text-black dark:text-white mt-4 bg-white grid grid-cols-1 items-center gap-2 py-4 lg:grid-cols-3 rounded-lg bg-white p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
-                    <h2
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                        SIService-AMITech
-                    </h2>
+                    class="text-lg font-semibold text-green-900 dark:text-white mt-4 bg-white grid grid-cols-1 items-center gap-2 py-2 lg:grid-cols-3 rounded-lg bg-white p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                    <div class="flex items-center gap-2 px-4 py-2">
+                        <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
+                        <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">
+                            SIService-AMITech
+                        </h2>
+                    </div>
                     <div class="flex lg:justify-center lg:col-start-2"></div>
-                    <nav v-if="canLogin" class="flex flex-1 justify-end text-sm">
-                        <Link v-if="$page.props.auth.user" :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                        Dashboard
-                        </Link>
+                    <nav v-if="canLogin" class="flex flex-1 justify-end text-md">
+                        <div v-if="$page.props.auth.user" class="flex items-center gap-2 ">
+                            <Link :href="route('dashboard')"
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Dashboard
+                            </Link>
+                        </div>
                         <template v-else>
                             <Link :href="route('login')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             Log in
                             </Link>
                             <Link v-if="canRegister" :href="route('register')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             Register
                             </Link>
                         </template>
@@ -124,51 +128,55 @@ const closeModal = () => {
                 </header>
 
                 <main class="mt-4">
-                    <div id="default-carousel" class="relative w-full" data-carousel="slide">
-                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                            <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
-                                v-show="index === currentIndex" class="duration-700 ease-in-out">
-                                <img :src="carousel.image_path" :alt="carousel.alt"
-                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                    <div class="bg-white p-8 rounded-lg">
+                        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+                            <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                                <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
+                                    v-show="index === currentIndex" class="duration-700 ease-in-out">
+                                    <img :src="carousel.image_path" :alt="carousel.alt"
+                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                </div>
                             </div>
+                            <div
+                                class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                                <button v-for="(carousel, index) in carousels" :key="index" type="button"
+                                    :aria-label="'Slide ' + (index + 1)" class="w-3 h-3 rounded-full"
+                                    :aria-current="(index === currentIndex).toString()" :data-carousel-slide-to="index"
+                                    @click="currentIndex = index; toggleCarouselVisibility();"></button>
+                            </div>
+                            <button type="button"
+                                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-carousel-prev @click="prev">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 1 1 5l4 4" />
+                                    </svg>
+                                    <span class="sr-only">Previous</span>
+                                </span>
+                            </button>
+                            <button type="button"
+                                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-carousel-next @click="next">
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 9 4-4-4-4" />
+                                    </svg>
+                                    <span class="sr-only">Next</span>
+                                </span>
+                            </button>
                         </div>
-                        <div
-                            class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                            <button v-for="(carousel, index) in carousels" :key="index" type="button"
-                                :aria-label="'Slide ' + (index + 1)" class="w-3 h-3 rounded-full"
-                                :aria-current="(index === currentIndex).toString()" :data-carousel-slide-to="index"
-                                @click="currentIndex = index; toggleCarouselVisibility();"></button>
-                        </div>
-                        <button type="button"
-                            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                            data-carousel-prev @click="prev">
-                            <span
-                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M5 1 1 5l4 4" />
-                                </svg>
-                                <span class="sr-only">Previous</span>
-                            </span>
-                        </button>
-                        <button type="button"
-                            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                            data-carousel-next @click="next">
-                            <span
-                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                                <span class="sr-only">Next</span>
-                            </span>
-                        </button>
                     </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
                         <div id="docs-card"
-                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
                             <div class="relative flex items-center gap-6 lg:items-end">
                                 <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
                                     <div
@@ -176,7 +184,8 @@ const closeModal = () => {
                                         <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
                                     </div>
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
-                                        <h2 class="text-xl font-semibold text-black dark:text-white">SIService-AMITech
+                                        <h2 class="text-xl font-semibold text-green-900 dark:text-white">
+                                            SIService-AMITech
                                         </h2>
                                         <p class="mt-4 text-sm/relaxed">
                                             Sistem Informasi Service kami membantu Anda mengelola dan memantau layanan
@@ -291,7 +300,7 @@ const closeModal = () => {
                             </div>
                         </div>
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
                             <div
                                 class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
@@ -303,7 +312,7 @@ const closeModal = () => {
                             </div>
 
                             <div class="px-2">
-                                <h2 class="text-xl font-semibold text-black dark:text-white">Tentang Kami</h2>
+                                <h2 class="text-xl font-semibold text-green-900 dark:text-white">Tentang Kami</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
                                     Asli Mandiri Computer - AMITech adalah spesialis dalam layanan perbaikan dan
@@ -324,7 +333,7 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
                             <div
                                 class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
@@ -337,7 +346,7 @@ const closeModal = () => {
                             </div>
 
                             <div class="px-2">
-                                <h2 class="text-xl font-semibold text-black dark:text-white">Layanan Service</h2>
+                                <h2 class="text-xl font-semibold text-green-900 dark:text-white">Layanan Service</h2>
 
                                 <ul class="mt-4 text-sm/relaxed">
                                     <li class="font-bold">Service PC/Laptop</li>
@@ -354,7 +363,7 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
                             <div
                                 class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
@@ -365,10 +374,11 @@ const closeModal = () => {
                             </div>
 
                             <div class="px-2">
-                                <h2 class="text-xl font-semibold text-black dark:text-white">Kontak</h2>
+                                <h2 class="text-xl font-semibold text-green-900 dark:text-white">Kontak</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
                                     Anda dapat menghubungi kami melalui:
+                                </p>
                                 <ul class="mt-1 text-sm/relaxed">
                                     <li><a href="https://wa.me/6287765889202" target="_blank"
                                             rel="noopener noreferrer">0877-6588-9202</a></li>
@@ -377,12 +387,11 @@ const closeModal = () => {
                                             Mataram, Kota
                                             Mataram, NTB.</a></li>
                                 </ul>
-                                </p>
                             </div>
                         </div>
                     </div>
                 </main>
-                <footer class="py-8 text-center text-sm text-black dark:text-white/70">
+                <footer class="py-8 text-center text-sm text-green-900 dark:text-white/70">
                     SIService-AMITech &copy;2024
                 </footer>
             </div>

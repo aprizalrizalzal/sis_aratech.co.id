@@ -86,7 +86,7 @@ const submitForm = () => {
                         placeholder="Select Serial Number" />
                 </div>
                 <div>
-                    <DateTimePicker id="date_received" label="Appointment Date & Time" v-model="form.date_received"
+                    <DateTimePicker id="date_received" label="Date Received" v-model="form.date_received"
                         placeholder="Select Date and Time" />
 
                 </div>
@@ -97,12 +97,14 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.items_brought" />
                 </div>
                 <div>
-                    <DateTimePicker id="estimated_completion" label="Appointment Date & Time"
-                        v-model="form.estimated_completion" placeholder="Select Date and Time" />
+                    <DateTimePicker id="estimated_completion" label="Estimated Completion"
+                        v-model="form.estimated_completion"
+                        :placeholder="props.service ? props.service.estimated_completion : 'Select Date and Time'" />
                 </div>
                 <div>
                     <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"
-                        valueProperty="name" v-model="form.status" placeholder="Select Status" />
+                        valueProperty="name" v-model="form.status"
+                        :placeholder="props.service ? props.service.status : 'Select Status'" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
