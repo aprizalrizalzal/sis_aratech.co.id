@@ -18,9 +18,8 @@ const filteredCarousels = computed(() => {
         return props.carousels;
     }
     return props.carousels.filter(carousel =>
-        carousel.img.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        carousel.alt.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        carousel.phone.includes(searchQuery.value)
+        carousel.image_path.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        carousel.alt.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 </script>

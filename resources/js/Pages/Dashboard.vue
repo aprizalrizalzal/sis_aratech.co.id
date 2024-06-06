@@ -13,6 +13,7 @@ import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
 import Modal from '@/Components/Modal.vue';
 import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import DeviceTypeForm from '@/Pages/DeviceType/DeviceTypeForm.vue';
+import CarouselForm from '@/Pages/Carousel/CarouselForm.vue';
 import DeviceForm from '@/Pages/Device/DeviceForm.vue';
 import ServiceForm from '@/Pages/Service/ServiceForm.vue';
 import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
@@ -22,6 +23,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import LineChart from '@/Components/LineChart.vue';
 
+const showModalAddCarousel = ref(false);
 const showModalAddCustomer = ref(false);
 const showModalAddDeviceType = ref(false);
 const showModalAddDevice = ref(false);
@@ -90,7 +92,7 @@ const props = defineProps({
                     <SparePartIcon /><span class="mx-2">Add Spare Part</span>
                   </PrimaryButton>
                 </div>
-                <PrimaryButton @click="showModalAddSparePart = true">
+                <PrimaryButton @click="showModalAddCarousel = true">
                   <ImagesIcon /><span class="mx-2">Add Carousel Image</span>
                 </PrimaryButton>
               </div>
@@ -120,6 +122,14 @@ const props = defineProps({
     </div>
   </AuthenticatedLayout>
 
+  <Modal v-model:show="showModalAddCarousel">
+    <div class="m-6">
+      <div class="flex justify-end">
+        <DangerButton @click="showModalAddCarousel = false">X</DangerButton>
+      </div>
+      <CarouselForm />
+    </div>
+  </Modal>
   <Modal v-model:show="showModalAddDeviceType">
     <div class="m-6">
       <div class="flex justify-end">

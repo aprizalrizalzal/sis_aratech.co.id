@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // DashboardController
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+    Route::post('/dashboard/carousel', [DashboardController::class, 'store_carousel'])->name('store.carousel');
     Route::post('/dashboard/customer', [DashboardController::class, 'store_customer'])->name('store.customer');
     Route::post('/dashboard/device/type', [DashboardController::class, 'store_device_type'])->name('store.device.type');
     Route::post('/dashboard/device', [DashboardController::class, 'store_device'])->name('store.device');
@@ -38,8 +39,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/part/usage', [DashboardController::class, 'store_part_usage'])->name('store.part.usage');
 
     // CarouselController
-    // Belum Selesai
     Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
+    Route::delete('/carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
 
     // UserController
     Route::get('/users', [UserController::class, 'show'])->name('show.users');

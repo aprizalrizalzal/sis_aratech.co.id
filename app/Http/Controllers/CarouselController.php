@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 // Belum Selesai
 
@@ -15,24 +17,23 @@ class CarouselController extends Controller
         return Inertia::render('Carousels', ['carousels' => $carousels]);
     }
 
-    public function store(Request $request)
+    public function destroy(Request $request)
     {
         $request->validate([
-            'url' => 'required|url'
+            'id' => 'required|exists:carousels,id',
         ]);
 
-        $image = Carousel::create([
-            'url' => $request->url
-        ]);
+        $carousel = Carousel::find($request->input('id'));
 
-        return response()->json($image, 201);
-    }
+        if ($carousel) {
+            $path = str_replace('storage/', '', $carousel->image_path);
+            Storage::disk('public')->delete($path);
 
-    public function destroy($id)
-    {
-        $image = Carousel::findOrFail($id);
-        $image->delete();
+            $carousel->delete();
 
-        return response()->json(null, 204);
+            return Redirect::back();
+        }
+
+        return Redirect::back();
     }
 }
