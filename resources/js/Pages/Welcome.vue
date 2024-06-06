@@ -12,7 +12,10 @@ import DangerButton from '@/Components/DangerButton.vue';
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
+
+    carousels: Array,
     service: Object,
+
     message: String
 });
 
@@ -23,7 +26,7 @@ const form = useForm({
 });
 
 const submitForm = () => {
-    form.post(route('show'), {
+    form.post(route('welcome.store.service.code'), {
         preserveScroll: true,
         onSuccess: () => {
             showModal.value = true;
@@ -31,7 +34,7 @@ const submitForm = () => {
         },
         onError: (errors) => {
             if (errors.id) {
-                alert('Service not found');
+                alert('Service Code not found');
             } else {
                 console.error('An error occurred:', errors);
             }

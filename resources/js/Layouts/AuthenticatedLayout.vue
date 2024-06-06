@@ -26,7 +26,7 @@ const toggleButtonStyle = computed(() => ({
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('welcome')">
+                                <Link :href="route('welcome.show.carousel')">
                                 <ApplicationLogo class="block h-9 w-auto fill-current text-green-800" />
                                 </Link>
                             </div>

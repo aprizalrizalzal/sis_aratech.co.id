@@ -15,14 +15,8 @@ const form = useForm({
 });
 
 const props = defineProps({
-    users: {
-        type: Array,
-        required: true
-    },
-    services: {
-        type: Array,
-        required: true
-    },
+    users: Array,
+    services: Array,
     serviceDetail: Object,
     user: Object,
     service: Object

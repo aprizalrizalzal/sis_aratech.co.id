@@ -13,10 +13,7 @@ const form = useForm({
 });
 
 const props = defineProps({
-    deviceTypes: {
-        type: Array,
-        required: true
-    },
+    deviceTypes: Array,
     device: Object,
     deviceType: Object,
 });

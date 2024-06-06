@@ -28,7 +28,7 @@ const props = defineProps({
     class="fixed flex flex-col top-0 left-0 w-60 bg-green-800 text-white h-full transition-transform duration-300">
     <div class="fixed flex flex-col top-0 left-0 w-60 bg-white h-full border-r">
       <div class="flex items-center justify-left p-4 h-16 border-b">
-        <Link :href="route('welcome')">
+        <Link :href="route('welcome.show.carousel')">
         <ApplicationLogo class="block h-9 w-auto fill-current" />
         </Link>
         <div class="p-4 text-sm flex items-center text-black font-bold">

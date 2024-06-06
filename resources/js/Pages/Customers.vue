@@ -6,10 +6,7 @@ import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-  customers: {
-    type: Array,
-    required: true
-  }
+  customers: Array,
 });
 const searchQuery = ref('');
 

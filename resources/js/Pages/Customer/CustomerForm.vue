@@ -13,10 +13,7 @@ const form = useForm({
 });
 
 const props = defineProps({
-    customers: {
-        type: Array,
-        required: true
-    },
+    customers: Array,
     customer: Object,
 });
 

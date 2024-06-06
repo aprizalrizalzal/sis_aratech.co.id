@@ -33,38 +33,14 @@ const showModalAddSparePart = ref(false);
 const showModalAddPartUsage = ref(false);
 
 const props = defineProps({
-  users: {
-    type: Array,
-    required: true
-  },
-  customers: {
-    type: Array,
-    required: true
-  },
-  deviceTypes: {
-    type: Array,
-    required: true
-  },
-  devices: {
-    type: Array,
-    required: true
-  },
-  services: {
-    type: Array,
-    required: true
-  },
-  serviceDetails: {
-    type: Array,
-    required: true
-  },
-  spareParts: {
-    type: Array,
-    required: true
-  },
-  partUsages: {
-    type: Array,
-    required: true
-  }
+  users: Array,
+  customers: Array,
+  deviceTypes: Array,
+  devices: Array,
+  services: Array,
+  serviceDetails: Array,
+  spareParts: Array,
+  partUsages: Array,
 });
 
 </script>

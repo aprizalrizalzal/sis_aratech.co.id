@@ -13,17 +13,10 @@ use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]);
-})->name('welcome');
 
 // WelcomeController
-Route::post('/', [WelcomeController::class, 'show'])->name('show');
+Route::get('/', [WelcomeController::class, 'show_carousel'])->name('welcome.show.carousel');
+Route::post('/', [WelcomeController::class, 'store_service_code'])->name('welcome.store.service.code');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

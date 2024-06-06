@@ -1,13 +1,7 @@
 <script setup>
 const props = defineProps({
-    customers: {
-        type: Array,
-        required: true
-    },
-    devices: {
-        type: Array,
-        required: true
-    },
+    customers: Array,
+    devices: Array,
     service: Object,
     customer: Object,
     device: Object,
