@@ -10,17 +10,23 @@ import ServiceDetailIcon from '@/Components/Icon/ServiceDetailIcon.vue';
 import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
 import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
 import SidebarLink from '@/Components/SidebarLink.vue';
-import { Link } from '@inertiajs/vue3';
-import { defineProps } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 
 const props = defineProps({
   isVisible: {
     type: Boolean,
     default: false,
-  },
-  userRole: String,
+  }
 });
+
+const { auth } = usePage().props;
+const userRole = ref(auth.user.role);
+
+const isSuperAdmin = computed(() => userRole.value === 'super admin');
+const isAdmin = computed(() => userRole.value === 'admin');
+const isTechnician = computed(() => userRole.value === 'technician');
 </script>
 
 <template>
@@ -42,8 +48,7 @@ const props = defineProps({
             <SidebarLink :href="route('dashboard')" :active="route().current('dashboard')" label="Dashboard">
               <DashboardIcon />
             </SidebarLink>
-
-            <div class="">
+            <div v-if="isSuperAdmin">
               <SidebarLink :href="route('show.users')" :active="route().current('show.users')" label="Users">
                 <UserIcon />
               </SidebarLink>
@@ -64,7 +69,7 @@ const props = defineProps({
               </SidebarLink>
             </div>
 
-            <div class="">
+            <div v-if="isAdmin">
               <SidebarLink :href="route('show.customers')" :active="route().current('show.customers')"
                 label="Customers">
                 <CustomerIcon />
@@ -79,7 +84,7 @@ const props = defineProps({
               </SidebarLink>
             </div>
 
-            <div class="">
+            <div v-if="isTechnician">
               <SidebarLink :href="route('show.service.details')" :active="route().current('show.service.details')"
                 label="Service Details">
                 <ServiceDetailIcon />

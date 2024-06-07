@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { Head } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
+import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
 import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
@@ -56,6 +56,13 @@ const dataChart = [
   props.partUsages.length,
 ]
 
+const { auth } = usePage().props;
+const userRole = ref(auth.user.role);
+
+const isSuperAdmin = computed(() => userRole.value === 'super admin');
+const isAdmin = computed(() => userRole.value === 'admin');
+const isTechnician = computed(() => userRole.value === 'technician');
+
 </script>
 
 <template>
@@ -72,62 +79,62 @@ const dataChart = [
             <!-- Your main content here -->
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4 p-4">
               <LineChart :dataChart="dataChart" />
-              <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
                   <template #svg>
-                    <DeviceTypeIcon width="128" height="128" />
+                    <DeviceTypeIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddSparePart = true" title="Add Spare Part"
                   description="Menambahkan suku cadang baru ke inventaris."
                   :tags="['suku cadang', 'inventaris', 'stok']">
                   <template #svg>
-                    <SparePartIcon width="128" height="128" />
+                    <SparePartIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddCarousel = true" title="Add Carousel"
                   description="Membuat karousel baru untuk item unggulan atau promosi."
                   :tags="['karousel', 'promosi', 'unggulan']">
                   <template #svg>
-                    <ImagesIcon width="128" height="128" />
+                    <ImagesIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
+              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
-                    <CustomerIcon width="128" height="128" />
+                    <CustomerIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddDevice = true" title="Add Device"
                   description="Menambahkan perangkat baru ke sistem." :tags="['perangkat', 'registrasi', 'inventaris']">
                   <template #svg>
-                    <DeviceIcon width="128" height="128" />
+                    <DeviceIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddService = true" title="Add Service"
                   description="Mencatat entri layanan baru." :tags="['layanan', 'entri', 'perbaikan']">
                   <template #svg>
-                    <ServiceIcon width="128" height="128" />
+                    <ServiceIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2">
+              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
                   <template #svg>
-                    <ServiceDetailIcon width="128" height="128" />
+                    <ServiceDetailIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddPartUsage = true" title="Add Part Usage"
                   description="Mendokumentasikan penggunaan suku cadang selama perbaikan."
                   :tags="['penggunaan suku cadang', 'dokumentasi', 'perbaikan']">
                   <template #svg>
-                    <PartUsageIcon width="128" height="128" />
+                    <PartUsageIcon width="128" height="128" fill="#0f4d0f" />
                   </template>
                 </CardButton>
               </div>
