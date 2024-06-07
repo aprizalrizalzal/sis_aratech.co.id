@@ -175,10 +175,10 @@ const closeModal = () => {
                         </div>
                     </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
-                        <div id="docs-card"
+                        <div id="docs-CardButton"
                             class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
                             <div class="relative flex items-center gap-6 lg:items-end">
-                                <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
+                                <div id="docs-CardButton-content" class="flex items-start gap-6 lg:flex-col">
                                     <div
                                         class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-32">
                                         <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />

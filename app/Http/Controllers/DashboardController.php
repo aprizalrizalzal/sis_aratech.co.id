@@ -21,8 +21,9 @@ class DashboardController extends Controller
     public function show()
     {
         $users = User::all();
-        $customers = Customer::all();
+        $carousels = Carousel::all();
         $deviceTypes = DeviceType::all();
+        $customers = Customer::all();
         $devices = Device::all();
         $services = Service::all();
         $serviceDetails = ServiceDetail::all();
@@ -32,6 +33,7 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'users' => $users,
             'customers' => $customers,
+            'carousels' => $carousels,
             'deviceTypes' => $deviceTypes,
             'devices' => $devices,
             'services' => $services,

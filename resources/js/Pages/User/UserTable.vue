@@ -61,7 +61,6 @@ const closeModal = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.role }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="updateService(user.id)" class="m-2">Update</SecondaryButton>
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete
                         </DangerButton>
                     </td>

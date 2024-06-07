@@ -15,6 +15,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // Super Admin User
+        User::create([
+            'name' => 'Super Admin User',
+            'email' => 'superadmin@example.com',
+            'email_verified_at' => Carbon::now(),
+            'role' => 'super admin',
+            'password' => Hash::make('password')
+        ]);
+
         // Admin User
         User::create([
             'name' => 'Admin User',

@@ -98,8 +98,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <DateTimePicker id="estimated_completion" label="Estimated Completion"
-                        v-model="form.estimated_completion"
-                        :placeholder="props.service ? props.service.estimated_completion : 'Select Date and Time'" />
+                        v-model="form.estimated_completion" placeholder="Select Date and Time" />
                 </div>
                 <div>
                     <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"

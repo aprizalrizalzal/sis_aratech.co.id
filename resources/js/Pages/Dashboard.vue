@@ -1,7 +1,7 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
 import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 import DeviceTypeIcon from '@/Components/Icon/DeviceTypeIcon.vue';
@@ -11,6 +11,7 @@ import ServiceDetailIcon from '@/Components/Icon/ServiceDetailIcon.vue';
 import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
 import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
 import Modal from '@/Components/Modal.vue';
+import CardButton from '@/Components/CardButton.vue';
 import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import DeviceTypeForm from '@/Pages/DeviceType/DeviceTypeForm.vue';
 import CarouselForm from '@/Pages/Carousel/CarouselForm.vue';
@@ -19,7 +20,6 @@ import ServiceForm from '@/Pages/Service/ServiceForm.vue';
 import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
 import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
 import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import LineChart from '@/Components/LineChart.vue';
 
@@ -35,6 +35,7 @@ const showModalAddPartUsage = ref(false);
 const props = defineProps({
   users: Array,
   customers: Array,
+  carousels: Array,
   deviceTypes: Array,
   devices: Array,
   services: Array,
@@ -42,6 +43,18 @@ const props = defineProps({
   spareParts: Array,
   partUsages: Array,
 });
+
+const dataChart = [
+  props.users.length,
+  props.customers.length,
+  props.deviceTypes.length,
+  props.carousels.length,
+  props.devices.length,
+  props.services.length,
+  props.serviceDetails.length,
+  props.spareParts.length,
+  props.partUsages.length,
+]
 
 </script>
 
@@ -58,38 +71,65 @@ const props = defineProps({
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 md:grid-cols-1 gap-4 p-4">
-              <LineChart />
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <PrimaryButton @click="showModalAddDeviceType = true">
-                    <DeviceTypeIcon /><span class="mx-2">Add Device Type</span>
-                  </PrimaryButton>
-                  <PrimaryButton @click="showModalAddSparePart = true">
-                    <SparePartIcon /><span class="mx-2">Add Spare Part</span>
-                  </PrimaryButton>
-                </div>
-                <PrimaryButton @click="showModalAddCarousel = true">
-                  <ImagesIcon /><span class="mx-2">Add Carousel Image</span>
-                </PrimaryButton>
+              <LineChart :dataChart="dataChart" />
+              <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
+                <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
+                  description="Menambahkan jenis perangkat baru ke sistem."
+                  :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
+                  <template #svg>
+                    <DeviceTypeIcon width="128" height="128" />
+                  </template>
+                </CardButton>
+                <CardButton @click="showModalAddSparePart = true" title="Add Spare Part"
+                  description="Menambahkan suku cadang baru ke inventaris."
+                  :tags="['suku cadang', 'inventaris', 'stok']">
+                  <template #svg>
+                    <SparePartIcon width="128" height="128" />
+                  </template>
+                </CardButton>
+                <CardButton @click="showModalAddCarousel = true" title="Add Carousel"
+                  description="Membuat karousel baru untuk item unggulan atau promosi."
+                  :tags="['karousel', 'promosi', 'unggulan']">
+                  <template #svg>
+                    <ImagesIcon width="128" height="128" />
+                  </template>
+                </CardButton>
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-                <PrimaryButton @click="showModalAddCustomer = true">
-                  <CustomerIcon /><span class="mx-2">Add Customer</span>
-                </PrimaryButton>
-                <PrimaryButton @click="showModalAddDevice = true">
-                  <DeviceIcon /><span class="mx-2">Add Device</span>
-                </PrimaryButton>
-                <PrimaryButton @click="showModalAddService = true">
-                  <ServiceIcon /><span class="mx-2">Add Service</span>
-                </PrimaryButton>
+              <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
+                <CardButton @click="showModalAddCustomer = true" title="Add Customer"
+                  description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
+                  <template #svg>
+                    <CustomerIcon width="128" height="128" />
+                  </template>
+                </CardButton>
+                <CardButton @click="showModalAddDevice = true" title="Add Device"
+                  description="Menambahkan perangkat baru ke sistem." :tags="['perangkat', 'registrasi', 'inventaris']">
+                  <template #svg>
+                    <DeviceIcon width="128" height="128" />
+                  </template>
+                </CardButton>
+                <CardButton @click="showModalAddService = true" title="Add Service"
+                  description="Mencatat entri layanan baru." :tags="['layanan', 'entri', 'perbaikan']">
+                  <template #svg>
+                    <ServiceIcon width="128" height="128" />
+                  </template>
+                </CardButton>
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <PrimaryButton @click="showModalAddServiceDetail = true">
-                  <ServiceDetailIcon /><span class="mx-2">Add Service Detail</span>
-                </PrimaryButton>
-                <PrimaryButton @click="showModalAddPartUsage = true">
-                  <PartUsageIcon /><span class="mx-2">Add Part Usage</span>
-                </PrimaryButton>
+              <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2">
+                <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
+                  description="Menambahkan detail tambahan untuk layanan."
+                  :tags="['detail layanan', 'catatan', 'spesifikasi']">
+                  <template #svg>
+                    <ServiceDetailIcon width="128" height="128" />
+                  </template>
+                </CardButton>
+                <CardButton @click="showModalAddPartUsage = true" title="Add Part Usage"
+                  description="Mendokumentasikan penggunaan suku cadang selama perbaikan."
+                  :tags="['penggunaan suku cadang', 'dokumentasi', 'perbaikan']">
+                  <template #svg>
+                    <PartUsageIcon width="128" height="128" />
+                  </template>
+                </CardButton>
               </div>
             </div>
           </div>
