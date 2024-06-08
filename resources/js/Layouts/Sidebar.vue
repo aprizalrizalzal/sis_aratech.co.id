@@ -40,7 +40,9 @@ const isTechnician = computed(() => userRole.value === 'technician');
           <ApplicationLogo class="block h-9 w-auto fill-current" />
           </Link>
           <div class="p-4 text-sm flex items-center text-black font-bold">
-            <span>SIService-AMITech</span>
+            <Link :href="route('welcome.show.carousel')">
+              <span>SIService-AMITech</span>
+          </Link>
           </div>
         </div>
         <div class="overflow-y-auto overflow-x-hidden flex-grow">
