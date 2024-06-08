@@ -65,7 +65,7 @@ const closeModal = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(sparePart, index) in spareParts" :key="sparePart.id" class="hover:bg-green-100">
+                <tr v-for="(sparePart, index) in spareParts" :key="sparePart.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.price }}</td>

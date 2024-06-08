@@ -91,7 +91,7 @@ const filteredServices = computed(() => {
 
 <template>
     <div class="overflow-x-auto">
-        <div class="flex items-center p-4 pt-2 gap-2 bg-green-800">
+        <div class="flex items-center p-4 pt-2 gap-2 bg-green-50">
             <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Star Date Time" />
             <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
             <div class="mt-2 flex items-center">
@@ -114,7 +114,7 @@ const filteredServices = computed(() => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in filteredServices" :key="service.id" class="hover:bg-green-100">
+                <tr v-for="(service, index) in filteredServices" :key="service.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.name }}</td>
@@ -135,7 +135,7 @@ const filteredServices = computed(() => {
                 </tr>
             </tbody>
         </table>
-        
+
         <Modal v-model:show="showingModelServiceUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
@@ -157,7 +157,8 @@ const filteredServices = computed(() => {
 
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteService">
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                        @click="deleteService">
                         Delete Service
                     </DangerButton>
                 </div>

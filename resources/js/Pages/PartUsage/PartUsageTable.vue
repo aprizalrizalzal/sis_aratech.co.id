@@ -70,7 +70,7 @@ const closeModal = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id" class="hover:bg-green-100">
+                <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         partUsage.service_detail.service_detail_code }}

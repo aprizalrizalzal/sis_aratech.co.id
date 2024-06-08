@@ -1,18 +1,20 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
+import NavLink from '@/Components/NavLink.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import Sidebar from '@/Layouts/Sidebar.vue';
-import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
-const showingSidebarNavigation = ref(false);
 
-const toggleButtonStyle = computed(() => ({
-    marginLeft: showingSidebarNavigation.value ? '100px' : '0px',
-}));
+const { auth } = usePage().props;
+const userRole = ref(auth.user.role);
+
+const isSuperAdmin = computed(() => userRole.value === 'super admin');
+const isAdmin = computed(() => userRole.value === 'admin');
+const isTechnician = computed(() => userRole.value === 'technician');
 
 </script>
 
@@ -29,34 +31,64 @@ const toggleButtonStyle = computed(() => ({
                                 <Link :href="route('welcome.show.carousel')">
                                 <ApplicationLogo class="block h-9 w-auto fill-current text-green-800" />
                                 </Link>
+
+                                <Link :href="route('welcome.show.carousel')"
+                                    class="p-3 text-sm flex items-center font-bold">
+                                <span>SIService-AMITech</span>
+                                </Link>
                             </div>
 
-                            <Link :href="route('welcome.show.carousel')"
-                                class="p-3 text-sm flex items-center font-bold">
-                            <span>SIService</span>
-                            </Link>
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Dashboard
+                                </NavLink>
 
-                            <!-- Toggle Button -->
-                            <div class="flex items-center bg-white">
-                                <button @click="showingSidebarNavigation = !showingSidebarNavigation"
-                                    :style="toggleButtonStyle"
-                                    class="inline-flex items-center justify-center p-2 m-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:text-green-500 transition duration-150 ease-in-out z-50">
-                                    <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
-                                        <path :class="{
-                                            hidden: showingSidebarNavigation,
-                                            'inline-flex': !showingSidebarNavigation,
-                                        }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                        <path :class="{
-                                            hidden: !showingSidebarNavigation,
-                                            'inline-flex': showingSidebarNavigation,
-                                        }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
+                                <NavLink v-if="isSuperAdmin" :href="route('show.users')"
+                                    :active="route().current('show.users')">
+                                    Users
+                                </NavLink>
+
+                                <NavLink v-if="isSuperAdmin" :href="route('show.device.types')"
+                                    :active="route().current('show.device.types')">
+                                    Device Types
+                                </NavLink>
+
+                                <NavLink v-if="isSuperAdmin" :href="route('show.spare.parts')"
+                                    :active="route().current('show.spare.parts')">
+                                    Spare Parts
+                                </NavLink>
+
+                                <NavLink v-if="isSuperAdmin" :href="route('show.carousels')"
+                                    :active="route().current('show.carousels')">
+                                    Carousels
+                                </NavLink>
+
+                                <NavLink v-if="isAdmin" :href="route('show.customers')"
+                                    :active="route().current('show.customers')">
+                                    Customers
+                                </NavLink>
+
+                                <NavLink v-if="isAdmin" :href="route('show.devices')"
+                                    :active="route().current('show.devices')">
+                                    Devices
+                                </NavLink>
+
+                                <NavLink v-if="isAdmin" :href="route('show.services')"
+                                    :active="route().current('show.services')">
+                                    Services
+                                </NavLink>
+
+                                <NavLink v-if="isTechnician" :href="route('show.service.details')"
+                                    :active="route().current('show.service.details')">
+                                    Service Details
+                                </NavLink>
+
+                                <NavLink v-if="isTechnician" :href="route('show.part.usages')"
+                                    :active="route().current('show.part.usages')">
+                                    Part Usages
+                                </NavLink>
                             </div>
-                            <!-- Sidebar -->
-                            <Sidebar :isVisible="showingSidebarNavigation" class="transition-all duration-300" />
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -66,7 +98,7 @@ const toggleButtonStyle = computed(() => ({
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-green-500 bg-white hover:text-green-700 focus:outline-none transition ease-in-out duration-150">
+                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-green-900 bg-white hover:text-green-700 focus:outline-none transition ease-in-out duration-150">
                                                 {{ $page.props.auth.user.name }}&nbsp;
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -139,7 +171,7 @@ const toggleButtonStyle = computed(() => ({
             </header>
 
             <!-- Page Content -->
-            <main :class="{ 'ml-60': showingSidebarNavigation, 'ml-0': !showingSidebarNavigation }">
+            <main>
                 <slot />
             </main>
         </div>

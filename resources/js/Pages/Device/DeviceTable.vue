@@ -52,24 +52,6 @@ const closeModal = () => {
 };
 </script>
 
-<style scoped>
-/* Tambahkan beberapa styling dasar untuk tabel */
-th,
-td {
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background-color: #256125;
-  color: white;
-}
-
-td {
-  border-bottom: 1px solid #e2e8f0;
-}
-</style>
-
 <template>
   <div class="overflow-x-auto">
     <table class="min-w-full bg-white border-collapse">
@@ -83,7 +65,7 @@ td {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(device, index) in devices" :key="device.id" class="hover:bg-green-100">
+        <tr v-for="(device, index) in devices" :key="device.id" class="hover:bg-green-50">
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.device_type.type_name }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.model }}</td>

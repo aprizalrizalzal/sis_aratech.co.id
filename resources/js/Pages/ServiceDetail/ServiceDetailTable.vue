@@ -73,7 +73,7 @@ const closeModal = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id" class="hover:bg-green-100">
+                <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
                     </td>
@@ -90,7 +90,7 @@ const closeModal = () => {
                         </PrimaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                    
+
                         <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
                         </SecondaryButton>
                     </td>

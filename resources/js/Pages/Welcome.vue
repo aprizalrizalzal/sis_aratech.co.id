@@ -97,10 +97,10 @@ const closeModal = () => {
     <Head title="SIService" />
     <div class="bg-green-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
         <div
-            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#256125] selection:text-white">
+            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <header
-                    class="text-lg font-semibold text-green-900 dark:text-white mt-4 bg-white grid grid-cols-1 items-center gap-2 py-2 lg:grid-cols-3 rounded-lg bg-white p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                    class="text-lg font-semibold text-green-900 dark:text-white mt-4 bg-white grid grid-cols-1 items-center gap-2 py-2 lg:grid-cols-3 rounded-lg p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                     <div class="flex items-center gap-2 px-4 py-2">
                         <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
                         <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">
@@ -111,18 +111,18 @@ const closeModal = () => {
                     <nav v-if="canLogin" class="flex flex-1 justify-end text-md">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2 ">
                             <Link :href="route('dashboard')"
-                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                Dashboard
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Dashboard
                             </Link>
                         </div>
                         <template v-else>
                             <Link :href="route('login')"
-                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                Log in
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Log in
                             </Link>
                             <Link v-if="canRegister" :href="route('register')"
-                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                Register
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Register
                             </Link>
                         </template>
                     </nav>
@@ -177,15 +177,12 @@ const closeModal = () => {
                     </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
                         <div id="docs-CardButton"
-                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div class="relative flex items-center gap-6 lg:items-end">
                                 <div id="docs-CardButton-content" class="flex items-start gap-6 lg:flex-col">
                                     <div
-                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-32"
-                                    >
-                                        <ApplicationLogo
-                                            class="block h-16 w-auto fill-current text-green-800"
-                                        />
+                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-32">
+                                        <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
                                     </div>
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
                                         <h2 class="text-xl font-semibold text-green-900 dark:text-white">
@@ -214,24 +211,20 @@ const closeModal = () => {
                                         </div>
                                         <Modal v-if="service" :show="showModal" @close="closeModal">
                                             <div class="p-6">
-                                                <ServicePrint
-                                                    :service="service"
-                                                />
-                                                <p class="mt-4 text-sm/relaxed">Untuk mengeksplorasi berbagai produk kami,
-                                    kunjungi situs
-                                    web kami di <a target="_blank" rel="noopener noreferrer"
-                                        class="text-green-800 font-bold"
-                                        href="http://www.aslimandiri.com">www.aslimandiri.com.</a> Bersama kami, temukan
-                                    solusi terbaik
-                                    untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah prioritas kami.
-                                </p>
-                                                <div
-                                                    class="flex justify-end mt-6"
-                                                >
-                                                    <DangerButton
-                                                        @click="closeModal"
-                                                        >Close</DangerButton
-                                                    >
+                                                <ServicePrint :service="service" />
+                                                <p class="mt-4 text-sm/relaxed">Untuk mengeksplorasi berbagai produk
+                                                    kami,
+                                                    kunjungi situs
+                                                    web kami di <a target="_blank" rel="noopener noreferrer"
+                                                        class="text-green-800 font-bold"
+                                                        href="http://www.aslimandiri.com">www.aslimandiri.com.</a>
+                                                    Bersama kami, temukan
+                                                    solusi terbaik
+                                                    untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah
+                                                    prioritas kami.
+                                                </p>
+                                                <div class="flex justify-end mt-6">
+                                                    <DangerButton @click="closeModal">Close</DangerButton>
                                                 </div>
                                             </div>
                                         </Modal>
@@ -249,9 +242,9 @@ const closeModal = () => {
                             </div>
                         </div>
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-16">
+                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
                                     class="bi bi-info-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -282,9 +275,9 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-16">
+                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
                                     class="bi bi-gear" viewBox="0 0 16 16">
                                     <path
@@ -312,9 +305,9 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-[#256125] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#256125]">
+                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-16">
+                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
                                     class="bi bi-telephone" viewBox="0 0 16 16">
                                     <path
