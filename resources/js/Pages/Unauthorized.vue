@@ -1,4 +1,10 @@
+<script setup>
+import { Head, Link } from '@inertiajs/vue3';
+</script>
+
 <template>
+
+    <Head title="Unauthorized" />
     <div class="flex flex-col justify-center items-center h-screen bg-gray-100">
         <div class="text-center">
             <h1 class="mb-4 text-6xl font-semibold text-red-500">404</h1>
@@ -17,7 +23,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { Link } from '@inertiajs/vue3';
-</script>
