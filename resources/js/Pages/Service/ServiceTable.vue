@@ -87,6 +87,10 @@ const filteredServices = computed(() => {
         return true;
     });
 });
+
+const servicePrint = (serviceCode) => {
+    form.get(route('service.print', { service_code: serviceCode }));
+};
 </script>
 
 <template>
@@ -124,7 +128,7 @@ const filteredServices = computed(() => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <PrimaryButton @click="showModalServiceUpdate(service)" class="m-2">Print</PrimaryButton>
+                        <PrimaryButton @click="servicePrint(service.service_code)" class="m-2">Print</PrimaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update</SecondaryButton>

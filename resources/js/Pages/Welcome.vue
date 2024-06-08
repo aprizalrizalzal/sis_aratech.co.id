@@ -212,17 +212,6 @@ const closeModal = () => {
                                         <Modal v-if="service" :show="showModal" @close="closeModal">
                                             <div class="p-6">
                                                 <ServicePrint :service="service" />
-                                                <p class="mt-4 text-sm/relaxed">Untuk mengeksplorasi berbagai produk
-                                                    kami,
-                                                    kunjungi situs
-                                                    web kami di <a target="_blank" rel="noopener noreferrer"
-                                                        class="text-green-800 font-bold"
-                                                        href="http://www.aslimandiri.com">www.aslimandiri.com.</a>
-                                                    Bersama kami, temukan
-                                                    solusi terbaik
-                                                    untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah
-                                                    prioritas kami.
-                                                </p>
                                                 <div class="flex justify-end mt-6">
                                                     <DangerButton @click="closeModal">Close</DangerButton>
                                                 </div>

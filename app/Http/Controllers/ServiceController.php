@@ -58,4 +58,15 @@ class ServiceController extends Controller
 
         return Redirect::back();
     }
+
+    public function print($service_code)
+    {
+        $service = Service::where('service_code', $service_code)
+            ->with('customer', 'device')
+            ->firstOrFail();
+
+        return inertia('Service/ServicePrint', [
+            'service' => $service
+        ]);
+    }
 }
