@@ -1,10 +1,12 @@
 <script setup>
 import ServiceForm from '@/Pages/Service/ServiceForm.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import DateTimePicker from '@/Components/DateTimePicker.vue';
 import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
     services: {
@@ -52,11 +54,50 @@ const deleteService = () => {
 
 const closeModal = () => {
     confirmingServiceDeletion.value = false;
+    showingModelServiceUpdate.value = false;
 };
+
+const start_date = ref('');
+const end_date = ref('');
+
+const resetDateFilters = () => {
+    start_date.value = '';
+    end_date.value = '';
+};
+
+const filteredServices = computed(() => {
+    if (!start_date.value && !end_date.value) {
+        return props.services;
+    }
+
+    return props.services.filter(service => {
+        const dateReceived = new Date(service.date_received);
+        const start = start_date.value ? new Date(start_date.value) : null;
+        const end = end_date.value ? new Date(end_date.value) : null;
+
+        if (start && end) {
+            return dateReceived >= start && dateReceived <= end;
+        } else if (start) {
+            return dateReceived >= start;
+        } else if (end) {
+            return dateReceived <= end;
+        }
+
+        return true;
+    });
+});
 </script>
 
 <template>
     <div class="overflow-x-auto">
+        <div class="flex items-center p-4 pt-2 gap-2 bg-green-800">
+            <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Star Date Time" />
+            <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
+            <div class="mt-2 flex items-center">
+                <PrimaryButton @click="resetDateFilters">Reset</PrimaryButton>
+            </div>
+        </div>
+
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
@@ -68,11 +109,11 @@ const closeModal = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in services" :key="service.id" class="hover:bg-green-100">
+                <tr v-for="(service, index) in filteredServices" :key="service.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.name }}</td>
@@ -82,22 +123,27 @@ const closeModal = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
-                        </SecondaryButton>
-                        <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete
-                        </DangerButton>
+                        <PrimaryButton @click="showModalServiceUpdate(service)" class="m-2">Print</PrimaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update</SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
         <Modal v-model:show="showingModelServiceUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
-                    <DangerButton @click="showingModelServiceUpdate = false">X</DangerButton>
+                    <DangerButton @click="closeModal">X</DangerButton>
                 </div>
                 <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice" />
             </div>
         </Modal>
+
         <Modal :show="confirmingServiceDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
@@ -109,10 +155,8 @@ const closeModal = () => {
                 </p>
 
                 <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
-
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                        @click="deleteService">
+                    <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteService">
                         Delete Service
                     </DangerButton>
                 </div>

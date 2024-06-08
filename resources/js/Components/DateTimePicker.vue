@@ -25,18 +25,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const datepicker = ref(null);
 
-const getCurrentDateTime = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const date = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${date} ${hours}:${minutes}`;
-};
-
-// Initialize formattedDate with the current datetime or the provided modelValue
-const formattedDate = ref(props.modelValue || getCurrentDateTime());
+const formattedDate = ref(props.modelValue );
 
 onMounted(() => {
     flatpickr(datepicker.value, {

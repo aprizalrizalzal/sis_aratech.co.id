@@ -65,7 +65,7 @@ const closeModal = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Quantity</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +79,8 @@ const closeModal = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update
                         </SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmPartUsageDeletion(partUsage.id)" class="m-2">Delete
                         </DangerButton>
                     </td>

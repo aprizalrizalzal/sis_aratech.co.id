@@ -16,7 +16,7 @@ const props = defineProps({
     carousels: Array,
     service: Object,
 
-    message: String
+    message: String,
 });
 
 const currentIndex = ref(0);
@@ -111,17 +111,17 @@ const closeModal = () => {
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2 ">
                             <Link :href="route('dashboard')"
                                 class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                            Dashboard
+                                Dashboard
                             </Link>
                         </div>
                         <template v-else>
                             <Link :href="route('login')"
                                 class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                            Log in
+                                Log in
                             </Link>
                             <Link v-if="canRegister" :href="route('register')"
                                 class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-[#256125] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                            Register
+                                Register
                             </Link>
                         </template>
                     </nav>
@@ -180,8 +180,11 @@ const closeModal = () => {
                             <div class="relative flex items-center gap-6 lg:items-end">
                                 <div id="docs-CardButton-content" class="flex items-start gap-6 lg:flex-col">
                                     <div
-                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-32">
-                                        <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
+                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#256125]/10 sm:size-32"
+                                    >
+                                        <ApplicationLogo
+                                            class="block h-16 w-auto fill-current text-green-800"
+                                        />
                                     </div>
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
                                         <h2 class="text-xl font-semibold text-green-900 dark:text-white">
@@ -210,79 +213,16 @@ const closeModal = () => {
                                         </div>
                                         <Modal v-if="service" :show="showModal" @close="closeModal">
                                             <div class="p-6">
-                                                <p
-                                                    class="py-2 px-4 mb-2 border-green-300 font-bold text-red-900 text-center">
-                                                    Service
-                                                    Code {{ service.service_code }}</p>
-                                                <table class="table-auto w-full">
-                                                    <tbody>
-
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Customers
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.customer.name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Phone</td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.customer.phone }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Model</td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.device.model }}</td>
-                                                        </tr>
-                                                        <tr class="font-bold text-red-900">
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Serial
-                                                                Number</td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.device.serial_number }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Date
-                                                                Received</td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.date_received }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Items
-                                                                Brought</td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.items_brought }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Estimated
-                                                                Completion</td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.estimated_completion }}</td>
-                                                        </tr>
-                                                        <tr class="font-bold text-red-900">
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                Status
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-300 text-center">
-                                                                {{
-                                                                    service.status }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="flex justify-end mt-6">
-                                                    <DangerButton @click="closeModal">Close</DangerButton>
+                                                <ServicePrint
+                                                    :service="service"
+                                                />
+                                                <div
+                                                    class="flex justify-end mt-6"
+                                                >
+                                                    <DangerButton
+                                                        @click="closeModal"
+                                                        >Close</DangerButton
+                                                    >
                                                 </div>
                                             </div>
                                         </Modal>

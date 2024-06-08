@@ -1,5 +1,6 @@
 <script setup>
 import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -67,7 +68,7 @@ const closeModal = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,8 +85,15 @@ const closeModal = () => {
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.cost }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <PrimaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Print
+                        </PrimaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    
                         <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
                         </SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
                         </DangerButton>
                     </td>

@@ -46,13 +46,13 @@ const props = defineProps({
 
 const dataChart = [
   props.users.length,
-  props.customers.length,
   props.deviceTypes.length,
+  props.spareParts.length,
   props.carousels.length,
+  props.customers.length,
   props.devices.length,
   props.services.length,
   props.serviceDetails.length,
-  props.spareParts.length,
   props.partUsages.length,
 ]
 

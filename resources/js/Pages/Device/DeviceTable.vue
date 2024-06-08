@@ -78,7 +78,7 @@ td {
           <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
           <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
           <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
-          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -89,6 +89,8 @@ td {
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.serial_number }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">
             <SecondaryButton @click="showModalDeviceUpdate(device)" class="m-2">Update</SecondaryButton>
+          </td>
+          <td class="py-2 px-4 border-b border-green-300 text-center">
             <DangerButton @click="confirmDeviceDeletion(device.id)" class="m-2">Delete</DangerButton>
           </td>
         </tr>
