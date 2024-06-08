@@ -30,7 +30,8 @@ const deleteCarousel = () => {
             if (errors) {
                 closeModal();
             } else {
-                console.error('There was an error!', errors);
+                const errorMessages = Object.values(errors).flat();
+                alert(`${errorMessages}`);
             }
         }
     });

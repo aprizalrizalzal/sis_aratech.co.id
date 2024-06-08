@@ -137,26 +137,32 @@ class DashboardController extends Controller
     }
 
     public function store_service_detail(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'service_id' => 'required|exists:services,id',
-            'problem_description' => 'required|string|max:255',
-            'repair_description' => 'required|string|max:255',
-            'cost' => 'required|integer',
-        ]);
+{
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'service_id' => 'required|exists:services,id',
+        'problem_description' => 'required|string|max:255',
+        'repair_description' => 'nullable|string|max:255',
+        'cost' => 'required|numeric',
+    ]);
 
-        ServiceDetail::create([
-            'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => $request->user_id,
-            'service_id' => $request->service_id,
-            'problem_description' => $request->problem_description,
-            'repair_description' => $request->repair_description,
-            'cost' => $request->cost,
-        ]);
+    $existingServiceDetail = ServiceDetail::where('service_id', $request->service_id)->first();
 
-        return Redirect::back();
+    if ($existingServiceDetail) {
+        return Redirect::back()->withErrors(['error' => 'A service detail already exists for this service.']);
     }
+
+    ServiceDetail::create([
+        'service_detail_code' => Str::upper(Str::random(8)),
+        'user_id' => $request->user_id,
+        'service_id' => $request->service_id,
+        'problem_description' => $request->problem_description,
+        'repair_description' => $request->repair_description,
+        'cost' => $request->cost,
+    ]);
+
+    return Redirect::back();
+}
 
     public function store_spare_part(Request $request)
     {
@@ -180,6 +186,12 @@ class DashboardController extends Controller
             'spare_part_id' => 'required|exists:spare_parts,id',
             'quantity' => 'required|integer|min:1',
         ]);
+
+        $existingPartUsage = PartUsage::where('service_detail_id', $request->service_detail_id)->first();
+
+    if ($existingPartUsage) {
+        return Redirect::back()->withErrors(['error' => 'A part usage already exists for this service.']);
+    }
 
         PartUsage::create([
             'service_detail_id' => $request->service_detail_id,

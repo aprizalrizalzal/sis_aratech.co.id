@@ -19,7 +19,7 @@ const props = defineProps({
     services: Array,
     serviceDetail: Object,
     user: Object,
-    service: Object
+    service: Object,
 });
 
 if (props.serviceDetail) {
@@ -39,7 +39,8 @@ const submitForm = () => {
                 if (errors.problem_description || errors.repair_description || errors.cost) {
                     alert('Service detail addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -52,7 +53,8 @@ const submitForm = () => {
                 if (errors.problem_description || errors.repair_description || errors.cost) {
                     alert('Service detail update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

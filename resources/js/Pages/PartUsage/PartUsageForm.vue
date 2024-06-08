@@ -35,7 +35,8 @@ const submitForm = () => {
                 if (errors.id) {
                     alert('Part usage addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -48,7 +49,8 @@ const submitForm = () => {
                 if (errors.id) {
                     alert('Part usage update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

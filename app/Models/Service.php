@@ -24,8 +24,8 @@ class Service extends Model
     }
 
     // Relasi ke ServiceDetail
-    public function serviceDetails()
+    public function serviceDetail()
     {
-        return $this->hasMany(ServiceDetail::class);
+        return $this->hasOne(ServiceDetail::class);
     }
 }

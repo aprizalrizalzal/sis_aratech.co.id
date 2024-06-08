@@ -33,7 +33,8 @@ const submitForm = () => {
                 if (errors.name || errors.address || errors.phone || errors.email) {
                     alert('Customer addition failed!');
                 } else {
-                    console.error('There was an error!', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -46,7 +47,8 @@ const submitForm = () => {
                 if (errors.name || errors.address || errors.phone || errors.email) {
                     alert('Customer update failed!');
                 } else {
-                    console.error('There was an error!', errors);
+                     const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

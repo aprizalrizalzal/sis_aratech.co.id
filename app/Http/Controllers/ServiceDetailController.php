@@ -39,8 +39,6 @@ class ServiceDetailController extends Controller
             'cost' => $request->cost,
         ]);
 
-
-
         return Redirect::back();
     }
 
