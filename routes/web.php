@@ -22,7 +22,7 @@ Route::post('/', [WelcomeController::class, 'store'])->name('store.welcome');
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // DashboardController
-    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('show.dashboard');
 
     Route::middleware(['role:super admin'])->group(function () {
 

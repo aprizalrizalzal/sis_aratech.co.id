@@ -109,7 +109,7 @@ const closeModal = () => {
                     <div class="flex lg:justify-center lg:col-start-2"></div>
                     <nav v-if="canLogin" class="flex flex-1 justify-end text-md">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2 ">
-                            <Link :href="route('dashboard')"
+                            <Link :href="route('show.dashboard')"
                                 class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             Dashboard
                             </Link>

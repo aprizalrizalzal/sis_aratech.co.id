@@ -39,7 +39,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <NavLink :href="route('show.dashboard')" :active="route().current('show.dashboard')">
                                     Dashboard
                                 </NavLink>
 
@@ -144,7 +144,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                     class="sm:hidden">
 
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('show.dashboard')" :active="route().current('show.dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
 
