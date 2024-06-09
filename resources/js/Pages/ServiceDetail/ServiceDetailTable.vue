@@ -5,7 +5,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
     serviceDetails: {
@@ -54,6 +54,32 @@ const deleteServiceDetail = () => {
 
 const closeModal = () => {
     confirmingServiceDetailDeletion.value = false;
+    showingModelServiceDetailUpdate.value = false;
+};
+
+const currentPage = ref(1);
+const itemsPerPage = 10;
+
+const paginatedServiceDetails = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return props.serviceDetails.slice(start, end);
+});
+
+const totalPages = computed(() => {
+    return Math.ceil(props.serviceDetails.length / itemsPerPage);
+});
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+
+const previousPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
 };
 </script>
 
@@ -73,61 +99,56 @@ const closeModal = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
-                    </td>
+                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
-                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.cost }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
-                            target="_blank"
+                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             Print
                         </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-
-                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
-                        </SecondaryButton>
+                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update</SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
-                        </DangerButton>
+                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
+        <div class="flex justify-center gap-4 items-center p-6">
+            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+        </div>
+
         <Modal v-model:show="showingModelServiceDetailUpdate">
             <div class="m-6">
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelServiceDetailUpdate = false">X</DangerButton>
                 </div>
-                <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser"
-                    :service="selectedService" />
+                <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser" :service="selectedService" />
             </div>
         </Modal>
+
         <Modal :show="confirmingServiceDetailDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
                     Are you sure you want to delete your Service Detail?
                 </h2>
-
                 <p class="mt-1 text-sm text-green-600">
-                    Once your Service Detai is deleted, all of its resources and data will be permanently deleted.
+                    Once your Service Detail is deleted, all of its resources and data will be permanently deleted.
                 </p>
-
                 <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
-
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                        @click="deleteServiceDetail">
+                    <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteServiceDetail">
                         Delete Service Detail
                     </DangerButton>
                 </div>

@@ -5,7 +5,7 @@ import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 
 import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   devices: Array,
@@ -50,6 +50,31 @@ const deleteDevice = () => {
 const closeModal = () => {
   confirmingDeviceDeletion.value = false;
 };
+
+const currentPage = ref(1);
+const itemsPerPage = 10;
+
+const paginatedDevices = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return props.devices.slice(start, end);
+});
+
+const totalPages = computed(() => {
+    return Math.ceil(props.devices.length / itemsPerPage);
+});
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+
+const previousPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+};
 </script>
 
 <template>
@@ -65,8 +90,8 @@ const closeModal = () => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(device, index) in devices" :key="device.id" class="hover:bg-green-50">
-          <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+        <tr v-for="(device, index) in paginatedDevices" :key="device.id" class="hover:bg-green-50">
+          <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.device_type.type_name }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.model }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.serial_number }}</td>
@@ -79,6 +104,13 @@ const closeModal = () => {
         </tr>
       </tbody>
     </table>
+
+    <div class="flex justify-center gap-4 items-center p-6">
+        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+          <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+    </div>
+
     <Modal v-model:show="showingModelDeviceUpdate">
       <div class="m-6">
         <div class="flex justify-end">
@@ -107,6 +139,5 @@ const closeModal = () => {
         </div>
       </div>
     </Modal>
-
   </div>
 </template>

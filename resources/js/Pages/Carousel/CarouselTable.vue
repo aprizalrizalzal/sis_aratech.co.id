@@ -3,7 +3,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
-import { defineProps, ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
     carousels: {
@@ -40,6 +40,31 @@ const deleteCarousel = () => {
 const closeModal = () => {
     confirmingCarouselDeletion.value = false;
 };
+
+const currentPage = ref(1);
+const itemsPerPage = 10;
+
+const paginatedCarousels = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return props.carousels.slice(start, end);
+});
+
+const totalPages = computed(() => {
+    return Math.ceil(props.carousels.length / itemsPerPage);
+});
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+
+const previousPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+};
 </script>
 
 <template>
@@ -54,8 +79,8 @@ const closeModal = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(carousel, index) in carousels" :key="carousel.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+                <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                             class="w-24 h-24 object-cover rounded-md mx-auto" />
@@ -67,6 +92,13 @@ const closeModal = () => {
                 </tr>
             </tbody>
         </table>
+
+        <div class="flex justify-center gap-4 items-center p-6">
+            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+        </div>
+
         <Modal :show="confirmingCarouselDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">

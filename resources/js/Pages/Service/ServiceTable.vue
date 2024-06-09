@@ -66,33 +66,60 @@ const resetDateFilters = () => {
     end_date.value = '';
 };
 
+const currentPage = ref(1);
+const itemsPerPage = 10;
+
 const filteredServices = computed(() => {
-    if (!start_date.value && !end_date.value) {
-        return props.services;
+    let services = props.services;
+
+    if (start_date.value || end_date.value) {
+        services = services.filter(service => {
+            const dateReceived = new Date(service.date_received);
+            const start = start_date.value ? new Date(start_date.value) : null;
+            const end = end_date.value ? new Date(end_date.value) : null;
+
+            if (start && end) {
+                return dateReceived >= start && dateReceived <= end;
+            } else if (start) {
+                return dateReceived >= start;
+            } else if (end) {
+                return dateReceived <= end;
+            }
+
+            return true;
+        });
     }
 
-    return props.services.filter(service => {
-        const dateReceived = new Date(service.date_received);
-        const start = start_date.value ? new Date(start_date.value) : null;
-        const end = end_date.value ? new Date(end_date.value) : null;
-
-        if (start && end) {
-            return dateReceived >= start && dateReceived <= end;
-        } else if (start) {
-            return dateReceived >= start;
-        } else if (end) {
-            return dateReceived <= end;
-        }
-
-        return true;
-    });
+    return services;
 });
+
+const paginatedServices = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return filteredServices.value.slice(start, end);
+});
+
+const totalPages = computed(() => {
+    return Math.ceil(filteredServices.value.length / itemsPerPage);
+});
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+
+const previousPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+};
 </script>
 
 <template>
     <div class="overflow-x-auto">
-        <div class="flex items-center p-4 pt-2 gap-2 bg-green-50">
-            <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Star Date Time" />
+        <div class="flex items-center py-4 pt-2 gap-2 bg-green-50">
+            <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
             <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
             <div class="mt-2 flex items-center">
                 <PrimaryButton @click="resetDateFilters">Reset</PrimaryButton>
@@ -114,8 +141,9 @@ const filteredServices = computed(() => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in filteredServices" :key="service.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
@@ -124,13 +152,13 @@ const filteredServices = computed(() => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update</SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             Print
                         </a>
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update</SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
@@ -138,6 +166,12 @@ const filteredServices = computed(() => {
                 </tr>
             </tbody>
         </table>
+
+        <div class="flex justify-center gap-4 items-center p-6">
+            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+        </div>
 
         <Modal v-model:show="showingModelServiceUpdate">
             <div class="m-6">
