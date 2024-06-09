@@ -144,6 +144,57 @@ const isTechnician = computed(() => userRole.value === 'technician');
                 <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
                     class="sm:hidden">
 
+                    <div class="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            Dashboard
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isSuperAdmin" :href="route('show.users')"
+                            :active="route().current('show.users')">
+                            Users
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isSuperAdmin" :href="route('show.device.types')"
+                            :active="route().current('show.device.types')">
+                            Device Types
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isSuperAdmin" :href="route('show.spare.parts')"
+                            :active="route().current('show.spare.parts')">
+                            Spare Parts
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isSuperAdmin" :href="route('show.carousels')"
+                            :active="route().current('show.carousels')">
+                            Carousels
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isAdmin" :href="route('show.customers')"
+                            :active="route().current('show.customers')">
+                            Customers
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isAdmin" :href="route('show.devices')"
+                            :active="route().current('show.devices')">
+                            Devices
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isAdmin" :href="route('show.services')"
+                            :active="route().current('show.services')">
+                            Services
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isTechnician" :href="route('show.service.details')"
+                            :active="route().current('show.service.details')">
+                            Service Details
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink v-if="isTechnician" :href="route('show.part.usages')"
+                            :active="route().current('show.part.usages')">
+                            Part Usages
+                        </ResponsiveNavLink>
+                    </div>
+
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-green-200">
                         <div class="px-4">
