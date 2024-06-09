@@ -75,6 +75,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/service/detail', [ServiceDetailController::class, 'update'])->name('update.service.detail');
         Route::delete('/service/detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
 
+        Route::get('service/detail/print/{service_detail_code}', [ServiceDetailController::class, 'print'])->name('service.detail.print');
+
         Route::post('/dashboard/part/usage', [DashboardController::class, 'store_part_usage'])->name('store.part.usage');
         // PartUsageController
         Route::get('/part/usages', [PartUsageController::class, 'show'])->name('show.part.usages');

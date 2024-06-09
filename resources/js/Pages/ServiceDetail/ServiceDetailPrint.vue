@@ -1,83 +1,86 @@
 <script setup>
+import { Head } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
+
 const props = defineProps({
-    service: Object,
+    serviceDetail: Object,
+});
+
+onMounted(() => {
+    window.print();
 });
 </script>
 <template id="print-template">
+
+    <Head title="Service Detail Print" />
+    <div class="mt-4 text-sm/relaxed">
+        <p>Asli Mandiri Computer - AMITech</p>
+        <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
+    </div>
+    <br>
     <table class="table-auto w-full">
         <tbody>
             <tr>
-                <td class="py-2 px-4 border bg-green-50 border-green-50 text-center" >
+                <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                    Service Detail Code
+                </td>
+                <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                    {{ serviceDetail.service_detail_code }}
+                </td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 border border-green-50 text-center">
+                    Technician
+                </td>
+                <td class="py-2 px-4 border border-green-50 text-center">
+                    {{ serviceDetail.user.name }}
+                </td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 border border-green-50 text-center">
                     Service Code
                 </td>
-                <td class="py-2 px-4 border bg-green-50 border-green-50 text-center" >
-                    {{ service.service_code }}
+                <td class="py-2 px-4 border border-green-50 text-center">
+                    {{ serviceDetail.service.service_code }}
                 </td>
             </tr>
             <tr>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Customers
+                    Problem Description
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.customer.name }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Phone
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.customer.phone }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Model
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.device.model }}
+                    {{ serviceDetail.problem_description }}
                 </td>
             </tr>
             <tr class="font-bold text-red-900">
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Serial Number
+                    Repair Description
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.device.serial_number }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Date Received
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.date_received }}
+                    {{ serviceDetail.repair_description }}
                 </td>
             </tr>
             <tr>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Items Brought
+                    Cost
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.items_brought }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Estimated Completion
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.estimated_completion }}
-                </td>
-            </tr>
-            <tr class="font-bold text-red-900">
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Status
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.status }}
+                    {{ serviceDetail.cost }}
                 </td>
             </tr>
         </tbody>
     </table>
+    <br>
+    <div class="mt-4 text-sm/relaxed">
+        <p>Untuk mengeksplorasi berbagai produk
+            kami,
+            kunjungi situs
+            web kami di <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
+                href="http://www.aslimandiri.com">www.aslimandiri.com.</a>
+            Bersama kami, temukan
+            solusi terbaik
+            untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah
+            prioritas kami.
+        </p>
+    </div>
 </template>

@@ -131,7 +131,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2">
+              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">

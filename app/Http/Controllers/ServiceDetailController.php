@@ -57,4 +57,15 @@ class ServiceDetailController extends Controller
 
         return Redirect::back();
     }
+
+    public function print($service_detail_code)
+    {
+        $serviceDetail = ServiceDetail::where('service_detail_code', $service_detail_code)
+            ->with('user', 'service')
+            ->firstOrFail();
+
+        return inertia('ServiceDetail/ServiceDetailPrint', [
+            'serviceDetail' => $serviceDetail
+        ]);
+    }
 }

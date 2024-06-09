@@ -87,10 +87,6 @@ const filteredServices = computed(() => {
         return true;
     });
 });
-
-const servicePrint = (serviceCode) => {
-    form.get(route('service.print', { service_code: serviceCode }));
-};
 </script>
 
 <template>
@@ -128,7 +124,10 @@ const servicePrint = (serviceCode) => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <PrimaryButton @click="servicePrint(service.service_code)" class="m-2">Print</PrimaryButton>
+                        <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
+                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            Print
+                        </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update</SecondaryButton>

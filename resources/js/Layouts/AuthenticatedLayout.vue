@@ -174,6 +174,9 @@ const isTechnician = computed(() => userRole.value === 'technician');
             <main>
                 <slot />
             </main>
+            <footer class="py-8 text-center text-sm text-green-900 dark:text-white/70">
+                SIService-AMITech &copy;2024
+            </footer>
         </div>
     </div>
 </template>

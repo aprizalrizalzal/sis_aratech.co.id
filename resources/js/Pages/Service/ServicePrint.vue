@@ -1,8 +1,13 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 const props = defineProps({
     service: Object,
+});
+
+onMounted(() => {
+    window.print();
 });
 </script>
 
@@ -13,9 +18,9 @@ const props = defineProps({
         <p>Asli Mandiri Computer - AMITech</p>
         <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
     </div>
+    <br>
     <table class="table-auto w-full">
         <tbody>
-            <br>
             <tr>
                 <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
                     Service Code
@@ -88,10 +93,9 @@ const props = defineProps({
                     {{ service.status }}
                 </td>
             </tr>
-            <br>
         </tbody>
-
     </table>
+    <br>
     <div class="mt-4 text-sm/relaxed">
         <p>Untuk mengeksplorasi berbagai produk
             kami,
@@ -104,7 +108,6 @@ const props = defineProps({
             prioritas kami.
         </p>
     </div>
-
 </template>
 
 <style scoped>
