@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 class WelcomeController extends Controller
 {
-    public function show_carousel()
+    public function show()
     {
         $carousels = Carousel::all();
 
@@ -21,7 +21,7 @@ class WelcomeController extends Controller
         ]);
     }
 
-    public function store_service_code(Request $request, Carousel $carousels)
+    public function store(Request $request, Carousel $carousels)
     {
         $service_code = $request->input('service_code');
         $service = Service::where('service_code', $service_code)->with('customer', 'device')->first();

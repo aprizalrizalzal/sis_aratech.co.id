@@ -68,7 +68,7 @@ const form = useForm({
 });
 
 const submitForm = () => {
-    form.post(route('welcome.store.service.code'), {
+    form.post(route('store.welcome'), {
         preserveScroll: true,
         onSuccess: () => {
             showModal.value = true;

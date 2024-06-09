@@ -16,7 +16,7 @@ import { Head, Link } from '@inertiajs/vue3';
                 </svg>
             </div>
             <p class="mt-4 text-gray-600">Let's get you back </p>
-            <Link :href="route('welcome.show.carousel')"
+            <Link :href="route('show.welcome')"
                 class="mt-8 inline-block bg-red-700 text-white py-2 px-4 rounded hover:bg-red-500 transition duration-300">
             Kembali ke Beranda
             </Link>.

@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // WelcomeController
-Route::get('/', [WelcomeController::class, 'show_carousel'])->name('welcome.show.carousel');
-Route::post('/', [WelcomeController::class, 'store_service_code'])->name('welcome.store.service.code');
+Route::get('/', [WelcomeController::class, 'show'])->name('show.welcome');
+Route::post('/', [WelcomeController::class, 'store'])->name('store.welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -25,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
 
     Route::middleware(['role:super admin'])->group(function () {
+
         // UserController
         Route::get('/users', [UserController::class, 'show'])->name('show.users');
         Route::delete('/user', [UserController::class, 'destroy'])->name('destroy.user');
@@ -48,6 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::middleware(['role:admin'])->group(function () {
+
         // CustomerController
         Route::get('/customers', [CustomerController::class, 'show'])->name('show.customers');
         Route::post('/customer', [CustomerController::class, 'store'])->name('store.customer');
@@ -70,6 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::middleware(['role:technician'])->group(function () {
+
         // ServiceDetailController
         Route::get('/service/details', [ServiceDetailController::class, 'show'])->name('show.service.details');
         Route::post('/service/detail', [ServiceDetailController::class, 'store'])->name('store.service.detail');
