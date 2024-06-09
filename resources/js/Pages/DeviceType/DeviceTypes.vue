@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import DeviceTypeTable from '@/Pages/DeviceType/DeviceTypeTable.vue';
+import DeviceTypeTable from './DeviceTypeTable.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';

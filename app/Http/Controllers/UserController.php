@@ -13,7 +13,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return Inertia::render('Users', [
+        return Inertia::render('User/Users', [
             'users' => $users
         ]);
     }

@@ -1,36 +1,35 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import PartUsageTable from '@/Pages/PartUsage/PartUsageTable.vue';
+import SparePartTable from './SparePartTable.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-  partUsages: Array,
+  spareParts: Array,
 });
 
 const searchQuery = ref('');
 
-const filteredPartUsages = computed(() => {
+const filteredSpareParts = computed(() => {
   if (!searchQuery.value) {
-    return props.partUsages;
+    return props.spareParts;
   }
-  return props.partUsages.filter(partUsage =>
-    partUsage.service_detail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    partUsage.spare_part.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    partUsage.quantity.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+  return props.spareParts.filter(sparePart =>
+    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
 
 <template>
 
-  <Head title="Part Usages" />
+  <Head title="Spare Parts" />
   <AuthenticatedLayout>
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">Part Usages</h2>
+          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">Spare Parts</h2>
         </div>
         <div class="flex items-center">
           <SearchInput v-model:searchQuery="searchQuery" />
@@ -43,7 +42,7 @@ const filteredPartUsages = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
-            <PartUsageTable :partUsages="filteredPartUsages" />
+            <SparePartTable :spareParts="filteredSpareParts" />
           </div>
         </div>
       </div>

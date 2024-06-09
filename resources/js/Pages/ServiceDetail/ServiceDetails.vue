@@ -1,35 +1,39 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import SparePartTable from '@/Pages/SparePart/SparePartTable.vue';
+import ServiceDetailTable from './ServiceDetailTable.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-  spareParts: Array,
+  serviceDetails: Array,
 });
 
 const searchQuery = ref('');
 
-const filteredSpareParts = computed(() => {
+const filteredServiceDetails = computed(() => {
   if (!searchQuery.value) {
-    return props.spareParts;
+    return props.serviceDetails;
   }
-  return props.spareParts.filter(sparePart =>
-    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+  return props.serviceDetails.filter(serviceDetail =>
+    serviceDetail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.repair_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.cost.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
 
 <template>
 
-  <Head title="Spare Parts" />
+  <Head title="Service Details" />
   <AuthenticatedLayout>
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">Spare Parts</h2>
+          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">Service Details</h2>
         </div>
         <div class="flex items-center">
           <SearchInput v-model:searchQuery="searchQuery" />
@@ -42,7 +46,7 @@ const filteredSpareParts = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
-            <SparePartTable :spareParts="filteredSpareParts" />
+            <ServiceDetailTable :serviceDetails="filteredServiceDetails" />
           </div>
         </div>
       </div>

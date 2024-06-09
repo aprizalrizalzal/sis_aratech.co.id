@@ -98,7 +98,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/unauthorized', function () {
-    return Inertia::render('Unauthorized');
+    return Inertia::render('Unauthorized/Unauthorized');
 })->name('unauthorized');
 
 require __DIR__ . '/auth.php';

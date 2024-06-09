@@ -13,7 +13,7 @@ class DeviceTypeController extends Controller
     {
         $deviceTypes = DeviceType::all();
 
-        return Inertia::render('DeviceTypes', [
+        return Inertia::render('DeviceType/DeviceTypes', [
             'deviceTypes' => $deviceTypes
         ]);
     }

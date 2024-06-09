@@ -14,7 +14,7 @@ class DeviceController extends Controller
     {
         $devices = Device::with('deviceType')->get();
 
-        return Inertia::render('Devices', [
+        return Inertia::render('Device/Devices', [
             'devices' => $devices
         ]);
     }

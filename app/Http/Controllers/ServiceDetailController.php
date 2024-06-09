@@ -14,7 +14,7 @@ class ServiceDetailController extends Controller
     {
         $serviceDetails = ServiceDetail::with('user', 'service')->get();
 
-        return Inertia::render('ServiceDetails', [
+        return Inertia::render('ServiceDetail/ServiceDetails', [
             'serviceDetails' => $serviceDetails
         ]);
     }

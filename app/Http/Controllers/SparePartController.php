@@ -13,7 +13,7 @@ class SparePartController extends Controller
     {
         $spareParts = SparePart::all();
 
-        return Inertia::render('SpareParts', [
+        return Inertia::render('SparePart/SpareParts', [
             'spareParts' => $spareParts
         ]);
     }

@@ -1,35 +1,36 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import CustomerTable from '@/Pages/Customer/CustomerTable.vue';
+import PartUsageTable from './PartUsageTable.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-  customers: Array,
+  partUsages: Array,
 });
+
 const searchQuery = ref('');
 
-const filteredCustomers = computed(() => {
+const filteredPartUsages = computed(() => {
   if (!searchQuery.value) {
-    return props.customers;
+    return props.partUsages;
   }
-  return props.customers.filter(customer =>
-    customer.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    customer.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    customer.phone.includes(searchQuery.value)
+  return props.partUsages.filter(partUsage =>
+    partUsage.service_detail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    partUsage.spare_part.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    partUsage.quantity.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
 
 <template>
 
-  <Head title="Customers" />
+  <Head title="Part Usages" />
   <AuthenticatedLayout>
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">Customers</h2>
+          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none">Part Usages</h2>
         </div>
         <div class="flex items-center">
           <SearchInput v-model:searchQuery="searchQuery" />
@@ -42,7 +43,7 @@ const filteredCustomers = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Your main content here -->
-            <CustomerTable :customers="filteredCustomers" />
+            <PartUsageTable :partUsages="filteredPartUsages" />
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ class ServiceController extends Controller
     {
         $services = Service::with('customer', 'device')->get();
 
-        return Inertia::render('Services', [
+        return Inertia::render('Service/Services', [
             'services' => $services
         ]);
     }

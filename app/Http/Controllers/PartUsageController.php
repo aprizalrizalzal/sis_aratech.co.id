@@ -13,7 +13,7 @@ class PartUsageController extends Controller
     {
         $partUsages = PartUsage::with('serviceDetail', 'sparePart')->get();
 
-        return Inertia::render('PartUsages', [
+        return Inertia::render('PartUsage/PartUsages', [
             'partUsages' => $partUsages
         ]);
     }
