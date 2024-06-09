@@ -122,7 +122,7 @@ const previousPage = () => {
             <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
             <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
             <div class="mt-2 flex items-center">
-                <PrimaryButton @click="resetDateFilters">Reset</PrimaryButton>
+                <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
             </div>
         </div>
 
