@@ -18,6 +18,21 @@ class SparePartController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer',
+        ]);
+
+        SparePart::create([
+            'name' => $request->name,
+            'price' => $request->price,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function update(Request $request)
     {
         $request->validate([

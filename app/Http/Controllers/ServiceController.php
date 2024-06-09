@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -16,6 +17,31 @@ class ServiceController extends Controller
         return Inertia::render('Services', [
             'services' => $services
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+            'device_id' => 'required|exists:devices,id',
+            'date_received' => 'date',
+            'items_brought' => 'required|string|max:255',
+            'estimated_completion' => 'date',
+            'status' => 'required|string|max:255',
+        ]);
+
+
+        Service::create([
+            'service_code' => Str::upper(Str::random(8)),
+            'customer_id' => $request->customer_id,
+            'device_id' => $request->device_id,
+            'date_received' => $request->date_received,
+            'items_brought' => $request->items_brought,
+            'estimated_completion' => $request->estimated_completion,
+            'status' => $request->status,
+        ]);
+
+        return Redirect::back();
     }
 
     public function update(Request $request)

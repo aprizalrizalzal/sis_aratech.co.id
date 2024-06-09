@@ -28,40 +28,41 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // UserController
         Route::get('/users', [UserController::class, 'show'])->name('show.users');
         Route::delete('/user', [UserController::class, 'destroy'])->name('destroy.user');
-        Route::post('/dashboard/device/type', [DashboardController::class, 'store_device_type'])->name('store.device.type');
+
         // DeviceTypeController
         Route::get('/device/types', [DeviceTypeController::class, 'show'])->name('show.device.types');
+        Route::post('/device/type', [DeviceTypeController::class, 'store'])->name('store.device.type');
         Route::put('/device/type', [DeviceTypeController::class, 'update'])->name('update.device.type');
         Route::delete('/device/type', [DeviceTypeController::class, 'destroy'])->name('destroy.device.type');
 
-        Route::post('/dashboard/spare/part', [DashboardController::class, 'store_spare_part'])->name('store.spare.part');
         // SparePartController
         Route::get('/spare/parts', [SparePartController::class, 'show'])->name('show.spare.parts');
+        Route::post('/spare/part', [SparePartController::class, 'store'])->name('store.spare.part');
         Route::put('/spare/part', [SparePartController::class, 'update'])->name('update.spare.part');
         Route::delete('/spare/part', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
 
-        Route::post('/dashboard/carousel', [DashboardController::class, 'store_carousel'])->name('store.carousel');
         // CarouselController
         Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
+        Route::post('/carousel', [CarouselController::class, 'store'])->name('store.carousel');
         Route::delete('/carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
     });
 
     Route::middleware(['role:admin'])->group(function () {
-        Route::post('/dashboard/customer', [DashboardController::class, 'store_customer'])->name('store.customer');
         // CustomerController
         Route::get('/customers', [CustomerController::class, 'show'])->name('show.customers');
+        Route::post('/customer', [CustomerController::class, 'store'])->name('store.customer');
         Route::put('/customer', [CustomerController::class, 'update'])->name('update.customer');
         Route::delete('/customer', [CustomerController::class, 'destroy'])->name('destroy.customer');
 
-        Route::post('/dashboard/device', [DashboardController::class, 'store_device'])->name('store.device');
         // DeviceController
         Route::get('/devices', [DeviceController::class, 'show'])->name('show.devices');
+        Route::post('/device', [DeviceController::class, 'store'])->name('store.device');
         Route::put('/device', [DeviceController::class, 'update'])->name('update.device');
         Route::delete('/device', [DeviceController::class, 'destroy'])->name('destroy.device');
 
-        Route::post('/dashboard/service', [DashboardController::class, 'store_service'])->name('store.service');
         // ServiceController
         Route::get('/services', [ServiceController::class, 'show'])->name('show.services');
+        Route::post('/service', [ServiceController::class, 'store'])->name('store.service');
         Route::put('/service', [ServiceController::class, 'update'])->name('update.service');
         Route::delete('/service', [ServiceController::class, 'destroy'])->name('destroy.service');
 
@@ -69,17 +70,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::middleware(['role:technician'])->group(function () {
-        Route::post('/dashboard/service/detail', [DashboardController::class, 'store_service_detail'])->name('store.service.detail');
         // ServiceDetailController
         Route::get('/service/details', [ServiceDetailController::class, 'show'])->name('show.service.details');
+        Route::post('/service/detail', [ServiceDetailController::class, 'store'])->name('store.service.detail');
         Route::put('/service/detail', [ServiceDetailController::class, 'update'])->name('update.service.detail');
         Route::delete('/service/detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
 
         Route::get('service/detail/print/{service_detail_code}', [ServiceDetailController::class, 'print'])->name('service.detail.print');
 
-        Route::post('/dashboard/part/usage', [DashboardController::class, 'store_part_usage'])->name('store.part.usage');
         // PartUsageController
         Route::get('/part/usages', [PartUsageController::class, 'show'])->name('show.part.usages');
+        Route::post('/part/usage', [PartUsageController::class, 'store'])->name('store.part.usage');
         Route::put('/part/usage', [PartUsageController::class, 'update'])->name('update.part.usage');
         Route::delete('/part/usage', [PartUsageController::class, 'destroy'])->name('destroy.part.usage');
     });

@@ -18,6 +18,29 @@ class PartUsageController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'service_detail_id' => 'required|exists:service_details,id',
+            'spare_part_id' => 'required|exists:spare_parts,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $existingPartUsage = PartUsage::where('service_detail_id', $request->service_detail_id)->first();
+
+        if ($existingPartUsage) {
+            return Redirect::back()->withErrors(['error' => 'A part usage already exists for this service.']);
+        }
+
+        PartUsage::create([
+            'service_detail_id' => $request->service_detail_id,
+            'spare_part_id' => $request->spare_part_id,
+            'quantity' => $request->quantity,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function update(Request $request)
     {
         $request->validate([

@@ -18,6 +18,19 @@ class DeviceTypeController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'type_name' => 'required|string|max:255|unique:device_types,type_name',
+        ]);
+
+        DeviceType::create([
+            'type_name' => $request->type_name,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function update(Request $request)
     {
         $request->validate([

@@ -18,6 +18,25 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . Customer::class,
+        ]);
+
+        Customer::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function update(Request $request)
     {
         $request->validate([

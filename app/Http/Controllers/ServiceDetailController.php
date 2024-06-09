@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ServiceDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -16,6 +17,34 @@ class ServiceDetailController extends Controller
         return Inertia::render('ServiceDetails', [
             'serviceDetails' => $serviceDetails
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'service_id' => 'required|exists:services,id',
+            'problem_description' => 'required|string|max:255',
+            'repair_description' => 'nullable|string|max:255',
+            'cost' => 'required|numeric',
+        ]);
+
+        $existingServiceDetail = ServiceDetail::where('service_id', $request->service_id)->first();
+
+        if ($existingServiceDetail) {
+            return Redirect::back()->withErrors(['error' => 'A service detail already exists for this service.']);
+        }
+
+        ServiceDetail::create([
+            'service_detail_code' => Str::upper(Str::random(8)),
+            'user_id' => $request->user_id,
+            'service_id' => $request->service_id,
+            'problem_description' => $request->problem_description,
+            'repair_description' => $request->repair_description,
+            'cost' => $request->cost,
+        ]);
+
+        return Redirect::back();
     }
 
     public function update(Request $request)

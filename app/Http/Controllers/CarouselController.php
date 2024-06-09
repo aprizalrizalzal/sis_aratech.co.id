@@ -17,6 +17,25 @@ class CarouselController extends Controller
         return Inertia::render('Carousels', ['carousels' => $carousels]);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'alt' => 'required|string|max:255',
+        ]);
+
+        $originalName = $request->file('image')->getClientOriginalName();
+        $uniqueName = time() . '_' . $originalName;
+        $path = $request->file('image')->storeAs('images', $uniqueName);
+
+        Carousel::create([
+            'alt' => $request->alt,
+            'image_path' => 'storage/' . $path,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

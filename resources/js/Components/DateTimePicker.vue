@@ -9,6 +9,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import InputLabel from '@/Components/InputLabel.vue';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.css';
 
@@ -25,7 +26,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const datepicker = ref(null);
 
-const formattedDate = ref(props.modelValue );
+const formattedDate = ref(props.modelValue);
 
 onMounted(() => {
     flatpickr(datepicker.value, {
