@@ -101,7 +101,7 @@ const closeModal = () => {
                 <header
                     class="text-sm font-bold text-green-900 dark:text-white mt-4 bg-white grid grid-cols-1 items-center gap-2 py-2 lg:grid-cols-3 rounded-lg p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                     <div class="flex items-center gap-2 px-4 py-2">
-                        <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
+                        <ApplicationLogo class="block h-16 w-16 fill-current text-green-800" />
                         <h2 class="text-lg leading-tight flex-none">
                             SIService-AMITech
                         </h2>
@@ -181,7 +181,7 @@ const closeModal = () => {
                                 <div id="docs-CardButton-content" class="flex items-start gap-6 lg:flex-col">
                                     <div
                                         class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-32">
-                                        <ApplicationLogo class="block h-16 w-auto fill-current text-green-800" />
+                                        <ApplicationLogo class="block h-16 w-16 fill-current text-green-800" />
                                     </div>
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
                                         <h2 class="text-xl font-semibold text-green-900 dark:text-white">
