@@ -7,7 +7,6 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Modal from '@/Components/Modal.vue';
-import ServicePrint from './Service/ServicePrint.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 
 const props = defineProps({
