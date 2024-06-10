@@ -14,6 +14,7 @@ const form = useForm({
 
 const props = defineProps({
     customers: Array,
+    
     customer: Object,
 });
 

@@ -27,6 +27,7 @@ const statusOptions = ref([
 const props = defineProps({
     customers: Array,
     devices: Array,
+    
     service: Object,
     customer: Object,
     device: Object,
@@ -45,7 +46,10 @@ const submitForm = () => {
     if (!props.service) {
         form.post(route('store.service'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            resetOnSuccess: false,
+            onSuccess: (res) => {form.reset(),
+                console.log('res: ', res);
+            },
             onError: (errors) => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.items_brought || errors.estimated_completion || errors.status) {
                     alert('Service addition failed!');

@@ -31,7 +31,7 @@ class ServiceController extends Controller
         ]);
 
 
-        Service::create([
+        $service = Service::create([
             'service_code' => Str::upper(Str::random(8)),
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
@@ -41,7 +41,7 @@ class ServiceController extends Controller
             'status' => $request->status,
         ]);
 
-        return Redirect::back();
+        return redirect()->route('show.dashboard')->with(['service', $service]);
     }
 
     public function update(Request $request)

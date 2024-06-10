@@ -14,6 +14,7 @@ const form = useForm({
 
 const props = defineProps({
     deviceTypes: Array,
+    
     device: Object,
     deviceType: Object,
 });

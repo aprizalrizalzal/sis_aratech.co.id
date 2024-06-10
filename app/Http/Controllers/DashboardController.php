@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Models\Customer;
 use App\Models\DeviceType;
-use Illuminate\Support\Str;
 use App\Models\Device;
 use App\Models\PartUsage;
 use App\Models\Service;
 use App\Models\ServiceDetail;
 use App\Models\SparePart;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
