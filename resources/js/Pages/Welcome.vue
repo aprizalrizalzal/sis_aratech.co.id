@@ -128,7 +128,7 @@ const closeModal = () => {
                 </header>
 
                 <main class="mt-4">
-                    <div v-if="carousels.length" class="bg-white p-8 rounded-lg">
+                    <div v-if="carousels.length" class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-lg p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <div id="default-carousel" class="relative w-full" data-carousel="slide">
                             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
@@ -174,7 +174,7 @@ const closeModal = () => {
                             </button>
                         </div>
                     </div>
-                    <div v-else class="bg-white p-8 rounded-lg text-center">
+                    <div v-else class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-lg p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">

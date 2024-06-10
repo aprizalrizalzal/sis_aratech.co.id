@@ -1,6 +1,6 @@
 <template>
     <button
-        class="m-2 p-2 max-w-sm rounded-xl text-sm/relaxed overflow-hidden shadow-lg bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+        class="grid grid-cols-1 m-2 p-2 max-w-sm rounded-xl text-sm/relaxed overflow-hidden shadow-lg bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
         <div class="w-full h-16 bg-green-50 flex items-center justify-center rounded-xl">
             <slot name="svg"></slot>
         </div>
