@@ -181,133 +181,45 @@ const closeModal = () => {
                         <div id="docs-CardButton"
                             class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div class="relative flex items-center gap-6 lg:items-end">
-                                <div id="docs-CardButton-content" class="flex items-start gap-6 lg:flex-col">
+                                <div id="docs-CardButton-content" class="flex items-center gap-6 lg:flex-col">
                                     <div
-                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-32">
-                                        <ApplicationLogo class="block h-16 w-16 fill-current text-green-800" />
+                                        class="flex size-32 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-32">
+                                        <ApplicationLogo class="block h-24 w-24 fill-current text-green-800" />
                                     </div>
                                     <div class="pt-3 sm:pt-5 lg:pt-0">
                                         <h2 class="text-xl font-semibold text-green-900 dark:text-white">
                                             SIService-AMITech
                                         </h2>
-                                        <p class="mt-4 text-sm/relaxed">
-                                            Sistem Informasi Service kami membantu Anda mengelola dan memantau layanan
-                                            service dengan
-                                            mudah dan efisien.
-                                        </p>
-                                        <div class="relative flex w-full flex-1 items-stretch">
-                                            <div class="w-full">
-                                                <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                                                    <div>
-                                                        <InputLabel for="service_code" value="Service Code" />
-                                                        <TextInput id="service_code" type="text"
-                                                            class="mt-1 block w-full" v-model="form.service_code"
-                                                            placeholder="Service Code" required autofocus />
-                                                        <InputError class="mt-3" :message="form.errors.service_code" />
-                                                    </div>
-                                                    <div class="flex justify-end">
-                                                        <PrimaryButton class="mt-6 mb-3">Search</PrimaryButton>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <Modal v-if="service" :show="showModal" @close="closeModal">
-                                            <div class="p-6">
-                                                <table class="table-auto w-full">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td
-                                                                class="py-2 px-4 border bg-green-50 border-green-50 text-center">
-                                                                Service Code
-                                                            </td>
-                                                            <td
-                                                                class="py-2 px-4 border bg-green-50 border-green-50 text-center">
-                                                                {{ service.service_code }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Customers
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.customer.name }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Phone
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.customer.phone }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Model
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.device.model }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="font-bold text-red-900">
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Serial Number
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.device.serial_number }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Date Received
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.date_received }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Items Brought
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.items_brought }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Estimated Completion
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.estimated_completion }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="font-bold text-red-900">
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                Status
-                                                            </td>
-                                                            <td class="py-2 px-4 border border-green-50 text-center">
-                                                                {{ service.status }}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="flex justify-end mt-6">
-                                                    <DangerButton @click="closeModal">Close</DangerButton>
-                                                </div>
-                                            </div>
-                                        </Modal>
-                                        <div v-else>
-                                            <p class="font-bold text-red-700">{{ message }}</p>
-                                        </div>
-                                        <p class="mt-4 text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
-                                            dalam huruf kapital
-                                            agar sistem dapat menemukan data yang sesuai dengan benar.</p>
-                                        <p class="mt-4 text-sm/relaxed">Harap dicatat: Service Code hanya boleh
-                                            menggunakan huruf
-                                            kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
                                     </div>
                                 </div>
                             </div>
+                            <p class="mt-4 text-sm/relaxed">
+                                Sistem Informasi Service kami membantu Anda mengelola dan memantau layanan
+                                service dengan
+                                mudah dan efisien.
+                            </p>
+                            <div class="relative flex w-full flex-1 items-stretch">
+                                <div class="w-full">
+                                    <form @submit.prevent="submitForm" class="mt-3 space-y-3">
+                                        <div>
+                                            <InputLabel for="service_code" value="Service Code" />
+                                            <TextInput id="service_code" type="text"
+                                                class="mt-1 block w-full" v-model="form.service_code"
+                                                placeholder="Service Code" required autofocus />
+                                            <InputError class="mt-3" :message="form.errors.service_code" />
+                                        </div>
+                                        <div class="flex justify-end">
+                                            <PrimaryButton class="mt-6 mb-3">Search</PrimaryButton>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
+                                dalam huruf kapital
+                                agar sistem dapat menemukan data yang sesuai dengan benar.</p>
+                            <p class="text-sm/relaxed">Harap dicatat: Service Code hanya boleh
+                                menggunakan huruf
+                                kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
                         </div>
                         <div
                             class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
@@ -399,6 +311,94 @@ const closeModal = () => {
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                    <Modal v-if="service" :show="showModal" @close="closeModal">
+                        <div class="p-6">
+                            <table class="table-auto w-full">
+                                <tbody>
+                                    <tr>
+                                        <td
+                                            class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                                            Service Code
+                                        </td>
+                                        <td
+                                            class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                                            {{ service.service_code }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Customers
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.customer.name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Phone
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.customer.phone }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Model
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.device.model }}
+                                        </td>
+                                    </tr>
+                                    <tr class="font-bold text-red-900">
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Serial Number
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.device.serial_number }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Date Received
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.date_received }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Items Brought
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.items_brought }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Estimated Completion
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.estimated_completion }}
+                                        </td>
+                                    </tr>
+                                    <tr class="font-bold text-red-900">
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            Status
+                                        </td>
+                                        <td class="py-2 px-4 border border-green-50 text-center">
+                                            {{ service.status }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="flex justify-end mt-6">
+                                <DangerButton @click="closeModal">Close</DangerButton>
+                            </div>
+                        </div>
+                    </Modal>
+                    <div v-else>
+                        <p class="font-bold text-red-700">{{ message }}</p>
                     </div>
                 </main>
                 <footer class="py-8 text-center text-sm text-green-900 dark:text-white/70">
