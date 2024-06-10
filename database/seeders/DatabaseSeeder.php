@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersTableSeeder::class,
-            CustomersTableSeeder::class,
+            // CustomersTableSeeder::class,
             DeviceTypesTableSeeder::class,
-            DevicesTableSeeder::class,
-            ServicesTableSeeder::class,
-            ServiceDetailsTableSeeder::class,
-            SparePartsTableSeeder::class,
-            PartUsagesTableSeeder::class,
+            // DevicesTableSeeder::class,
+            // ServicesTableSeeder::class,
+            // ServiceDetailsTableSeeder::class,
+            // SparePartsTableSeeder::class,
+            // PartUsagesTableSeeder::class,
         ]);
     }
 }

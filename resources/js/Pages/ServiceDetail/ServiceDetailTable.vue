@@ -88,7 +88,7 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">#</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Technician</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>

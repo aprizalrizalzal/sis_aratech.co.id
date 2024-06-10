@@ -128,7 +128,7 @@ const closeModal = () => {
                 </header>
 
                 <main class="mt-4">
-                    <div class="bg-white p-8 rounded-lg">
+                    <div v-if="carousels.length" class="bg-white p-8 rounded-lg">
                         <div id="default-carousel" class="relative w-full" data-carousel="slide">
                             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
@@ -173,6 +173,9 @@ const closeModal = () => {
                                 </span>
                             </button>
                         </div>
+                    </div>
+                    <div v-else class="bg-white p-8 rounded-lg text-center">
+                        <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
                         <div id="docs-CardButton"

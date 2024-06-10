@@ -32,7 +32,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.reset(),
             onError: (errors) => {
-                if (errors.id) {
+                if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -46,7 +46,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.id) {
+                if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -67,11 +67,13 @@ const submitForm = () => {
                     <DropdownSelect id="service_detail_id" label="Service Detail" optionProperty="service_detail_code"
                         valueProperty="id" :options="serviceDetails" v-model="form.service_detail_id"
                         placeholder="Select Service Detail Code" />
-                </div>
+                        <InputError class="mt-3" :message="form.errors.service_detail_id" />
+                    </div>
                 <div v-if="!props.sparePart">
                     <DropdownSelect id="spare_part_id" label="Spare Part" optionProperty="name" valueProperty="id"
                         :options="spareParts" v-model="form.spare_part_id" placeholder="Select Spare Part" />
-                </div>
+                        <InputError class="mt-3" :message="form.errors.spare_part_id" />
+                    </div>
                 <div>
                     <InputLabel class="mt-3" for="quantity" value="Quantity" />
                     <TextInput id="quantity" type="text" class="mt-1 block w-full" v-model="form.quantity"

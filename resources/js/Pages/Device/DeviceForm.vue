@@ -30,7 +30,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.reset(),
             onError: (errors) => {
-                if (errors.model || errors.serial_number) {
+                if (errors.device_type_id || errors.model || errors.serial_number) {
                     alert('Device addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -43,7 +43,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.model || errors.serial_number) {
+                if (errors.device_type_id || errors.model || errors.serial_number) {
                     alert('Device update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -63,7 +63,8 @@ const submitForm = () => {
                     <DropdownSelect id="device_type_id" label="Device Type" optionProperty="type_name"
                         valueProperty="id" :options="deviceTypes" v-model="form.device_type_id"
                         placeholder="Select Device Type" />
-                </div>
+                        <InputError class="mt-3" :message="form.errors.device_type_id" />
+                    </div>
                 <div>
                     <InputLabel class="mt-3" for="model" value="Model" />
                     <TextInput id="model" type="text" class="mt-1 block w-full" v-model="form.model" placeholder="Model"

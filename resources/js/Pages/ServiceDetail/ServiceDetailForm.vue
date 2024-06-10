@@ -36,7 +36,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.reset(),
             onError: (errors) => {
-                if (errors.problem_description || errors.repair_description || errors.cost) {
+                if (errors.user_id || errors.service_id || errors.problem_description || errors.repair_description || errors.cost) {
                     alert('Service detail addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -50,7 +50,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.problem_description || errors.repair_description || errors.cost) {
+                if (errors.user_id || errors.service_id || errors.problem_description || errors.repair_description || errors.cost) {
                     alert('Service detail update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -69,12 +69,14 @@ const submitForm = () => {
                 <div v-if="!props.user">
                     <DropdownSelect id="user_id" label="Technician" optionProperty="email" valueProperty="id"
                         :options="users" v-model="form.user_id" placeholder="Select Email" />
-                </div>
+                        <InputError class="mt-3" :message="form.errors.user_id" />
+                    </div>
                 <div v-if="!props.service">
                     <DropdownSelect id="service_id" label="Service Code" optionProperty="service_code"
                         valueProperty="id" :options="services" v-model="form.service_id"
                         placeholder="Select Service Code" />
-                </div>
+                        <InputError class="mt-3" :message="form.errors.service_id" />
+                    </div>
                 <div>
                     <InputLabel class="mt-3" for="problem_description" value="Problem Description" />
                     <TextInput id="problem_description" type="text" class="mt-1 block w-full"
