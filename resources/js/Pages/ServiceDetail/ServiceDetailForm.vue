@@ -17,7 +17,9 @@ const form = useForm({
 const props = defineProps({
     users: Array,
     services: Array,
-    
+
+    printServiceDetail: String,
+
     serviceDetail: Object,
     user: Object,
     service: Object,
@@ -35,7 +37,14 @@ const submitForm = () => {
     if (!props.serviceDetail) {
         form.post(route('store.service.detail'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: (page) => {
+                form.reset();
+                const printServiceDetail = page.props.printServiceDetail;
+                if (printServiceDetail) {
+                    window.open(printServiceDetail, '_blank');
+                };
+                console.log('printServiceDetail', printServiceDetail);
+            },
             onError: (errors) => {
                 if (errors.user_id || errors.service_id || errors.problem_description || errors.repair_description || errors.cost) {
                     alert('Service detail addition failed!');
@@ -70,14 +79,14 @@ const submitForm = () => {
                 <div v-if="!props.user">
                     <DropdownSelect id="user_id" label="Technician" optionProperty="email" valueProperty="id"
                         :options="users" v-model="form.user_id" placeholder="Select Email" />
-                        <InputError class="mt-3" :message="form.errors.user_id" />
-                    </div>
+                    <InputError class="mt-3" :message="form.errors.user_id" />
+                </div>
                 <div v-if="!props.service">
                     <DropdownSelect id="service_id" label="Service Code" optionProperty="service_code"
                         valueProperty="id" :options="services" v-model="form.service_id"
                         placeholder="Select Service Code" />
-                        <InputError class="mt-3" :message="form.errors.service_id" />
-                    </div>
+                    <InputError class="mt-3" :message="form.errors.service_id" />
+                </div>
                 <div>
                     <InputLabel class="mt-3" for="problem_description" value="Problem Description" />
                     <TextInput id="problem_description" type="text" class="mt-1 block w-full"

@@ -41,7 +41,11 @@ class ServiceController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('show.dashboard')->with(['service', $service]);
+        $printService = route('service.print', $service->service_code);
+
+        return Redirect::back()->with([
+            'printService' => $printService
+        ]);
     }
 
     public function update(Request $request)

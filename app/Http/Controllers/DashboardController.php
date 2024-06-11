@@ -17,6 +17,7 @@ class DashboardController extends Controller
 {
     public function show()
     {
+        // Chart
         $users = User::all();
         $carousels = Carousel::all();
         $deviceTypes = DeviceType::all();
@@ -27,7 +28,14 @@ class DashboardController extends Controller
         $spareParts = SparePart::all();
         $partUsages = PartUsage::all();
 
+        // Add Service Print
+        $printService = session('printService');
+
+        // Add ServiceDetail Print
+        $printServiceDetail = session('printServiceDetail');
+
         return Inertia::render('Dashboard', [
+            // Chart
             'users' => $users,
             'customers' => $customers,
             'carousels' => $carousels,
@@ -37,6 +45,13 @@ class DashboardController extends Controller
             'serviceDetails' => $serviceDetails,
             'spareParts' => $spareParts,
             'partUsages' => $partUsages,
+
+            // Add Service Print
+            'printService' => $printService,
+
+            // Add ServiceDetail Print
+            'printServiceDetail' => $printServiceDetail,
+
         ]);
     }
 }

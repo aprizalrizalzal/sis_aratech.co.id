@@ -35,7 +35,7 @@ class ServiceDetailController extends Controller
             return Redirect::back()->withErrors(['error' => 'A service detail already exists for this service.']);
         }
 
-        ServiceDetail::create([
+        $serviceDetail = ServiceDetail::create([
             'service_detail_code' => Str::upper(Str::random(8)),
             'user_id' => $request->user_id,
             'service_id' => $request->service_id,
@@ -44,7 +44,11 @@ class ServiceDetailController extends Controller
             'cost' => $request->cost,
         ]);
 
-        return Redirect::back();
+        $printServiceDetail = route('service.detail.print', $serviceDetail->service_detail_code);
+
+        return Redirect::back()->with([
+            'printServiceDetail' => $printServiceDetail
+        ]);
     }
 
     public function update(Request $request)

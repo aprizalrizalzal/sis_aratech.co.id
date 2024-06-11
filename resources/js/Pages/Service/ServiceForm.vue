@@ -27,7 +27,9 @@ const statusOptions = ref([
 const props = defineProps({
     customers: Array,
     devices: Array,
-    
+
+    printService: String,
+
     service: Object,
     customer: Object,
     device: Object,
@@ -47,8 +49,12 @@ const submitForm = () => {
         form.post(route('store.service'), {
             preserveScroll: true,
             resetOnSuccess: false,
-            onSuccess: (res) => {form.reset(),
-                console.log('res: ', res);
+            onSuccess: (page) => {
+                form.reset();
+                const printService = page.props.printService;
+                if (printService) {
+                    window.open(printService, '_blank');
+                };
             },
             onError: (errors) => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.items_brought || errors.estimated_completion || errors.status) {
@@ -83,18 +89,18 @@ const submitForm = () => {
                 <div v-if="!props.customer">
                     <DropdownSelect id="customer_id" label="Customer Email" optionProperty="email" valueProperty="id"
                         :options="customers" v-model="form.customer_id" placeholder="Select Email" />
-                        <InputError class="mt-3" :message="form.errors.customer_id" />
+                    <InputError class="mt-3" :message="form.errors.customer_id" />
                 </div>
                 <div v-if="!props.device">
                     <DropdownSelect id="device_id" label="Serial Number" optionProperty="serial_number"
                         valueProperty="id" :options="devices" v-model="form.device_id"
                         placeholder="Select Serial Number" />
-                        <InputError class="mt-3" :message="form.errors.device_id" />
+                    <InputError class="mt-3" :message="form.errors.device_id" />
                 </div>
                 <div>
                     <DateTimePicker id="date_received" label="Date Received" v-model="form.date_received"
                         placeholder="Select Date and Time" />
-                        <InputError class="mt-3" :message="form.errors.date_received" />
+                    <InputError class="mt-3" :message="form.errors.date_received" />
 
                 </div>
                 <div>
@@ -106,13 +112,13 @@ const submitForm = () => {
                 <div>
                     <DateTimePicker id="estimated_completion" label="Estimated Completion"
                         v-model="form.estimated_completion" placeholder="Select Date and Time" />
-                        <InputError class="mt-3" :message="form.errors.estimated_completion" />
+                    <InputError class="mt-3" :message="form.errors.estimated_completion" />
                 </div>
                 <div>
                     <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"
                         valueProperty="name" v-model="form.status"
                         :placeholder="props.service ? props.service.status : 'Select Status'" />
-                        <InputError class="mt-3" :message="form.errors.status" />
+                    <InputError class="mt-3" :message="form.errors.status" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
