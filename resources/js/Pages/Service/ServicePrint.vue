@@ -21,7 +21,7 @@ onMounted(() => {
     <br>
     <table class="table-auto w-full">
         <tbody>
-            <tr>
+            <tr class="font-bold text-red-900">
                 <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
                     Service Code
                 </td>
@@ -85,7 +85,7 @@ onMounted(() => {
                     {{ service.estimated_completion }}
                 </td>
             </tr>
-            <tr class="font-bold text-red-900">
+            <tr class="font-bold text-green-900">
                 <td class="py-2 px-4 border border-green-50 text-center">
                     Status
                 </td>

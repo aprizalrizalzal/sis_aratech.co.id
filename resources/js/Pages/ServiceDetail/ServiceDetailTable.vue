@@ -14,6 +14,10 @@ const props = defineProps({
     }
 });
 
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+};
+
 const showingModelServiceDetailUpdate = ref(false);
 const selectedServiceDetail = ref(null);
 const selectedUser = ref(null);
@@ -106,7 +110,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.cost }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">

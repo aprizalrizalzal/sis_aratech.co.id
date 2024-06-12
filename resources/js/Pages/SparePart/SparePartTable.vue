@@ -14,6 +14,10 @@ const props = defineProps({
     }
 });
 
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+};
+
 const showingModelSparePartUpdate = ref(false);
 const selectedSparePart = ref(null);
 
@@ -94,7 +98,7 @@ const previousPage = () => {
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.price }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update</SecondaryButton>
                     </td>
