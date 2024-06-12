@@ -26,12 +26,6 @@ class PartUsageController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $existingPartUsage = PartUsage::where('service_detail_id', $request->service_detail_id)->first();
-
-        if ($existingPartUsage) {
-            return Redirect::back()->withErrors(['error' => 'A part usage already exists for this service.']);
-        }
-
         PartUsage::create([
             'service_detail_id' => $request->service_detail_id,
             'spare_part_id' => $request->spare_part_id,
