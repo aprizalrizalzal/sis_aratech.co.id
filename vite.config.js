@@ -17,13 +17,4 @@ export default defineConfig({
             },
         }),
     ],
-    // Mode Dev
-    // server: {
-    //     host: '0.0.0.0', 
-    //     port: 5173, 
-    //     hmr: {
-    //         host: 'localhost', 
-    //         port: 5173,
-    //     },
-    // },
 });
