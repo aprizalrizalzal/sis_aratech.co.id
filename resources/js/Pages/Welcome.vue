@@ -94,7 +94,7 @@ const closeModal = () => {
 <template>
 
     <Head title="SIService" />
-    <div class="bg-green-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
+    <div class="bg-gray-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
         <div
             class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">

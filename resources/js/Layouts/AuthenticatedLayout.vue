@@ -20,7 +20,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
 
 <template>
     <div>
-        <div class="min-h-screen bg-green-50 ">
+        <div class="min-h-screen bg-gray-50 ">
             <nav class="bg-white border-b border-green-100 ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -32,8 +32,8 @@ const isTechnician = computed(() => userRole.value === 'technician');
                                 <ApplicationLogo class="block h-12 w-12 fill-current text-green-800" />
                                 </Link>
 
-                                <Link :href="route('show.welcome')" class="p-3 text-sm flex items-center font-bold">
-                                <span>SIService-AMITech</span>
+                                <Link :href="route('show.welcome')" class="p-3 text-sm flex items-center font-bold text-green-700 hover:text-green-700 hover:border-green-500 focus:outline-none focus:text-green-700 focus:border-green-700 transition duration-150 ease-in-out">
+                                SIService-AMITech
                                 </Link>
                             </div>
 

@@ -84,10 +84,10 @@ const isTechnician = computed(() => userRole.value === 'technician');
     <div class="flex">
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div class="overflow-hidden sm:rounded-lg">
             <!-- Your main content here -->
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-4 p-4">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
+            <div class="grid grid-cols-1 md:grid-cols-1">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 ">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
@@ -110,7 +110,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
+              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -130,7 +130,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
+              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
@@ -146,7 +146,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                   </template>
                 </CardButton>
               </div>
-              <div class="bg-white shadow-md rounded p-8 m-2">
+              <div class="bg-white shadow-md rounded p-4 my-4">
                 <LineChart :dataChart="dataChart" />
               </div>
             </div>
