@@ -183,9 +183,9 @@ const closeModal = () => {
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4">
                     <div v-if="carousels.length"
-                        class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-lg p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <div id="default-carousel" class="relative w-full" data-carousel="slide">
-                            <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                            <div class="relative h-56 overflow-hidden rounded-md md:h-96">
                                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
                                     v-show="index === currentIndex" class="duration-700 ease-in-out">
                                     <img :src="carousel.image_path" :alt="carousel.alt"
@@ -230,12 +230,12 @@ const closeModal = () => {
                         </div>
                     </div>
                     <div v-else
-                        class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-lg p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
                     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-4">
                         <div id="docs-CardButton"
-                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex flex-col items-start gap-6 overflow-hidden rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div class="relative flex items-center gap-6 lg:items-end">
                                 <div id="docs-CardButton-content" class="flex items-center gap-6 lg:flex-col">
                                     <div
@@ -278,7 +278,7 @@ const closeModal = () => {
                                 kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
                         </div>
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex items-start gap-4 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div
                                 class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
@@ -311,7 +311,7 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex items-start gap-4 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div
                                 class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"
@@ -341,7 +341,7 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex items-start gap-4 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div
                                 class="flex size-12 shrink-0 items-center justify-center rounded-full bg-green-700/10 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#256125"

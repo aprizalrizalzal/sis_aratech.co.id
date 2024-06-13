@@ -1,7 +1,7 @@
 <template>
     <button
-        class="grid grid-cols-1 m-2 p-2 max-w-sm rounded-xl text-sm/relaxed overflow-hidden shadow-lg bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 transition ease-in-out duration-150">
-        <div class="w-full p-4 flex items-center justify-center rounded-xl">
+        class="grid grid-cols-1 m-2 p-2 max-w-sm rounded-md text-sm/relaxed overflow-hidden shadow-lg bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 transition ease-in-out duration-150">
+        <div class="w-full p-4 flex items-center justify-center rounded-md">
             <slot name="svg"></slot>
         </div>
         <div class="px-4 py-4">
@@ -10,7 +10,7 @@
         </div>
         <div class="pt-2 pb-2">
             <span v-for="tag in tags" :key="tag"
-                class="inline-block bg-green-50 rounded-full px-2 py-1 text-gray-500 mr-2 mb-2">
+                class="inline-block bg-green-50 rounded-md px-2 py-1 text-gray-500 mr-2 mb-2">
                 #{{ tag }}
             </span>
         </div>
