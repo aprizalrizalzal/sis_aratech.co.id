@@ -20,6 +20,8 @@ onMounted(() => {
     <div class="mt-4 text-sm/relaxed">
         <p>Asli Mandiri Computer - AMITech</p>
         <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
+        <p><a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
+                href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com.</a></p>
     </div>
     <br>
     <table class="table-auto w-full">
@@ -80,7 +82,7 @@ onMounted(() => {
             kami,
             kunjungi situs
             web kami di <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                href="http://www.aslimandiri.com">www.aslimandiri.com.</a>
+                href="http://www.aslimandiri.com">aslimandiri.com.</a>
             Bersama kami, temukan
             solusi terbaik
             untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah

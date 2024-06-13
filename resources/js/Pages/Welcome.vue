@@ -116,7 +116,7 @@ const closeModal = () => {
 
                 <!-- Right Section: Navigation Links -->
                 <div class="hidden space-x-8 sm:flex items-center">
-                    <div v-if="canLogin" class="flex items-center text-md">
+                    <div v-if="canLogin" class="flex items-center text-md font-bold">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2">
                             <Link :href="route('show.dashboard')"
                                 class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
@@ -303,7 +303,7 @@ const closeModal = () => {
                                     kunjungi situs
                                     web kami di <a target="_blank" rel="noopener noreferrer"
                                         class="text-green-800 font-bold"
-                                        href="http://www.aslimandiri.com">www.aslimandiri.com.</a> Bersama kami, temukan
+                                        href="http://www.aslimandiri.com">aslimandiri.com.</a> Bersama kami, temukan
                                     solusi terbaik
                                     untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah prioritas kami.
                                 </p>
