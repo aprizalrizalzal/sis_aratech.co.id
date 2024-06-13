@@ -53,7 +53,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedDeviceTypes = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -90,18 +90,21 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(deviceType, index) in paginatedDeviceTypes" :key="deviceType.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ deviceType.type_name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalDeviceTypeUpdate(deviceType)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalDeviceTypeUpdate(deviceType)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmDeviceTypeDeletion(deviceType.id)" class="m-2">Delete</DangerButton>
+                        <DangerButton @click="confirmDeviceTypeDeletion(deviceType.id)" class="m-2">Delete
+                        </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
-        
+
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>

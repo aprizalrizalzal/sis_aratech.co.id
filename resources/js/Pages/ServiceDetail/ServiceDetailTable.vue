@@ -62,7 +62,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedServiceDetails = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -103,30 +103,40 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}</td>
+                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
+                    class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })" target="_blank"
+                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
+                            target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             Print
                         </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete</DangerButton>
+                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
+                        </DangerButton>
                     </td>
                 </tr>
             </tbody>
         </table>
-        
+
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
@@ -138,7 +148,8 @@ const previousPage = () => {
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelServiceDetailUpdate = false">X</DangerButton>
                 </div>
-                <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser" :service="selectedService" />
+                <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser"
+                    :service="selectedService" />
             </div>
         </Modal>
 
@@ -152,7 +163,8 @@ const previousPage = () => {
                 </p>
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteServiceDetail">
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                        @click="deleteServiceDetail">
                         Delete Service Detail
                     </DangerButton>
                 </div>

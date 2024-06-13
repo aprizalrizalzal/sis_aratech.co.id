@@ -22,7 +22,6 @@ import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
 import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import LineChart from '@/Components/LineChart.vue';
-import SearchInput from '@/Components/SearchInput.vue';
 
 const showModalAddCarousel = ref(false);
 const showModalAddCustomer = ref(false);
@@ -73,7 +72,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none py-3">Dashboard</h2>
+          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Dashboard</h2>
         </div>
         <div class="flex items-center">
 

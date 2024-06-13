@@ -42,7 +42,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedCarousels = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -80,7 +80,8 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                             class="w-24 h-24 object-cover rounded-md mx-auto" />
@@ -95,7 +96,7 @@ const previousPage = () => {
 
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
 

@@ -57,7 +57,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedPartUsages = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -96,12 +96,15 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.service_detail.service_detail_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        partUsage.service_detail.service_detail_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmPartUsageDeletion(partUsage.id)" class="m-2">Delete</DangerButton>
@@ -109,7 +112,7 @@ const previousPage = () => {
                 </tr>
             </tbody>
         </table>
-        
+
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
@@ -121,7 +124,8 @@ const previousPage = () => {
                 <div class="flex justify-end">
                     <DangerButton @click="showingModelPartUsageUpdate = false">X</DangerButton>
                 </div>
-                <PartUsageForm :partUsage="selectedPartUsage" :serviceDetail="selectedPartUsage.service_detail" :sparePart="selectedPartUsage.spare_part" />
+                <PartUsageForm :partUsage="selectedPartUsage" :serviceDetail="selectedPartUsage.service_detail"
+                    :sparePart="selectedPartUsage.spare_part" />
             </div>
         </Modal>
         <Modal :show="confirmingPartUsageDeletion" @close="closeModal">
@@ -134,7 +138,8 @@ const previousPage = () => {
                 </p>
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deletePartUsage">
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                        @click="deletePartUsage">
                         Delete Part Usage
                     </DangerButton>
                 </div>

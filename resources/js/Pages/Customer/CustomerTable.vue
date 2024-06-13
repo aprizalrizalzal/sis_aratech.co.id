@@ -52,7 +52,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedCustomers = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -91,7 +91,8 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(customer, index) in paginatedCustomers" :key="customer.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.phone }}</td>
@@ -107,7 +108,7 @@ const previousPage = () => {
 
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
 

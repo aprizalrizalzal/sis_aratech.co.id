@@ -58,7 +58,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedSpareParts = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -96,11 +96,14 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmSparePartDeletion(sparePart.id)" class="m-2">Delete</DangerButton>
@@ -108,7 +111,7 @@ const previousPage = () => {
                 </tr>
             </tbody>
         </table>
-        
+
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
@@ -123,7 +126,7 @@ const previousPage = () => {
                 <SparePartForm :sparePart="selectedSparePart" />
             </div>
         </Modal>
-        
+
         <Modal :show="confirmingSparePartDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
@@ -134,7 +137,8 @@ const previousPage = () => {
                 </p>
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteSparePart">
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                        @click="deleteSparePart">
                         Delete Spare Part
                     </DangerButton>
                 </div>

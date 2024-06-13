@@ -43,7 +43,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 10;
+const itemsPerPage = 15;
 
 const paginatedUsers = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
@@ -82,7 +82,8 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.role }}</td>
@@ -92,7 +93,7 @@ const previousPage = () => {
                 </tr>
             </tbody>
         </table>
-        
+
         <div class="flex justify-center gap-4 items-center p-6">
             <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
@@ -109,7 +110,8 @@ const previousPage = () => {
                 </p>
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteUser">
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                        @click="deleteUser">
                         Delete User
                     </DangerButton>
                 </div>
