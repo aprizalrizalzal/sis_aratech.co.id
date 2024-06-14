@@ -3,7 +3,6 @@ import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
@@ -90,6 +89,7 @@ const previousPage = () => {
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
@@ -99,6 +99,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
+                            class="w-24 h-24 object-cover rounded-md mx-auto" />
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">

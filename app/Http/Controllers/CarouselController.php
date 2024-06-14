@@ -14,7 +14,9 @@ class CarouselController extends Controller
     public function show()
     {
         $carousels = Carousel::all();
-        return Inertia::render('Carousel/Carousels', ['carousels' => $carousels]);
+        return Inertia::render('Carousel/Carousels', [
+            'carousels' => $carousels
+        ]);
     }
 
     public function store(Request $request)
@@ -26,7 +28,7 @@ class CarouselController extends Controller
 
         $originalName = $request->file('image')->getClientOriginalName();
         $uniqueName = time() . '_' . $originalName;
-        $path = $request->file('image')->storeAs('images', $uniqueName);
+        $path = $request->file('image')->storeAs('images/carousel', $uniqueName);
 
         Carousel::create([
             'alt' => $request->alt,

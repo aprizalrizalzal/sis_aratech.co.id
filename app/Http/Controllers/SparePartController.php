@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class SparePartController extends Controller
@@ -22,11 +23,17 @@ class SparePartController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|integer',
         ]);
 
+        $originalName = $request->file('image')->getClientOriginalName();
+        $uniqueName = time() . '_' . $originalName;
+        $path = $request->file('image')->storeAs('images/spareParts', $uniqueName);
+
         SparePart::create([
             'name' => $request->name,
+            'image_path' => 'storage/' . $path,
             'price' => $request->price,
         ]);
 
@@ -59,7 +66,11 @@ class SparePartController extends Controller
         $sparePart = SparePart::find($request->input('id'));
 
         if ($sparePart) {
+            $path = str_replace('storage/', '', $sparePart->image_path);
+            Storage::disk('public')->delete($path);
+
             $sparePart->delete();
+
             return Redirect::back();
         }
 

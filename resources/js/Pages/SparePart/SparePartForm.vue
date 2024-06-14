@@ -1,4 +1,5 @@
 <script setup>
+import { ref, watch } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -7,6 +8,7 @@ import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
     name: '',
+    image: null,
     price: '',
 });
 
@@ -16,16 +18,32 @@ const props = defineProps({
 
 if (props.sparePart) {
     form.name = props.sparePart.name;
+    form.image_path = props.sparePart.image_path;
     form.price = props.sparePart.price;
 }
+
+const previewUrl = ref(null);
+const uploadedImageUrl = ref(null);
+
+const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        form.image = file;
+        previewUrl.value = URL.createObjectURL(file);
+    }
+};
 
 const submitForm = () => {
     if (!props.sparePart) {
         form.post(route('store.spare.part'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: (response) => {
+                form.reset();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
             onError: (errors) => {
-                if (errors.name || errors.price) {
+                if (errors.name || errors.image || errors.price) {
                     alert('Spare part addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -36,9 +54,13 @@ const submitForm = () => {
         const sparePartId = props.sparePart.id;
         form.put(route('update.spare.part', { id: sparePartId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: (response) => {
+                form.data();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
             onError: (errors) => {
-                if (errors.name || errors.price) {
+                if (errors.name || errors.image || errors.price) {
                     alert('Spare part update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -47,6 +69,18 @@ const submitForm = () => {
         });
     }
 };
+
+// Watch the props and update form values accordingly
+watch(
+    () => props.sparePart,
+    (newSparePart) => {
+        if (newSparePart) {
+            form.name = newSparePart.name;
+            form.image_path = newSparePart.image_path;
+            form.price = newSparePart.price;
+        }
+    }
+);
 </script>
 
 <template>
@@ -60,17 +94,29 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div>
+                    <InputLabel for="image" value="Upload Image" />
+                    <div v-if="props.sparePart && !previewUrl">
+                        <img :src="form.image_path" alt="Current Image" class="w-full h-auto mt-2 rounded-md" />
+                    </div>
+                    <input v-else type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
+                    <InputError :message="form.errors.image" />
+                </div>
+                <div>
                     <InputLabel class="mt-3" for="price" value="Price" />
                     <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
                         required autofocus />
                     <InputError class="mt-3" :message="form.errors.price" />
                 </div>
+                <div v-if="previewUrl" class="mt-4">
+                    <p class="font-semibold">Preview:</p>
+                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
+                </div>
                 <div>
-                    <PrimaryButton class="mt-6 mb-3">
+                    <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         {{ props.sparePart ? 'Update Spare Part' : 'Add Spare Part' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.sparePart ? 'Spare Part update successfully!' : 'Spare Part added successfully!' }}
+                        {{ props.sparePart ? 'Spare Part updated successfully!' : 'Spare Part added successfully!' }}
                     </span>
                 </div>
             </form>

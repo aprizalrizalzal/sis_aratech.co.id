@@ -10,7 +10,7 @@ class SparePart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'image_path', 'price'];
 
     // Relasi ke PartUsage
     public function partUsages()
