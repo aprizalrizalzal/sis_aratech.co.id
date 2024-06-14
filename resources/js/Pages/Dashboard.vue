@@ -4,8 +4,8 @@ import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
 import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
-import DeviceTypeIcon from '@/Components/Icon/DeviceTypeIcon.vue';
-import DeviceIcon from '@/Components/Icon/DeviceIcon.vue';
+import DisplayIcon from '@/Components/Icon/DisplayIcon.vue';
+import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
 import ServiceIcon from '@/Components/Icon/ServiceIcon.vue';
 import ServiceDetailIcon from '@/Components/Icon/ServiceDetailIcon.vue';
 import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
@@ -91,7 +91,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
                   <template #svg>
-                    <DeviceTypeIcon width="32" height="32" fill="#0f4d0f" />
+                    <DisplayIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddSparePart = true" title="Add Spare Part"
@@ -119,7 +119,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                 <CardButton @click="showModalAddDevice = true" title="Add Device"
                   description="Menambahkan perangkat baru ke sistem." :tags="['perangkat', 'registrasi', 'inventaris']">
                   <template #svg>
-                    <DeviceIcon width="32" height="32" fill="#0f4d0f" />
+                    <LaptopIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
                 <CardButton @click="showModalAddService = true" title="Add Service"
