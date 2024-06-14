@@ -88,6 +88,9 @@ onMounted(() => {
             untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah
             prioritas kami.
         </p>
+        <br>
+        <p>Catatan: <i>Cost</i> sudah termasuk harga <i>spare Part</i> jika ada penggantian selama <i>service</i>.
+        </p>
     </div>
 </template>
 
