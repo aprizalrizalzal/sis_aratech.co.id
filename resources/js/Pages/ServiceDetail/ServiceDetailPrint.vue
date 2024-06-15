@@ -20,8 +20,14 @@ onMounted(() => {
     <div class="mt-4 text-sm/relaxed">
         <p>Asli Mandiri Computer - AMITech</p>
         <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
-        <p><a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com.</a></p>
+        <div class="flex items-center space-x-2" >
+            <a href="https://wa.me/6282247912220" target="_blank"
+                rel="noopener noreferrer">0822-4791-2220</a>
+                <span>/</span>
+            <a href="https://wa.me/6287765889202" target="_blank"
+                rel="noopener noreferrer">0877-6588-9202</a>
+        </div>
+        
     </div>
     <br>
     <table class="table-auto w-full">
@@ -78,18 +84,10 @@ onMounted(() => {
     </table>
     <br>
     <div class="mt-4 text-sm/relaxed">
-        <p>Untuk mengeksplorasi berbagai produk
-            kami,
-            kunjungi situs
-            web kami di <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                href="http://www.aslimandiri.com">aslimandiri.com.</a>
-            Bersama kami, temukan
-            solusi terbaik
-            untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah
-            prioritas kami.
-        </p>
-        <br>
-        <p>Catatan: <i>Cost</i> sudah termasuk harga <i>spare Part</i> jika ada penggantian selama <i>service</i>.
+        <p>Untuk mengeksplorasi produk kami, kunjungi <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold" href="http://www.aslimandiri.com">aslimandiri.com</a>. Kunjungi juga 
+            <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold" href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a> 
+            untuk melihat perkembangan device yang diservice.</p>
+        <p>Catatan: <span class="text-green-800 font-bold">Cost</span> sudah termasuk harga <span class="text-green-800 font-bold">spare Part</span> jika ada penggantian selama service.
         </p>
     </div>
 </template>

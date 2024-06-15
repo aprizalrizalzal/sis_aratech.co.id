@@ -14,13 +14,6 @@ onMounted(() => {
 <template id="print-template">
 
     <Head title="Service Print" />
-    <div class="mt-4 text-sm/relaxed">
-        <p>Asli Mandiri Computer - AMITech</p>
-        <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
-        <p><a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a></p>
-    </div>
-    <br>
     <table class="table-auto w-full">
         <tbody>
             <tr class="font-bold text-red-900">
@@ -97,19 +90,6 @@ onMounted(() => {
             </tr>
         </tbody>
     </table>
-    <br>
-    <div class="mt-4 text-sm/relaxed">
-        <p>Untuk mengeksplorasi berbagai produk
-            kami,
-            kunjungi situs
-            web kami di <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                href="http://www.aslimandiri.com">aslimandiri.com.</a>
-            Bersama kami, temukan
-            solusi terbaik
-            untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah
-            prioritas kami.
-        </p>
-    </div>
 </template>
 
 <style scoped>
