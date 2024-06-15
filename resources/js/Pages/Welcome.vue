@@ -278,7 +278,7 @@ const closeModal = () => {
                         </CardView>
                     </div>
 
-                    <div class="grid gap-4 lg:grid-cols-2 mt-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-4">
                         <div id="docs-CardButton"
                             class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-2">
@@ -352,8 +352,7 @@ const closeModal = () => {
                             </div>
                         </div>
 
-                        <div
-                            class="flex items-start gap-6 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        <div class="flex items-start gap-4 text-gray-900 p-4">
                             <div class="px-2">
                                 <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Kontak</h2>
                                 <p class="mt-4 text-sm/relaxed">
