@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -8,11 +8,13 @@ import TextInput from '@/Components/TextInput.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import CardView from '@/Components/CardView.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
 import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
 import GeoIcon from '@/Components/Icon/GeoIcon.vue';
+import SearchInput from '@/Components/SearchInput.vue';
 
 const showingNavigationDropdown = ref(false);
 
@@ -21,6 +23,7 @@ const props = defineProps({
     canRegister: Boolean,
 
     carousels: Array,
+    spareParts: Array,
     service: Object,
 
     message: String,
@@ -73,6 +76,22 @@ const showModal = ref(false);
 const form = useForm({
     service_code: '',
 });
+
+const searchQuery = ref('');
+
+const filteredSpareParts = computed(() => {
+  if (!searchQuery.value) {
+    return props.spareParts;
+  }
+  return props.spareParts.filter(sparePart =>
+    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
+
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+};
 
 const submitForm = () => {
     form.post(route('store.welcome'), {
@@ -237,9 +256,24 @@ const closeModal = () => {
                         class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
+                    <div class="flex justify-between my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        <h2 class="py-4 text-xl font-semibold text-green-900 dark:text-white">
+                            Spare Part
+                        </h2>
+                        <SearchInput v-model:searchQuery="searchQuery" />
+                    </div>
+                    <div class="flex my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        <CardView v-for="sparePart in filteredSpareParts" :key="sparePart"
+                        :name="sparePart.name" :price="formatCurrency(sparePart.price)" >
+                            <template #img>
+                                <img :src="sparePart.image_path" :alt="sparePart.name" class="w-48">
+                            </template>
+                        </CardView>
+                    </div>
+
                     <div class="grid gap-6 lg:grid-cols-2 mt-4">
                         <div id="docs-CardButton"
-                            class="flex flex-col items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <h2 class="text-xl font-semibold text-green-900 dark:text-white">
                                 SIService-AMITech
                             </h2>
