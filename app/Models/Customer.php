@@ -21,7 +21,7 @@ class Customer extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('name');
+            $builder->orderBy('email');
         });
     }
 }

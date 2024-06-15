@@ -27,7 +27,7 @@ class Device extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('model');
+            $builder->orderBy('device_type_id');
         });
     }
 }

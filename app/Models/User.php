@@ -56,7 +56,7 @@ class User extends Authenticatable
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('name');
+            $builder->orderBy('email');
         });
     }
 }
