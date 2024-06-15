@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -10,6 +10,15 @@ const form = useForm({
     image: null,
     alt: '',
 });
+
+const props = defineProps({
+    carousel: Object,
+});
+
+if (props.carousel) {
+    form.image_path = props.carousel.image_path;
+    form.alt = props.carousel.alt;
+}
 
 const previewUrl = ref(null);
 const uploadedImageUrl = ref(null);
@@ -23,7 +32,8 @@ const handleFileChange = (event) => {
 };
 
 const submitForm = () => {
-    form.post(route('store.carousel'), {
+    if (!props.carousel) {
+      form.post(route('store.carousel'), {
         preserveScroll: true,
         onSuccess: (response) => {
             form.reset();
@@ -32,13 +42,41 @@ const submitForm = () => {
         },
         onError: (errors) => {
             if (errors.image || errors.alt) {
-                alert('Image upload failed!');
+                alert('Carousel upload failed!');
             } else {
                 console.error('An error occurred:', errors);
             }
         }
-    });
+    });  
+    } else {
+        const carouselId = props.carousel.id;
+        form.put(route('update.carousel', { id: carouselId }), {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                form.data();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
+            onError: (errors) => {
+                if (errors.image || errors.alt) {
+                    alert('Carousel update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    }
 };
+
+watch(
+    () => props.carousel,
+    (newCarousel) => {
+        if (newCarousel) {
+            form.image_path = newCarousel.image_path;
+            form.alt = newCarousel.alt;
+        }
+    }
+);
 </script>
 
 <template>
@@ -46,8 +84,11 @@ const submitForm = () => {
         <div class="w-full">
             <form @submit.prevent="submitForm" class="space-y-4">
                 <div>
-                    <InputLabel for="image" value="Upload Image" />
-                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
+                    <InputLabel for="image" value="Image" />
+                    <div v-if="props.carousel && !previewUrl">
+                        <img :src="form.image_path" alt="Current Image" class="w-full h-auto mt-2 rounded-md" />
+                    </div>
+                    <input v-else type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
                 <div>
@@ -61,10 +102,11 @@ const submitForm = () => {
                     <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
                 </div>
                 <div>
-                    <PrimaryButton class="mt-3" :disabled="form.processing">
-                        Upload Image
-                    </PrimaryButton><span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        Image uploaded successfully!
+                    <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
+                        {{ props.carousel ? 'Update Carousel' : 'Add Carousel' }}
+                    </PrimaryButton>
+                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
+                        {{ props.carousel ? 'Carousel updated successfully!' : 'Carousel added successfully!' }}
                     </span>
                 </div>
             </form>

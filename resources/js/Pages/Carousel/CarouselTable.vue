@@ -1,4 +1,5 @@
 <script setup>
+import CarouselForm from '@/Pages/Carousel/CarouselForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -11,6 +12,14 @@ const props = defineProps({
         required: true
     }
 });
+
+const showingModelCarouselUpdate = ref(false);
+const selectedCarousel = ref(null);
+
+const showModalCarouselUpdate = (carousel) => {
+    selectedCarousel.value = carousel;
+    showingModelCarouselUpdate.value = true;
+};
 
 const confirmingCarouselDeletion = ref(false);
 const form = useForm({
@@ -39,6 +48,7 @@ const deleteCarousel = () => {
 
 const closeModal = () => {
     confirmingCarouselDeletion.value = false;
+    showingModelCarouselUpdate.value = false;
 };
 
 const currentPage = ref(1);
@@ -75,7 +85,7 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Alternative</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -88,6 +98,10 @@ const previousPage = () => {
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ carousel.alt }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalCarouselUpdate(carousel)" class="m-2">Update
+                        </SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmCarouselDeletion(carousel.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
@@ -99,6 +113,15 @@ const previousPage = () => {
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
+
+        <Modal v-model:show="showingModelCarouselUpdate">
+            <div class="m-6">
+                <div class="flex justify-end">
+                    <DangerButton @click="showingModelCarouselUpdate = false">X</DangerButton>
+                </div>
+                <CarouselForm :carousel="selectedCarousel" />
+            </div>
+        </Modal>
 
         <Modal :show="confirmingCarouselDeletion" @close="closeModal">
             <div class="p-6">

@@ -38,6 +38,21 @@ class CarouselController extends Controller
         return Redirect::back();
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'alt' => 'required|string|max:255',
+        ]);
+
+        $carousel = Carousel::find($request->input('id'));
+
+        $carousel->update([
+            'alt' => $request->alt,
+        ]);
+
+        return Redirect::back();
+    }
+
     public function destroy(Request $request)
     {
         $request->validate([

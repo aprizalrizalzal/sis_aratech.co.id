@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // CarouselController
         Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
         Route::post('/carousel', [CarouselController::class, 'store'])->name('store.carousel');
+        Route::put('/carousel', [CarouselController::class, 'update'])->name('update.carousel');
         Route::delete('/carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
     });
 

@@ -70,7 +70,6 @@ const submitForm = () => {
     }
 };
 
-// Watch the props and update form values accordingly
 watch(
     () => props.sparePart,
     (newSparePart) => {
@@ -94,7 +93,7 @@ watch(
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div>
-                    <InputLabel for="image" value="Upload Image" />
+                    <InputLabel for="image" value="Image" />
                     <div v-if="props.sparePart && !previewUrl">
                         <img :src="form.image_path" alt="Current Image" class="w-full h-auto mt-2 rounded-md" />
                     </div>
