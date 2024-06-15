@@ -87,7 +87,7 @@ onMounted(() => {
         <p>Untuk mengeksplorasi produk kami, kunjungi <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold" href="http://www.aslimandiri.com">aslimandiri.com</a>. Kunjungi juga 
             <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold" href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a> 
             untuk melihat perkembangan device yang diservice.</p>
-        <p>Catatan: <span class="text-green-800 font-bold">Cost</span> tidak termasuk harga <span class="text-green-800 font-bold">spare Part</span> jika ada penggantian selama service.
+        <p>Catatan: <span class="text-green-800 font-bold">Cost</span> belum termasuk harga <span class="text-green-800 font-bold">spare Part</span> jika ada penggantian selama service.
         </p>
     </div>
 </template>
