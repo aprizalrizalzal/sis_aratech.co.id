@@ -12,9 +12,13 @@ import CardView from '@/Components/CardView.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
 import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
+import EnvelopeIcon from '@/Components/Icon/EnvelopeIcon.vue';
+import FacebookIcon from '@/Components/Icon/FacebookIcon.vue';
+import InstagramIcon from '@/Components/Icon/InstagramIcon.vue';
 import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
 import GeoIcon from '@/Components/Icon/GeoIcon.vue';
 import SearchInput from '@/Components/SearchInput.vue';
+import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
 
 const showingNavigationDropdown = ref(false);
 
@@ -80,13 +84,13 @@ const form = useForm({
 const searchQuery = ref('');
 
 const filteredSpareParts = computed(() => {
-  if (!searchQuery.value) {
-    return props.spareParts;
-  }
-  return props.spareParts.filter(sparePart =>
-    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
+    if (!searchQuery.value) {
+        return props.spareParts;
+    }
+    return props.spareParts.filter(sparePart =>
+        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
 });
 
 const formatCurrency = (value) => {
@@ -256,44 +260,61 @@ const closeModal = () => {
                         class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
-                    <div class="flex justify-between my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                    <div
+                        class="flex justify-between my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        <SparePartIcon width="32" height="32" />
                         <h2 class="py-4 text-xl font-semibold text-green-900 dark:text-white">
                             Spare Part
                         </h2>
                         <SearchInput v-model:searchQuery="searchQuery" />
                     </div>
-                    <div class="flex my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
-                        <CardView v-for="sparePart in filteredSpareParts" :key="sparePart"
-                        :name="sparePart.name" :price="formatCurrency(sparePart.price)" >
+                    <div
+                        class="flex my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
+                            :price="formatCurrency(sparePart.price)">
                             <template #img>
                                 <img :src="sparePart.image_path" :alt="sparePart.name" class="w-48">
                             </template>
                         </CardView>
                     </div>
 
-                    <div class="grid gap-6 lg:grid-cols-2 mt-4">
+                    <div class="grid gap-4 lg:grid-cols-2 mt-4">
                         <div id="docs-CardButton"
-                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
-                            <h2 class="text-xl font-semibold text-green-900 dark:text-white">
+                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-2">
                                 SIService-AMITech
                             </h2>
-                            <p class="mt-4 text-sm/relaxed">
-                                Sistem Informasi Service kami membantu Anda mengelola dan memantau layanan
-                                service dengan
-                                mudah dan efisien.
+                            <p class="text-sm/relaxed">
+                                Asli Mandiri Computer - AMITech spesialis dalam perbaikan PC/laptop, servis printer,
+                                peralatan jaringan, dan aksesoris komputer. Kami berkomitmen menyediakan layanan
+                                berkualitas
+                                tinggi untuk memenuhi kebutuhan teknologi Anda.
+                            </p>
+                            <p class="text-sm/relaxed">
+                                Jelajahi produk kami di situs web: <a target="_blank" rel="noopener noreferrer"
+                                    class="text-green-800 font-bold"
+                                    href="http://www.aslimandiri.com">www.aslimandiri.com</a>.
+                                Temukan solusi terbaik untuk semua kebutuhan teknologi Anda bersama kami, di mana
+                                kepuasan
+                                Anda adalah prioritas kami.
+                            </p>
+                            <p class="text-sm/relaxed">
+                                Sistem Informasi Service kami membantu Anda mengelola dan memantau layanan dengan mudah
+                                dan
+                                efisien.
                             </p>
                             <div class="relative flex w-full flex-1 items-stretch">
                                 <div class="w-full">
-                                    <form @submit.prevent="submitForm" class="mt-3 space-y-3">
+                                    <form @submit.prevent="submitForm" class="mt-2 space-y-3">
                                         <div>
                                             <InputLabel for="service_code" value="Service Code" />
-                                            <TextInput id="service_code" type="text" class="mt-1 block w-full"
+                                            <TextInput id="service_code" type="text" class="mt-2 block w-full"
                                                 v-model="form.service_code" placeholder="Service Code" required
                                                 autofocus />
-                                            <InputError class="mt-3" :message="form.errors.service_code" />
+                                            <InputError class="mt-2" :message="form.errors.service_code" />
                                         </div>
                                         <div class="flex justify-end">
-                                            <PrimaryButton class="mt-6 mb-3">Search</PrimaryButton>
+                                            <PrimaryButton class="mt-2 mb-2">Search</PrimaryButton>
                                         </div>
                                     </form>
                                 </div>
@@ -305,41 +326,24 @@ const closeModal = () => {
                                 menggunakan huruf
                                 kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
                         </div>
-                        <div
-                            class="flex items-start gap-4 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
-                            <div class="px-2">
-                                <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Tentang Kami</h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Asli Mandiri Computer - AMITech adalah spesialis dalam layanan perbaikan dan
-                                    penjualan PC/Laptop,
-                                    printer, peralatan jaringan, serta aksesoris komputer. Kami berkomitmen untuk
-                                    menyediakan pelayanan
-                                    berkualitas tinggi yang memenuhi kebutuhan teknologi Anda.
-                                </p>
-                                <p class="mt-4 text-sm/relaxed">Untuk mengeksplorasi berbagai produk kami,
-                                    kunjungi situs
-                                    web kami di <a target="_blank" rel="noopener noreferrer"
-                                        class="text-green-800 font-bold"
-                                        href="http://www.aslimandiri.com">aslimandiri.com.</a> Bersama kami, temukan
-                                    solusi terbaik
-                                    untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah prioritas kami.
-                                </p>
-                            </div>
-                        </div>
 
                         <div
                             class="flex items-start gap-4 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div class="px-2">
-                                <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Layanan Service</h2>
+                                <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Layanan Service
+                                </h2>
                                 <br>
                                 <ul class="text-sm/relaxed">
-                                    <li class="flex items-center space-x-2 font-bold"><LaptopIcon /> <span>Service PC/Laptop</span></li>
+                                    <li class="flex items-center space-x-2 font-bold">
+                                        <LaptopIcon /> <span>Service PC/Laptop</span>
+                                    </li>
                                     <p class="mt-1">Perbaikan dan pemeliharaan untuk semua model dan merek, memastikan
                                         operasi yang
                                         efisien.</p>
-                                        <br>
-                                    <li class="flex items-center space-x-2 font-bold"><PrinterIcon /> <span>Service Printer</span></li>
+                                    <br>
+                                    <li class="flex items-center space-x-2 font-bold">
+                                        <PrinterIcon /> <span>Service Printer</span>
+                                    </li>
                                     <p class="mt-1">Solusi perbaikan dan pemeliharaan komprehensif untuk menjaga printer
                                         Anda dalam
                                         kondisi optimal.
@@ -349,19 +353,45 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex items-start gap-4 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex items-start gap-6 rounded-md bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <div class="px-2">
                                 <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Kontak</h2>
-
                                 <p class="mt-4 text-sm/relaxed">
                                     Anda dapat menghubungi kami melalui:
                                 </p>
-                                <ul class="mt-1 text-sm/relaxed gap-2">
-                                    <li class="flex items-center space-x-2"><WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
-                                        rel="noopener noreferrer">0822-4791-2220</a><span>/</span><a href="https://wa.me/6287765889202" target="_blank"
-                                        rel="noopener noreferrer">0877-6588-9202</a></li>
-                                    <li class="flex items-center space-x-2"><GeoIcon /> <a href="https://www.google.com/maps/place/ASLI+Mandiri+Computer+-+AMITech/@-8.6063881,116.1005921,21z/data=!4m6!3m5!1s0x2dcdbfa5721e0e85:0xbf58c33e6d2edc3!8m2!3d-8.6063228!4d116.1006155!16s%2Fg%2F11l6lx74pq?entry=ttu"
-                                            target="_blank" rel="noopener noreferrer">Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</a></li>
+                                <ul class="mt-2 text-sm/relaxed">
+                                    <li class="flex items-center space-x-2">
+                                        <WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
+                                            rel="noopener noreferrer">0822-4791-2220</a><span>/</span><a
+                                            href="https://wa.me/6287765889202" target="_blank"
+                                            rel="noopener noreferrer">0877-6588-9202</a>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <FacebookIcon />
+                                        <a href="https://www.facebook.com/profile.php?id=100087543156002"
+                                            target="_blank" rel="noopener noreferrer">Aslı Mandiri </a>
+                                        <InstagramIcon />
+                                        <a href="https://www.instagram.com/asli_mandiri_com/" target="_blank"
+                                            rel="noopener noreferrer">asli_mandiri_com</a>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
+                                            rel="noopener noreferrer">amitechpt@gmail.com</a>
+                                    </li>
+                                    <li class="flex flex-col items-start space-y-2 w-full">
+                                        <div class="flex items-center space-x-2">
+                                            <GeoIcon />
+                                            <span>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara
+                                                Bar.</span>
+                                        </div>
+                                        <div class="relative w-full overflow-hidden rounded-md shadow-xl"
+                                            style="padding-top: 56.25%;">
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.1749378082686!2d116.1005921!3d-8.6063228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbfa5721e0e85%3A0xbf58c33e6d2edc3!2sASLI%20Mandiri%20Computer%20-%20AMITech!5e0!3m2!1sen!2sid!4v1623765863965!5m2!1sen!2sid"
+                                                class="absolute top-0 left-0 w-full h-full border-0" allowfullscreen=""
+                                                loading="lazy"></iframe>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
