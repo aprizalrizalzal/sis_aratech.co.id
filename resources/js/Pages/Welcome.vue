@@ -263,7 +263,7 @@ const closeModal = () => {
                     <div
                         class="flex justify-between my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <SparePartIcon width="32" height="32" />
-                        <h2 class="py-4 text-xl font-semibold text-green-900 dark:text-white">
+                        <h2 class="text-xl font-semibold text-green-900 dark:text-white">
                             Spare Part
                         </h2>
                         <SearchInput v-model:searchQuery="searchQuery" />
