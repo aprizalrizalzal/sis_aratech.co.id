@@ -136,7 +136,7 @@ const closeModal = () => {
                     </Link>
 
                     <Link :href="route('show.welcome')"
-                        class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
+                        class="p-4 text-lg flex items-center font-bold text-green-900 hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                     SIService-AMITech
                     </Link>
                 </div>
@@ -267,7 +267,7 @@ const closeModal = () => {
                     </div>
                     <div class="flex justify-between items-center pt-8 pb-4 ">
                         <div class="flex items-center">
-                            <h2 class=" flex font-semibold text-lg text-green-600 leading-tight flex-none px-2 py-4 ">
+                            <h2 class=" flex font-semibold text-lg text-green-900 leading-tight flex-none px-2 py-4 ">
                                 <span class="hidden lg:block">ASLI Mandiri Computer-</span>
                                 <span>AMITech</span>
                             </h2>
@@ -281,8 +281,7 @@ const closeModal = () => {
                         <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
                             :price="formatCurrency(sparePart.price)">
                             <template #img>
-                                <img :src="sparePart.image_path" :alt="sparePart.name"
-                                    class="w-full rounded-md sm:w-64">
+                                <img :src="sparePart.image_path" :alt="sparePart.name" class="w-full sm:w-64">
                             </template>
                         </CardView>
                     </div>
