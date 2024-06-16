@@ -377,7 +377,7 @@ const closeModal = () => {
                                 <li class="flex items-center space-x-2 mt-1">
                                     <InstagramIcon />
                                     <a href="https://www.instagram.com/asli_mandiri_com/" target="_blank"
-                                        rel="noopener noreferrer">asli_mandiri_com</a>
+                                        rel="noopener noreferrer">Aslı Mandiri (@asli_mandiri_com)</a>
                                 </li>
                                 <li class="flex items-center space-x-2 mt-1">
                                     <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
