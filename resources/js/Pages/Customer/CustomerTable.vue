@@ -93,9 +93,9 @@ const previousPage = () => {
                 <tr v-for="(customer, index) in paginatedCustomers" :key="customer.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ customer.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ customer.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ customer.phone }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCustomerUpdate(customer)" class="m-2">Update</SecondaryButton>
                     </td>

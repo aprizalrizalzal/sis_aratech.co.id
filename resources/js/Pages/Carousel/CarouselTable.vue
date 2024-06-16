@@ -96,7 +96,7 @@ const previousPage = () => {
                         <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                             class="w-24 h-24 object-cover rounded-md mx-auto" />
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ carousel.alt }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ carousel.alt }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCarouselUpdate(carousel)" class="m-2">Update
                         </SecondaryButton>

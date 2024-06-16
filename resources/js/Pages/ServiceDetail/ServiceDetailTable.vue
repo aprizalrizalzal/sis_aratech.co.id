@@ -107,16 +107,16 @@ const previousPage = () => {
                     class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
+                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.service_detail_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
+                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
+                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.problem_description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.repair_description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
+                    <td class="py-2 px-4 border-b border-green-300">{{ formatCurrency(serviceDetail.cost) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
