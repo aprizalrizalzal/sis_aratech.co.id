@@ -277,7 +277,8 @@ const closeModal = () => {
                         <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
                             :price="formatCurrency(sparePart.price)">
                             <template #img>
-                                <img :src="sparePart.image_path" :alt="sparePart.name" class="w-64">
+                                <img :src="sparePart.image_path" :alt="sparePart.name"
+                                    class="w-full rounded-md sm:w-64">
                             </template>
                         </CardView>
                     </div>
