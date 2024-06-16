@@ -20,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        // return Inertia::render('Auth/Register');
+        return Inertia::render('Unauthorized/Unauthorized');
     }
 
     /**
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        return redirect(route('show.dashboard', absolute: false));
+        // return redirect(route('show.dashboard', absolute: false));
+        return redirect(route('unauthorized', absolute: false));
     }
 }
