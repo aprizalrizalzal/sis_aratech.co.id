@@ -203,17 +203,7 @@ const closeModal = () => {
             </div>
         </div>
     </nav>
-    <div class="flex justify-between items-center sm:px-14 px-6 py-4 ">
-        <div class="flex items-center">
-            <h2 class=" flex font-semibold text-lg text-green-600 leading-tight flex-none px-2 py-4 ">
-                <span class="hidden lg:block">ASLI Mandiri Computer-</span>
-                <span>AMITech</span>
-            </h2>
-        </div>
-        <div class="flex items-center">
-            <SearchInput v-model:searchQuery="searchQuery" />
-        </div>
-    </div>
+
 
     <div class="bg-gray-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
         <div
@@ -270,6 +260,17 @@ const closeModal = () => {
                     <div v-else
                         class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-8 pb-4 ">
+                        <div class="flex items-center">
+                            <h2 class=" flex font-semibold text-lg text-green-600 leading-tight flex-none px-2 py-4 ">
+                                <span class="hidden lg:block">ASLI Mandiri Computer-</span>
+                                <span>AMITech</span>
+                            </h2>
+                        </div>
+                        <div class="flex items-center">
+                            <SearchInput v-model:searchQuery="searchQuery" />
+                        </div>
                     </div>
                     <div
                         class="grid grid-cols-1 gap-4 lg:grid-cols-5 my-4 items-center text-sm font-bold text-green-900">
