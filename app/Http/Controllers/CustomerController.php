@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -27,6 +29,13 @@ class CustomerController extends Controller
             'email' => 'required|string|lowercase|email|max:255|unique:' . Customer::class,
         ]);
 
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('password'),
+        ]);
+
         Customer::create([
             'name' => $request->name,
             'address' => $request->address,
@@ -48,6 +57,16 @@ class CustomerController extends Controller
 
         $customer = Customer::find($request->input('id'));
 
+        if ($request->email !== $customer->email) {
+            $user = User::where('email', $customer->email)->first();
+            if ($user) {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email
+                ]);
+            }
+        }
+
         $customer->update([
             'name' => $request->name,
             'address' => $request->address,
@@ -66,9 +85,14 @@ class CustomerController extends Controller
 
         $customer = Customer::find($request->input('id'));
 
-        if ($customer) {
-            $customer->delete();
-            return Redirect::back();
+        if ($request->email !== $customer->email) {
+            $user = User::where('email', $customer->email)->first();
+            if ($user) {
+                $user->delete();
+                $customer->delete();
+
+                return Redirect::back();
+            }
         }
 
         return Redirect::back();

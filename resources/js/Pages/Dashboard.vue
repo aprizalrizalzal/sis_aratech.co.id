@@ -39,11 +39,18 @@ const props = defineProps({
   deviceTypes: Array,
   devices: Array,
   services: Array,
+  service: Object,
   serviceDetails: Array,
+  serviceDetail: Object,
   spareParts: Array,
   partUsages: Array,
 });
 
+const userIdToFilter = 1;
+
+const filteredServices = computed(() => {
+  return props.services.filter(service => service.userId === userIdToFilter);
+});
 const dataChart = [
   props.users.length,
   props.deviceTypes.length,
@@ -62,6 +69,7 @@ const userRole = ref(auth.user.role);
 const isSuperAdmin = computed(() => userRole.value === 'super admin');
 const isAdmin = computed(() => userRole.value === 'admin');
 const isTechnician = computed(() => userRole.value === 'technician');
+const isCustomer = computed(() => userRole.value === 'customer');
 
 </script>
 
@@ -145,8 +153,66 @@ const isTechnician = computed(() => userRole.value === 'technician');
                   </template>
                 </CardButton>
               </div>
-              <div class="bg-white shadow-md rounded p-4 my-4">
+              <div v-if="!isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">
                 <LineChart :dataChart="dataChart" />
+              </div>
+              <div v-if="isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">
+                <div class="overflow-x-auto">
+                  <div class="text-sm/relaxed">
+                    <p>Asli Mandiri Computer - AMITech</p>
+                    <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
+                    <div class="flex items-center space-x-2">
+                      <a href="https://wa.me/6282247912220" target="_blank" rel="noopener noreferrer">0822-4791-2220</a>
+                      <span>/</span>
+                      <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
+                    </div>
+                  </div>
+                  <br>
+                  <table class="min-w-full bg-white border-collapse ">
+                    <thead>
+                      <tr>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(service, index) in filteredServices" :key="service.id" class="hover:bg-green-50">
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
+                          +
+                          index + 1 }}</td>
+                        <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
+                        <td class="py-2 px-4 border-b border-green-300">{{ service.customer.name }}</td>
+                        <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
+                        <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
+                        <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
+                        <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}
+                        </td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                  <div class="mt-4 text-sm/relaxed">
+                    <p>Untuk mengeksplorasi produk kami, kunjungi <a target="_blank" rel="noopener noreferrer"
+                        class="text-green-800 font-bold" href="http://www.aslimandiri.com">aslimandiri.com</a>. Kunjungi
+                      juga
+                      <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
+                        href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a>
+                      untuk melihat perkembangan device yang diservice.
+                    </p>
+                    <p>Catatan: <span class="font-bold text-green-800">Cost</span> belum termasuk harga Spare Part jika
+                      ada
+                      penggantian selama service.
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

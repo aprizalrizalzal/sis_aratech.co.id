@@ -192,7 +192,7 @@ const closeModal = () => {
                     Dashboard
                 </ResponsiveNavLink>
             </div>
-            <div class="pt-2 pb-3 space-y-1">
+            <div v-else class="pt-2 pb-3 space-y-1">
                 <ResponsiveNavLink :href="route('login')">
                     Login
                 </ResponsiveNavLink>

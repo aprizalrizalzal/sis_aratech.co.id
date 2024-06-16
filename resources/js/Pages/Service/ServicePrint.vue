@@ -14,6 +14,17 @@ onMounted(() => {
 <template id="print-template">
 
     <Head title="Service Print" />
+    <div class="mt-4 text-sm/relaxed">
+        <p>Asli Mandiri Computer - AMITech</p>
+        <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
+        <div class="flex items-center space-x-2">
+            <a href="https://wa.me/6282247912220" target="_blank" rel="noopener noreferrer">0822-4791-2220</a>
+            <span>/</span>
+            <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
+        </div>
+
+    </div>
+    <br>
     <table class="table-auto w-full">
         <tbody>
             <tr class="font-bold text-red-900">
@@ -90,6 +101,17 @@ onMounted(() => {
             </tr>
         </tbody>
     </table>
+    <br>
+    <div class="mt-4 text-sm/relaxed">
+        <p>Untuk mengeksplorasi produk kami, kunjungi <a target="_blank" rel="noopener noreferrer"
+                class="text-green-800 font-bold" href="http://www.aslimandiri.com">aslimandiri.com</a>. Kunjungi juga
+            <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
+                href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a>
+            gunakan Email: <span class="font-bold text-green-800">{{
+                service.customer.email }}</span> dan Password:
+            <span class="font-bold text-green-800">password</span> untuk melihat perkembangan device yang diservice.
+        </p>
+    </div>
 </template>
 
 <style scoped>

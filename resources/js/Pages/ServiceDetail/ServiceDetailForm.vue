@@ -1,13 +1,18 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
 import DropdownSelect from '@/Components/DropdownSelect.vue'
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
+const { auth } = usePage().props;
+const userName = ref(auth.user.name);
+const userId = ref(auth.user.id);
+
 const form = useForm({
-    user_id: '',
+    user_id: userId,
     service_id: '',
     problem_description: '',
     repair_description: '',
@@ -76,9 +81,10 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div v-if="!props.user">
-                    <DropdownSelect id="user_id" label="Technician" optionProperty="email" valueProperty="id"
-                        :options="users" v-model="form.user_id" placeholder="Select Email" />
+                <div v-if="!props.user" class="hidden">
+                    <InputLabel class="mt-3" for="user_id" value="Technician" />
+                    <TextInput id="user_id" type="text" class="mt-1 block w-full pointer-events-none bg-green-50"
+                        v-model="form.user_id" placeholder="Email Technician" required autofocus />
                     <InputError class="mt-3" :message="form.errors.user_id" />
                 </div>
                 <div v-if="!props.service">

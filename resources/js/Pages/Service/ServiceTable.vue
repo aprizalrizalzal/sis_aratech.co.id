@@ -117,93 +117,89 @@ const previousPage = () => {
 </script>
 
 <template>
-    <div class="overflow-x-auto">
-        <div class="flex items-center py-4 pt-2 gap-2 bg-gray-50">
-            <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
-            <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
-            <div class="mt-2 flex items-center">
-                <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
-            </div>
+    <div class="flex items-center py-4 pt-2 gap-2 bg-gray-50">
+        <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
+        <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
+        <div class="mt-2 flex items-center">
+            <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
         </div>
-
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border-collapse ">
-                <thead>
-                    <tr>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
-                            +
-                            index + 1 }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.customer.name }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">
-                            <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
-                            </SecondaryButton>
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">
-                            <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
-                                class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                Print
-                            </a>
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">
-                            <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="flex justify-center gap-4 items-center p-6">
-            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
-        </div>
-
-        <Modal v-model:show="showingModelServiceUpdate">
-            <div class="m-6">
-                <div class="flex justify-end">
-                    <DangerButton @click="closeModal">X</DangerButton>
-                </div>
-                <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice" />
-            </div>
-        </Modal>
-
-        <Modal :show="confirmingServiceDeletion" @close="closeModal">
-            <div class="p-6">
-                <h2 class="text-lg font-medium text-green-900">
-                    Are you sure you want to delete your Service?
-                </h2>
-
-                <p class="mt-1 text-sm text-green-600">
-                    Once your Service is deleted, all of its resources and data will be permanently deleted.
-                </p>
-
-                <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                        @click="deleteService">
-                        Delete Service
-                    </DangerButton>
-                </div>
-            </div>
-        </Modal>
     </div>
+
+    <table class="min-w-full bg-white border-collapse ">
+        <thead>
+            <tr>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
+                    +
+                    index + 1 }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.customer.name }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}
+                </td>
+                <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
+                <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
+                    </SecondaryButton>
+                </td>
+                <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
+                        class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        Print
+                    </a>
+                </td>
+                <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="flex justify-center gap-4 items-center p-6">
+        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+    </div>
+
+    <Modal v-model:show="showingModelServiceUpdate">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="closeModal">X</DangerButton>
+            </div>
+            <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice" />
+        </div>
+    </Modal>
+
+    <Modal :show="confirmingServiceDeletion" @close="closeModal">
+        <div class="p-6">
+            <h2 class="text-lg font-medium text-green-900">
+                Are you sure you want to delete your Service?
+            </h2>
+
+            <p class="mt-1 text-sm text-green-600">
+                Once your Service is deleted, all of its resources and data will be permanently deleted.
+            </p>
+
+            <div class="mt-6 flex justify-end">
+                <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="deleteService">
+                    Delete Service
+                </DangerButton>
+            </div>
+        </div>
+    </Modal>
 </template>
