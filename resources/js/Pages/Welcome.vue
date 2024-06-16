@@ -146,18 +146,18 @@ const closeModal = () => {
                     <div v-if="canLogin" class="flex items-center text-md font-bold">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2">
                             <Link :href="route('show.dashboard')"
-                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                             Dashboard
                             </Link>
                         </div>
                         <template v-else>
                             <div class="flex items-center gap-2">
                                 <Link :href="route('login')"
-                                    class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                                 Log in
                                 </Link>
                                 <Link v-if="canRegister" :href="route('register')"
-                                    class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                                 Register
                                 </Link>
                             </div>
@@ -187,31 +187,37 @@ const closeModal = () => {
         <!-- Responsive Navigation Menu -->
         <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
             <div v-if="canLogin" class="pt-2 pb-3 space-y-1">
-                <ResponsiveNavLink v-if="$page.props.auth.user" :href="route('show.dashboard')"
-                    :active="route().current('show.dashboard')">
-                    Dashboard
-                </ResponsiveNavLink>
-            </div>
-            <div v-else class="pt-2 pb-3 space-y-1">
-                <ResponsiveNavLink :href="route('login')">
-                    Login
-                </ResponsiveNavLink>
+                <div v-if="$page.props.auth.user">
+                    <ResponsiveNavLink v-if="$page.props.auth.user" :href="route('show.dashboard')"
+                        :active="route().current('show.dashboard')">
+                        Dashboard
+                    </ResponsiveNavLink>
+                </div>
+                <template v-else>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink :href="route('login')">
+                            Login
+                        </ResponsiveNavLink>
 
-                <ResponsiveNavLink v-if="canRegister" :href="route('register')">
-                    Register
-                </ResponsiveNavLink>
+                        <ResponsiveNavLink v-if="canRegister" :href="route('register')">
+                            Register
+                        </ResponsiveNavLink>
+                    </div>
+                </template>
+
             </div>
+
         </div>
     </nav>
 
 
-    <div class="bg-gray-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
+    <div class="bg-gray-50 text-green-900/50">
         <div
             class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4">
                     <div v-if="carousels.length"
-                        class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 rounded-md shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        class="text-center text-sm font-bold text-green-900 mt-4 bg-white items-center gap-2 rounded-md shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
                         <div id="default-carousel" class="relative w-full" data-carousel="slide">
                             <div class="relative h-56 overflow-hidden rounded-md md:h-96">
                                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
@@ -231,10 +237,9 @@ const closeModal = () => {
                                 class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                                 data-carousel-prev @click="prev">
                                 <span
-                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
-                                    <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180"
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 6 10">
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="M5 1 1 5l4 4" />
                                     </svg>
@@ -245,10 +250,9 @@ const closeModal = () => {
                                 class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                                 data-carousel-next @click="next">
                                 <span
-                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-green-800/30 group-hover:bg-white/50 dark:group-hover:bg-green-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-green-800/70 group-focus:outline-none">
-                                    <svg class="w-4 h-4 text-white dark:text-green-800 rtl:rotate-180"
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 6 10">
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                                    <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m1 9 4-4-4-4" />
                                     </svg>
@@ -258,7 +262,7 @@ const closeModal = () => {
                         </div>
                     </div>
                     <div v-else
-                        class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        class="text-center text-sm font-bold text-green-900 mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
                     <div class="flex justify-between items-center pt-8 pb-4 ">
@@ -285,8 +289,8 @@ const closeModal = () => {
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-4">
                         <div id="docs-CardButton"
-                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
-                            <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-2">
+                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
+                            <h2 class="text-xl font-semibold text-green-900 mt-2">
                                 SIService-AMITech
                             </h2>
                             <p class="text-sm/relaxed">
@@ -333,9 +337,9 @@ const closeModal = () => {
                         </div>
 
                         <div
-                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
                             <div class="px-2">
-                                <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Layanan Service
+                                <h2 class="text-xl font-semibold text-green-900 mt-4">Layanan Service
                                 </h2>
                                 <br>
                                 <ul class="text-sm/relaxed">
@@ -359,9 +363,9 @@ const closeModal = () => {
 
                     </div>
                     <div
-                        class="grid grid-cols-2 mt-4 p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                        class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 mt-4 p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
                         <div class="px-2">
-                            <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-4">Kontak</h2>
+                            <h2 class="text-xl font-semibold text-green-900 mt-4">Kontak</h2>
                             <p class="mt-4 text-sm/relaxed">
                                 Anda dapat menghubungi kami melalui:
                             </p>
@@ -489,7 +493,7 @@ const closeModal = () => {
                         <p class="font-bold text-red-700">{{ message }}</p>
                     </div>
                 </main>
-                <footer class="py-8 text-center text-sm text-green-900 dark:text-white/70">
+                <footer class="py-8 text-center text-sm text-green-900">
                     SIService-AMITech &copy;2024
                 </footer>
             </div>
