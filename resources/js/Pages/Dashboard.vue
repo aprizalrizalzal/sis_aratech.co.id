@@ -22,6 +22,9 @@ import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
 import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import LineChart from '@/Components/LineChart.vue';
+import SearchInput from '@/Components/SearchInput.vue';
+import DateTimePicker from '@/Components/DateTimePicker.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const showModalAddCarousel = ref(false);
 const showModalAddCustomer = ref(false);
@@ -46,11 +49,6 @@ const props = defineProps({
   partUsages: Array,
 });
 
-const userIdToFilter = 1;
-
-const filteredServices = computed(() => {
-  return props.services.filter(service => service.userId === userIdToFilter);
-});
 const dataChart = [
   props.users.length,
   props.deviceTypes.length,
@@ -61,16 +59,94 @@ const dataChart = [
   props.services.length,
   props.serviceDetails.length,
   props.partUsages.length,
-]
+];
 
 const { auth } = usePage().props;
 const userRole = ref(auth.user.role);
+const userEmail = ref(auth.user.email);
 
 const isSuperAdmin = computed(() => userRole.value === 'super admin');
 const isAdmin = computed(() => userRole.value === 'admin');
 const isTechnician = computed(() => userRole.value === 'technician');
 const isCustomer = computed(() => userRole.value === 'customer');
 
+const customerEmailServices = computed(() => {
+  return props.services.filter(service => service.customer.email === userEmail.value);
+});
+
+const searchQuery = ref('');
+
+const filteredServices = computed(() => {
+  if (!searchQuery.value) {
+    return customerEmailServices.value;
+  }
+  return customerEmailServices.value.filter(service =>
+    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.customer.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.status.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
+
+const start_date = ref('');
+const end_date = ref('');
+
+const resetDateFilters = () => {
+  start_date.value = '';
+  end_date.value = '';
+};
+
+const filteredDateServices = computed(() => {
+  let services = filteredServices.value;
+
+  if (start_date.value || end_date.value) {
+    services = services.filter(service => {
+      const dateReceived = new Date(service.date_received);
+      const start = start_date.value ? new Date(start_date.value) : null;
+      const end = end_date.value ? new Date(end_date.value) : null;
+
+      if (start && end) {
+        return dateReceived >= start && dateReceived <= end;
+      } else if (start) {
+        return dateReceived >= start;
+      } else if (end) {
+        return dateReceived <= end;
+      }
+
+      return true;
+    });
+  }
+
+  return services;
+});
+
+const currentPage = ref(1);
+const itemsPerPage = 15;
+
+const paginatedServices = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return filteredDateServices.value.slice(start, end);
+});
+
+const totalPages = computed(() => {
+  return Math.ceil(filteredDateServices.value.length / itemsPerPage);
+});
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++;
+  }
+};
+
+const previousPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+  }
+};
 </script>
 
 <template>
@@ -83,7 +159,7 @@ const isCustomer = computed(() => userRole.value === 'customer');
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Dashboard</h2>
         </div>
         <div class="flex items-center">
-
+          <SearchInput v-model:searchQuery="searchQuery" />
         </div>
       </div>
 
@@ -117,7 +193,7 @@ const isCustomer = computed(() => userRole.value === 'customer');
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
+              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -137,7 +213,7 @@ const isCustomer = computed(() => userRole.value === 'customer');
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
+              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
@@ -167,7 +243,13 @@ const isCustomer = computed(() => userRole.value === 'customer');
                       <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
                     </div>
                   </div>
-                  <br>
+                  <div class="flex items-center py-4 pt-2 gap-2 bg-white">
+                    <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
+                    <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
+                    <div class="mt-2 flex items-center">
+                      <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                    </div>
+                  </div>
                   <table class="min-w-full bg-white border-collapse ">
                     <thead>
                       <tr>
@@ -182,7 +264,7 @@ const isCustomer = computed(() => userRole.value === 'customer');
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(service, index) in filteredServices" :key="service.id" class="hover:bg-green-50">
+                      <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
                           +
                           index + 1 }}</td>
@@ -197,22 +279,7 @@ const isCustomer = computed(() => userRole.value === 'customer');
                       </tr>
                     </tbody>
                   </table>
-                  <br>
-                  <div class="mt-4 text-sm/relaxed">
-                    <p>Untuk mengeksplorasi produk kami, kunjungi <a target="_blank" rel="noopener noreferrer"
-                        class="text-green-800 font-bold" href="http://www.aslimandiri.com">aslimandiri.com</a>. Kunjungi
-                      juga
-                      <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                        href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a>
-                      untuk melihat perkembangan device yang diservice.
-                    </p>
-                    <p>Catatan: <span class="font-bold text-green-800">Cost</span> belum termasuk harga Spare Part jika
-                      ada
-                      penggantian selama service.
-                    </p>
-                  </div>
                 </div>
-
               </div>
             </div>
           </div>

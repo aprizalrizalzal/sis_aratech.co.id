@@ -29,13 +29,25 @@ const datepicker = ref(null);
 const formattedDate = ref(props.modelValue);
 
 onMounted(() => {
-    flatpickr(datepicker.value, {
+    const fp = flatpickr(datepicker.value, {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         defaultDate: formattedDate.value,
         onChange: (selectedDates, dateStr) => {
             formattedDate.value = dateStr;
         }
+    });
+
+    datepicker.value.addEventListener('focus', () => {
+        fp.open();
+    });
+
+    datepicker.value.addEventListener('blur', () => {
+        setTimeout(() => {
+            if (!fp.calendarContainer.contains(document.activeElement)) {
+                fp.close();
+            }
+        }, 100); // Add a slight delay to ensure click events are captured
     });
 });
 

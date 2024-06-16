@@ -18,15 +18,15 @@ class DashboardController extends Controller
     public function show()
     {
         // Chart
-        $users = User::all();
         $carousels = Carousel::all();
-        $deviceTypes = DeviceType::all();
         $customers = Customer::all();
         $devices = Device::all();
-        $services = Service::all();
+        $deviceTypes = DeviceType::all();
+        $partUsages = PartUsage::all();
+        $services = Service::with('customer', 'device')->get();
         $serviceDetails = ServiceDetail::all();
         $spareParts = SparePart::all();
-        $partUsages = PartUsage::all();
+        $users = User::all();
 
         // Add Service Print
         $printService = session('printService');
