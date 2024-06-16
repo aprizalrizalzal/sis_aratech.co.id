@@ -94,7 +94,7 @@ const isCustomer = computed(() => userRole.value === 'customer');
           <div class="overflow-hidden sm:rounded-md">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 md:grid-cols-1">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 ">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
