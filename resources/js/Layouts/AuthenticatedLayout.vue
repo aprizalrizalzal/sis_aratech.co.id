@@ -32,7 +32,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
                             </Link>
                             <Link :href="route('show.welcome')"
                                 class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
-                            SIService-AMITech
+                            SIService - AMITech
                             </Link>
                         </div>
 
@@ -223,7 +223,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
             <slot />
         </main>
         <footer class="py-8 text-center text-sm text-green-900 dark:text-white/70">
-            SIService-AMITech &copy;2024
+            SIService - AMITech &copy;2024
         </footer>
     </div>
 </template>

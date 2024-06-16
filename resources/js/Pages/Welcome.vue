@@ -137,7 +137,7 @@ const closeModal = () => {
 
                     <Link :href="route('show.welcome')"
                         class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
-                    SIService-AMITech
+                    SIService - AMITech
                     </Link>
                 </div>
 
@@ -202,6 +202,17 @@ const closeModal = () => {
                 </ResponsiveNavLink>
             </div>
         </div>
+        <div class="flex justify-between items-center sm:px-14 px-6 py-4 ">
+            <div class="flex items-center">
+                <h2 class="font-semibold text-lg text-green-600 leading-tight flex-none px-2 py-4 ">ASLI Mandiri
+                    Computer -
+                    AMITech
+                </h2>
+            </div>
+            <div class="flex items-center">
+                <SearchInput v-model:searchQuery="searchQuery" />
+            </div>
+        </div>
     </nav>
 
     <div class="bg-gray-50 text-green-900/50 dark:bg-green-900 dark:text-white/50">
@@ -260,16 +271,7 @@ const closeModal = () => {
                         class="text-center text-sm font-bold text-green-900 dark:text-white mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                         <p>Tidak ada item yang tersedia di carousel saat ini.</p>
                     </div>
-                    <div
-                        class="flex justify-between my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
-                        <SparePartIcon width="32" height="32" />
-                        <h2 class="text-xl font-semibold text-green-900 dark:text-white">
-                            Spare Part
-                        </h2>
-                        <SearchInput v-model:searchQuery="searchQuery" />
-                    </div>
-                    <div
-                        class="flex my-4 items-center text-sm font-bold text-green-900 dark:text-white bg-white items-center gap-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-4 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
+                    <div class="grid grid-cols-1 lg:grid-cols-5 my-4 items-center text-sm font-bold text-green-900">
                         <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
                             :price="formatCurrency(sparePart.price)">
                             <template #img>
@@ -282,7 +284,7 @@ const closeModal = () => {
                         <div id="docs-CardButton"
                             class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-green-700">
                             <h2 class="text-xl font-semibold text-green-900 dark:text-white mt-2">
-                                SIService-AMITech
+                                SIService - AMITech
                             </h2>
                             <p class="text-sm/relaxed">
                                 Asli Mandiri Computer - AMITech spesialis dalam perbaikan PC/laptop, servis printer,
@@ -485,7 +487,7 @@ const closeModal = () => {
                     </div>
                 </main>
                 <footer class="py-8 text-center text-sm text-green-900 dark:text-white/70">
-                    SIService-AMITech &copy;2024
+                    SIService - AMITech &copy;2024
                 </footer>
             </div>
         </div>
