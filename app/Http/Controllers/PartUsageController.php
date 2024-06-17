@@ -38,12 +38,13 @@ class PartUsageController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:part_usages,id',
             'service_detail_id' => 'required|exists:service_details,id',
             'spare_part_id' => 'required|exists:spare_parts,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $partUsage = PartUsage::find($request->input('id'));
+        $partUsage = PartUsage::findOrFail($request->id);
 
         $partUsage->update([
             'service_detail_id' => $request->service_detail_id,
@@ -60,12 +61,8 @@ class PartUsageController extends Controller
             'id' => 'required|exists:part_usages,id',
         ]);
 
-        $partUsage = PartUsage::find($request->input('id'));
-
-        if ($partUsage) {
-            $partUsage->delete();
-            return Redirect::back();
-        }
+        $partUsage = PartUsage::findOrFail($request->id);
+        $partUsage->delete();
 
         return Redirect::back();
     }

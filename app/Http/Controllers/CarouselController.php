@@ -41,10 +41,11 @@ class CarouselController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:carousels,id',
             'alt' => 'required|string|max:255',
         ]);
 
-        $carousel = Carousel::find($request->input('id'));
+        $carousel = Carousel::findOrFail($request->id);
 
         $carousel->update([
             'alt' => $request->alt,
@@ -59,16 +60,12 @@ class CarouselController extends Controller
             'id' => 'required|exists:carousels,id',
         ]);
 
-        $carousel = Carousel::find($request->input('id'));
+        $carousel = Carousel::findOrFail($request->id);
 
-        if ($carousel) {
-            $path = str_replace('storage/', '', $carousel->image_path);
-            Storage::disk('public')->delete($path);
+        $path = str_replace('storage/', '', $carousel->image_path);
+        Storage::disk('public')->delete($path);
 
-            $carousel->delete();
-
-            return Redirect::back();
-        }
+        $carousel->delete();
 
         return Redirect::back();
     }

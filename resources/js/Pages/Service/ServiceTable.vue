@@ -1,6 +1,5 @@
 <script setup>
 import ServiceForm from '@/Pages/Service/ServiceForm.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -130,7 +129,7 @@ const previousPage = () => {
             <tr>
                 <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                 <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
+                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
                 <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
                 <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
                 <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
@@ -145,7 +144,7 @@ const previousPage = () => {
                     +
                     index + 1 }}</td>
                 <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.customer.name }}</td>
+                <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
                 <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
                 <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
                 <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>

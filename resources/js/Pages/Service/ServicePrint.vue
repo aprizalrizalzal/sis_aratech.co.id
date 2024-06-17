@@ -37,18 +37,18 @@ onMounted(() => {
             </tr>
             <tr>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Customers
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.customer.name }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
                     Phone
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
                     {{ service.customer.phone }}
+                </td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 border border-green-50 text-center">
+                    Address
+                </td>
+                <td class="py-2 px-4 border border-green-50 text-center">
+                    {{ service.customer.address }}
                 </td>
             </tr>
             <tr>

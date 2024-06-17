@@ -47,6 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    // Relasi ke Customer
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
+
     // Relasi ke ServiceDetail
     public function serviceDetails()
     {

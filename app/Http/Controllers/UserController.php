@@ -24,12 +24,8 @@ class UserController extends Controller
             'id' => 'required|exists:users,id',
         ]);
 
-        $user = User::find($request->input('id'));
-
-        if ($user) {
-            $user->delete();
-            return Redirect::back();
-        }
+        $user = User::findOrFail($request->id);
+        $user->delete();
 
         return Redirect::back();
     }

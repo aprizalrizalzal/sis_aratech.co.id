@@ -43,11 +43,12 @@ class SparePartController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:spare_parts,id',
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
         ]);
 
-        $sparePart = SparePart::find($request->input('id'));
+        $sparePart = SparePart::findOrFail($request->id);
 
         $sparePart->update([
             'name' => $request->name,
@@ -63,16 +64,12 @@ class SparePartController extends Controller
             'id' => 'required|exists:spare_parts,id',
         ]);
 
-        $sparePart = SparePart::find($request->input('id'));
+        $sparePart = SparePart::findOrFail($request->id);
 
-        if ($sparePart) {
-            $path = str_replace('storage/', '', $sparePart->image_path);
-            Storage::disk('public')->delete($path);
+        $path = str_replace('storage/', '', $sparePart->image_path);
+        Storage::disk('public')->delete($path);
 
-            $sparePart->delete();
-
-            return Redirect::back();
-        }
+        $sparePart->delete();
 
         return Redirect::back();
     }

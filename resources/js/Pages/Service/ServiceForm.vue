@@ -87,8 +87,8 @@ const submitForm = () => {
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div v-if="!props.customer">
-                    <DropdownSelect id="customer_id" label="Customer Email" optionProperty="email" valueProperty="id"
-                        :options="customers" v-model="form.customer_id" placeholder="Select Email" />
+                    <DropdownSelect id="customer_id" label="Customer Phone" optionProperty="phone" valueProperty="id"
+                        :options="customers" v-model="form.customer_id" placeholder="Select Phone" />
                     <InputError class="mt-3" :message="form.errors.customer_id" />
                 </div>
                 <div v-if="!props.device">

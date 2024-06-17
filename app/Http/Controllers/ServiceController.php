@@ -51,6 +51,7 @@ class ServiceController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:services,id',
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
             'date_received' => 'date',
@@ -59,7 +60,7 @@ class ServiceController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        $service = Service::find($request->input('id'));
+        $service = Service::findOrFail($request->id);
 
         $service->update([
             'customer_id' => $request->customer_id,
@@ -79,12 +80,8 @@ class ServiceController extends Controller
             'id' => 'required|exists:services,id',
         ]);
 
-        $service = Service::find($request->input('id'));
-
-        if ($service) {
-            $service->delete();
-            return Redirect::back();
-        }
+        $service = Service::findOrFail($request->id);
+        $service->delete();
 
         return Redirect::back();
     }

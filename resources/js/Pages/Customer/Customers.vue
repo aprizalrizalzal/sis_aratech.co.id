@@ -15,9 +15,9 @@ const filteredCustomers = computed(() => {
     return props.customers;
   }
   return props.customers.filter(customer =>
-    customer.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    customer.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    customer.phone.includes(searchQuery.value)
+    customer.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    customer.phone.includes(searchQuery.value) ||
+    customer.address.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>

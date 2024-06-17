@@ -34,10 +34,11 @@ class DeviceTypeController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:device_types,id',
             'type_name' => 'required|string|max:255|unique:device_types,type_name',
         ]);
 
-        $deviceType = DeviceType::find($request->input('id'));
+        $deviceType = DeviceType::findOrFail($request->id);
 
         $deviceType->update([
             'type_name' => $request->type_name,
@@ -52,12 +53,8 @@ class DeviceTypeController extends Controller
             'id' => 'required|exists:device_types,id',
         ]);
 
-        $deviceType = DeviceType::find($request->input('id'));
-
-        if ($deviceType) {
-            $deviceType->delete();
-            return Redirect::back();
-        }
+        $deviceType = DeviceType::findOrFail($request->id);
+        $deviceType->delete();
 
         return Redirect::back();
     }

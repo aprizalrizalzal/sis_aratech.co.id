@@ -10,7 +10,14 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'address', 'phone', 'email'];
+    protected $fillable = ['user_id', 'address', 'phone'];
+
+
+    // Relasi ke Service
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     // Relasi ke Service
     public function services()
@@ -21,7 +28,7 @@ class Customer extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('email');
+            $builder->orderBy('address');
         });
     }
 }

@@ -55,6 +55,7 @@ class ServiceDetailController extends Controller
     {
 
         $request->validate([
+            'id' => 'required|exists:service_details,id',
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
             'problem_description' => 'required|string|max:255',
@@ -62,7 +63,7 @@ class ServiceDetailController extends Controller
             'cost' => 'required|integer',
         ]);
 
-        $serviceDetail = ServiceDetail::find($request->input('id'));
+        $serviceDetail = ServiceDetail::findOrFail($request->id);
 
         $serviceDetail->update([
             'user_id' => $request->user_id,
@@ -81,12 +82,8 @@ class ServiceDetailController extends Controller
             'id' => 'required|exists:service_details,id',
         ]);
 
-        $serviceDetail = ServiceDetail::find($request->input('id'));
-
-        if ($serviceDetail) {
-            $serviceDetail->delete();
-            return Redirect::back();
-        }
+        $serviceDetail = ServiceDetail::findOrFail($request->id);
+        $serviceDetail->delete();
 
         return Redirect::back();
     }

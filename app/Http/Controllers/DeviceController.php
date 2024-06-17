@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
-use App\Models\DeviceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -39,12 +38,13 @@ class DeviceController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:devices,id',
             'device_type_id' => 'required|exists:device_types,id',
             'model' => 'required|string|max:255',
             'serial_number' => 'required|string|max:255',
         ]);
 
-        $device = Device::find($request->input('id'));
+        $device = Device::findOrFail($request->id);
 
         $device->update([
             'device_type_id' => $request->device_type_id,
@@ -61,12 +61,8 @@ class DeviceController extends Controller
             'id' => 'required|exists:devices,id',
         ]);
 
-        $device = Device::find($request->input('id'));
-
-        if ($device) {
-            $device->delete();
-            return Redirect::back();
-        }
+        $device = Device::findOrFail($request->id);
+        $device->delete();
 
         return Redirect::back();
     }

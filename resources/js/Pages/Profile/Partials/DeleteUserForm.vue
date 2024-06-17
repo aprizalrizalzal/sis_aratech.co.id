@@ -9,6 +9,7 @@ import { useForm } from '@inertiajs/vue3';
 import { nextTick, ref } from 'vue';
 
 const confirmingUserDeletion = ref(false);
+const showModalAnnouncement = ref(false);
 const passwordInput = ref(null);
 
 const form = useForm({
@@ -21,17 +22,25 @@ const confirmUserDeletion = () => {
     nextTick(() => passwordInput.value.focus());
 };
 
-const deleteUser = () => {
-    form.delete(route('profile.destroy'), {
-        preserveScroll: true,
-        onSuccess: () => closeModal(),
-        onError: () => passwordInput.value.focus(),
-        onFinish: () => form.reset(),
-    });
+// const deleteUser = () => {
+//     form.delete(route('profile.destroy'), {
+//         preserveScroll: true,
+//         onSuccess: () => closeModal(),
+//         onError: () => passwordInput.value.focus(),
+//         onFinish: () => form.reset(),
+//     });
+// };
+
+const validatePassword = () => {
+    setTimeout(() => {
+        showModalAnnouncement.value = true;
+        confirmingUserDeletion.value = false;
+    }, 500);
 };
 
 const closeModal = () => {
     confirmingUserDeletion.value = false;
+    showModalAnnouncement.value = false;
 
     form.reset();
 };
@@ -64,8 +73,11 @@ const closeModal = () => {
                 <div class="mt-6">
                     <InputLabel for="password" value="Password" class="sr-only" />
 
+                    <!-- <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
+                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" /> -->
+
                     <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
-                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" />
+                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="validatePassword" />
 
                     <InputError :message="form.errors.password" class="mt-2" />
                 </div>
@@ -73,10 +85,32 @@ const closeModal = () => {
                 <div class="mt-6 flex justify-end">
                     <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
 
-                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    <!-- <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                         @click="deleteUser">
                         Delete Account
+                    </DangerButton> -->
+
+                    <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                        @click="validatePassword">
+                        Delete Account
                     </DangerButton>
+                </div>
+            </div>
+        </Modal>
+
+        <Modal :show="showModalAnnouncement" @close="closeModal">
+            <div class="p-6">
+                <h2 class="text-lg font-medium text-green-900">
+                    Only Super Admin or Admin Can Delete Accounts
+                </h2>
+
+                <p class="mt-1 text-sm text-green-600">
+                    Please note that only Super Admin or Admin users have the permissions to delete accounts. If your
+                    account is deleted, all of its resources and data will be permanently removed.
+                </p>
+
+                <div class="mt-6 flex justify-end">
+                    <DangerButton @click="closeModal">Cancel</DangerButton>
                 </div>
             </div>
         </Modal>

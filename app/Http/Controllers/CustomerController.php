@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -13,7 +13,7 @@ class CustomerController extends Controller
 {
     public function show()
     {
-        $customers = Customer::all();
+        $customers = Customer::with('user')->get();
 
         return Inertia::render('Customer/Customers', [
             'customers' => $customers
@@ -24,23 +24,21 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'phone' => 'required|string|max:255|unique:' . Customer::class,
             'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:' . Customer::class,
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'email_verified_at' => Carbon::now(),
-            'password' => bcrypt('password'),
+            'password' => Hash::make('password'),
         ]);
 
         Customer::create([
-            'name' => $request->name,
-            'address' => $request->address,
+            'user_id' => $user->id,
             'phone' => $request->phone,
-            'email' => $request->email,
+            'address' => $request->address,
         ]);
 
         return Redirect::back();
@@ -49,29 +47,31 @@ class CustomerController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'id' => 'required|exists:customers,id',
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
         ]);
 
-        $customer = Customer::find($request->input('id'));
+        $customer = Customer::findOrFail($request->id);
+        $user = User::findOrFail($customer->user_id);
 
-        if ($request->email !== $customer->email) {
-            $user = User::where('email', $customer->email)->first();
-            if ($user) {
-                $user->update([
-                    'name' => $request->name,
-                    'email' => $request->email
-                ]);
-            }
+        if ($request->email !== $user->email) {
+            $request->validate([
+                'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            ]);
+            $user->email_verified_at = null;
         }
 
-        $customer->update([
+        $user->update([
             'name' => $request->name,
-            'address' => $request->address,
-            'phone' => $request->phone,
             'email' => $request->email,
+        ]);
+
+        $customer->update([
+            'phone' => $request->phone,
+            'address' => $request->address,
         ]);
 
         return Redirect::back();
@@ -83,17 +83,11 @@ class CustomerController extends Controller
             'id' => 'required|exists:customers,id',
         ]);
 
-        $customer = Customer::find($request->input('id'));
+        $customer = Customer::findOrFail($request->id);
+        $user = User::findOrFail($customer->user_id);
 
-        if ($request->email !== $customer->email) {
-            $user = User::where('email', $customer->email)->first();
-            if ($user) {
-                $user->delete();
-                $customer->delete();
-
-                return Redirect::back();
-            }
-        }
+        $customer->delete();
+        $user->delete();
 
         return Redirect::back();
     }
