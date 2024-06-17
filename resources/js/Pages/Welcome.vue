@@ -19,6 +19,8 @@ import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
 import GeoIcon from '@/Components/Icon/GeoIcon.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
+import CameraIcon from '@/Components/Icon/CameraIcon.vue';
+import RouterIcon from '@/Components/Icon/RouterIcon.vue';
 
 const showingNavigationDropdown = ref(false);
 
@@ -357,6 +359,25 @@ const closeModal = () => {
                                     <p class="mt-1">Solusi perbaikan dan pemeliharaan komprehensif untuk menjaga printer
                                         Anda dalam
                                         kondisi optimal.
+                                    </p>
+                                    <br>
+                                    <li class="flex items-center space-x-2 font-bold">
+                                        <RouterIcon /> <span>Service Networking</span>
+                                    </li>
+                                    <p class="mt-1">
+                                        Layanan perbaikan dan pemeliharaan jaringan yang meliputi instalasi,
+                                        konfigurasi,
+                                        dan troubleshooting untuk memastikan jaringan Anda berfungsi dengan lancar dan
+                                        aman.
+                                    </p>
+                                    <br>
+                                    <li class="flex items-center space-x-2 font-bold">
+                                        <CameraIcon /> <span>Service CCTV</span>
+                                    </li>
+                                    <p class="mt-1">
+                                        Instalasi, perbaikan, dan pemeliharaan sistem CCTV untuk keamanan dan pengawasan
+                                        optimal. Kami memastikan kamera dan sistem Anda berfungsi dengan baik untuk
+                                        melindungi properti Anda.
                                     </p>
                                 </ul>
                             </div>
