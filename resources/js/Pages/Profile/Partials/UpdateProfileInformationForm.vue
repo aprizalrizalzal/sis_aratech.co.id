@@ -45,8 +45,8 @@ const form = useForm({
             <div>
                 <InputLabel for="email" value="Email" />
 
-                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required
-                    autocomplete="username" />
+                <TextInput id="email" type="email" class="mt-1 block w-full bg-gray-100 cursor-not-allowed"
+                    v-model="form.email" required autocomplete="username" disabled />
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
