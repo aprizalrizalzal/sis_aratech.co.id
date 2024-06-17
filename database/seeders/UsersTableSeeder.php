@@ -41,14 +41,5 @@ class UsersTableSeeder extends Seeder
             'role' => 'technician',
             'password' => Hash::make('password')
         ]);
-
-        // Customer User
-        User::create([
-            'name' => 'Customer User',
-            'email' => 'customer@example.com',
-            'email_verified_at' => Carbon::now(),
-            'role' => 'customer',
-            'password' => Hash::make('password')
-        ]);
     }
 }
