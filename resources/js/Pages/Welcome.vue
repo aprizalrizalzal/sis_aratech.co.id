@@ -276,7 +276,7 @@ const closeModal = () => {
                             <SearchInput v-model:searchQuery="searchQuery" />
                         </div>
                     </div>
-                    <div v-if="filteredSpareParts.length"
+                    <div v-if="filteredSpareParts"
                         class="grid grid-cols-1 gap-4 lg:grid-cols-5 my-4 items-center text-sm font-bold text-green-900">
                         <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
                             :price="formatCurrency(sparePart.price)">
@@ -444,7 +444,7 @@ const closeModal = () => {
                                             Customers
                                         </td>
                                         <td class="py-2 px-4 border border-green-50 text-center">
-                                            {{ service.customer.name }}
+                                            {{ service.customer.user.name }}
                                         </td>
                                     </tr>
                                     <tr>

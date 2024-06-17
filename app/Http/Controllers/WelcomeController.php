@@ -27,7 +27,7 @@ class WelcomeController extends Controller
     public function store(Request $request, Carousel $carousels)
     {
         $service_code = $request->input('service_code');
-        $service = Service::where('service_code', $service_code)->with('customer', 'device')->first();
+        $service = Service::where('service_code', $service_code)->with('customer', 'customer.user', 'device')->first();
 
         $carousels = Carousel::all();
 
