@@ -217,7 +217,7 @@ const closeModal = () => {
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4">
                     <div v-if="carousels.length"
-                        class="text-center text-sm font-bold text-green-900 mt-4 bg-white items-center gap-2 rounded-md shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
+                        class="text-center text-sm font-bold text-green-900 my-4 bg-white items-center gap-2 rounded-md shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
                         <div id="default-carousel" class="relative w-full" data-carousel="slide">
                             <div class="relative h-56 overflow-hidden rounded-md md:h-96">
                                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
@@ -261,11 +261,10 @@ const closeModal = () => {
                             </button>
                         </div>
                     </div>
-                    <div v-else
-                        class="text-center text-sm font-bold text-green-900 mt-4 bg-white items-center gap-2 py-2 rounded-md p-4 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 lg:pb-2">
-                        <p>Tidak ada item yang tersedia di carousel saat ini.</p>
+                    <div v-else>
+                        <!-- None -->
                     </div>
-                    <div class="flex justify-between items-center pt-8 pb-4 ">
+                    <div class="flex justify-between items-center pt-4 pb-4 ">
                         <div class="flex items-center">
                             <h2 class=" flex font-semibold text-lg text-green-900 leading-tight flex-none px-2 py-4 ">
                                 <span class="hidden lg:block">ASLI Mandiri Computer-</span>
@@ -276,7 +275,7 @@ const closeModal = () => {
                             <SearchInput v-model:searchQuery="searchQuery" />
                         </div>
                     </div>
-                    <div
+                    <div v-if="filteredSpareParts.length"
                         class="grid grid-cols-1 gap-4 lg:grid-cols-5 my-4 items-center text-sm font-bold text-green-900">
                         <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
                             :price="formatCurrency(sparePart.price)">
@@ -284,6 +283,9 @@ const closeModal = () => {
                                 <img :src="sparePart.image_path" :alt="sparePart.name" class="w-full sm:w-64">
                             </template>
                         </CardView>
+                    </div>
+                    <div v-else>
+                        <!-- None -->
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-4">

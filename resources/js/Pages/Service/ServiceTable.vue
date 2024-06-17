@@ -129,9 +129,7 @@ const previousPage = () => {
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
@@ -146,9 +144,7 @@ const previousPage = () => {
                         +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ service.device.serial_number }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>

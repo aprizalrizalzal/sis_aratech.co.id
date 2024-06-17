@@ -37,26 +37,10 @@ onMounted(() => {
             </tr>
             <tr>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Email
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.customer.user.email }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
                     Phone
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
                     {{ service.customer.phone }}
-                </td>
-            </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Model
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.device.model }}
                 </td>
             </tr>
             <tr class="font-bold text-red-900">

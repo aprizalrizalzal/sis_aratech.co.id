@@ -84,7 +84,6 @@ const previousPage = () => {
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Address</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
@@ -95,7 +94,6 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ customer.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ customer.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ customer.phone }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ customer.address }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">

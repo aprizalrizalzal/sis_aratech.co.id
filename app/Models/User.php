@@ -62,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('email');
+            $builder->orderBy('name');
         });
     }
 }

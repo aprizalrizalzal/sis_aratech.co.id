@@ -2,7 +2,7 @@
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
@@ -10,6 +10,13 @@ const props = defineProps({
         type: Array,
         required: true
     }
+});
+
+const { auth } = usePage().props;
+const userId = ref(auth.user.id);
+
+const customerUserIdServices = computed(() => {
+    return props.users.filter(user => user.id !== userId.value);
 });
 
 const confirmingUserDeletion = ref(false);
@@ -48,11 +55,11 @@ const itemsPerPage = 15;
 const paginatedUsers = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return props.users.slice(start, end);
+    return customerUserIdServices.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-    return Math.ceil(props.users.length / itemsPerPage);
+    return Math.ceil(customerUserIdServices.value.length / itemsPerPage);
 });
 
 const nextPage = () => {
