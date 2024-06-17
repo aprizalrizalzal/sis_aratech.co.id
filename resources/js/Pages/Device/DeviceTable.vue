@@ -78,7 +78,7 @@ const previousPage = () => {
 </script>
 
 <template>
-  <div class="overflow-x-auto">
+  <div class=" overflow-x-auto">
     <table class="min-w-full bg-white border-collapse">
       <thead>
         <tr>
@@ -111,34 +111,34 @@ const previousPage = () => {
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
       <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
-
-    <Modal v-model:show="showingModelDeviceUpdate">
-      <div class="m-6">
-        <div class="flex justify-end">
-          <DangerButton @click="showingModelDeviceUpdate = false">X</DangerButton>
-        </div>
-        <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" />
-      </div>
-    </Modal>
-    <Modal :show="confirmingDeviceDeletion" @close="closeModal">
-      <div class="p-6">
-        <h2 class="text-lg font-medium text-green-900">
-          Are you sure you want to delete your Device?
-        </h2>
-
-        <p class="mt-1 text-sm text-green-600">
-          Once your Device is deleted, all of its resources and data will be permanently deleted.
-        </p>
-
-        <div class="mt-6 flex justify-end">
-          <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
-
-          <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-            @click="deleteDevice">
-            Delete Device
-          </DangerButton>
-        </div>
-      </div>
-    </Modal>
   </div>
+
+  <Modal v-model:show="showingModelDeviceUpdate">
+    <div class="m-6">
+      <div class="flex justify-end">
+        <DangerButton @click="showingModelDeviceUpdate = false">X</DangerButton>
+      </div>
+      <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" />
+    </div>
+  </Modal>
+  <Modal :show="confirmingDeviceDeletion" @close="closeModal">
+    <div class="p-6">
+      <h2 class="text-lg font-medium text-green-900">
+        Are you sure you want to delete your Device?
+      </h2>
+
+      <p class="mt-1 text-sm text-green-600">
+        Once your Device is deleted, all of its resources and data will be permanently deleted.
+      </p>
+
+      <div class="mt-6 flex justify-end">
+        <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
+
+        <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+          @click="deleteDevice">
+          Delete Device
+        </DangerButton>
+      </div>
+    </div>
+  </Modal>
 </template>

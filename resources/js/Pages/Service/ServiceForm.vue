@@ -21,7 +21,7 @@ const statusOptions = ref([
     { id: '1', name: 'Received' },
     { id: '2', name: 'In Progress' },
     { id: '3', name: 'Completed' },
-    { id: '4', name: 'Delivered' },
+    { id: '4', name: 'Failed' }
 ]);
 
 const props = defineProps({

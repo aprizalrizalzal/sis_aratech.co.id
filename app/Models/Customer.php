@@ -13,7 +13,7 @@ class Customer extends Model
     protected $fillable = ['user_id', 'address', 'phone'];
 
 
-    // Relasi ke Service
+    // Relasi ke User
     public function user()
     {
         return $this->belongsTo(User::class);

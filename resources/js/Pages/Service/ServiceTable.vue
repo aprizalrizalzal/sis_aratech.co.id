@@ -116,61 +116,66 @@ const previousPage = () => {
 </script>
 
 <template>
-    <div class="flex items-center py-4 pt-2 gap-2 bg-gray-50">
+    <div class="flex items-center py-4 pt-2 gap-2 bg-gray-50 ">
         <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
         <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
         <div class="mt-2 flex items-center">
             <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
         </div>
     </div>
-
-    <table class="min-w-full bg-white border-collapse ">
-        <thead>
-            <tr>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
-                <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
-                    +
-                    index + 1 }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
-                <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}
-                </td>
-                <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
-                <td class="py-2 px-4 border-b border-green-300 text-center">
-                    <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
-                    </SecondaryButton>
-                </td>
-                <td class="py-2 px-4 border-b border-green-300 text-center">
-                    <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
-                        class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                        Print
-                    </a>
-                </td>
-                <td class="py-2 px-4 border-b border-green-300 text-center">
-                    <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="flex justify-center gap-4 items-center p-6">
-        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-        <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+    <div class=" overflow-x-auto">
+        <table class="min-w-full bg-white border-collapse">
+            <thead>
+                <tr>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
+                        +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
+                        </SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
+                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            Print
+                        </a>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="flex justify-center gap-4 items-center p-6">
+            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+        </div>
     </div>
 
     <Modal v-model:show="showingModelServiceUpdate">

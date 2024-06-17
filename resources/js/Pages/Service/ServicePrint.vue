@@ -37,18 +37,18 @@ onMounted(() => {
             </tr>
             <tr>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Phone
+                    Email
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.customer.phone }}
+                    {{ service.customer.user.email }}
                 </td>
             </tr>
             <tr>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    Address
+                    Phone
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ service.customer.address }}
+                    {{ service.customer.phone }}
                 </td>
             </tr>
             <tr>
@@ -108,7 +108,7 @@ onMounted(() => {
             <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
                 href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a>
             gunakan Email: <span class="font-bold text-green-800">{{
-                service.customer.email }}</span> dan Password:
+                service.customer.user.email }}</span> dan Password:
             <span class="font-bold text-green-800">password</span> untuk melihat perkembangan device yang diservice.
         </p>
     </div>

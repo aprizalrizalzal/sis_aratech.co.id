@@ -37,7 +37,7 @@ const filteredUsers = computed(() => {
         </div>
       </div>
     </template>
-    <div class="flex">
+    <div class="flex overflow-x-auto">
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
