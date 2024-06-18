@@ -18,8 +18,8 @@ class ServiceDetailsTableSeeder extends Seeder
             'service_detail_code' => Str::upper(Str::random(8)),
             'user_id' => 2,
             'service_id' => 1,
-            'problem_description' => 'OverHeat',
-            'repair_description' => 'Replaced display cable',
+            'problem_description' => 'Lemot',
+            'repair_description' => 'Install Ulang Win 11',
             'cost' => 50000,
         ]);
 
@@ -27,8 +27,8 @@ class ServiceDetailsTableSeeder extends Seeder
             'service_detail_code' => Str::upper(Str::random(8)),
             'user_id' => 2,
             'service_id' => 2,
-            'problem_description' => 'Paper jam',
-            'repair_description' => 'Cleared paper jam and cleaned rollers',
+            'problem_description' => 'OverHeat',
+            'repair_description' => 'Cleaning processor Dan Upgrade HDD to SSD 128Gb',
             'cost' => 100000,
         ]);
 
@@ -36,8 +36,8 @@ class ServiceDetailsTableSeeder extends Seeder
             'service_detail_code' => Str::upper(Str::random(8)),
             'user_id' => 2,
             'service_id' => 3,
-            'problem_description' => 'Screen flickering',
-            'repair_description' => 'Replaced display cable',
+            'problem_description' => 'Lemot dan Keyboard Error',
+            'repair_description' => 'Bongkar Keyboard (Clean) dan Upgrade HDD to SSD 128Gb',
             'cost' => 75000,
         ]);
     }

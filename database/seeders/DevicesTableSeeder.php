@@ -21,15 +21,15 @@ class DevicesTableSeeder extends Seeder
         ]);
 
         Device::create([
-            'device_type_id' => 2,
+            'device_type_id' => 1,
             'model' => 'ASUS E402YA-GA202T',
             'serial_number' => 'LBN0CV08485846C',
         ]);
 
         Device::create([
             'device_type_id' => 1,
-            'model' => 'Lenovo',
-            'serial_number' => '',
+            'model' => 'ASUS X425EA-VXVX085D',
+            'serial_number' => 'SN',
         ]);
     }
 }

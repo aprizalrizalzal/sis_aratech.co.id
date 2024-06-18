@@ -15,10 +15,12 @@ class SparePartsTableSeeder extends Seeder
     {
         SparePart::create([
             'name' => 'Maxtor CTG8 thermal paste 2g',
+            'image_path' => 'null',
             'price' => 43000
         ]);
         SparePart::create([
             'name' => 'SSD 2.5 Inch VenomRX 128Gb',
+            'image_path' => 'null',
             'price' => 200000
         ]);
     }

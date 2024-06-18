@@ -23,6 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             DeviceTypesTableSeeder::class,
+            CustomersTableSeeder::class,
+            DevicesTableSeeder::class,
+            ServicesTableSeeder::class,
+            ServiceDetailsTableSeeder::class,
+            SparePartsTableSeeder::class,
+            PartUsagesTableSeeder::class,
         ]);
     }
 }
