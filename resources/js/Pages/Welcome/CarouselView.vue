@@ -50,7 +50,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="text-center text-sm font-bold text-green-900 my-4 items-center gap-2 rounded-md ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
+    <div v-if="carousels.length" class="text-center text-sm font-bold text-green-900 my-4 items-center gap-2 rounded-md ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
             <div class="relative h-56 overflow-hidden rounded-md md:h-96">
                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
@@ -93,5 +93,8 @@ onUnmounted(() => {
                 </span>
             </button>
         </div>
+    </div>
+    <div v-else>
+        <!-- none -->
     </div>
 </template>
