@@ -218,13 +218,13 @@ const closeModal = () => {
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4">
                     <div v-if="carousels.length"
-                        class="text-center text-sm font-bold text-green-900 my-4 bg-white items-center gap-2 rounded-md shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
+                        class="text-center text-sm font-bold text-green-900 my-4 items-center gap-2 rounded-md ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700">
                         <div id="default-carousel" class="relative w-full" data-carousel="slide">
                             <div class="relative h-56 overflow-hidden rounded-md md:h-96">
                                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
                                     v-show="index === currentIndex" class="duration-700 ease-in-out">
                                     <img :src="carousel.image_path" :alt="carousel.alt"
-                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/4 top-1/4 left-1/2">
+                                        class="absolute block h-full -translate-x-1/2 -translate-y-1/4 top-1/4 left-1/2">
                                 </div>
                             </div>
                             <div
@@ -277,11 +277,11 @@ const closeModal = () => {
                         </div>
                     </div>
                     <div v-if="filteredSpareParts"
-                        class="grid grid-cols-1 gap-4 lg:grid-cols-5 my-4 items-center text-sm font-bold text-green-900">
+                        class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
                         <CardView v-for="sparePart in filteredSpareParts" :key="sparePart" :name="sparePart.name"
                             :price="formatCurrency(sparePart.price)">
                             <template #img>
-                                <img :src="sparePart.image_path" :alt="sparePart.name" class="w-full sm:w-64">
+                                <img :src="sparePart.image_path" :alt="sparePart.name">
                             </template>
                         </CardView>
                     </div>

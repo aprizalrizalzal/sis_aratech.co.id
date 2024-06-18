@@ -18,12 +18,12 @@ export default defineConfig({
         }),
     ],
     // Pengaturan server hanya diperlukan untuk pengembangan lokal
-    // server: {
-    //     host: '0.0.0.0',
-    //     port: 5173,
-    //     hmr: {
-    //         host: '192.168.100.39',
-    //         port: 5173,
-    //     },
-    // },
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+            host: '192.168.1.12',
+            port: 5173,
+        },
+    },
 });
