@@ -36,29 +36,31 @@ const showModalAddSparePart = ref(false);
 const showModalAddPartUsage = ref(false);
 
 const props = defineProps({
-  users: Number,
-  customers: Number,
-  carousels: Number,
-  deviceTypes: Number,
-  devices: Number,
   services: Array,
-  service: Object,
   serviceDetails: Array,
+
+  userCount: Number,
+  customerCount: Number,
+  carouselCount: Number,
+  deviceTypeCount: Number,
+  deviceCount: Number,
+  sparePartCount: Number,
+  partUsageCount: Number,
+
+  service: Object,
   serviceDetail: Object,
-  spareParts: Number,
-  partUsages: Number,
 });
 
 const dataChart = [
-  props.users,
-  props.deviceTypes,
-  props.spareParts,
-  props.carousels,
-  props.customers,
-  props.devices,
+  props.userCount,
+  props.deviceTypeCount,
+  props.sparePartCount,
+  props.carouselCount,
+  props.customerCount,
+  props.deviceCount,
   props.services.length,
   props.serviceDetails.length,
-  props.partUsages,
+  props.partUsageCount,
 ];
 
 const { auth } = usePage().props;
@@ -230,7 +232,14 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="!isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">
+              <div v-if="!isCustomer" class="flex flex-col bg-white shadow-md rounded-md p-4 my-4">
+                <div class="flex items-center justify-end py-4 pt-2 gap-2 bg-white">
+                  <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
+                  <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
+                  <div class="mt-2 flex items-center">
+                    <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                  </div>
+                </div>
                 <LineChart :dataChart="dataChart" />
               </div>
               <div v-if="isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">

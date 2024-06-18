@@ -17,41 +17,50 @@ class DashboardController extends Controller
 {
     public function show()
     {
-        // Chart
-        $carousels = Carousel::count();
-        $customers = Customer::count();
-        $devices = Device::count();
-        $deviceTypes = DeviceType::count();
-        $partUsages = PartUsage::count();
         $services = Service::with('customer', 'customer.user', 'device')->get();
-        $serviceDetails = ServiceDetail::get();
-        $spareParts = SparePart::count();
-        $users = User::count();
+        $serviceDetails = ServiceDetail::with('user', 'service')->get();
 
-        // Add Service Print
+        $carouselCount = Carousel::count();
+        $customerCount = Customer::count();
+        $deviceCount = Device::count();
+        $deviceTypeCount = DeviceType::count();
+        $partUsageCount = PartUsage::count();
+        $sparePartCount = SparePart::count();
+        $userCount = User::count();
+
+        $carouselCreatedAt = Carousel::latest()->first()->created_at ?? null;
+        $customerCreatedAt = Customer::latest()->first()->created_at ?? null;
+        $deviceCreatedAt = Device::latest()->first()->created_at ?? null;
+        $deviceTypeCreatedAt = DeviceType::latest()->first()->created_at ?? null;
+        $partUsageCreatedAt = PartUsage::latest()->first()->created_at ?? null;
+        $sparePartCreatedAt = SparePart::latest()->first()->created_at ?? null;
+        $userCreatedAt = User::latest()->first()->created_at ?? null;
+
         $printService = session('printService');
-
-        // Add ServiceDetail Print
         $printServiceDetail = session('printServiceDetail');
 
         return Inertia::render('Dashboard', [
-            // Chart
-            'users' => $users,
-            'customers' => $customers,
-            'carousels' => $carousels,
-            'deviceTypes' => $deviceTypes,
-            'devices' => $devices,
+            'userCount' => $userCount,
+            'customerCount' => $customerCount,
+            'carouselCount' => $carouselCount,
+            'deviceTypeCount' => $deviceTypeCount,
+            'deviceCount' => $deviceCount,
+            'partUsageCount' => $partUsageCount,
+            'sparePartCount' => $sparePartCount,
+
+            'userCreatedAt' => $userCreatedAt,
+            'customerCreatedAt' => $customerCreatedAt,
+            'carouselCreatedAt' => $carouselCreatedAt,
+            'deviceTypeCreatedAt' => $deviceTypeCreatedAt,
+            'deviceCreatedAt' => $deviceCreatedAt,
+            'partUsageCreatedAt' => $partUsageCreatedAt,
+            'sparePartCreatedAt' => $sparePartCreatedAt,
+
             'services' => $services,
             'serviceDetails' => $serviceDetails,
-            'spareParts' => $spareParts,
-            'partUsages' => $partUsages,
 
-            // Add Service Print
             'printService' => $printService,
-
-            // Add ServiceDetail Print
             'printServiceDetail' => $printServiceDetail,
-
         ]);
     }
 }
