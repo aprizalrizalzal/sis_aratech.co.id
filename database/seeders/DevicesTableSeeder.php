@@ -16,19 +16,19 @@ class DevicesTableSeeder extends Seeder
     {
         Device::create([
             'device_type_id' => 1,
-            'model' => 'Lenovo',
+            'model' => 'Lenovo ideapad 5-14IIL05 Laptop - Type 81YH',
             'serial_number' => 'MP1T9QA5',
         ]);
 
         Device::create([
             'device_type_id' => 1,
-            'model' => 'ASUS E402YA-GA202T',
+            'model' => 'ASUS E402YA',
             'serial_number' => 'LBN0CV08485846C',
         ]);
 
         Device::create([
             'device_type_id' => 1,
-            'model' => 'ASUS X425EA-VXVX085D',
+            'model' => 'ASUS X425EA',
             'serial_number' => 'SN',
         ]);
     }
