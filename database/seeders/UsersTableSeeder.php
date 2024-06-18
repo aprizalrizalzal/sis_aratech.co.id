@@ -41,5 +41,33 @@ class UsersTableSeeder extends Seeder
             'role' => 'technician',
             'password' => Hash::make('password')
         ]);
+
+        User::create([
+            'name' => 'Agung',
+            'email' => 'agung@gmial.com',
+            'email_verified_at' => Carbon::now(),
+            'role' => 'customer',
+            'password' => Hash::make('password')
+        ]);
+
+        
+        User::create([
+            'name' => 'Nurhaliza Rusnia',
+            'email' => 'nurhalizarusnia@gmial.com',
+            'email_verified_at' => Carbon::now(),
+            'role' => 'customer',
+            'password' => Hash::make('password')
+        ]);
+
+        
+        User::create([
+            'name' => 'Suhartini',
+            'email' => 'suhartini@gmial.com',
+            'email_verified_at' => Carbon::now(),
+            'role' => 'customer',
+            'password' => Hash::make('password')
+        ]);
+
+        
     }
 }
