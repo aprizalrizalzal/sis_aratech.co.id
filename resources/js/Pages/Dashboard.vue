@@ -36,29 +36,29 @@ const showModalAddSparePart = ref(false);
 const showModalAddPartUsage = ref(false);
 
 const props = defineProps({
-  users: Array,
-  customers: Array,
-  carousels: Array,
-  deviceTypes: Array,
-  devices: Array,
+  users: Number,
+  customers: Number,
+  carousels: Number,
+  deviceTypes: Number,
+  devices: Number,
   services: Array,
   service: Object,
   serviceDetails: Array,
   serviceDetail: Object,
-  spareParts: Array,
-  partUsages: Array,
+  spareParts: Number,
+  partUsages: Number,
 });
 
 const dataChart = [
-  props.users.length,
-  props.deviceTypes.length,
-  props.spareParts.length,
-  props.carousels.length,
-  props.customers.length,
-  props.devices.length,
+  props.users,
+  props.deviceTypes,
+  props.spareParts,
+  props.carousels,
+  props.customers,
+  props.devices,
   props.services.length,
   props.serviceDetails.length,
-  props.partUsages.length,
+  props.partUsages,
 ];
 
 const { auth } = usePage().props;
