@@ -8,10 +8,7 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    deviceTypes: {
-        type: Array,
-        required: true
-    }
+    deviceTypes: Array,
 });
 
 const showingModelDeviceTypeUpdate = ref(false);

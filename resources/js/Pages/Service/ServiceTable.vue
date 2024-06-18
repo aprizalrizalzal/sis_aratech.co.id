@@ -8,10 +8,7 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    services: {
-        type: Array,
-        required: true
-    }
+    services: Array,
 });
 
 const showingModelServiceUpdate = ref(false);

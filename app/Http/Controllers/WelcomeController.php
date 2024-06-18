@@ -30,10 +30,12 @@ class WelcomeController extends Controller
         $service = Service::where('service_code', $service_code)->with('customer', 'customer.user', 'device')->first();
 
         $carousels = Carousel::all();
+        $spareParts = SparePart::all();
 
         if ($service) {
             return Inertia::render('Welcome', [
                 'carousels' => $carousels,
+                'spareParts' => $spareParts,
                 'service' => $service,
                 'canLogin' => Route::has('login'),
                 'canRegister' => Route::has('register'),
@@ -42,6 +44,7 @@ class WelcomeController extends Controller
 
         return Inertia::render('Welcome', [
             'carousels' => $carousels,
+            'spareParts' => $spareParts,
             'message' => 'Service Code not found!',
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),

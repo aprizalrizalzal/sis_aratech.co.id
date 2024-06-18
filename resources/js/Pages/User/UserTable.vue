@@ -6,10 +6,7 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    users: {
-        type: Array,
-        required: true
-    }
+    users: Array,
 });
 
 const { auth } = usePage().props;

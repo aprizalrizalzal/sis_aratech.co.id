@@ -7,10 +7,7 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    spareParts: {
-        type: Array,
-        required: true
-    }
+    spareParts: Array,
 });
 
 const formatCurrency = (value) => {

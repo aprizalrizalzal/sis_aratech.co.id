@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -70,16 +70,6 @@ const submitForm = () => {
     }
 };
 
-watch(
-    () => props.sparePart,
-    (newSparePart) => {
-        if (newSparePart) {
-            form.name = newSparePart.name;
-            form.image_path = newSparePart.image_path;
-            form.price = newSparePart.price;
-        }
-    }
-);
 </script>
 
 <template>
@@ -93,11 +83,13 @@ watch(
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div>
-                    <InputLabel for="image" value="Image" />
-                    <div v-if="props.sparePart && !previewUrl">
-                        <img :src="form.image_path" alt="Current Image" class="w-full h-auto mt-2 rounded-md" />
+                    <div v-if="previewUrl" class="my-4">
+                        <p class="font-semibold">Preview:</p>
+                        <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
                     </div>
-                    <input v-else type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
+                    <InputLabel for="image" value="Image" />
+                    
+                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
                 <div>
@@ -105,10 +97,6 @@ watch(
                     <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
                         required autofocus />
                     <InputError class="mt-3" :message="form.errors.price" />
-                </div>
-                <div v-if="previewUrl" class="mt-4">
-                    <p class="font-semibold">Preview:</p>
-                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">

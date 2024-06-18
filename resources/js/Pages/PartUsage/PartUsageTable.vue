@@ -8,10 +8,7 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    partUsages: {
-        type: Array,
-        required: true
-    }
+    partUsages: Array,
 });
 
 const showingModelPartUsageUpdate = ref(false);

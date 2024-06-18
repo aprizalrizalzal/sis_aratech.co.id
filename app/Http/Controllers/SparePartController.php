@@ -45,10 +45,22 @@ class SparePartController extends Controller
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
             'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|integer',
         ]);
 
         $sparePart = SparePart::findOrFail($request->id);
+
+        if ($request->hasFile('image')) {
+            $oldImagePath = str_replace('storage/', '', $sparePart->image_path);
+            Storage::disk('public')->delete($oldImagePath);
+
+            $originalName = $request->file('image')->getClientOriginalName();
+            $uniqueName = time() . '_' . $originalName;
+            $path = $request->file('image')->storeAs('images/spareParts', $uniqueName);
+
+            $sparePart->image_path = 'storage/' . $path;
+        }
 
         $sparePart->update([
             'name' => $request->name,
@@ -57,6 +69,7 @@ class SparePartController extends Controller
 
         return Redirect::back();
     }
+
 
     public function destroy(Request $request)
     {
