@@ -11,14 +11,6 @@ use Inertia\Inertia;
 
 class CarouselController extends Controller
 {
-    public function show()
-    {
-        $carousels = Carousel::all();
-        return Inertia::render('Setting/Carousel/Carousels', [
-            'carousels' => $carousels
-        ]);
-    }
-
     public function store(Request $request)
     {
         $request->validate([

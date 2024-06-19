@@ -22,7 +22,6 @@ onMounted(() => {
             <span>/</span>
             <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
         </div>
-
     </div>
     <br>
     <table class="table-auto w-full">

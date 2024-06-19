@@ -7,9 +7,11 @@ import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 import Modal from '@/Components/Modal.vue';
 import CarouselForm from '@/Pages/Setting/Carousel/CarouselForm.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import CarouselTable from './Carousel/CarouselTable.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
-defineProps({
-    
+const props = defineProps({
+    carousels: Array
 });
 
 const showModalAddCarousel = ref(false);
@@ -24,25 +26,19 @@ const showModalAddCarousel = ref(false);
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-                    <CardButton @click="showModalAddCarousel = true" title="Add Carousel"
-                        description="Membuat karousel baru untuk item unggulan atau promosi."
-                        :tags="['karousel', 'promosi', 'unggulan']">
-                        <template #svg>
-                            <ImagesIcon width="32" height="32" fill="#0f4d0f" />
-                        </template>
-                    </CardButton>
+                    <h2 class="font-bold">Setting Carousel</h2>
+                    <div class="flex flex-col my-2 items-end">
+                        <PrimaryButton @click="showModalAddCarousel = true" class="">Add Carousel
+                        </PrimaryButton>
+                    </div>
+                    <CarouselTable :carousels="props.carousels" />
+                </div>
+                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
+                    <h2 class="font-bold">Setting Header</h2>
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-
-                </div>
-
-                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-                    
-                </div>
-
-                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-                    
+                    <h2 class="font-bold">Setting Footer</h2>
                 </div>
             </div>
         </div>

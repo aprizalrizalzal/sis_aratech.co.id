@@ -11,11 +11,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 <template>
     <div class="flex flex-col items-center ">
         <div class="w-full max-w-2xl px-6 lg:max-w-7xl">
-            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 mt-4 pb-8 items-start gap-2">
-                <Link :href="route('show.welcome')" class="flex flex-col items-start">
-                    <ApplicationLogo class="block h-32 w-32" /> 
-                    <span class="text-lg font-bold">ASLI Mandiri Computer-AMITech</span>
-                </Link>
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 mt-8 pb-8 items-start gap-2">
                 <div class="px-2 pb-6 text-start">
                     <h2 class="text-xl  font-semibold text-green-900">Kontak</h2>
                     <p class="text-sm/relaxed">
@@ -24,9 +20,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                     <ul class="mt-2 text-sm/relaxed">
                         <li class="flex items-center space-x-2">
                             <WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
-                                rel="noopener noreferrer">0822-4791-2220</a><span>/</span><a
-                                href="https://wa.me/6287765889202" target="_blank"
-                                rel="noopener noreferrer">0877-6588-9202</a>
+                                rel="noopener noreferrer">0822-4791-2220</a>
                         </li>
                         <li class="flex items-center space-x-2 mt-1">
                             <FacebookIcon />

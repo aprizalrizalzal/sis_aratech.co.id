@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
-import CarouselView from './Welcome/CarouselView.vue';
-import ProductView from './Welcome/ProductView.vue';
-import FooterView from './Setting/FooterView.vue';
-import ServiceView from './Welcome/ServiceView.vue';
+import Carousel from './Welcome/Carousel.vue';
+import Product from './Welcome/Product.vue';
+import Footer from './Setting/Footer/Footer.vue';
+import Service from './Welcome/Service.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
@@ -118,21 +118,21 @@ const props = defineProps({
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">
                     <div>
-                        <CarouselView :carousels="props.carousels" />
+                        <Carousel :carousels="props.carousels" />
                     </div>
                     
                     <div>
-                        <ProductView :spareParts="props.spareParts" />
+                        <Product :spareParts="props.spareParts" />
                     </div>
 
                     <div>
-                        <ServiceView :service="props.service" :message="props.message"/>
+                        <Service :service="props.service" :message="props.message"/>
                     </div>
                 </main>
             </div>
         </div>
         <footer class="mt-8 pb-4 text-center text-sm text-green-900 bg-white">
-            <FooterView />
+            <Footer />
         </footer>
     </div>
 </template>

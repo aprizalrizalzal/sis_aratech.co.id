@@ -6,7 +6,8 @@ import Dropdown from '@/Components/Dropdown.vue';
 import NavLink from '@/Components/NavLink.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import FooterView from '@/Pages/Setting/FooterView.vue';
+import Footer from '@/Pages/Setting/Footer/Footer.vue';
+import SettingIcon from '@/Components/Icon/SettingIcon.vue';
 
 const showingNavigationDropdown = ref(false);
 
@@ -105,9 +106,14 @@ const isTechnician = computed(() => userRole.value === 'technician');
 
                                 <template #content>
                                     <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                    <DropdownLink v-if="isSuperAdmin" :href="route('setting.edit')"> Setting </DropdownLink>
                                     <DropdownLink :href="route('logout')" method="post" as="button">
                                         Log Out
+                                    </DropdownLink>
+                                    <hr>
+                                        <DropdownLink v-if="isSuperAdmin" :href="route('setting.edit')">
+                                            <div class="flex items-center gap-2">
+                                                <SettingIcon /> <span class="font-bold">Setting</span>
+                                            </div> 
                                     </DropdownLink>
                                 </template>
                             </Dropdown>
@@ -215,7 +221,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
             <slot />
         </main>
         <footer class="mt-8 pb-4 text-center text-sm text-green-900 bg-white">
-            <FooterView />
+            <Footer />
         </footer>
     </div>
 </template>
