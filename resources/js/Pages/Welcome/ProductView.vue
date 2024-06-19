@@ -56,9 +56,8 @@ watch(searchQuery, () => {
 <template>
     <div class="flex justify-between items-center pt-4 pb-2">
         <div class="flex items-center">
-            <h2 class="flex font-semibold text-lg text-green-900 leading-tight flex-none px-2 py-4">
-                <span class="hidden lg:block">ASLI Mandiri Computer-</span>
-                <span>AMITech</span>
+            <h2 class="flex font-semibold text-lg text-green-900 leading-tight flex-none py-4">
+                <span>Spare Part</span>
             </h2>
         </div>
         <div class="flex items-center">

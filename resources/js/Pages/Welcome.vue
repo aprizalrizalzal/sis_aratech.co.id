@@ -3,8 +3,7 @@ import { ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import CarouselView from './Welcome/CarouselView.vue';
 import ProductView from './Welcome/ProductView.vue';
-import AboutView from './Welcome/AboutView.vue';
-import ContactView from './Welcome/ContactView.vue';
+import FooterView from './Setting/FooterView.vue';
 import ServiceView from './Welcome/ServiceView.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
@@ -115,10 +114,9 @@ const props = defineProps({
 
 
     <div class="bg-gray-50 text-green-900/50">
-        <div
-            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
+        <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <main class="mt-4">
+                <main class="mt-4 mb-8">
                     <div>
                         <CarouselView :carousels="props.carousels" />
                     </div>
@@ -127,22 +125,14 @@ const props = defineProps({
                         <ProductView :spareParts="props.spareParts" />
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-4">
-                        <div>
-                            <ServiceView :service="props.service" :message="props.message"/>
-                        </div>
-                        <div>
-                            <AboutView />
-                        </div>
-                    </div>
                     <div>
-                        <ContactView />
+                        <ServiceView :service="props.service" :message="props.message"/>
                     </div>
                 </main>
-                <footer class="py-8 text-center text-sm text-green-900">
-                    SIService-AMITech &copy;2024
-                </footer>
             </div>
         </div>
+        <footer class="mt-8 pb-4 text-center text-sm text-green-900 bg-white">
+            <FooterView />
+        </footer>
     </div>
 </template>

@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/sparePart', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
 
         // CarouselController
+        Route::get('/setting', [CarouselController::class, 'show'])->name('setting.edit');
         Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
         Route::post('/carousel', [CarouselController::class, 'store'])->name('store.carousel');
         Route::put('/carousel', [CarouselController::class, 'update'])->name('update.carousel');
