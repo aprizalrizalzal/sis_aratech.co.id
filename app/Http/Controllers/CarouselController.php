@@ -14,7 +14,7 @@ class CarouselController extends Controller
     public function show()
     {
         $carousels = Carousel::all();
-        return Inertia::render('Carousel/Carousels', [
+        return Inertia::render('Setting/Carousel/Carousels', [
             'carousels' => $carousels
         ]);
     }

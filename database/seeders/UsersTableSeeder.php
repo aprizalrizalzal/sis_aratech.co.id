@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'name' => 'Agung',
-            'email' => 'agung@gmial.com',
+            'email' => 'agung@example.com',
             'email_verified_at' => Carbon::now(),
             'role' => 'customer',
             'password' => Hash::make('password')
@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
         
         User::create([
             'name' => 'Nurhaliza Rusnia',
-            'email' => 'nurhalizarusnia@gmial.com',
+            'email' => 'nurhalizarusnia@example.com',
             'email_verified_at' => Carbon::now(),
             'role' => 'customer',
             'password' => Hash::make('password')
@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
         
         User::create([
             'name' => 'Suhartini',
-            'email' => 'suhartini@gmial.com',
+            'email' => 'suhartini@example.com',
             'email_verified_at' => Carbon::now(),
             'role' => 'customer',
             'password' => Hash::make('password')

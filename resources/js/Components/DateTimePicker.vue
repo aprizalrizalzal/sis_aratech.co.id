@@ -1,7 +1,7 @@
 <template>
     <div>
-        <InputLabel class="block font-medium text-sm text-green-700 mb-2" :for="id">{{ label }}</InputLabel>
-        <input :id="id" v-model="formattedDate"
+        <label class="block font-medium text-sm text-green-700 mb-2" :for="id">{{ label }}</label>
+        <input v-model="formattedDate"
             class="w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
             ref="datepicker" :placeholder="placeholder" />
     </div>
@@ -9,7 +9,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import InputLabel from '@/Components/InputLabel.vue';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.css';
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceDetailController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -43,11 +44,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/sparePart', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
 
         // CarouselController
-        Route::get('/setting', [CarouselController::class, 'show'])->name('setting.edit');
         Route::get('/carousels', [CarouselController::class, 'show'])->name('show.carousels');
         Route::post('/carousel', [CarouselController::class, 'store'])->name('store.carousel');
         Route::put('/carousel', [CarouselController::class, 'update'])->name('update.carousel');
         Route::delete('/carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
+
+        // SettingController
+        Route::get('/setting', [SettingController::class, 'show'])->name('setting.edit');
+
     });
 
     Route::middleware(['role:admin'])->group(function () {

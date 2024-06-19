@@ -58,11 +58,6 @@ const isTechnician = computed(() => userRole.value === 'technician');
                                 Spare Parts
                             </NavLink>
 
-                            <NavLink v-if="isSuperAdmin" :href="route('show.carousels')"
-                                :active="route().current('show.carousels')">
-                                Carousels
-                            </NavLink>
-
                             <NavLink v-if="isAdmin" :href="route('show.customers')"
                                 :active="route().current('show.customers')">
                                 Customers
@@ -161,11 +156,6 @@ const isTechnician = computed(() => userRole.value === 'technician');
                     <ResponsiveNavLink v-if="isSuperAdmin" :href="route('show.spare.parts')"
                         :active="route().current('show.spare.parts')">
                         Spare Parts
-                    </ResponsiveNavLink>
-
-                    <ResponsiveNavLink v-if="isSuperAdmin" :href="route('show.carousels')"
-                        :active="route().current('show.carousels')">
-                        Carousels
                     </ResponsiveNavLink>
 
                     <ResponsiveNavLink v-if="isAdmin" :href="route('show.customers')"

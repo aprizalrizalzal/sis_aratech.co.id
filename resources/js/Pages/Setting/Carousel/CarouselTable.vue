@@ -1,5 +1,5 @@
 <script setup>
-import CarouselForm from '@/Pages/Carousel/CarouselForm.vue';
+import CarouselForm from '@/Pages/Setting/Carousel/CarouselForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';

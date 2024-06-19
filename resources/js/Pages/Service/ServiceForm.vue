@@ -101,7 +101,6 @@ const submitForm = () => {
                     <DateTimePicker id="date_received" label="Date Received" v-model="form.date_received"
                         placeholder="Select Date and Time" />
                     <InputError class="mt-3" :message="form.errors.date_received" />
-
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="items_brought" value="Items Brought" />

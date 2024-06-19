@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
-import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 import DisplayIcon from '@/Components/Icon/DisplayIcon.vue';
 import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
 import ServiceIcon from '@/Components/Icon/ServiceIcon.vue';
@@ -14,7 +13,7 @@ import Modal from '@/Components/Modal.vue';
 import CardButton from '@/Components/CardButton.vue';
 import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import DeviceTypeForm from '@/Pages/DeviceType/DeviceTypeForm.vue';
-import CarouselForm from '@/Pages/Carousel/CarouselForm.vue';
+
 import DeviceForm from '@/Pages/Device/DeviceForm.vue';
 import ServiceForm from '@/Pages/Service/ServiceForm.vue';
 import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
@@ -26,7 +25,6 @@ import SearchInput from '@/Components/SearchInput.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 
-const showModalAddCarousel = ref(false);
 const showModalAddCustomer = ref(false);
 const showModalAddDeviceType = ref(false);
 const showModalAddDevice = ref(false);
@@ -36,6 +34,9 @@ const showModalAddSparePart = ref(false);
 const showModalAddPartUsage = ref(false);
 
 const props = defineProps({
+  deviceTypes: Array,
+  customers: Array,
+  devices: Array,
   services: Array,
   serviceDetails: Array,
 
@@ -188,13 +189,6 @@ const previousPage = () => {
                     <SparePartIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
-                <CardButton @click="showModalAddCarousel = true" title="Add Carousel"
-                  description="Membuat karousel baru untuk item unggulan atau promosi."
-                  :tags="['karousel', 'promosi', 'unggulan']">
-                  <template #svg>
-                    <ImagesIcon width="32" height="32" fill="#0f4d0f" />
-                  </template>
-                </CardButton>
               </div>
               <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
@@ -232,11 +226,13 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="!isCustomer" class="flex flex-col bg-white shadow-md rounded-md p-4 my-4">
-                <div class="flex items-center justify-end py-4 pt-2 gap-2 bg-white">
-                  <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
-                  <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
-                  <div class="mt-2 flex items-center">
+              <div v-if="!isCustomer && !isAdmin && !isTechnician" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4">
+                <div class="flex w-full gap-2 justify-between">
+                  <div class="flex items-center gap-2 bg-white">
+                    <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
+                    <DateTimePicker id="end_date" label="End Date" v-model="end_date"  placeholder="Select End Date Time" />
+                  </div>
+                  <div class="mt-auto">
                     <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
                   </div>
                 </div>
@@ -253,13 +249,15 @@ const previousPage = () => {
                       <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
                     </div>
                   </div>
-                  <div class="flex items-center py-4 pt-2 gap-2 bg-white">
-                    <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
-                    <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
-                    <div class="mt-2 flex items-center">
-                      <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
-                    </div>
+                  <div class="flex w-full gap-2 justify-between my-4">
+                  <div class="flex items-center gap-2 bg-white">
+                    <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
+                    <DateTimePicker id="end_date" label="End Date" v-model="end_date"  placeholder="Select End Date Time" />
                   </div>
+                  <div class="mt-auto">
+                    <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                  </div>
+                </div>
                   <table class="min-w-full bg-white border-collapse ">
                     <thead>
                       <tr>
@@ -306,15 +304,7 @@ const previousPage = () => {
       </div>
     </div>
   </AuthenticatedLayout>
-
-  <Modal v-model:show="showModalAddCarousel">
-    <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddCarousel = false">X</DangerButton>
-      </div>
-      <CarouselForm />
-    </div>
-  </Modal>
+  
   <Modal v-model:show="showModalAddDeviceType">
     <div class="m-6">
       <div class="flex justify-end">

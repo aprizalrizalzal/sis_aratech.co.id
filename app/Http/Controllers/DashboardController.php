@@ -17,6 +17,9 @@ class DashboardController extends Controller
 {
     public function show()
     {
+        $deviceTypes = DeviceType::all();
+        $customers = Customer::all();
+        $devices = Device::all();
         $services = Service::with('customer', 'customer.user', 'device')->get();
         $serviceDetails = ServiceDetail::with('user', 'service')->get();
 
@@ -56,6 +59,9 @@ class DashboardController extends Controller
             'partUsageCreatedAt' => $partUsageCreatedAt,
             'sparePartCreatedAt' => $sparePartCreatedAt,
 
+            'deviceTypes' => $deviceTypes,
+            'customers' => $customers,
+            'devices' => $devices,
             'services' => $services,
             'serviceDetails' => $serviceDetails,
 

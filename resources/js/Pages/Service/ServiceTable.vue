@@ -113,11 +113,13 @@ const previousPage = () => {
 </script>
 
 <template>
-    <div class="flex items-center py-4 pt-2 gap-2 bg-gray-50 ">
-        <DateTimePicker id="start_date" v-model="start_date" placeholder="Select Start Date Time" />
-        <DateTimePicker id="end_date" v-model="end_date" placeholder="Select End Date Time" />
-        <div class="mt-2 flex items-center">
-            <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+    <div class="flex w-full gap-2 justify-between my-4">
+        <div class="flex items-center gap-2 bg-white" >
+        <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
+        <DateTimePicker id="end_date" label="End Date" v-model="end_date"  placeholder="Select End Date Time" />
+        </div>
+        <div class="mt-auto">
+        <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
         </div>
     </div>
     <div class=" overflow-x-auto">
