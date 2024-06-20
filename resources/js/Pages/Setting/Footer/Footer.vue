@@ -25,7 +25,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                                 rel="noopener noreferrer">amitechpt@gmail.com</a>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <TelephoneIcon /> <a href="https://wa.me/6282247912220" target="_blank"
+                            <TelephoneIcon /> <a href="tel:+6282247912220" target="_blank"
                                 rel="noopener noreferrer">0822-4791-2220</a>
                         </li>
                     </ul>

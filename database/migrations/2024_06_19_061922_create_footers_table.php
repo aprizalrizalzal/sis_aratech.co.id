@@ -22,7 +22,7 @@ return new class extends Migration
         Schema::create('social_links', function (Blueprint $table) {
             $table->id();
             $table->string('platform');
-            $table->string('icon');
+            $table->string('image_path');
             $table->string('url');
             $table->string('username')->nullable();
             $table->timestamps();
@@ -31,7 +31,7 @@ return new class extends Migration
         Schema::create('app_downloads', function (Blueprint $table) {
             $table->id();
             $table->string('platform');
-            $table->string('image_url');
+            $table->string('image_path');
             $table->string('download_url');
             $table->timestamps();
         });
