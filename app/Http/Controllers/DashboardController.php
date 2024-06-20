@@ -22,13 +22,13 @@ class DashboardController extends Controller
         $devices = Device::all();
         $services = Service::with('customer', 'customer.user', 'device')->get();
         $serviceDetails = ServiceDetail::with('user', 'service')->get();
+        $spareParts = SparePart::all();
 
         $carouselCount = Carousel::count();
         $customerCount = Customer::count();
         $deviceCount = Device::count();
         $deviceTypeCount = DeviceType::count();
         $partUsageCount = PartUsage::count();
-        $sparePartCount = SparePart::count();
         $userCount = User::count();
 
         $carouselCreatedAt = Carousel::latest()->first()->created_at ?? null;
@@ -49,8 +49,7 @@ class DashboardController extends Controller
             'deviceTypeCount' => $deviceTypeCount,
             'deviceCount' => $deviceCount,
             'partUsageCount' => $partUsageCount,
-            'sparePartCount' => $sparePartCount,
-
+            
             'userCreatedAt' => $userCreatedAt,
             'customerCreatedAt' => $customerCreatedAt,
             'carouselCreatedAt' => $carouselCreatedAt,
@@ -58,13 +57,14 @@ class DashboardController extends Controller
             'deviceCreatedAt' => $deviceCreatedAt,
             'partUsageCreatedAt' => $partUsageCreatedAt,
             'sparePartCreatedAt' => $sparePartCreatedAt,
-
+            
             'deviceTypes' => $deviceTypes,
             'customers' => $customers,
             'devices' => $devices,
             'services' => $services,
             'serviceDetails' => $serviceDetails,
-
+            'spareParts' => $spareParts,
+            
             'printService' => $printService,
             'printServiceDetail' => $printServiceDetail,
         ]);

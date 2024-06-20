@@ -101,7 +101,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />
-                    <TextInput id="repair_description" type="text" class="mt-1 block w-full"
+                    <textarea id="repair_description" type="text" class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.repair_description" placeholder="Repair Description" required autofocus />
                     <InputError class="mt-3" :message="form.errors.repair_description" />
                 </div>

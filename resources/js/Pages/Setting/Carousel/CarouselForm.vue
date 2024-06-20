@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -67,16 +67,6 @@ const submitForm = () => {
         });
     }
 };
-
-watch(
-    () => props.carousel,
-    (newCarousel) => {
-        if (newCarousel) {
-            form.image_path = newCarousel.image_path;
-            form.alt = newCarousel.alt;
-        }
-    }
-);
 </script>
 
 <template>

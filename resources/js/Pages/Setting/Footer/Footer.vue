@@ -1,9 +1,9 @@
 <script setup>
 import EnvelopeIcon from '@/Components/Icon/EnvelopeIcon.vue';
+import TelephoneIcon from '@/Components/Icon/TelephoneIcon.vue';
+import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
 import FacebookIcon from '@/Components/Icon/FacebookIcon.vue';
 import InstagramIcon from '@/Components/Icon/InstagramIcon.vue';
-import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
-import GeoIcon from '@/Components/Icon/GeoIcon.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 </script>
 
@@ -14,6 +14,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 <div class="text-start">
                     <ApplicationLogo class="block h-16 w-16" />
                     <h2 class="text-xl font-semibold text-green-900">{{ header.company }}</h2>
+                    <p class=" mt-4">{{  }}</p>
                     <p class=" mt-4">Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
                 </div>
                 <div class="mt-8 px-2 pb-6 text-start">
@@ -24,7 +25,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                                 rel="noopener noreferrer">amitechpt@gmail.com</a>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
+                            <TelephoneIcon /> <a href="https://wa.me/6282247912220" target="_blank"
                                 rel="noopener noreferrer">0822-4791-2220</a>
                         </li>
                     </ul>
@@ -32,20 +33,16 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 <div class="mt-8 px-2 pb-6 text-start">
                     <h2 class="text-xl font-semibold text-green-900 mt-8">Social Media</h2>
                     <ul class="mt-4 text-sm/relaxed">
-                        <li class="flex items-center space-x-2 mt-1">
-                            <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
-                                rel="noopener noreferrer">amitechpt@gmail.com</a>
-                        </li>
                         <li class="flex items-center space-x-2">
                             <WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
                                 rel="noopener noreferrer">0822-4791-2220</a>
                         </li>
-                        <li class="flex items-center space-x-2 mt-1">
-                            <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
-                                rel="noopener noreferrer">amitechpt@gmail.com</a>
+                        <li class="flex items-center space-x-2">
+                            <FacebookIcon /> <a href="https://wa.me/6282247912220" target="_blank"
+                                rel="noopener noreferrer">0822-4791-2220</a>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
+                            <InstagramIcon /> <a href="https://wa.me/6282247912220" target="_blank"
                                 rel="noopener noreferrer">0822-4791-2220</a>
                         </li>
                     </ul>

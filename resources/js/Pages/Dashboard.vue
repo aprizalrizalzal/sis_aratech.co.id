@@ -39,13 +39,13 @@ const props = defineProps({
   devices: Array,
   services: Array,
   serviceDetails: Array,
+  spareParts: Array,
 
   userCount: Number,
   customerCount: Number,
   carouselCount: Number,
   deviceTypeCount: Number,
   deviceCount: Number,
-  sparePartCount: Number,
   partUsageCount: Number,
 
   service: Object,
@@ -55,7 +55,7 @@ const props = defineProps({
 const dataChart = [
   props.userCount,
   props.deviceTypeCount,
-  props.sparePartCount,
+  props.spareParts.length,
   props.carouselCount,
   props.customerCount,
   props.deviceCount,
