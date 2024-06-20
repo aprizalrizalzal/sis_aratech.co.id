@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
+use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -50,6 +51,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // SettingController
         Route::get('/setting', [SettingController::class, 'show'])->name('setting.edit');
+
+        Route::post('/setting', [HeaderController::class, 'store'])->name('store.header');
+        Route::delete('/setting', [HeaderController::class, 'destroy'])->name('destroy.header');
 
     });
 

@@ -31,7 +31,7 @@ const props = defineProps({
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24 items-center">
                 <!-- Left Section: Logo and Title -->
-                <div class="flex items-center">
+                <div v-for="header in $page.props.headers" :key="header.id" class="flex items-center">
                     <!-- Logo -->
                     <Link :href="route('show.welcome')">
                     <ApplicationLogo class="block h-16 w-16" />
@@ -39,7 +39,7 @@ const props = defineProps({
 
                     <Link :href="route('show.welcome')"
                         class="p-4 text-lg flex items-center font-bold text-green-900 hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
-                    SIService-AMITech
+                    {{ header.company }}
                     </Link>
                 </div>
 

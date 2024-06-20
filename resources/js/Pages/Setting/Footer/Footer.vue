@@ -8,12 +8,12 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 </script>
 
 <template>
-    <div class="flex flex-col items-center ">
-        <div class="w-full max-w-2xl px-6 lg:max-w-7xl">
+    <div class="flex flex-col items-center">
+        <div v-for="header in $page.props.headers" :key="header.id" class="w-full max-w-2xl px-6 lg:max-w-7xl">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-8 pb-8 mx-4 items-start gap-2">
                 <div class="text-start">
                     <ApplicationLogo class="block h-16 w-16" />
-                    <h2 class="text-xl font-semibold text-green-900"> PT Asli Mandiri Indotech </h2>
+                    <h2 class="text-xl font-semibold text-green-900">{{ header.company }}</h2>
                     <p class=" mt-4">Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
                 </div>
                 <div class="mt-8 px-2 pb-6 text-start">
@@ -59,7 +59,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                     </div>
                 </div>
             </div>
-            <p class="relative">SIService-AMITech &copy;2024</p>
+            <p class="relative">{{ header.company }} &copy;2024</p>
         </div>
     </div>
 </template>

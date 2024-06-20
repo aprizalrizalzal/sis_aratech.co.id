@@ -1,5 +1,5 @@
 <script setup>
-import CarouselForm from '@/Pages/Setting/Carousel/CarouselForm.vue';
+import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -7,29 +7,21 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    carousels: Array,
+    headers: Array,
 });
 
-const showingModelCarouselUpdate = ref(false);
-const selectedCarousel = ref(null);
-
-const showModalCarouselUpdate = (carousel) => {
-    selectedCarousel.value = carousel;
-    showingModelCarouselUpdate.value = true;
-};
-
-const confirmingCarouselDeletion = ref(false);
+const confirmingHeaderDeletion = ref(false);
 const form = useForm({
     id: null,
 });
 
-const confirmCarouselDeletion = (carouselId) => {
-    confirmingCarouselDeletion.value = true;
-    form.id = carouselId;
+const confirmHeaderDeletion = (headerId) => {
+    confirmingHeaderDeletion.value = true;
+    form.id = headerId;
 };
 
-const deleteCarousel = () => {
-    form.delete(route('destroy.carousel', { carousel: form.id }), {
+const deleteheader = () => {
+    form.delete(route('destroy.header', { id: form.id }), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: (errors) => {
@@ -44,21 +36,20 @@ const deleteCarousel = () => {
 };
 
 const closeModal = () => {
-    confirmingCarouselDeletion.value = false;
-    showingModelCarouselUpdate.value = false;
+    confirmingHeaderDeletion.value = false;
 };
 
 const currentPage = ref(1);
 const itemsPerPage = 15;
 
-const paginatedCarousels = computed(() => {
+const paginatedHeaders = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return props.carousels.slice(start, end);
+    return props.headers.slice(start, end);
 });
 
 const totalPages = computed(() => {
-    return Math.ceil(props.carousels.length / itemsPerPage);
+    return Math.ceil(props.headers.length / itemsPerPage);
 });
 
 const nextPage = () => {
@@ -80,26 +71,24 @@ const previousPage = () => {
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Alternative</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Icon</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Company</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-50">
+                <tr v-for="(header, index) in paginatedHeaders" :key="header.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <img :src="`${carousel.image_path}`" :alt="carousel.alt"
+                        <img :src="`${header.image_path}`" :alt="header.Company"
                             class="w-24 h-24 object-cover rounded-md mx-auto" />
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ carousel.alt }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ header.company }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ header.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalCarouselUpdate(carousel)" class="m-2">Update
-                        </SecondaryButton>
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmCarouselDeletion(carousel.id)" class="m-2">Delete</DangerButton>
+                        <DangerButton @click="confirmHeaderDeletion(header.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>
@@ -112,31 +101,22 @@ const previousPage = () => {
         </div>
     </div>
 
-    <Modal v-model:show="showingModelCarouselUpdate">
-        <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelCarouselUpdate = false">X</DangerButton>
-            </div>
-            <CarouselForm :carousel="selectedCarousel" />
-        </div>
-    </Modal>
-
-    <Modal :show="confirmingCarouselDeletion" @close="closeModal">
+    <Modal :show="confirmingHeaderDeletion" @close="closeModal">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
-                Are you sure you want to delete this carousel?
+                Are you sure you want to delete this header?
             </h2>
 
             <p class="mt-1 text-sm text-green-600">
-                Once your carousel is deleted, all of its resources and data will be permanently deleted.
+                Once your header is deleted, all of its resources and data will be permanently deleted.
             </p>
 
             <div class="mt-6 flex justify-end">
                 <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
 
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                    @click="deleteCarousel">
-                    Delete Carousel
+                    @click="deleteheader">
+                    Delete header
                 </DangerButton>
             </div>
         </div>

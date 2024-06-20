@@ -28,13 +28,12 @@ const isTechnician = computed(() => userRole.value === 'technician');
                 <div class="flex justify-between h-24">
                     <div class="flex">
                         <!-- Logo -->
-                        <div class="shrink-0 flex items-center">
+                        <div v-for="header in $page.props.headers" :key="header.id" class="shrink-0 flex items-center">
                             <Link :href="route('show.welcome')">
                             <ApplicationLogo class="block h-16 w-16 fill-current" />
                             </Link>
-                            <Link :href="route('show.welcome')"
-                                class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
-                            SIService-AMITech
+                            <Link :href="route('show.welcome')" class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
+                                    {{ header.company }}
                             </Link>
                         </div>
 

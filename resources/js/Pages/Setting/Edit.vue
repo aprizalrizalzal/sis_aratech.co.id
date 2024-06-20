@@ -5,15 +5,18 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CardButton from '@/Components/CardButton.vue';
 import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 import Modal from '@/Components/Modal.vue';
+import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
 import CarouselForm from '@/Pages/Setting/Carousel/CarouselForm.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import CarouselTable from './Carousel/CarouselTable.vue';
+import HeaderTable from './Header/HeaderTable.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     carousels: Array
 });
 
+const showModalAddHeader = ref(false);
 const showModalAddCarousel = ref(false);
 
 </script>
@@ -28,10 +31,10 @@ const showModalAddCarousel = ref(false);
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
                     <h2 class="font-bold">Setting Header</h2>
                     <div class="flex flex-col my-2 items-end">
-                        <PrimaryButton @click="showModalAddCarousel = true" class="">Add Carousel
+                        <PrimaryButton v-if="!$page.props.headers || $page.props.headers.length === 0" @click="showModalAddHeader = true" class="">Add Header
                         </PrimaryButton>
                     </div>
-                    <CarouselTable :carousels="props.carousels" />
+                    <HeaderTable :headers="$page.props.headers" />
                 </div>
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
                     <h2 class="font-bold">Setting Carousel</h2>
@@ -54,7 +57,16 @@ const showModalAddCarousel = ref(false);
         </div>
     </AuthenticatedLayout>
 
-    <Modal v-model:show="showModalAddCarousel">
+    <Modal v-model:show="showModalAddHeader">
+    <div class="m-6">
+      <div class="flex justify-end">
+        <DangerButton @click="showModalAddHeader = false">X</DangerButton>
+      </div>
+      <HeaderForm />
+    </div>
+  </Modal>
+
+  <Modal v-model:show="showModalAddCarousel">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="showModalAddCarousel = false">X</DangerButton>

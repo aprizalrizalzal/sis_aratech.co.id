@@ -9,9 +9,5 @@ class Header extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'icon',
-        'name',
-        'description',
-    ];
+    protected $fillable = [ 'image_path', 'company', 'description', ];
 }
