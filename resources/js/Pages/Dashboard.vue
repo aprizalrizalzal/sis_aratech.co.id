@@ -173,8 +173,8 @@ const previousPage = () => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="overflow-hidden sm:rounded-md">
             <!-- Your main content here -->
-            <div class="grid grid-cols-1 md:grid-cols-1">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-2 gap-4 m-auto">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
@@ -190,7 +190,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
+              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-2 gap-4 m-auto">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -210,7 +210,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
+              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-2 gap-4 m-auto">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
@@ -226,11 +226,21 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="!isCustomer && !isAdmin && !isTechnician" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4">
-                <div class="flex w-full gap-2 justify-between">
-                  <div class="flex items-center gap-2 bg-white">
-                    <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
-                    <DateTimePicker id="end_date" label="End Date" v-model="end_date"  placeholder="Select End Date Time" />
+              <div v-if="!isCustomer && !isAdmin && !isTechnician" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
+                <div class="flex w-full gap-2 justify-between overflow-x-auto">
+                  <div class="flex items-center gap-2 bg-white p-4">
+                    <DateTimePicker 
+                      id="start_date_picker" 
+                      label="Start Date" 
+                      v-model="start_date" 
+                      placeholder="Select Start Date Time" 
+                    />
+                    <DateTimePicker 
+                      id="end_date_picker" 
+                      label="End Date" 
+                      v-model="end_date"  
+                      placeholder="Select End Date Time" 
+                    />
                   </div>
                   <div class="mt-auto">
                     <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
@@ -250,9 +260,19 @@ const previousPage = () => {
                     </div>
                   </div>
                   <div class="flex w-full gap-2 justify-between my-4">
-                  <div class="flex items-center gap-2 bg-white">
-                    <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
-                    <DateTimePicker id="end_date" label="End Date" v-model="end_date"  placeholder="Select End Date Time" />
+                    <div class="flex items-center gap-2 bg-white p-4">
+                    <DateTimePicker 
+                      id="start_date_picker" 
+                      label="Start Date" 
+                      v-model="start_date" 
+                      placeholder="Select Start Date Time" 
+                    />
+                    <DateTimePicker 
+                      id="end_date_picker" 
+                      label="End Date" 
+                      v-model="end_date"  
+                      placeholder="Select End Date Time" 
+                    />
                   </div>
                   <div class="mt-auto">
                     <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>

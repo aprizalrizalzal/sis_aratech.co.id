@@ -83,7 +83,7 @@ const closeModal = () => {
         <div
             class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
             <div class="px-2">
-                <h2 class="text-xl font-semibold text-green-900 mt-4">Tentang Kami
+                <h2 class="text-xl font-semibold text-green-900 mt-4">About Us
                 </h2>
                 <p class="text-sm/relaxed mt-2">
                     Asli Mandiri Computer - AMITech penjualan dan spesialis dalam perbaikan PC/laptop, servis printer,

@@ -1,7 +1,6 @@
 <script setup>
 import EnvelopeIcon from '@/Components/Icon/EnvelopeIcon.vue';
 import FacebookIcon from '@/Components/Icon/FacebookIcon.vue';
-import GeoIcon from '@/Components/Icon/GeoIcon.vue';
 import InstagramIcon from '@/Components/Icon/InstagramIcon.vue';
 import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
 import GeoIcon from '@/Components/Icon/GeoIcon.vue';
@@ -18,7 +17,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                     <p class=" mt-4">Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
                 </div>
                 <div class="mt-8 px-2 pb-6 text-start">
-                    <h2 class="text-xl font-semibold text-green-900 mt-8">Kontak</h2>
+                    <h2 class="text-xl font-semibold text-green-900 mt-8">Contact</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li class="flex items-center space-x-2 mt-2">
                             <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
@@ -31,7 +30,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                     </ul>
                 </div>
                 <div class="mt-8 px-2 pb-6 text-start">
-                    <h2 class="text-xl font-semibold text-green-900 mt-8">Sosial Media</h2>
+                    <h2 class="text-xl font-semibold text-green-900 mt-8">Social Media</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li class="flex items-center space-x-2 mt-1">
                             <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
