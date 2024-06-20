@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\ProfileController;
@@ -52,9 +53,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // SettingController
         Route::get('/setting', [SettingController::class, 'show'])->name('setting.edit');
 
-        Route::post('/setting', [HeaderController::class, 'store'])->name('store.header');
-        Route::delete('/setting', [HeaderController::class, 'destroy'])->name('destroy.header');
+        Route::post('/settingHeader', [HeaderController::class, 'store'])->name('store.header');
+        Route::delete('/settingHeader', [HeaderController::class, 'destroy'])->name('destroy.header');
 
+        Route::post('/settingFooter', [FooterController::class, 'store'])->name('store.footer');
+        Route::delete('/settingFooter', [FooterController::class, 'destroy'])->name('destroy.footer');
     });
 
     Route::middleware(['role:admin'])->group(function () {

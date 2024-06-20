@@ -114,19 +114,20 @@ const props = defineProps({
 
 
     <div class="bg-gray-50 text-green-900/50">
-        <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
+        <div
+            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">
                     <div>
                         <Carousel :carousels="props.carousels" />
                     </div>
-                    
+
                     <div>
                         <Product :spareParts="props.spareParts" />
                     </div>
 
                     <div>
-                        <Service :service="props.service" :message="props.message"/>
+                        <Service :service="props.service" :message="props.message" />
                     </div>
                 </main>
             </div>

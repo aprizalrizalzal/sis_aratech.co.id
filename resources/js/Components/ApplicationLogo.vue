@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const imgWidth = ref('');
 const imgHeight = ref('');
 
-const faviconSrc = '/favicon.ico';
+const faviconSrc = '/storage/images/favicon/company_logo.png';
 const altText = 'Favicon';
 
 const imgClass = `${imgWidth.value} ${imgHeight.value}`;

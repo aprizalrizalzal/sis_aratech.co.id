@@ -5,22 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Header;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class HeaderController extends Controller
 {
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048', 
+            'image' => 'required|image|mimes:png|max:512',
             'company' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
-        $fileName = 'favicon.ico'; 
-        $request->file('image')->move(public_path(''), $fileName);
+        $extension = $request->file('image')->getClientOriginalExtension();
+        $fileName = 'company_logo.' . $extension;
+        $path = $request->file('image')->storeAs('images/favicon', $fileName, 'public');
 
         Header::create([
-            'image_path' => $fileName,
+            'image_path' => 'storage/' . $path,
             'company' => $request->company,
             'description' => $request->description,
         ]);
@@ -36,12 +38,8 @@ class HeaderController extends Controller
 
         $header = Header::findOrFail($request->id);
 
-        $filePath = public_path($header->image_path);
-        if (file_exists($filePath) && is_writable($filePath)) {
-            unlink($filePath);
-        } else {
-            return Redirect::back()->withErrors(['error' => 'File tidak dapat dihapus.']);
-        }
+        $path = str_replace('storage/', '', $header->image_path);
+        Storage::disk('public')->delete($path);
 
         $header->delete();
 

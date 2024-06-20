@@ -1,10 +1,10 @@
 <script setup>
+import { ref } from 'vue';
+import { useForm } from '@inertiajs/vue3';
 import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-import { useForm } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
 
 const props = defineProps({
     headers: Array,
@@ -47,31 +47,6 @@ const closeModal = () => {
     confirmingHeaderDeletion.value = false;
     showingModelHeaderUpdate.value = false;
 };
-
-const currentPage = ref(1);
-const itemsPerPage = 15;
-
-const paginatedHeaders = computed(() => {
-    const start = (currentPage.value - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    return props.headers.slice(start, end);
-});
-
-const totalPages = computed(() => {
-    return Math.ceil(props.headers.length / itemsPerPage);
-});
-
-const nextPage = () => {
-    if (currentPage.value < totalPages.value) {
-        currentPage.value++;
-    }
-};
-
-const previousPage = () => {
-    if (currentPage.value > 1) {
-        currentPage.value--;
-    }
-};
 </script>
 
 <template>
@@ -87,9 +62,8 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(header, index) in paginatedHeaders" :key="header.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
-                        index + 1 }}</td>
+                <tr v-for="(header, index) in headers" :key="header.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <img :src="`${header.image_path}`" :alt="header.Company"
                             class="w-24 h-24 object-cover rounded-md mx-auto" />
@@ -106,12 +80,6 @@ const previousPage = () => {
                 </tr>
             </tbody>
         </table>
-
-        <div class="flex justify-center gap-4 items-center p-6">
-            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
-        </div>
     </div>
 
     <Modal v-model:show="showingModelHeaderUpdate">

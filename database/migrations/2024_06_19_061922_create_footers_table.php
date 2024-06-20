@@ -12,27 +12,14 @@ return new class extends Migration
     public function up(): void
     {
 
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('footers', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('value');
-            $table->timestamps();
-        });
-
-        Schema::create('social_links', function (Blueprint $table) {
-            $table->id();
-            $table->string('platform');
-            $table->string('image_path');
-            $table->string('url');
+            $table->string('platform')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('url')->nullable();
             $table->string('username')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('app_downloads', function (Blueprint $table) {
-            $table->id();
-            $table->string('platform');
-            $table->string('image_path');
-            $table->string('download_url');
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
@@ -42,8 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
-        Schema::dropIfExists('social_links');
-        Schema::dropIfExists('app_downloads');
+        Schema::dropIfExists('footers');
     }
 };

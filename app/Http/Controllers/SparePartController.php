@@ -29,7 +29,7 @@ class SparePartController extends Controller
 
         $originalName = $request->file('image')->getClientOriginalName();
         $uniqueName = time() . '_' . $originalName;
-        $path = $request->file('image')->storeAs('images/spareParts', $uniqueName);
+        $path = $request->file('image')->storeAs('images/spareParts', $uniqueName, 'public');
 
         SparePart::create([
             'name' => $request->name,
@@ -57,7 +57,7 @@ class SparePartController extends Controller
 
             $originalName = $request->file('image')->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
-            $path = $request->file('image')->storeAs('images/spareParts', $uniqueName);
+            $path = $request->file('image')->storeAs('images/spareParts', $uniqueName, 'public');
 
             $sparePart->image_path = 'storage/' . $path;
         }
@@ -69,7 +69,6 @@ class SparePartController extends Controller
 
         return Redirect::back();
     }
-
 
     public function destroy(Request $request)
     {

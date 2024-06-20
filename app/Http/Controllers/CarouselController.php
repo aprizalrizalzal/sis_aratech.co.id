@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-// Belum Selesai
 
 class CarouselController extends Controller
 {
@@ -20,7 +19,7 @@ class CarouselController extends Controller
 
         $originalName = $request->file('image')->getClientOriginalName();
         $uniqueName = time() . '_' . $originalName;
-        $path = $request->file('image')->storeAs('images/carousel', $uniqueName);
+        $path = $request->file('image')->storeAs('images/carousel', $uniqueName, 'public');
 
         Carousel::create([
             'alt' => $request->alt,
@@ -35,9 +34,23 @@ class CarouselController extends Controller
         $request->validate([
             'id' => 'required|exists:carousels,id',
             'alt' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $carousel = Carousel::findOrFail($request->id);
+
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama
+            $oldImagePath = str_replace('storage/', '', $carousel->image_path);
+            Storage::disk('public')->delete($oldImagePath);
+
+            // Simpan gambar baru
+            $originalName = $request->file('image')->getClientOriginalName();
+            $uniqueName = time() . '_' . $originalName;
+            $path = $request->file('image')->storeAs('images/carousel', $uniqueName, 'public');
+
+            $carousel->image_path = 'storage/' . $path;
+        }
 
         $carousel->update([
             'alt' => $request->alt,

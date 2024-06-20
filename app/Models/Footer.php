@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Footer extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['type', 'platform', 'image_path', 'url', 'username', 'value',];
 }

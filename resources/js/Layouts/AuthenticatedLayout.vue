@@ -32,8 +32,9 @@ const isTechnician = computed(() => userRole.value === 'technician');
                             <Link :href="route('show.welcome')">
                             <ApplicationLogo class="block h-16 w-16 fill-current" />
                             </Link>
-                            <Link :href="route('show.welcome')" class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
-                                    {{ header.company }}
+                            <Link :href="route('show.welcome')"
+                                class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
+                            {{ header.company }}
                             </Link>
                         </div>
 
@@ -109,10 +110,10 @@ const isTechnician = computed(() => userRole.value === 'technician');
                                         Log Out
                                     </DropdownLink>
                                     <hr>
-                                        <DropdownLink v-if="isSuperAdmin" :href="route('setting.edit')">
-                                            <div class="flex items-center gap-2">
-                                                <SettingIcon /> <span class="font-bold">Setting</span>
-                                            </div> 
+                                    <DropdownLink v-if="isSuperAdmin" :href="route('setting.edit')">
+                                        <div class="flex items-center gap-2">
+                                            <SettingIcon /> <span class="font-bold">Setting</span>
+                                        </div>
                                     </DropdownLink>
                                 </template>
                             </Dropdown>
@@ -202,6 +203,12 @@ const isTechnician = computed(() => userRole.value === 'technician');
                         <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('logout')" method="post" as="button">
                             Log Out
+                        </ResponsiveNavLink>
+                        <hr>
+                        <ResponsiveNavLink v-if="isSuperAdmin" :href="route('setting.edit')">
+                            <div class="flex items-center gap-2">
+                                <SettingIcon /> <span class="font-bold">Setting</span>
+                            </div>
                         </ResponsiveNavLink>
                     </div>
                 </div>

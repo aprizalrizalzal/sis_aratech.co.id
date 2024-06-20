@@ -1,10 +1,21 @@
 <script setup>
-import EnvelopeIcon from '@/Components/Icon/EnvelopeIcon.vue';
-import TelephoneIcon from '@/Components/Icon/TelephoneIcon.vue';
-import WhatsappIcon from '@/Components/Icon/WhatsappIcon.vue';
-import FacebookIcon from '@/Components/Icon/FacebookIcon.vue';
-import InstagramIcon from '@/Components/Icon/InstagramIcon.vue';
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+
+const footers = usePage().props.footers;
+
+const contactFooters = computed(() => {
+    return footers.filter(footer => footer.type === 'Contact');
+});
+
+const socialMediaFooters = computed(() => {
+    return footers.filter(footer => footer.type === 'Social Media');
+});
+
+const appDownloadFooters = computed(() => {
+    return footers.filter(footer => footer.type === 'App Download');
+});
 </script>
 
 <template>
@@ -14,36 +25,23 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 <div class="text-start">
                     <ApplicationLogo class="block h-16 w-16" />
                     <h2 class="text-xl font-semibold text-green-900">{{ header.company }}</h2>
-                    <p class=" mt-4">{{  }}</p>
-                    <p class=" mt-4">Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
+                    <p class=" mt-4">{{ header.description }}</p>
                 </div>
                 <div class="mt-8 px-2 pb-6 text-start">
                     <h2 class="text-xl font-semibold text-green-900 mt-8">Contact</h2>
                     <ul class="mt-4 text-sm/relaxed">
-                        <li class="flex items-center space-x-2 mt-2">
-                            <EnvelopeIcon /> <a href="mailto:amitechpt@gmail.com" target="_blank"
-                                rel="noopener noreferrer">amitechpt@gmail.com</a>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <TelephoneIcon /> <a href="tel:+6282247912220" target="_blank"
-                                rel="noopener noreferrer">0822-4791-2220</a>
+                        <li v-for="footer in contactFooters" :key="footer.id" class="flex items-center space-x-2 mt-2">
+                            {{ footer.platform }}: <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                                footer.username }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="mt-8 px-2 pb-6 text-start">
                     <h2 class="text-xl font-semibold text-green-900 mt-8">Social Media</h2>
                     <ul class="mt-4 text-sm/relaxed">
-                        <li class="flex items-center space-x-2">
-                            <WhatsappIcon /> <a href="https://wa.me/6282247912220" target="_blank"
-                                rel="noopener noreferrer">0822-4791-2220</a>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <FacebookIcon /> <a href="https://wa.me/6282247912220" target="_blank"
-                                rel="noopener noreferrer">0822-4791-2220</a>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <InstagramIcon /> <a href="https://wa.me/6282247912220" target="_blank"
-                                rel="noopener noreferrer">0822-4791-2220</a>
+                        <li v-for="footer in socialMediaFooters" :key="footer.id" class="flex items-center space-x-2">
+                            {{ footer.platform }}: <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                                footer.username }}</a>
                         </li>
                     </ul>
                 </div>
@@ -54,6 +52,12 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                             Play Store dan
                             App Store.</p>
                     </div>
+                    <ul class="mt-4 text-sm/relaxed">
+                        <li v-for="footer in appDownloadFooters" :key="footer.id" class="flex items-center space-x-2">
+                            {{ footer.platform }}: <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                                footer.username }}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <p class="relative">{{ header.company }} &copy;2024</p>

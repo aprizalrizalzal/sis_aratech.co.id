@@ -28,17 +28,17 @@ const uploadedImageUrl = ref(null);
 const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-        form.image = file; 
-        previewUrl.value = URL.createObjectURL(file); 
+        form.image = file;
+        previewUrl.value = URL.createObjectURL(file);
     }
 };
 
 const submitForm = () => {
     if (!props.header) {
         form.post(route('store.header'), {
-            preserveScroll: true, 
+            preserveScroll: true,
             onSuccess: (response) => {
-                form.reset(); 
+                form.reset();
                 previewUrl.value = null;
                 uploadedImageUrl.value = response.image_url;
             },
@@ -50,7 +50,7 @@ const submitForm = () => {
                 }
             }
         });
-    } else{
+    } else {
         const headerId = props.header.id;
         form.put(route('update.header', { id: headerId }), {
             preserveScroll: true,
@@ -60,7 +60,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.alt) {
+                if (errors.image || errors.company || errors.description) {
                     alert('Header update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -89,7 +89,8 @@ const submitForm = () => {
                 </div>
                 <div>
                     <InputLabel for="description" value="Description Company" />
-                    <textarea id="description" type="text" v-model="form.description" class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                    <textarea id="description" type="text" v-model="form.description"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         placeholder="Enter description company" />
                     <InputError :message="form.errors.description" />
                 </div>
@@ -99,14 +100,13 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        Add Header
+                        {{ props.header ? 'Update Header' : 'Add Header' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        Header added successfully!
+                        {{ props.header ? 'Header updated successfully!' : 'Header added successfully!' }}
                     </span>
                 </div>
             </form>
         </div>
     </div>
 </template>
-

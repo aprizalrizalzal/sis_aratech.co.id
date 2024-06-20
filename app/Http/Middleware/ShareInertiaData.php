@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Footer;
 use App\Models\Header;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,11 +18,10 @@ class ShareInertiaData
      */
     public function handle(Request $request, Closure $next)
     {
-        // Mendapatkan semua data header
-        $headers = Header::all();
-
-        // Menyediakan data global untuk Inertia
-        Inertia::share('headers', $headers);
+        Inertia::share([
+            'headers' => fn () => Header::all(),
+            'footers' => fn () => Footer::all(),
+        ]);
 
         return $next($request);
     }

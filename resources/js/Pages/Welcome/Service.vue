@@ -62,8 +62,8 @@ const closeModal = () => {
                     <form @submit.prevent="submitForm" class="mt-2 space-y-2">
                         <div>
                             <InputLabel for="service_code" value="Service Code" />
-                            <TextInput id="service_code" type="text" class="mt-2 block w-full" v-model="form.service_code"
-                                placeholder="Service Code" required autofocus />
+                            <TextInput id="service_code" type="text" class="mt-2 block w-full"
+                                v-model="form.service_code" placeholder="Service Code" required />
                             <InputError class="mt-2" :message="form.errors.service_code" />
                         </div>
                         <div class="flex justify-end">
@@ -79,7 +79,7 @@ const closeModal = () => {
                 menggunakan huruf
                 kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
         </div>
-    
+
         <div
             class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
             <div class="px-2">

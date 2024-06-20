@@ -49,7 +49,7 @@ const closeModal = () => {
 };
 
 const currentPage = ref(1);
-const itemsPerPage = 15;
+const itemsPerPage = 5;
 
 const paginatedCarousels = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
