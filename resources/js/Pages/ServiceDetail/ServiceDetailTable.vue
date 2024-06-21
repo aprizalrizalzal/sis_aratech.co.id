@@ -1,6 +1,5 @@
 <script setup>
 import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
