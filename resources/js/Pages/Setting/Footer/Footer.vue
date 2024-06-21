@@ -16,6 +16,10 @@ const socialMediaFooters = computed(() => {
 const appDownloadFooters = computed(() => {
     return footers.filter(footer => footer.type === 'App Download');
 });
+
+const currentYear = computed(() => {
+    return new Date().getFullYear();
+});
 </script>
 
 <template>
@@ -33,7 +37,7 @@ const appDownloadFooters = computed(() => {
                         <li v-for="footer in contactFooters" :key="footer.id" class="flex items-center space-x-2 mt-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
                             <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
-                                    footer.value }}</a>
+                                footer.value }}</a>
                         </li>
                     </ul>
                 </div>
@@ -63,7 +67,7 @@ const appDownloadFooters = computed(() => {
                     </ul>
                 </div>
             </div>
-            <p class="relative">{{ header.company }} &copy;2024</p>
+            <p class="relative">{{ currentYear }}&copy; All Copyrights Reserved by {{ header.company }} </p>
         </div>
     </div>
 </template>
