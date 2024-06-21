@@ -174,7 +174,7 @@ const previousPage = () => {
           <div class="overflow-hidden sm:rounded-md">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 gap-4">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 md:grid-cols-2 gap-4 m-auto">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-2 gap-4 m-auto my-4">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
@@ -190,7 +190,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isAdmin" class="grid grid-cols-1 md:grid-cols-2 gap-4 m-auto">
+              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-2 gap-4 m-auto my-4">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -210,7 +210,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isTechnician" class="grid grid-cols-1 md:grid-cols-2 gap-4 m-auto">
+              <div v-if="isTechnician" class="grid grid-cols-1 sm:grid-cols-2 gap-4 m-auto my-4">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">

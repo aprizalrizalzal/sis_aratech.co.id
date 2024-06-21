@@ -101,11 +101,11 @@ const closeModal = () => {
         <Modal :show="showModalAnnouncement" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
-                    Only Super Admin or Admin Can Delete Accounts
+                    Only Super Admin Can Delete Accounts
                 </h2>
 
                 <p class="mt-1 text-sm text-green-600">
-                    Please note that only Super Admin or Admin users have the permissions to delete accounts. If your
+                    Please note that only Super Admin user have the permissions to delete accounts. If your
                     account is deleted, all of its resources and data will be permanently removed.
                 </p>
 
