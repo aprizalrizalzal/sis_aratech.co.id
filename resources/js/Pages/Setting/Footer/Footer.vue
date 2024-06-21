@@ -33,7 +33,6 @@ const appDownloadFooters = computed(() => {
                         <li v-for="footer in contactFooters" :key="footer.id" class="flex items-center space-x-2 mt-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
                             <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
-                                footer.username }}{{
                                     footer.value }}</a>
                         </li>
                     </ul>
@@ -44,7 +43,7 @@ const appDownloadFooters = computed(() => {
                         <li v-for="footer in socialMediaFooters" :key="footer.id" class="flex items-center space-x-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
                             <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
-                                footer.username }}</a>
+                                footer.value }}</a>
                         </li>
                     </ul>
                 </div>
@@ -55,11 +54,11 @@ const appDownloadFooters = computed(() => {
                             Play Store dan
                             App Store.</p>
                     </div>
-                    <ul class="mt-4 text-sm/relaxed">
+                    <ul class="flex gap-2 mt-4 text-sm/relaxed">
                         <li v-for="footer in appDownloadFooters" :key="footer.id" class="flex items-center space-x-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
                             <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
-                                footer.username }}</a>
+                                footer.value }}</a>
                         </li>
                     </ul>
                 </div>
