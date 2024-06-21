@@ -78,11 +78,11 @@ const closeModal = () => {
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ footer.type }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ footer.platform }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ footer.url }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ footer.username }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ footer.value }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.type }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.platform }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.url }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.username }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.value }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalFooterUpdate(footer)" class="m-2">Update
                         </SecondaryButton>

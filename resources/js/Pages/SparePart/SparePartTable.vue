@@ -97,7 +97,7 @@ const previousPage = () => {
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ sparePart.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
@@ -108,7 +108,7 @@ const previousPage = () => {
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ formatCurrency(sparePart.price) }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update

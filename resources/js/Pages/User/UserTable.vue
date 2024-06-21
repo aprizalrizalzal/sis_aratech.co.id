@@ -88,8 +88,8 @@ const previousPage = () => {
                 <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.role }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete</DangerButton>

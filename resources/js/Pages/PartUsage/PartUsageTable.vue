@@ -95,10 +95,10 @@ const previousPage = () => {
                 <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         partUsage.service_detail.service_detail_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ partUsage.spare_part.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ partUsage.quantity }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update
                         </SecondaryButton>

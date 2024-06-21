@@ -83,8 +83,8 @@ const closeModal = () => {
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ header.company }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ header.description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ header.company }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ header.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalHeaderUpdate(header)" class="m-2">Update
                         </SecondaryButton>

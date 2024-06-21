@@ -93,14 +93,14 @@ const previousPage = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
-                            <img :src="`${footer.image_path}`" :alt="footer.type"
+                            <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                                 class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalCarouselUpdateImage(footer.id)" class="m-2 px-0.5 py-0.5">
+                            <PrimaryButton @click="showModalCarouselUpdateImage(carousel.id)" class="m-2 px-0.5 py-0.5">
                                 <EditIcon />
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ carousel.alt }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ carousel.alt }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCarouselUpdate(carousel)" class="m-2">Update
                         </SecondaryButton>

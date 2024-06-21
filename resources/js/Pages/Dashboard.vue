@@ -298,14 +298,14 @@ const previousPage = () => {
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
                           +
                           index + 1 }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.customer.user.name }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.device.model }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.device.serial_number }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
-                        <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.name }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}
                         </td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                       </tr>
