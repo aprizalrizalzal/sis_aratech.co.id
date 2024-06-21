@@ -34,32 +34,35 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/user', [UserController::class, 'destroy'])->name('destroy.user');
 
         // DeviceTypeController
-        Route::get('/deviceTypes', [DeviceTypeController::class, 'show'])->name('show.device.types');
-        Route::post('/deviceType', [DeviceTypeController::class, 'store'])->name('store.device.type');
-        Route::put('/deviceType', [DeviceTypeController::class, 'update'])->name('update.device.type');
-        Route::delete('/deviceType', [DeviceTypeController::class, 'destroy'])->name('destroy.device.type');
+        Route::get('/device-types', [DeviceTypeController::class, 'show'])->name('show.device.types');
+        Route::post('/device-type', [DeviceTypeController::class, 'store'])->name('store.device.type');
+        Route::put('/device-type', [DeviceTypeController::class, 'update'])->name('update.device.type');
+        Route::delete('/device-type', [DeviceTypeController::class, 'destroy'])->name('destroy.device.type');
 
         // SparePartController
-        Route::get('/spareParts', [SparePartController::class, 'show'])->name('show.spare.parts');
-        Route::post('/sparePart', [SparePartController::class, 'store'])->name('store.spare.part');
-        Route::put('/sparePart', [SparePartController::class, 'update'])->name('update.spare.part');
-        Route::delete('/sparePart', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
-
-        // CarouselController
-        Route::post('/carousel', [CarouselController::class, 'store'])->name('store.carousel');
-        Route::put('/carousel', [CarouselController::class, 'update'])->name('update.carousel');
-        Route::delete('/carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
+        Route::get('/spare-parts', [SparePartController::class, 'show'])->name('show.spare.parts');
+        Route::post('/spare-part', [SparePartController::class, 'store'])->name('store.spare.part');
+        Route::put('/spare-part', [SparePartController::class, 'update'])->name('update.spare.part');
+        Route::delete('/spare-part', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
 
         // SettingController
         Route::get('/setting', [SettingController::class, 'show'])->name('setting.edit');
 
-        Route::post('/settingHeader', [HeaderController::class, 'store'])->name('store.header');
-        Route::put('/settingHeader', [HeaderController::class, 'update'])->name('update.header');
-        Route::delete('/settingHeader', [HeaderController::class, 'destroy'])->name('destroy.header');
+        // HeaderController
+        Route::post('/setting-header', [HeaderController::class, 'store'])->name('store.header');
+        Route::post('/setting-header-image', [HeaderController::class, 'update_image'])->name('update.header.image');
+        Route::put('/setting-header', [HeaderController::class, 'update'])->name('update.header');
+        Route::delete('/setting-header', [HeaderController::class, 'destroy'])->name('destroy.header');
 
-        Route::post('/settingFooter', [FooterController::class, 'store'])->name('store.footer');
-        Route::put('/settingFooter', [FooterController::class, 'update'])->name('update.footer');
-        Route::delete('/settingFooter', [FooterController::class, 'destroy'])->name('destroy.footer');
+        // CarouselController
+        Route::post('/setting-carousel', [CarouselController::class, 'store'])->name('store.carousel');
+        Route::put('/setting-carousel', [CarouselController::class, 'update'])->name('update.carousel');
+        Route::delete('/setting-carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
+
+        // FooterController
+        Route::post('/setting-footer', [FooterController::class, 'store'])->name('store.footer');
+        Route::put('/setting-footer', [FooterController::class, 'update'])->name('update.footer');
+        Route::delete('/setting-footer', [FooterController::class, 'destroy'])->name('destroy.footer');
     });
 
     Route::middleware(['role:admin'])->group(function () {
@@ -88,18 +91,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:technician'])->group(function () {
 
         // ServiceDetailController
-        Route::get('/serviceDetails', [ServiceDetailController::class, 'show'])->name('show.service.details');
-        Route::post('/serviceDetail', [ServiceDetailController::class, 'store'])->name('store.service.detail');
-        Route::put('/serviceDetail', [ServiceDetailController::class, 'update'])->name('update.service.detail');
-        Route::delete('/serviceDetail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
+        Route::get('/service-details', [ServiceDetailController::class, 'show'])->name('show.service.details');
+        Route::post('/service-detail', [ServiceDetailController::class, 'store'])->name('store.service.detail');
+        Route::put('/service-detail', [ServiceDetailController::class, 'update'])->name('update.service.detail');
+        Route::delete('/service-detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
 
         Route::get('service/detail/print/{service_detail_code}', [ServiceDetailController::class, 'print'])->name('service.detail.print');
 
         // PartUsageController
-        Route::get('/partUsages', [PartUsageController::class, 'show'])->name('show.part.usages');
-        Route::post('/partUsage', [PartUsageController::class, 'store'])->name('store.part.usage');
-        Route::put('/partUsage', [PartUsageController::class, 'update'])->name('update.part.usage');
-        Route::delete('/partUsage', [PartUsageController::class, 'destroy'])->name('destroy.part.usage');
+        Route::get('/part-usages', [PartUsageController::class, 'show'])->name('show.part.usages');
+        Route::post('/part-usage', [PartUsageController::class, 'store'])->name('store.part.usage');
+        Route::put('/part-usage', [PartUsageController::class, 'update'])->name('update.part.usage');
+        Route::delete('/part-usage', [PartUsageController::class, 'destroy'])->name('destroy.part.usage');
     });
 });
 

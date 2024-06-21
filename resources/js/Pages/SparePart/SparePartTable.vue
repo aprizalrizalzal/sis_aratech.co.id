@@ -5,6 +5,8 @@ import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import EditIcon from '@/Components/Icon/EditIcon.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -97,8 +99,14 @@ const previousPage = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ sparePart.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
-                        <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                            class="w-24 h-24 object-cover rounded-md mx-auto" />
+                        <div class="flex justify-center items-center m-2">
+                            <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
+                                class="w-16 h-16 object-cover rounded-md mx-2" />
+                            <PrimaryButton @click="showModalSparePartUpdateImage(sparePart.id)"
+                                class="m-2 px-0.5 py-0.5">
+                                <EditIcon />
+                            </PrimaryButton>
+                        </div>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300">{{ formatCurrency(sparePart.price) }}
                     </td>

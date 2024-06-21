@@ -13,6 +13,7 @@ const form = useForm({
 });
 
 const props = defineProps({
+    headerId: Number,
     header: Object,
 });
 
@@ -34,7 +35,25 @@ const handleFileChange = (event) => {
 };
 
 const submitForm = () => {
-    if (!props.header) {
+    if (props.headerId) {
+        const headerId = props.headerId;
+        form.post(route('update.header.image', { id: headerId }), {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                form.data();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+                console.log(response);
+            },
+            onError: (errors) => {
+                if (errors.image || errors.company || errors.description) {
+                    alert('Header update image failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    } else if (!props.header) {
         form.post(route('store.header'), {
             preserveScroll: true,
             onSuccess: (response) => {
@@ -54,10 +73,8 @@ const submitForm = () => {
         const headerId = props.header.id;
         form.put(route('update.header', { id: headerId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
-                previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image || errors.company || errors.description) {
@@ -76,22 +93,22 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="space-y-4">
-                <div>
+                <div v-if="!props.header && !props.header || props.headerId">
                     <InputLabel for="image" value="Image" />
                     <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
-                <div>
+                <div v-if="!props.headerId">
                     <InputLabel for="company" value="Company Name" />
                     <TextInput id="company" type="text" v-model="form.company" class="mt-1 block w-full"
-                        placeholder="Company name" required autofocus/>
+                        placeholder="Company name" required autofocus />
                     <InputError :message="form.errors.company" />
                 </div>
-                <div>
+                <div v-if="!props.headerId">
                     <InputLabel for="description" value="Description Company" />
                     <textarea id="description" type="text" v-model="form.description"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
-                        placeholder="Description company or address" autofocus/>
+                        placeholder="Description company or address" autofocus />
                     <InputError :message="form.errors.description" />
                 </div>
                 <div v-if="previewUrl" class="mt-4">

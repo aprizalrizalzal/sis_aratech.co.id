@@ -35,13 +35,11 @@ class HeaderController extends Controller
         return Redirect::back();
     }
 
-    public function update(Request $request)
+    public function update_image(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:headers,id',
-            'image' => 'nullable|image|mimes:png|max:512',
-            'company' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'image' => 'required|image|mimes:png|max:512',
         ]);
 
         $header = Header::findOrFail($request->id);
@@ -55,7 +53,21 @@ class HeaderController extends Controller
             $path = $request->file('image')->storeAs('images/favicon', $fileName, 'public');
 
             $header->image_path = 'storage/' . $path;
+            $header->save();
         }
+
+        return Redirect::back();
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:headers,id',
+            'company' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $header = Header::findOrFail($request->id);
 
         $header->update([
             'company' => $request->company,

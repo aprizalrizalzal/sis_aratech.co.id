@@ -5,18 +5,27 @@ import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import EditIcon from '@/Components/Icon/EditIcon.vue';
 
 const props = defineProps({
     headers: Array,
 });
 
+const showingModelHeaderUpdateImage = ref(false);
 const showingModelHeaderUpdate = ref(false);
+const selectedHeaderId = ref(null);
 const selectedHeader = ref(null);
 
 const confirmingHeaderDeletion = ref(false);
 const form = useForm({
     id: null,
 });
+
+const showModalHeaderUpdateImage = (headerId) => {
+    selectedHeaderId.value = headerId;
+    showingModelHeaderUpdateImage.value = true;
+};
 
 const showModalHeaderUpdate = (header) => {
     selectedHeader.value = header;
@@ -44,8 +53,9 @@ const deleteheader = () => {
 };
 
 const closeModal = () => {
-    confirmingHeaderDeletion.value = false;
+    showingModelHeaderUpdateImage.value = false;
     showingModelHeaderUpdate.value = false;
+    confirmingHeaderDeletion.value = false;
 };
 </script>
 
@@ -64,9 +74,14 @@ const closeModal = () => {
             <tbody>
                 <tr v-for="(header, index) in headers" :key="header.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <img :src="`${header.image_path}`" :alt="header.Company"
-                            class="w-24 h-24 object-cover rounded-md mx-auto" />
+                    <td class="py-2 px-4 border-b border-green-300">
+                        <div class="flex justify-center items-center m-2">
+                            <img :src="`${header.image_path}`" :alt="header.Company"
+                                class="w-16 h-16 object-cover rounded-md mx-2" />
+                            <PrimaryButton @click="showModalHeaderUpdateImage(header.id)" class="m-2 px-0.5 py-0.5">
+                                <EditIcon />
+                            </PrimaryButton>
+                        </div>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300">{{ header.company }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ header.description }}</td>
@@ -82,12 +97,21 @@ const closeModal = () => {
         </table>
     </div>
 
+    <Modal v-model:show="showingModelHeaderUpdateImage">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelHeaderUpdateImage = false">X</DangerButton>
+            </div>
+            <HeaderForm :headerId="selectedHeaderId" />
+        </div>
+    </Modal>
+
     <Modal v-model:show="showingModelHeaderUpdate">
         <div class="m-6">
             <div class="flex justify-end">
                 <DangerButton @click="showingModelHeaderUpdate = false">X</DangerButton>
             </div>
-            <headerForm :header="selectedHeader" />
+            <HeaderForm :header="selectedHeader" />
         </div>
     </Modal>
 

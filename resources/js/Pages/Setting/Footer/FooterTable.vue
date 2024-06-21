@@ -5,6 +5,8 @@ import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import EditIcon from '@/Components/Icon/EditIcon.vue';
 
 const props = defineProps({
     footers: Array,
@@ -67,9 +69,14 @@ const closeModal = () => {
             <tbody>
                 <tr v-for="(footer, index) in footers" :key="footer.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <img :src="`${footer.image_path}`" :alt="footer.Company"
-                            class="w-24 h-24 object-cover rounded-md mx-auto" />
+                    <td class="py-2 px-4 border-b border-green-300">
+                        <div class="flex justify-center items-center m-2">
+                            <img :src="`${footer.image_path}`" :alt="footer.type"
+                                class="w-16 h-16 object-cover rounded-md mx-2" />
+                            <PrimaryButton @click="showModalHeaderUpdateImage(footer.id)" class="m-2 px-0.5 py-0.5">
+                                <EditIcon />
+                            </PrimaryButton>
+                        </div>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300">{{ footer.type }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ footer.platform }}</td>

@@ -104,28 +104,28 @@ const submitForm = () => {
                 <div>
                     <InputLabel for="platform" value="Platform" />
                     <TextInput id="platform" type="text" v-model="form.platform" class="mt-1 block w-full"
-                        placeholder="Platform" autofocus/>
+                        placeholder="Gmail, Facebook, Instagram, etc..." autofocus />
                     <InputError :message="form.errors.platform" />
                 </div>
 
                 <div>
                     <InputLabel for="url" value="URL" />
-                    <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full"
-                        placeholder="URL" autofocus/>
+                    <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full" placeholder="https://"
+                        autofocus />
                     <InputError :message="form.errors.url" />
                 </div>
 
                 <div>
                     <InputLabel for="username" value="Username" />
                     <TextInput id="username" type="text" v-model="form.username" class="mt-1 block w-full"
-                        placeholder="Username" autofocus/>
+                        placeholder="Facebook, Instagram, etc..." autofocus />
                     <InputError :message="form.errors.username" />
                 </div>
 
                 <div>
                     <InputLabel for="value" value="Value" />
                     <TextInput id="value" type="text" v-model="form.value" class="mt-1 block w-full"
-                        placeholder="Value" autofocus/>
+                        placeholder="Email, Facebook, Instagram, etc..." autofocus />
                     <InputError :message="form.errors.value" />
                 </div>
 
