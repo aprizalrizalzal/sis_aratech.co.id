@@ -74,10 +74,10 @@ const closeModal = () => {
                     <InputLabel for="password" value="Password" class="sr-only" />
 
                     <!-- <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
-                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" /> -->
+                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" required autofocus /> -->
 
                     <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
-                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="validatePassword" />
+                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="validatePassword" required autofocus />
 
                     <InputError :message="form.errors.password" class="mt-2" />
                 </div>

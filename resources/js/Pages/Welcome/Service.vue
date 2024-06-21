@@ -63,7 +63,7 @@ const closeModal = () => {
                         <div>
                             <InputLabel for="service_code" value="Service Code" />
                             <TextInput id="service_code" type="text" class="mt-2 block w-full"
-                                v-model="form.service_code" placeholder="Service Code" required />
+                                v-model="form.service_code" placeholder="Service Code" required autofocus />
                             <InputError class="mt-2" :message="form.errors.service_code" />
                         </div>
                         <div class="flex justify-end">

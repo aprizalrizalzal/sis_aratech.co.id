@@ -77,21 +77,21 @@ const submitForm = () => {
         <div class="w-full">
             <form @submit.prevent="submitForm" class="space-y-4">
                 <div>
-                    <InputLabel for="image" value="Icon" />
+                    <InputLabel for="image" value="Image" />
                     <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
                 <div>
                     <InputLabel for="company" value="Company Name" />
                     <TextInput id="company" type="text" v-model="form.company" class="mt-1 block w-full"
-                        placeholder="Enter company name" />
+                        placeholder="Company name" required autofocus/>
                     <InputError :message="form.errors.company" />
                 </div>
                 <div>
                     <InputLabel for="description" value="Description Company" />
                     <textarea id="description" type="text" v-model="form.description"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
-                        placeholder="Enter description company" />
+                        placeholder="Description company or address" autofocus/>
                     <InputError :message="form.errors.description" />
                 </div>
                 <div v-if="previewUrl" class="mt-4">

@@ -55,9 +55,9 @@ const closeModal = () => {
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Type</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Platform</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">URL</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Username</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Value</th>

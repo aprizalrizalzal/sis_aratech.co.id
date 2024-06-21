@@ -90,42 +90,42 @@ const submitForm = () => {
         <div class="w-full">
             <form @submit.prevent="submitForm" class="space-y-4">
                 <div>
-                    <InputLabel for="image" value="Icon" />
+                    <InputLabel for="image" value="Image" />
                     <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
                 <div>
-                    <DropdownSelect id="type" label="type" :options="typeOptions" optionProperty="name"
+                    <DropdownSelect id="type" label="Type" :options="typeOptions" optionProperty="name"
                         valueProperty="name" v-model="form.type"
-                        :placeholder="props.service ? props.service.type : 'Select type'" />
+                        :placeholder="props.footer ? props.footer.type : 'Select type'" />
                     <InputError class="mt-3" :message="form.errors.type" />
                 </div>
 
                 <div>
                     <InputLabel for="platform" value="Platform" />
                     <TextInput id="platform" type="text" v-model="form.platform" class="mt-1 block w-full"
-                        placeholder="Enter platform" />
+                        placeholder="Platform" autofocus/>
                     <InputError :message="form.errors.platform" />
                 </div>
 
                 <div>
                     <InputLabel for="url" value="URL" />
                     <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full"
-                        placeholder="Enter url" />
+                        placeholder="URL" autofocus/>
                     <InputError :message="form.errors.url" />
                 </div>
 
                 <div>
                     <InputLabel for="username" value="Username" />
                     <TextInput id="username" type="text" v-model="form.username" class="mt-1 block w-full"
-                        placeholder="Enter username name" />
+                        placeholder="Username" autofocus/>
                     <InputError :message="form.errors.username" />
                 </div>
 
                 <div>
                     <InputLabel for="value" value="Value" />
                     <TextInput id="value" type="text" v-model="form.value" class="mt-1 block w-full"
-                        placeholder="Enter value" />
+                        placeholder="Value" autofocus/>
                     <InputError :message="form.errors.value" />
                 </div>
 

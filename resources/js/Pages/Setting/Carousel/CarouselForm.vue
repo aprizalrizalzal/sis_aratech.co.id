@@ -84,7 +84,7 @@ const submitForm = () => {
                 <div>
                     <InputLabel for="alt" value="Image Alt Text" />
                     <TextInput id="alt" type="text" v-model="form.alt" class="mt-1 block w-full"
-                        placeholder="Enter alt text" />
+                        placeholder="Enter alt text" required autofocus/>
                     <InputError :message="form.errors.alt" />
                 </div>
                 <div v-if="previewUrl" class="mt-4">

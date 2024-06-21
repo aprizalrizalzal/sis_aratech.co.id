@@ -54,9 +54,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/setting', [SettingController::class, 'show'])->name('setting.edit');
 
         Route::post('/settingHeader', [HeaderController::class, 'store'])->name('store.header');
+        Route::put('/settingHeader', [HeaderController::class, 'update'])->name('update.header');
         Route::delete('/settingHeader', [HeaderController::class, 'destroy'])->name('destroy.header');
 
         Route::post('/settingFooter', [FooterController::class, 'store'])->name('store.footer');
+        Route::put('/settingFooter', [FooterController::class, 'update'])->name('update.footer');
         Route::delete('/settingFooter', [FooterController::class, 'destroy'])->name('destroy.footer');
     });
 

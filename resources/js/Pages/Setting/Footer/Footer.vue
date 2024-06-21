@@ -31,8 +31,10 @@ const appDownloadFooters = computed(() => {
                     <h2 class="text-xl font-semibold text-green-900 mt-8">Contact</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in contactFooters" :key="footer.id" class="flex items-center space-x-2 mt-2">
-                            {{ footer.platform }}: <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
-                                footer.username }}</a>
+                            <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
+                            <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                                footer.username }}{{
+                                    footer.value }}</a>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +42,8 @@ const appDownloadFooters = computed(() => {
                     <h2 class="text-xl font-semibold text-green-900 mt-8">Social Media</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in socialMediaFooters" :key="footer.id" class="flex items-center space-x-2">
-                            {{ footer.platform }}: <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                            <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
+                            <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
                                 footer.username }}</a>
                         </li>
                     </ul>
@@ -54,7 +57,8 @@ const appDownloadFooters = computed(() => {
                     </div>
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in appDownloadFooters" :key="footer.id" class="flex items-center space-x-2">
-                            {{ footer.platform }}: <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                            <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
+                            <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
                                 footer.username }}</a>
                         </li>
                     </ul>
