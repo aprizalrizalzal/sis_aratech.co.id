@@ -56,7 +56,7 @@ onUnmounted(() => {
                 <div v-for="(carousel, index) in carousels" :key="carousel.id" :id="'carousel-' + index"
                     v-show="index === currentIndex" class="duration-700 ease-in-out">
                     <img :src="carousel.image_path" :alt="carousel.alt"
-                        class="absolute block h-full -translate-x-1/2 -translate-y-1/4 top-1/4 left-1/2">
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/4 top-1/4 left-1/2">
                 </div>
             </div>
             <div
