@@ -12,7 +12,7 @@ class FooterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,ico|max:512',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
             'type' => 'required|string|max:255',
             'platform' => 'nullable|string',
             'url' => 'nullable|string',
@@ -41,11 +41,34 @@ class FooterController extends Controller
         return Redirect::back();
     }
 
+    public function update_image(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:footers,id',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+        ]);
+
+        $footer = Footer::findOrFail($request->id);
+
+        if ($request->hasFile('image')) {
+            $oldPath = str_replace('storage/', '', $footer->image_path);
+            Storage::disk('public')->delete($oldPath);
+
+            $originalName = $request->file('image')->getClientOriginalName();
+            $uniqueName = time() . '_' . $originalName;
+            $path = $request->file('image')->storeAs('images/footer', $uniqueName, 'public');
+
+            $footer->image_path = 'storage/' . $path;
+            $footer->save();
+        }
+
+        return Redirect::back();
+    }
+
     public function update(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:footers,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:512',
             'type' => 'required|string|max:255',
             'platform' => 'nullable|string',
             'url' => 'nullable|string',
@@ -54,19 +77,6 @@ class FooterController extends Controller
         ]);
 
         $footer = Footer::findOrFail($request->id);
-
-        if ($request->hasFile('image')) {
-            if ($footer->image_path) {
-                $oldPath = str_replace('storage/', '', $footer->image_path);
-                Storage::disk('public')->delete($oldPath);
-            }
-
-            $originalName = $request->file('image')->getClientOriginalName();
-            $uniqueName = time() . '_' . $originalName;
-            $path = $request->file('image')->storeAs('images/footers', $uniqueName, 'public');
-
-            $footer->image_path = 'storage/' . $path;
-        }
 
         $footer->update([
             'type' => $request->type,

@@ -23,6 +23,7 @@ const typeOptions = ref([
 ]);
 
 const props = defineProps({
+    footerId: Number,
     footer: Object,
 });
 
@@ -47,7 +48,24 @@ const handleFileChange = (event) => {
 };
 
 const submitForm = () => {
-    if (!props.footer) {
+    if (props.footerId) {
+        const footerId = props.footerId;
+        form.post(route('update.footer.image', { id: footerId }), {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                form.data();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
+            onError: (errors) => {
+                if (errors.image) {
+                    alert('Footer update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    } else if (!props.footer) {
         form.post(route('store.footer'), {
             preserveScroll: true,
             onSuccess: (response) => {
@@ -67,13 +85,11 @@ const submitForm = () => {
         const footerId = props.footer.id;
         form.put(route('update.footer', { id: footerId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
-                previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.type || errors.platform || errors.url || errors.username || errors.value) {
+                if (errors.type || errors.platform || errors.url || errors.username || errors.value) {
                     alert('Footer update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -89,40 +105,40 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="space-y-4">
-                <div>
+                <div v-if="!props.footer || !props.footer && props.footerId">
                     <InputLabel for="image" value="Image" />
                     <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
-                <div>
+                <div v-if="!props.footerId">
                     <DropdownSelect id="type" label="Type" :options="typeOptions" optionProperty="name"
                         valueProperty="name" v-model="form.type"
                         :placeholder="props.footer ? props.footer.type : 'Select type'" />
                     <InputError class="mt-3" :message="form.errors.type" />
                 </div>
 
-                <div>
+                <div v-if="!props.footerId">
                     <InputLabel for="platform" value="Platform" />
                     <TextInput id="platform" type="text" v-model="form.platform" class="mt-1 block w-full"
                         placeholder="Gmail, Facebook, Instagram, etc..." autofocus />
                     <InputError :message="form.errors.platform" />
                 </div>
 
-                <div>
+                <div v-if="!props.footerId">
                     <InputLabel for="url" value="URL" />
                     <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full" placeholder="https://"
                         autofocus />
                     <InputError :message="form.errors.url" />
                 </div>
 
-                <div>
+                <div v-if="!props.footerId">
                     <InputLabel for="username" value="Username" />
                     <TextInput id="username" type="text" v-model="form.username" class="mt-1 block w-full"
                         placeholder="Facebook, Instagram, etc..." autofocus />
                     <InputError :message="form.errors.username" />
                 </div>
 
-                <div>
+                <div v-if="!props.footerId">
                     <InputLabel for="value" value="Value" />
                     <TextInput id="value" type="text" v-model="form.value" class="mt-1 block w-full"
                         placeholder="Email, Facebook, Instagram, etc..." autofocus />

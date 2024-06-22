@@ -12,13 +12,20 @@ const props = defineProps({
     footers: Array,
 });
 
+const showingModelFooterUpdateImage = ref(false);
 const showingModelFooterUpdate = ref(false);
+const selectedFooterId = ref(null);
 const selectedFooter = ref(null);
 
 const confirmingFooterDeletion = ref(false);
 const form = useForm({
     id: null,
 });
+
+const showModalFooterUpdateImage = (footerId) => {
+    selectedFooterId.value = footerId;
+    showingModelFooterUpdateImage.value = true;
+};
 
 const showModalFooterUpdate = (footer) => {
     selectedFooter.value = footer;
@@ -48,6 +55,7 @@ const deleteFooter = () => {
 const closeModal = () => {
     confirmingFooterDeletion.value = false;
     showingModelFooterUpdate.value = false;
+    showingModelFooterUpdateImage.value = false;
 };
 </script>
 
@@ -73,7 +81,7 @@ const closeModal = () => {
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type"
                                 class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalHeaderUpdateImage(footer.id)" class="m-2 px-0.5 py-0.5">
+                            <PrimaryButton @click="showModalFooterUpdateImage(footer.id)" class="m-2 px-0.5 py-0.5">
                                 <EditIcon />
                             </PrimaryButton>
                         </div>
@@ -94,6 +102,15 @@ const closeModal = () => {
             </tbody>
         </table>
     </div>
+
+    <Modal v-model:show="showingModelFooterUpdateImage">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelFooterUpdateImage = false">X</DangerButton>
+            </div>
+            <footerForm :footerId="selectedFooterId" />
+        </div>
+    </Modal>
 
     <Modal v-model:show="showingModelFooterUpdate">
         <div class="m-6">
