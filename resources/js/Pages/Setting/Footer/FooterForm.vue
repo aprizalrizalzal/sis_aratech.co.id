@@ -127,21 +127,21 @@ const submitForm = () => {
                 <div v-if="!props.footerId">
                     <InputLabel for="url" value="URL" />
                     <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full" placeholder="https://"
-                        autofocus />
+                         />
                     <InputError :message="form.errors.url" />
                 </div>
 
                 <div v-if="!props.footerId">
                     <InputLabel for="username" value="Username" />
                     <TextInput id="username" type="text" v-model="form.username" class="mt-1 block w-full"
-                        placeholder="Facebook, Instagram, etc..." autofocus />
+                        placeholder="Facebook, Instagram, etc..." />
                     <InputError :message="form.errors.username" />
                 </div>
 
                 <div v-if="!props.footerId">
                     <InputLabel for="value" value="Value" />
                     <TextInput id="value" type="text" v-model="form.value" class="mt-1 block w-full"
-                        placeholder="Email, Facebook, Instagram, etc..." autofocus />
+                        placeholder="Email, Facebook, Instagram, etc..." />
                     <InputError :message="form.errors.value" />
                 </div>
 

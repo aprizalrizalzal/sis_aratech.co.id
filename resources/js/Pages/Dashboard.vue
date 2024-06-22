@@ -227,7 +227,7 @@ const previousPage = () => {
                 </CardButton>
               </div>
               <div v-if="!isCustomer && !isAdmin && !isTechnician" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
-                <div class="flex w-full gap-2 justify-between overflow-x-auto">
+                <!-- <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white p-4">
                     <DateTimePicker 
                       id="start_date_picker" 
@@ -245,7 +245,7 @@ const previousPage = () => {
                   <div class="mt-auto">
                     <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
                   </div>
-                </div>
+                </div> -->
                 <LineChart :dataChart="dataChart" />
               </div>
               <div v-if="isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">

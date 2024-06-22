@@ -75,7 +75,7 @@ const submitForm = () => {
                 <div>
                     <InputLabel class="mt-3" for="serial_number" value="Serial Number" />
                     <TextInput id="serial_number" type="text" class="mt-1 block w-full" v-model="form.serial_number"
-                        placeholder="Serial Number" required autofocus />
+                        placeholder="Serial Number" required />
                     <InputError class="mt-3" :message="form.errors.serial_number" />
                 </div>
                 <div>

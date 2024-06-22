@@ -38,27 +38,27 @@ const submit = () => {
 
             <div class="mt-4">
                 <InputLabel for="email" value="Email" />
-                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus 
+                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required  
                     autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="phone" value="Phone" />
-                <TextInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required autofocus />
+                <TextInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required  />
                 <InputError class="mt-2" :message="form.errors.phone" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="address" value="Address" />
                 <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address" required
-                    autofocus />
+                     />
                 <InputError class="mt-2" :message="form.errors.address" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
-                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autofocus
+                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
                     autocomplete="new-password" />
 
                 <InputError class="mt-2" :message="form.errors.password" />
@@ -67,7 +67,7 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel for="password_confirmation" value="Confirm Password" />
                 <TextInput id="password_confirmation" type="password" class="mt-1 block w-full"
-                    v-model="form.password_confirmation" required autofocus autocomplete="new-password" />
+                    v-model="form.password_confirmation" required autocomplete="new-password" />
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>

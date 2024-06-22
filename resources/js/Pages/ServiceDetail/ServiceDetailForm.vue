@@ -96,19 +96,19 @@ const submitForm = () => {
                 <div>
                     <InputLabel class="mt-3" for="problem_description" value="Problem Description" />
                     <TextInput id="problem_description" type="text" class="mt-1 block w-full"
-                        v-model="form.problem_description" placeholder="Problem Description" required autofocus />
+                        v-model="form.problem_description" placeholder="Problem Description" required />
                     <InputError class="mt-3" :message="form.errors.problem_description" />
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />
                     <textarea id="repair_description" type="text" class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
-                        v-model="form.repair_description" placeholder="Repair Description" required autofocus />
+                        v-model="form.repair_description" placeholder="Repair Description" required />
                     <InputError class="mt-3" :message="form.errors.repair_description" />
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="cost" value="Cost" />
                     <TextInput id="cost" type="text" class="mt-1 block w-full" v-model="form.cost" placeholder="Cost"
-                        required autofocus />
+                        required />
                     <InputError class="mt-3" :message="form.errors.cost" />
                 </div>
                 <div>
