@@ -16,8 +16,15 @@ const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
+const showingModelSparePartUpdateImage = ref(false);
 const showingModelSparePartUpdate = ref(false);
+const selectedSparePartId = ref(null);
 const selectedSparePart = ref(null);
+
+const showModalSparePartUpdateImage = (sparePartId) => {
+    selectedSparePartId.value = sparePartId;
+    showingModelSparePartUpdateImage.value = true;
+};
 
 const showModalSparePartUpdate = (sparePart) => {
     selectedSparePart.value = sparePart;
@@ -53,6 +60,7 @@ const deleteSparePart = () => {
 const closeModal = () => {
     confirmingSparePartDeletion.value = false;
     showingModelSparePartUpdate.value = false;
+    showingModelSparePartUpdateImage.value = false;
 };
 
 const currentPage = ref(1);
@@ -127,6 +135,15 @@ const previousPage = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
+
+    <Modal v-model:show="showingModelSparePartUpdateImage">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelSparePartUpdateImage = false">X</DangerButton>
+            </div>
+            <SparePartForm :sparePartId="selectedSparePartId" />
+        </div>
+    </Modal>
 
     <Modal v-model:show="showingModelSparePartUpdate">
         <div class="m-6">

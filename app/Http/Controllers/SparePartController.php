@@ -40,27 +40,39 @@ class SparePartController extends Controller
         return Redirect::back();
     }
 
-    public function update(Request $request)
+    public function update_image(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
-            'price' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
         ]);
 
         $sparePart = SparePart::findOrFail($request->id);
 
         if ($request->hasFile('image')) {
-            $oldImagePath = str_replace('storage/', '', $sparePart->image_path);
-            Storage::disk('public')->delete($oldImagePath);
+            $oldPath = str_replace('storage/', '', $sparePart->image_path);
+            Storage::disk('public')->delete($oldPath);
 
             $originalName = $request->file('image')->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
-            $path = $request->file('image')->storeAs('images/spareParts', $uniqueName, 'public');
+            $path = $request->file('image')->storeAs('images/sparePart', $uniqueName, 'public');
 
             $sparePart->image_path = 'storage/' . $path;
+            $sparePart->save();
         }
+
+        return Redirect::back();
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:spare_parts,id',
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer',
+        ]);
+
+        $sparePart = SparePart::findOrFail($request->id);
 
         $sparePart->update([
             'name' => $request->name,

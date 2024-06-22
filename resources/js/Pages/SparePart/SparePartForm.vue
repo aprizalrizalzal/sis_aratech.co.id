@@ -13,6 +13,7 @@ const form = useForm({
 });
 
 const props = defineProps({
+    sparePartId: Number,
     sparePart: Object,
 });
 
@@ -34,7 +35,24 @@ const handleFileChange = (event) => {
 };
 
 const submitForm = () => {
-    if (!props.sparePart) {
+    if (props.sparePartId) {
+        const sparePartId = props.sparePartId;
+        form.post(route('update.spare.part.image', { id: sparePartId }), {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                form.data();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
+            onError: (errors) => {
+                if (errors.image) {
+                    alert('Spare part image update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    } else if (!props.sparePart) {
         form.post(route('store.spare.part'), {
             preserveScroll: true,
             onSuccess: (response) => {
@@ -60,7 +78,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.name || errors.image || errors.price) {
+                if (errors.name || errors.price) {
                     alert('Spare part update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -76,27 +94,26 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div>
+                <div v-if="!props.sparePart || !props.sparePart && props.sparePartId">
+                    <InputLabel for="image" value="Image" />
+                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
+                    <InputError :message="form.errors.image" />
+                </div>
+                <div v-if="!props.sparePartId">
                     <InputLabel class="mt-3" for="name" value="Name" />
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
-                <div>
-                    <div v-if="previewUrl" class="my-4">
-                        <p class="font-semibold">Preview:</p>
-                        <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
-                    </div>
-                    <InputLabel for="image" value="Image" />
-                    
-                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
-                    <InputError :message="form.errors.image" />
-                </div>
-                <div>
+                <div v-if="!props.sparePartId">
                     <InputLabel class="mt-3" for="price" value="Price" />
                     <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
                         required autofocus />
                     <InputError class="mt-3" :message="form.errors.price" />
+                </div>
+                <div v-if="previewUrl" class="my-4">
+                    <p class="font-semibold">Preview:</p>
+                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
