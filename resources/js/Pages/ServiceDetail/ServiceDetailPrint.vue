@@ -11,21 +11,17 @@ const formatCurrency = (value) => {
 };
 
 onMounted(() => {
-    window.print();
+    setTimeout(() => {
+        window.print();
+    }, 500); 
 });
 </script>
 <template id="print-template">
 
     <Head title="Service Detail Print" />
-    <div class="mt-4 text-sm/relaxed">
-        <p>Asli Mandiri Computer - AMITech</p>
-        <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
-        <div class="flex items-center space-x-2">
-            <a href="https://wa.me/6282247912220" target="_blank" rel="noopener noreferrer">0822-4791-2220</a>
-            <span>/</span>
-            <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
-        </div>
-
+    <div v-for="header in $page.props.headers" :key="header.id" class="mt-4 text-sm/relaxed">
+        <p>SIService - {{ header.company }}</p>
+        <p>{{ header.description }}</p>
     </div>
     <br>
     <table class="table-auto w-full">

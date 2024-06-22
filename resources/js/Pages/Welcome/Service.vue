@@ -47,11 +47,11 @@ const closeModal = () => {
 </script>
 
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-4">
-        <div
+    <div class="grid grid-cols-1 mt-4 gap-4">
+        <div v-for="header in $page.props.headers" :key="header.id" 
             class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
             <h2 class="text-xl font-semibold text-green-900 mt-2">
-                SIService-AMITech
+                SIService - {{header.company}}
             </h2>
             <p class="text-sm/relaxed">
                 Sistem Informasi Service kami membantu Anda memantau layanan dengan mudah
@@ -78,57 +78,6 @@ const closeModal = () => {
             <p class="text-sm/relaxed">Harap dicatat: Service Code hanya boleh
                 menggunakan huruf
                 kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
-        </div>
-
-        <div
-            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
-            <div class="px-2">
-                <h2 class="text-xl font-semibold text-green-900 mt-4">About Us
-                </h2>
-                <p class="text-sm/relaxed mt-2">
-                    Asli Mandiri Computer - AMITech penjualan dan spesialis dalam perbaikan PC/laptop, servis printer,
-                    peralatan jaringan, dan aksesoris komputer.
-                </p>
-                <p class="text-sm/relaxed mt-2">
-                    Jelajahi produk kami di situs web: <a target="_blank" rel="noopener noreferrer"
-                        class="text-green-800 font-bold" href="http://www.aslimandiri.com">www.aslimandiri.com</a>.
-                    Temukan solusi terbaik untuk semua kebutuhan teknologi Anda bersama kami, di mana
-                    kepuasan
-                    Anda adalah prioritas kami.
-                </p>
-                <ul class="text-sm/relaxed">
-                    <li class="flex items-center space-x-2 font-bold mt-4">
-                        <LaptopIcon /> <span>Service PC/Laptop</span>
-                    </li>
-                    <p class="mt-1">Perbaikan dan pemeliharaan untuk semua model dan merek, memastikan
-                        operasi yang
-                        efisien.</p>
-                    <li class="flex items-center space-x-2 font-bold mt-2">
-                        <PrinterIcon /> <span>Service Printer</span>
-                    </li>
-                    <p class="mt-1">Solusi perbaikan dan pemeliharaan komprehensif untuk menjaga printer
-                        Anda dalam
-                        kondisi optimal.
-                    </p>
-                    <li class="flex text-white items-center space-x-2 font-bold mt-2">
-                        <RouterIcon /> <span>Service Networking</span>
-                    </li>
-                    <p class="mt-1 text-white">
-                        Layanan perbaikan dan pemeliharaan jaringan yang meliputi instalasi,
-                        konfigurasi,
-                        dan troubleshooting untuk memastikan jaringan Anda berfungsi dengan lancar dan
-                        aman.
-                    </p>
-                    <li class="flex text-white items-center space-x-2 font-bold mt-2">
-                        <CameraIcon /> <span>Service CCTV</span>
-                    </li>
-                    <p class="mt-1 text-white">
-                        Instalasi, perbaikan, dan pemeliharaan sistem CCTV untuk keamanan dan pengawasan
-                        optimal. Kami memastikan kamera dan sistem Anda berfungsi dengan baik untuk
-                        melindungi properti Anda.
-                    </p>
-                </ul>
-            </div>
         </div>
     </div>
 

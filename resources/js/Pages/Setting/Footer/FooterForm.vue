@@ -19,7 +19,8 @@ const form = useForm({
 const typeOptions = ref([
     { id: '1', name: 'Contact' },
     { id: '2', name: 'Social Media' },
-    { id: '3', name: 'App Download' },
+    { id: '3', name: 'Service' },
+    { id: '4', name: 'App Download' },
 ]);
 
 const props = defineProps({

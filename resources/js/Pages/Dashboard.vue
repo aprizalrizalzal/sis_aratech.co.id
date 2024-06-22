@@ -228,56 +228,29 @@ const previousPage = () => {
               </div>
               <div v-if="!isCustomer && !isAdmin && !isTechnician" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <!-- <div class="flex w-full gap-2 justify-between overflow-x-auto">
-                  <div class="flex items-center gap-2 bg-white p-4">
-                    <DateTimePicker 
-                      id="start_date_picker" 
-                      label="Start Date" 
-                      v-model="start_date" 
-                      placeholder="Select Start Date Time" 
-                    />
-                    <DateTimePicker 
-                      id="end_date_picker" 
-                      label="End Date" 
-                      v-model="end_date"  
-                      placeholder="Select End Date Time" 
-                    />
+                  <div class="flex items-center gap-2 bg-white">
+                      <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
+                          placeholder="Select Start Date Time" />
+                      <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
                   </div>
                   <div class="mt-auto">
-                    <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                      <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
                   </div>
                 </div> -->
                 <LineChart :dataChart="dataChart" />
               </div>
               <div v-if="isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">
-                  <div class="text-sm/relaxed">
-                    <p>Asli Mandiri Computer - AMITech</p>
-                    <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
-                    <div class="flex items-center space-x-2">
-                      <a href="https://wa.me/6282247912220" target="_blank" rel="noopener noreferrer">0822-4791-2220</a>
-                      <span>/</span>
-                      <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
+                  <div class="flex w-full gap-2 justify-between my-4">
+                    <div class="flex items-center gap-2 bg-white">
+                      <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
+                          placeholder="Select Start Date Time" />
+                      <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
+                    </div>
+                    <div class="mt-auto">
+                        <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
                     </div>
                   </div>
-                  <div class="flex w-full gap-2 justify-between my-4">
-                    <div class="flex items-center gap-2 bg-white p-4">
-                    <DateTimePicker 
-                      id="start_date_picker" 
-                      label="Start Date" 
-                      v-model="start_date" 
-                      placeholder="Select Start Date Time" 
-                    />
-                    <DateTimePicker 
-                      id="end_date_picker" 
-                      label="End Date" 
-                      v-model="end_date"  
-                      placeholder="Select End Date Time" 
-                    />
-                  </div>
-                  <div class="mt-auto">
-                    <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
-                  </div>
-                </div>
                   <table class="min-w-full bg-white border-collapse ">
                     <thead>
                       <tr>

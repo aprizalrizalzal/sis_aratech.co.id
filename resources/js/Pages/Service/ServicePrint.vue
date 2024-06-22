@@ -1,26 +1,34 @@
 <script setup>
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Head } from '@inertiajs/vue3';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 
 const props = defineProps({
     service: Object,
 });
 
+const currentUrl = computed(() => {
+    const url = new URL(window.location.href);
+    return `${url.host}`;
+});
+
 onMounted(() => {
-    window.print();
+    setTimeout(() => {
+        window.print();
+    }, 500); 
 });
 </script>
 
 <template id="print-template">
 
     <Head title="Service Print" />
-    <div class="mt-4 text-sm/relaxed">
-        <p>Asli Mandiri Computer - AMITech</p>
-        <p>Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.</p>
-        <div class="flex items-center space-x-2">
-            <a href="https://wa.me/6282247912220" target="_blank" rel="noopener noreferrer">0822-4791-2220</a>
-            <span>/</span>
-            <a href="https://wa.me/6287765889202" target="_blank" rel="noopener noreferrer">0877-6588-9202</a>
+    <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
+        <div>
+            <ApplicationLogo class="block h-16 w-16"/>
+        </div>
+        <div class="mt-auto">
+            <p class="font-bold text-lg">SIService - {{ header.company }}</p>
+            <p>{{ header.description }}</p>
         </div>
     </div>
     <br>
@@ -86,10 +94,8 @@ onMounted(() => {
     </table>
     <br>
     <div class="mt-4 text-sm/relaxed">
-        <p>Untuk mengeksplorasi produk kami, kunjungi <a target="_blank" rel="noopener noreferrer"
-                class="text-green-800 font-bold" href="http://www.aslimandiri.com">aslimandiri.com</a>. Kunjungi juga
-            <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-                href="http://www.siservice-aslimandiri.com">siservice-aslimandiri.com</a>
+        <p>Kunjungi <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
+            :href="currentUrl">{{ currentUrl }}</a>
             gunakan Email: <span class="font-bold text-green-800">{{
                 service.customer.user.email }}</span> dan Password:
             <span class="font-bold text-green-800">password</span> untuk melihat perkembangan device yang diservice.
