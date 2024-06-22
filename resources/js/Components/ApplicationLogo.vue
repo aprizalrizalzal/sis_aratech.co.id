@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const imgWidth = ref('');
 const imgHeight = ref('');
 
-const faviconSrc = '/storage/images/favicon/company_logo.png';
+const headerSrc = '/storage/images/header/company_logo.png';
 const altText = 'Favicon';
 
 const imgClass = `${imgWidth.value} ${imgHeight.value}`;
@@ -12,6 +12,6 @@ const imgClass = `${imgWidth.value} ${imgHeight.value}`;
 
 <template>
   <div>
-    <img :src="faviconSrc" :alt="altText" :class="imgClass">
+    <img :src="headerSrc" :alt="altText" :class="imgClass">
   </div>
 </template>

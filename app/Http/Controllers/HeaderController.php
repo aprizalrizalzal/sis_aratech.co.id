@@ -20,7 +20,7 @@ class HeaderController extends Controller
         if ($request->hasFile('image')) {
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileName = 'company_logo.' . $extension;
-            $path = $request->file('image')->storeAs('images/favicon', $fileName, 'public');
+            $path = $request->file('image')->storeAs('images/header', $fileName, 'public');
             $imagePath = 'storage/' . $path;
         } else {
             $imagePath = null;
@@ -50,7 +50,7 @@ class HeaderController extends Controller
 
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileName = 'company_logo.' . $extension;
-            $path = $request->file('image')->storeAs('images/favicon', $fileName, 'public');
+            $path = $request->file('image')->storeAs('images/header', $fileName, 'public');
 
             $header->image_path = 'storage/' . $path;
             $header->save();
