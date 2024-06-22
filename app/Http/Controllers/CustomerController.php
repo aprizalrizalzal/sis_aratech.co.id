@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +26,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'email_verified_at' => 'nullable|string|max:255',
             'phone' => 'required|string|max:255|unique:' . Customer::class,
             'address' => 'required|string|max:255',
         ]);
@@ -32,6 +34,7 @@ class CustomerController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'email_verified_at' => Carbon::now(),
             'password' => Hash::make('password'),
         ]);
 
