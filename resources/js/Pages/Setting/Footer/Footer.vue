@@ -9,6 +9,16 @@ const contactFooters = computed(() => {
     return footers.filter(footer => footer.type === 'Contact');
 });
 
+const getHref = (footer) => {
+  if (footer.platform === 'Email') {
+    return `mailto:${footer.value}`
+  } else if (footer.platform === 'Phone') {
+    return `tel:${footer.value}`
+  } else {
+    return footer.url
+  }
+}
+
 const socialMediaFooters = computed(() => {
     return footers.filter(footer => footer.type === 'Social Media');
 });
@@ -36,7 +46,7 @@ const currentYear = computed(() => {
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in contactFooters" :key="footer.id" class="flex items-center space-x-2 mt-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
-                            <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
+                            <a :href="getHref(footer)" target="_blank" rel="noopener noreferrer">{{
                                 footer.value }}</a>
                         </li>
                     </ul>

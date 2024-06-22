@@ -120,8 +120,9 @@ const submitForm = () => {
                 <div v-if="!props.footerId">
                     <InputLabel for="platform" value="Platform" />
                     <TextInput id="platform" type="text" v-model="form.platform" class="mt-1 block w-full"
-                        placeholder="Gmail, Facebook, Instagram, etc..." autofocus />
+                        placeholder="Email, Facebook, Instagram, etc..." autofocus />
                     <InputError :message="form.errors.platform" />
+                    <p class="text-yellow-900 text-sm mt-2 italic">Enter Email or Phone for the Contact type.</p>
                 </div>
 
                 <div v-if="!props.footerId">

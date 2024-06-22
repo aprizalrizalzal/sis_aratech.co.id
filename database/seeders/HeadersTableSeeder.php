@@ -14,7 +14,7 @@ class HeadersTableSeeder extends Seeder
     public function run(): void
     {
         Header::create([
-            'image_path' => 'storage/images/headers/company_logo.png',
+            'image_path' => 'storage/images/favicon/company_logo.png',
             'company' => 'Asli Mandiri Computer',
             'description' => 'Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.'
         ]);

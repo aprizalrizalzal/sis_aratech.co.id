@@ -16,16 +16,16 @@ class FootersTableSeeder extends Seeder
         Footer::create([
             'image_path' => 'storage/images/footers/email.png',
             'type' => 'Contact',
-            'platform' => 'Gmail',
-            'url' => '',
+            'platform' => 'Email',
+            'url' => 'amitechpt@gmail.com',
             'username' => '',
             'value' => 'amitechpt@gmail.com',
         ]);
         Footer::create([
-            'image_path' => 'storage/images/footers/telephone.png',
+            'image_path' => 'storage/images/footers/phone.png',
             'type' => 'Contact',
-            'platform' => 'Telephone',
-            'url' => '',
+            'platform' => 'Phone',
+            'url' => '+6282247912220',
             'username' => '',
             'value' => '+6282247912220',
         ]);
