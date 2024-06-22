@@ -1,4 +1,5 @@
 <script setup>
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 
@@ -19,9 +20,14 @@ onMounted(() => {
 <template id="print-template">
 
     <Head title="Service Detail Print" />
-    <div v-for="header in $page.props.headers" :key="header.id" class="mt-4 text-sm/relaxed">
-        <p>SIService - {{ header.company }}</p>
-        <p>{{ header.description }}</p>
+    <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
+        <div>
+            <ApplicationLogo class="block h-16 w-16"/>
+        </div>
+        <div class="mt-auto">
+            <p class="font-bold text-lg">SIService - {{ header.company }}</p>
+            <p>{{ header.description }}</p>
+        </div>
     </div>
     <br>
     <table class="table-auto w-full">
@@ -78,7 +84,7 @@ onMounted(() => {
     </table>
     <br>
     <div class="mt-4 text-sm/relaxed">
-        <p>Catatan: <span class="font-bold text-green-800">Cost</span> belum termasuk harga Spare Part jika ada
+        <p>Catatan: <span class="font-bold text-green-800">Cost</span> tidak termasuk harga Spare Part jika ada
             penggantian selama service.
         </p>
     </div>
