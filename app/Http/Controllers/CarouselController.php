@@ -29,28 +29,38 @@ class CarouselController extends Controller
         return Redirect::back();
     }
 
-    public function update(Request $request)
+    public function update_image(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:carousels,id',
-            'alt' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $carousel = Carousel::findOrFail($request->id);
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
-            $oldImagePath = str_replace('storage/', '', $carousel->image_path);
-            Storage::disk('public')->delete($oldImagePath);
+            $oldPath = str_replace('storage/', '', $carousel->image_path);
+            Storage::disk('public')->delete($oldPath);
 
-            // Simpan gambar baru
             $originalName = $request->file('image')->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
             $path = $request->file('image')->storeAs('images/carousel', $uniqueName, 'public');
 
             $carousel->image_path = 'storage/' . $path;
+            $carousel->save();
         }
+
+        return Redirect::back();
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:carousels,id',
+            'alt' => 'required|string|max:255',
+        ]);
+
+        $carousel = Carousel::findOrFail($request->id);
 
         $carousel->update([
             'alt' => $request->alt,

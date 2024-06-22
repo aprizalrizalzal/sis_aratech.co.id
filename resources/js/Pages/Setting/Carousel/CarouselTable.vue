@@ -12,8 +12,15 @@ const props = defineProps({
     carousels: Array,
 });
 
+const showingModelCarouselUpdateImage = ref(false);
 const showingModelCarouselUpdate = ref(false);
+const selectedCarouselId = ref(null);
 const selectedCarousel = ref(null);
+
+const showModalCarouselUpdateImage = (carouselId) => {
+    selectedCarouselId.value = carouselId;
+    showingModelCarouselUpdateImage.value = true;
+};
 
 const showModalCarouselUpdate = (carousel) => {
     selectedCarousel.value = carousel;
@@ -48,6 +55,7 @@ const deleteCarousel = () => {
 const closeModal = () => {
     confirmingCarouselDeletion.value = false;
     showingModelCarouselUpdate.value = false;
+    showingModelCarouselUpdateImage.value = false;
 };
 
 const currentPage = ref(1);
@@ -118,6 +126,15 @@ const previousPage = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
+
+    <Modal v-model:show="showingModelCarouselUpdateImage">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelCarouselUpdateImage = false">X</DangerButton>
+            </div>
+            <CarouselForm :carouselId="selectedCarouselId" />
+        </div>
+    </Modal>
 
     <Modal v-model:show="showingModelCarouselUpdate">
         <div class="m-6">

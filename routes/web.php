@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // SparePartController
         Route::get('/spare-parts', [SparePartController::class, 'show'])->name('show.spare.parts');
         Route::post('/spare-part', [SparePartController::class, 'store'])->name('store.spare.part');
+        Route::post('/spare-part-image', [SparePartController::class, 'update_image'])->name('update.spare.part.image');
         Route::put('/spare-part', [SparePartController::class, 'update'])->name('update.spare.part');
         Route::delete('/spare-part', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
 
@@ -56,11 +57,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // CarouselController
         Route::post('/setting-carousel', [CarouselController::class, 'store'])->name('store.carousel');
+        Route::post('/setting-carousel-image', [CarouselController::class, 'update_image'])->name('update.carousel.image');
         Route::put('/setting-carousel', [CarouselController::class, 'update'])->name('update.carousel');
         Route::delete('/setting-carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
 
         // FooterController
         Route::post('/setting-footer', [FooterController::class, 'store'])->name('store.footer');
+        Route::post('/setting-footer-image', [FooterController::class, 'update_image'])->name('update.footer.image');
         Route::put('/setting-footer', [FooterController::class, 'update'])->name('update.footer');
         Route::delete('/setting-footer', [FooterController::class, 'destroy'])->name('destroy.footer');
     });

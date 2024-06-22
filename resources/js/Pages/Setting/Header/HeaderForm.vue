@@ -43,10 +43,9 @@ const submitForm = () => {
                 form.data();
                 previewUrl.value = null;
                 uploadedImageUrl.value = response.image_url;
-                console.log(response);
             },
             onError: (errors) => {
-                if (errors.image || errors.company || errors.description) {
+                if (errors.image) {
                     alert('Header update image failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -77,7 +76,7 @@ const submitForm = () => {
                 form.data();
             },
             onError: (errors) => {
-                if (errors.image || errors.company || errors.description) {
+                if (errors.company || errors.description) {
                     alert('Header update failed!');
                 } else {
                     console.error('An error occurred:', errors);

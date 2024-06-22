@@ -12,6 +12,7 @@ const form = useForm({
 });
 
 const props = defineProps({
+    carouselId: Number,
     carousel: Object,
 });
 
@@ -32,8 +33,25 @@ const handleFileChange = (event) => {
 };
 
 const submitForm = () => {
-    if (!props.carousel) {
-      form.post(route('store.carousel'), {
+    if (props.carouselId) {
+        const carouselId = props.carouselId;
+        form.post(route('update.carousel.image', { id: carouselId }), {
+            preserveScroll: true,
+            onSuccess: (response) => {
+                form.data();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
+            onError: (errors) => {
+                if (errors.image) {
+                    alert('Carousel update failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
+            }
+        });
+    } else if (!props.carousel) {
+        form.post(route('store.carousel'), {
         preserveScroll: true,
         onSuccess: (response) => {
             form.reset();
@@ -52,13 +70,11 @@ const submitForm = () => {
         const carouselId = props.carousel.id;
         form.put(route('update.carousel', { id: carouselId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
-                previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.alt) {
+                if (errors.alt) {
                     alert('Carousel update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -73,15 +89,12 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="space-y-4">
-                <div>
+                <div v-if="!props.carousel && !props.carousel || props.carouselId">
                     <InputLabel for="image" value="Image" />
-                    <div v-if="props.carousel && !previewUrl">
-                        <img :src="form.image_path" alt="Current Image" class="w-full h-auto mt-2 rounded-md" />
-                    </div>
-                    <input v-else type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
+                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
-                <div>
+                <div v-if="!props.carouselId">
                     <InputLabel for="alt" value="Image Alt Text" />
                     <TextInput id="alt" type="text" v-model="form.alt" class="mt-1 block w-full"
                         placeholder="Enter alt text" required autofocus/>
