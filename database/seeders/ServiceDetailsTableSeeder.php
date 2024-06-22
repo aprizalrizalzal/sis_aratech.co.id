@@ -16,7 +16,7 @@ class ServiceDetailsTableSeeder extends Seeder
     {
         ServiceDetail::create([
             'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => 2,
+            'user_id' => 3,
             'service_id' => 1,
             'problem_description' => 'Lemot',
             'repair_description' => 'Install Ulang Win 11',
@@ -25,7 +25,7 @@ class ServiceDetailsTableSeeder extends Seeder
 
         ServiceDetail::create([
             'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => 2,
+            'user_id' => 3,
             'service_id' => 2,
             'problem_description' => 'OverHeat',
             'repair_description' => 'Cleaning processor Dan Upgrade HDD to SSD 128Gb',
@@ -34,7 +34,7 @@ class ServiceDetailsTableSeeder extends Seeder
 
         ServiceDetail::create([
             'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => 2,
+            'user_id' => 3,
             'service_id' => 3,
             'problem_description' => 'Lemot dan Keyboard Error',
             'repair_description' => 'Bongkar Keyboard (Clean) dan Upgrade HDD to SSD 128Gb',

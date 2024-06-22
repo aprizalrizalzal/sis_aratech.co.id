@@ -56,7 +56,7 @@ class FooterController extends Controller
 
             $originalName = $request->file('image')->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
-            $path = $request->file('image')->storeAs('images/footer', $uniqueName, 'public');
+            $path = $request->file('image')->storeAs('images/footers', $uniqueName, 'public');
 
             $footer->image_path = 'storage/' . $path;
             $footer->save();

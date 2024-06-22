@@ -55,7 +55,7 @@ class SparePartController extends Controller
 
             $originalName = $request->file('image')->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
-            $path = $request->file('image')->storeAs('images/sparePart', $uniqueName, 'public');
+            $path = $request->file('image')->storeAs('images/spareParts', $uniqueName, 'public');
 
             $sparePart->image_path = 'storage/' . $path;
             $sparePart->save();

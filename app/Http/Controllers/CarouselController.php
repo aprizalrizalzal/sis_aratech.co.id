@@ -19,7 +19,7 @@ class CarouselController extends Controller
 
         $originalName = $request->file('image')->getClientOriginalName();
         $uniqueName = time() . '_' . $originalName;
-        $path = $request->file('image')->storeAs('images/carousel', $uniqueName, 'public');
+        $path = $request->file('image')->storeAs('images/carousels', $uniqueName, 'public');
 
         Carousel::create([
             'alt' => $request->alt,
@@ -44,7 +44,7 @@ class CarouselController extends Controller
 
             $originalName = $request->file('image')->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
-            $path = $request->file('image')->storeAs('images/carousel', $uniqueName, 'public');
+            $path = $request->file('image')->storeAs('images/carousels', $uniqueName, 'public');
 
             $carousel->image_path = 'storage/' . $path;
             $carousel->save();
