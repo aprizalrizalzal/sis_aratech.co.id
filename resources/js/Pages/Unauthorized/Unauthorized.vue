@@ -8,7 +8,7 @@ import { Head, Link } from '@inertiajs/vue3';
     <Head title="Unauthorized" />
     <div class="flex flex-col justify-center items-center h-screen bg-gray-100">
         <div class="text-center">
-            <h1 class="mb-4 text-6xl font-semibold text-green-800 animate-ping">404</h1>
+            <h1 class="mb-4 text-6xl font-semibold text-green-800">404</h1>
             <p class="mb-4 text-lg text-gray-600">Oops! Looks like you're lost.</p>
             <div class="animate-pulse">
                 <ApplicationLogo class="inline-block h-64 w-64 fill-current p-4" />
