@@ -12,7 +12,7 @@ class FooterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,ico|max:512',
             'type' => 'required|string|max:255',
             'platform' => 'nullable|string',
             'url' => 'nullable|string',
@@ -45,7 +45,7 @@ class FooterController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:footers,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:512',
             'type' => 'required|string|max:255',
             'platform' => 'nullable|string',
             'url' => 'nullable|string',
