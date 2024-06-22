@@ -34,7 +34,7 @@ onMounted(() => {
     <br>
     <table class="table-auto w-full">
         <tbody>
-            <tr class="font-bold text-red-900">
+            <tr class="font-bold text-green-900">
                 <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
                     Service Code
                 </td>
@@ -50,7 +50,7 @@ onMounted(() => {
                     {{ service.customer.phone }}
                 </td>
             </tr>
-            <tr class="font-bold text-red-900">
+            <tr class="font-bold text-green-900">
                 <td class="py-2 px-4 border border-green-50 text-center">
                     Serial Number
                 </td>
@@ -66,7 +66,7 @@ onMounted(() => {
                     {{ service.date_received }}
                 </td>
             </tr>
-            <tr>
+            <tr class="font-bold text-green-900">
                 <td class="py-2 px-4 border border-green-50 text-center">
                     Items Brought
                 </td>

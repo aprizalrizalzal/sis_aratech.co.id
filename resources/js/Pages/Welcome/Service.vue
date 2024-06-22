@@ -167,7 +167,7 @@ const closeModal = () => {
 
     <Modal v-if="message" :show="showModal" @close="closeModal">
         <div class="p-6">
-            <P class="font-bold text-red-900">{{ message }}</P>
+            <P class="font-bold text-green-900">{{ message }}</P>
             <div class="flex justify-end mt-6">
                 <DangerButton @click="closeModal">Close</DangerButton>
             </div>
