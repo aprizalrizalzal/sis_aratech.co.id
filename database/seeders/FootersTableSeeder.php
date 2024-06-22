@@ -22,7 +22,7 @@ class FootersTableSeeder extends Seeder
             'value' => 'amitechpt@gmail.com',
         ]);
         Footer::create([
-            'image_path' => 'storage/images/footers/phone.png',
+            'image_path' => 'storage/images/footers/call.png',
             'type' => 'Contact',
             'platform' => 'Phone',
             'url' => '+6282247912220',
@@ -53,6 +53,33 @@ class FootersTableSeeder extends Seeder
             'url' => 'https://wa.me/6282247912220',
             'username' => '',
             'value' => 'AMITECH Official',
+        ]);
+
+        Footer::create([
+            'image_path' => 'storage/images/footers/shopping-bag.png',
+            'type' => 'Service',
+            'platform' => '',
+            'url' => 'https://www.aslimandiri.com',
+            'username' => '',
+            'value' => 'Asli Mandiri',
+        ]);
+
+        Footer::create([
+            'image_path' => 'storage/images/footers/laptop.png',
+            'type' => 'Service',
+            'platform' => '',
+            'url' => '#',
+            'username' => '',
+            'value' => 'Service Laptop/PC',
+        ]);
+
+        Footer::create([
+            'image_path' => 'storage/images/footers/printer.png',
+            'type' => 'Service',
+            'platform' => '',
+            'url' => '#',
+            'username' => '',
+            'value' => 'Service Printer',
         ]);
 
         Footer::create([
