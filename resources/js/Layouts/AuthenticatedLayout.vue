@@ -60,7 +60,7 @@ const isUser = computed(() => hasRole('user'));
                         <!-- Logo -->
                         <div v-for="header in $page.props.headers" :key="header.id" class="shrink-0 flex items-center">
                             <Link :href="route('show.welcome')">
-                            <ApplicationLogo class="ml-8 lg:ml-0 block h-16 w-16 fill-current" />
+                            <ApplicationLogo class="ml-8 lg:ml-0 block h-16 w-16" />
                             </Link>
                             <Link :href="route('show.welcome')"
                                 class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
@@ -249,7 +249,11 @@ const isUser = computed(() => hasRole('user'));
             <div v-if="isSuperAdmin && showingSidebar">
                 <div class="w-64 h-full bg-white border-green-200 fixed top-0 left-0 z-50">
                     <div class="py-4">
-                        <h2 class="text-lg font-bold text-green-600 px-6 my-4 pb-5">SIService</h2>
+                        <div class="flex gap-2 px-6 my-4 pb-5 font-bold">
+                            <ApplicationLogo /> SIService
+                            <h2 class="text-lg font-bold text-green-600 ">
+                            </h2>
+                        </div>
                         <hr>
                         <SidebarLink class="font-bold" :href="route('show.dashboard')"
                             :active="route().current('show.dashboard')" label="Dashboard">
