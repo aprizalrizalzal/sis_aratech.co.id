@@ -66,6 +66,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/setting-footer-image', [FooterController::class, 'update_image'])->name('update.footer.image');
         Route::put('/setting-footer', [FooterController::class, 'update'])->name('update.footer');
         Route::delete('/setting-footer', [FooterController::class, 'destroy'])->name('destroy.footer');
+
+        Route::delete('/customer', [CustomerController::class, 'destroy'])->name('destroy.customer');
+        Route::delete('/device', [DeviceController::class, 'destroy'])->name('destroy.device');
+        Route::delete('/service', [ServiceController::class, 'destroy'])->name('destroy.service');
+        Route::delete('/service-detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
+        Route::delete('/part-usage', [PartUsageController::class, 'destroy'])->name('destroy.part.usage');
     });
 
     Route::middleware(['role:admin'])->group(function () {
@@ -74,19 +80,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/customers', [CustomerController::class, 'show'])->name('show.customers');
         Route::post('/customer', [CustomerController::class, 'store'])->name('store.customer');
         Route::put('/customer', [CustomerController::class, 'update'])->name('update.customer');
-        Route::delete('/customer', [CustomerController::class, 'destroy'])->name('destroy.customer');
 
         // DeviceController
         Route::get('/devices', [DeviceController::class, 'show'])->name('show.devices');
         Route::post('/device', [DeviceController::class, 'store'])->name('store.device');
         Route::put('/device', [DeviceController::class, 'update'])->name('update.device');
-        Route::delete('/device', [DeviceController::class, 'destroy'])->name('destroy.device');
 
         // ServiceController
         Route::get('/services', [ServiceController::class, 'show'])->name('show.services');
         Route::post('/service', [ServiceController::class, 'store'])->name('store.service');
         Route::put('/service', [ServiceController::class, 'update'])->name('update.service');
-        Route::delete('/service', [ServiceController::class, 'destroy'])->name('destroy.service');
 
         Route::get('service/print/{service_code}', [ServiceController::class, 'print'])->name('service.print');
     });
@@ -97,7 +100,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/service-details', [ServiceDetailController::class, 'show'])->name('show.service.details');
         Route::post('/service-detail', [ServiceDetailController::class, 'store'])->name('store.service.detail');
         Route::put('/service-detail', [ServiceDetailController::class, 'update'])->name('update.service.detail');
-        Route::delete('/service-detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
 
         Route::get('service/detail/print/{service_detail_code}', [ServiceDetailController::class, 'print'])->name('service.detail.print');
 
@@ -105,7 +107,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/part-usages', [PartUsageController::class, 'show'])->name('show.part.usages');
         Route::post('/part-usage', [PartUsageController::class, 'store'])->name('store.part.usage');
         Route::put('/part-usage', [PartUsageController::class, 'update'])->name('update.part.usage');
-        Route::delete('/part-usage', [PartUsageController::class, 'destroy'])->name('destroy.part.usage');
     });
 });
 
@@ -116,9 +117,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/unauthorized', function () {
-    return Inertia::render('Unauthorized/Unauthorized');
-})->name('unauthorized');
 
 require __DIR__ . '/auth.php';
