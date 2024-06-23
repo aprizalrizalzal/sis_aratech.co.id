@@ -24,47 +24,31 @@ class DashboardController extends Controller
         $serviceDetails = ServiceDetail::with('user', 'service')->get();
         $spareParts = SparePart::all();
 
-        $carouselCount = Carousel::count();
-        $customerCount = Customer::count();
-        $deviceCount = Device::count();
-        $deviceTypeCount = DeviceType::count();
-        $partUsageCount = PartUsage::count();
-        $userCount = User::count();
-
-        $carouselCreatedAt = Carousel::latest()->first()->created_at ?? null;
-        $customerCreatedAt = Customer::latest()->first()->created_at ?? null;
-        $deviceCreatedAt = Device::latest()->first()->created_at ?? null;
-        $deviceTypeCreatedAt = DeviceType::latest()->first()->created_at ?? null;
-        $partUsageCreatedAt = PartUsage::latest()->first()->created_at ?? null;
-        $sparePartCreatedAt = SparePart::latest()->first()->created_at ?? null;
-        $userCreatedAt = User::latest()->first()->created_at ?? null;
+        $carousels = Carousel::all();
+        $customers = Customer::all();
+        $devices = Device::all();
+        $deviceTypes = DeviceType::all();
+        $partUsages = PartUsage::all();
+        $users = User::all();
 
         $printService = session('printService');
         $printServiceDetail = session('printServiceDetail');
 
         return Inertia::render('Dashboard', [
-            'userCount' => $userCount,
-            'customerCount' => $customerCount,
-            'carouselCount' => $carouselCount,
-            'deviceTypeCount' => $deviceTypeCount,
-            'deviceCount' => $deviceCount,
-            'partUsageCount' => $partUsageCount,
-            
-            'userCreatedAt' => $userCreatedAt,
-            'customerCreatedAt' => $customerCreatedAt,
-            'carouselCreatedAt' => $carouselCreatedAt,
-            'deviceTypeCreatedAt' => $deviceTypeCreatedAt,
-            'deviceCreatedAt' => $deviceCreatedAt,
-            'partUsageCreatedAt' => $partUsageCreatedAt,
-            'sparePartCreatedAt' => $sparePartCreatedAt,
-            
+            'users' => $users,
+            'customers' => $customers,
+            'carousels' => $carousels,
+            'deviceTypes' => $deviceTypes,
+            'devices' => $devices,
+            'partUsages' => $partUsages,
+
             'deviceTypes' => $deviceTypes,
             'customers' => $customers,
             'devices' => $devices,
             'services' => $services,
             'serviceDetails' => $serviceDetails,
             'spareParts' => $spareParts,
-            
+
             'printService' => $printService,
             'printServiceDetail' => $printServiceDetail,
         ]);

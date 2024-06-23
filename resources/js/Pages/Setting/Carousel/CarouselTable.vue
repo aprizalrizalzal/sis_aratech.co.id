@@ -103,7 +103,7 @@ const previousPage = () => {
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                                 class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalCarouselUpdateImage(carousel.id)" class="m-2 px-0.5 py-0.5">
+                            <PrimaryButton @click="showModalCarouselUpdateImage(carousel.id)">
                                 <EditIcon />
                             </PrimaryButton>
                         </div>

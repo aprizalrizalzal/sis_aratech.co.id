@@ -1,6 +1,7 @@
 <script setup>
 import ServiceForm from '@/Pages/Service/ServiceForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
@@ -120,7 +121,7 @@ const previousPage = () => {
             <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
         </div>
         <div class="mt-auto">
-            <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+            <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
         </div>
     </div>
     <div class=" overflow-x-auto">

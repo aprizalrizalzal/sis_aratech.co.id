@@ -9,6 +9,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import Footer from '@/Pages/Setting/Footer/Footer.vue';
 import SettingIcon from '@/Components/Icon/SettingIcon.vue';
 import SidebarLink from '@/Components/SidebarLink.vue';
+import DashboardIcon from '@/Components/Icon/DashboardIcon.vue';
 import UserIcon from '@/Components/Icon/UserIcon.vue';
 import DisplayIcon from '@/Components/Icon/DisplayIcon.vue';
 import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
@@ -140,12 +141,6 @@ const isUser = computed(() => hasRole('user'));
                                     <DropdownLink :href="route('logout')" method="post" as="button">
                                         Log Out
                                     </DropdownLink>
-                                    <hr>
-                                    <DropdownLink v-if="isSuperAdmin" :href="route('setting.edit')">
-                                        <div class="flex items-center gap-2">
-                                            <SettingIcon /> <span class="font-bold">Setting</span>
-                                        </div>
-                                    </DropdownLink>
                                 </template>
                             </Dropdown>
                         </div>
@@ -174,8 +169,7 @@ const isUser = computed(() => hasRole('user'));
 
             <!-- Responsive Navigation Menu -->
             <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
-
-                <div v-if="!isSuperAdmin" class="pt-2 pb-3 space-y-1">
+                <div v-if="!isSuperAdmin" class="pt-2 pb-3 space-y-1 ">
                     <ResponsiveNavLink :href="route('show.dashboard')" :active="route().current('show.dashboard')">
                         Dashboard
                     </ResponsiveNavLink>
@@ -235,19 +229,14 @@ const isUser = computed(() => hasRole('user'));
                         <ResponsiveNavLink :href="route('logout')" method="post" as="button">
                             Log Out
                         </ResponsiveNavLink>
-                        <hr>
-                        <ResponsiveNavLink v-if="isSuperAdmin" :href="route('setting.edit')">
-                            <div class="flex items-center gap-2">
-                                <SettingIcon /> <span class="font-bold">Setting</span>
-                            </div>
-                        </ResponsiveNavLink>
+
                     </div>
                 </div>
             </div>
 
             <!-- Sidebar for Super Admins -->
             <div v-if="isSuperAdmin && showingSidebar">
-                <div class="w-64 h-full bg-white border-green-200 fixed top-0 left-0 z-50">
+                <div class="w-64 h-full overflow-y-auto bg-white rounded-md border-green-200 fixed top-0 left-0 z-50">
                     <div class="py-4">
                         <div class="flex gap-2 px-6 my-4 pb-5 font-bold">
                             <ApplicationLogo /> SIService
@@ -257,12 +246,18 @@ const isUser = computed(() => hasRole('user'));
                         <hr>
                         <SidebarLink class="font-bold" :href="route('show.dashboard')"
                             :active="route().current('show.dashboard')" label="Dashboard">
+                            <DashboardIcon />
                         </SidebarLink>
 
                         <SidebarLink :href="route('show.users')" :active="route().current('show.users')" label="Users">
                             <UserIcon />
                         </SidebarLink>
 
+                        <SidebarLink :href="route('setting.edit')" :active="route().current('setting.edit')"
+                            label="Setting">
+                            <SettingIcon />
+                        </SidebarLink>
+                        <hr>
                         <SidebarLink :href="route('show.device.types')" :active="route().current('show.device.types')"
                             label="Device Types">
                             <DisplayIcon />
@@ -272,7 +267,7 @@ const isUser = computed(() => hasRole('user'));
                             label="Spare Parts">
                             <SparePartIcon />
                         </SidebarLink>
-
+                        <hr>
                         <SidebarLink :href="route('show.customers')" :active="route().current('show.customers')"
                             label="Customers">
                             <CustomerIcon />
@@ -287,7 +282,7 @@ const isUser = computed(() => hasRole('user'));
                             label="Service">
                             <ServiceIcon />
                         </SidebarLink>
-
+                        <hr>
                         <SidebarLink :href="route('show.service.details')"
                             :active="route().current('show.service.details')" label="Service Detail">
                             <ServiceDetailIcon />
@@ -297,6 +292,7 @@ const isUser = computed(() => hasRole('user'));
                             label="Part Usage">
                             <PartUsageIcon />
                         </SidebarLink>
+                        <hr>
                     </div>
                 </div>
             </div>

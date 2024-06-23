@@ -78,7 +78,7 @@ const closeModal = () => {
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${header.image_path}`" :alt="header.Company"
                                 class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalHeaderUpdateImage(header.id)" class="m-2 px-0.5 py-0.5">
+                            <PrimaryButton @click="showModalHeaderUpdateImage(header.id)">
                                 <EditIcon />
                             </PrimaryButton>
                         </div>

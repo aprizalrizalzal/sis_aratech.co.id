@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, watchEffect } from 'vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
@@ -13,7 +13,6 @@ import Modal from '@/Components/Modal.vue';
 import CardButton from '@/Components/CardButton.vue';
 import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import DeviceTypeForm from '@/Pages/DeviceType/DeviceTypeForm.vue';
-
 import DeviceForm from '@/Pages/Device/DeviceForm.vue';
 import ServiceForm from '@/Pages/Service/ServiceForm.vue';
 import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
@@ -24,6 +23,8 @@ import LineChart from '@/Components/LineChart.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 
 const showModalAddCustomer = ref(false);
 const showModalAddDeviceType = ref(false);
@@ -40,29 +41,10 @@ const props = defineProps({
   services: Array,
   serviceDetails: Array,
   spareParts: Array,
-
-  userCount: Number,
-  customerCount: Number,
-  carouselCount: Number,
-  deviceTypeCount: Number,
-  deviceCount: Number,
-  partUsageCount: Number,
-
-  service: Object,
-  serviceDetail: Object,
+  users: Array,
+  carousels: Array,
+  partUsages: Array,
 });
-
-const dataChart = [
-  props.userCount,
-  props.deviceTypeCount,
-  props.spareParts.length,
-  props.carouselCount,
-  props.customerCount,
-  props.deviceCount,
-  props.services.length,
-  props.serviceDetails.length,
-  props.partUsageCount,
-];
 
 const { auth } = usePage().props;
 const userId = ref(auth.user.id);
@@ -95,6 +77,119 @@ const filteredServices = computed(() => {
   );
 });
 
+const start_date_line_chart = ref('');
+const end_date_line_chart = ref('');
+
+const resetDateLineChartFilters = () => {
+  start_date_line_chart.value = '';
+  end_date_line_chart.value = '';
+};
+
+let filteredDateLineChart = ref({});
+let dataChart = ref([]);
+
+const computeFilteredDateLineChart = () => {
+  let filteredDataLineChart = {};
+
+  if (start_date_line_chart.value && end_date_line_chart.value) {
+    // Filter untuk semua entitas
+    filteredDataLineChart = {
+      users: props.users.filter(user => {
+        const createdDate = new Date(user.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      deviceTypes: props.deviceTypes.filter(deviceType => {
+        const createdDate = new Date(deviceType.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      spareParts: props.spareParts.filter(sparePart => {
+        const createdDate = new Date(sparePart.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      carousels: props.carousels.filter(carousel => {
+        const createdDate = new Date(carousel.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      customers: props.customers.filter(customer => {
+        const createdDate = new Date(customer.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      devices: props.devices.filter(device => {
+        const createdDate = new Date(device.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      services: props.services.filter(service => {
+        const createdDate = new Date(service.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      serviceDetails: props.serviceDetails.filter(serviceDetail => {
+        const createdDate = new Date(serviceDetail.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+      partUsages: props.partUsages.filter(partUsage => {
+        const createdDate = new Date(partUsage.created_at);
+        const start = new Date(start_date_line_chart.value);
+        const end = new Date(end_date_line_chart.value);
+        return createdDate >= start && createdDate <= end;
+      }),
+    };
+  } else {
+    // Jika tidak ada rentang tanggal yang dipilih, gunakan semua data
+    filteredDataLineChart = {
+      users: props.users,
+      deviceTypes: props.deviceTypes,
+      spareParts: props.spareParts,
+      carousels: props.carousels,
+      customers: props.customers,
+      devices: props.devices,
+      services: props.services,
+      serviceDetails: props.serviceDetails,
+      partUsages: props.partUsages,
+    };
+  }
+
+  // Return array with lengths of filtered data for each category
+  return filteredDataLineChart;
+};
+
+const updateDataChart = () => {
+  dataChart.value = [
+    filteredDateLineChart.value.users.length, // Users
+    filteredDateLineChart.value.deviceTypes.length, // Device Types
+    filteredDateLineChart.value.spareParts.length, // Spare Parts
+    filteredDateLineChart.value.carousels.length, // Carousels
+    filteredDateLineChart.value.customers.length, // Customers
+    filteredDateLineChart.value.devices.length, // Devices
+    filteredDateLineChart.value.services.length, // Services
+    filteredDateLineChart.value.serviceDetails.length, // Service Details
+    filteredDateLineChart.value.partUsages.length, // Part Usages
+  ];
+};
+
+watchEffect(() => {
+  filteredDateLineChart.value = computeFilteredDateLineChart();
+  updateDataChart();
+});
+
+const handlePrint = () => {
+  console.log('FILTERS DATA CHART', dataChart);
+};
 const start_date = ref('');
 const end_date = ref('');
 
@@ -151,6 +246,10 @@ const previousPage = () => {
     currentPage.value--;
   }
 };
+
+onMounted(() => {
+  console.log('FILTERS', dataChart);
+});
 </script>
 
 <template>
@@ -227,17 +326,22 @@ const previousPage = () => {
                 </CardButton>
               </div>
               <div v-if="isSuperAdmin" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
-                <!-- <div class="flex w-full gap-2 justify-between overflow-x-auto">
+                <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
-                      <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
-                          placeholder="Select Start Date Time" />
-                      <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
+                    <DateTimePicker id="start_date_line_chart" label="Start Date" v-model="start_date_line_chart"
+                      placeholder="Select Start Date Time" />
+                    <DateTimePicker id="end_date_line_chart" label="End Date" v-model="end_date_line_chart"
+                      placeholder="Select End Date Time" />
                   </div>
                   <div class="mt-auto">
-                      <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                    <PrimaryButton @click="resetDateLineChartFilters"><span class="py-1 px-3">Reset</span>
+                    </PrimaryButton>
                   </div>
-                </div> -->
+                </div>
                 <LineChart :dataChart="dataChart" />
+                <PrimaryButton @click="handlePrint()">
+                  <PrinterIcon />
+                </PrimaryButton>
               </div>
               <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">
@@ -249,7 +353,7 @@ const previousPage = () => {
                         placeholder="Select End Date Time" />
                     </div>
                     <div class="mt-auto">
-                      <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                      <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
                     </div>
                   </div>
                   <table class="min-w-full bg-white border-collapse ">

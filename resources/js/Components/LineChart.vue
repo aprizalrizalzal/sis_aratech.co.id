@@ -3,26 +3,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import Chart from 'chart.js/auto';
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-function generateRandomColors(count) {
-    const colors = [];
-    for (let i = 0; i < count; i++) {
-        const color = getRandomColor();
-        colors.push(color);
-    }
-    return colors;
-}
 
 const chartCanvas = ref(null);
 const props = defineProps({
@@ -65,5 +47,40 @@ onMounted(() => {
             }
         }
     });
+
+    // Watch for changes in dataChart prop
+    watch(() => props.dataChart, (newValue, oldValue) => {
+        // Update chart data when props.dataChart changes
+        myChart.data.datasets[0].data = newValue;
+        myChart.update();
+    });
+
+    return () => myChart.destroy(); // Cleanup chart on unmount
 });
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function generateRandomColors(count) {
+    const colors = [];
+    for (let i = 0; i < count; i++) {
+        const color = getRandomColor();
+        colors.push(color);
+    }
+    return colors;
+}
 </script>
+
+<style scoped>
+canvas {
+    width: 100%;
+    height: 400px;
+    /* Adjust height as needed */
+}
+</style>
