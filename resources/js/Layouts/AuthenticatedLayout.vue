@@ -37,15 +37,15 @@ const isUser = computed(() => hasRole('user'));
 
 <template>
     <div class="min-h-screen bg-gray-50">
-        <nav class="bg-white border-b border-green-50 ">
+        <nav class="bg-white border-b border-green-50">
 
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
                 <div class="flex justify-between h-24 ">
                     <div :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
-                        class="me-2 flex items-center left-0 my-6 fixed bg-white rounded-md">
+                        class="me-2 flex items-center left-0 fixed bg-white bg-opacity-50 rounded-md">
                         <button @click="toggleSidebar()"
-                            class="inline-flex items-center justify-center rounded-md p-2 text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
+                            class="inline-flex py-9 items-center justify-center rounded-md p-2 text-green-400 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
                             <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                                 <!-- Panah ke kanan -->
                                 <path v-if="!showingSidebar" stroke-linecap="round" stroke-linejoin="round"
@@ -303,7 +303,7 @@ const isUser = computed(() => hasRole('user'));
         </nav>
 
         <!-- Page Heading -->
-        <header class="bg-white shadow" v-if="$slots.header">
+        <header class="bg-white shadow w-full" v-if="$slots.header">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-4 lg:px-6">
                 <slot name="header" />
             </div>
