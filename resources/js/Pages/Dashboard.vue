@@ -325,7 +325,8 @@ onMounted(() => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isSuperAdmin" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
+              <div v-if="isSuperAdmin"
+                class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
                     <DateTimePicker id="start_date_line_chart" label="Start Date" v-model="start_date_line_chart"
@@ -339,9 +340,9 @@ onMounted(() => {
                   </div>
                 </div>
                 <LineChart :dataChart="dataChart" />
-                <PrimaryButton @click="handlePrint()">
+                <SecondaryButton click="handlePrint()" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
                   <PrinterIcon />
-                </PrimaryButton>
+                </SecondaryButton>
               </div>
               <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">

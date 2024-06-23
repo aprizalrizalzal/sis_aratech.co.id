@@ -76,11 +76,3 @@ function generateRandomColors(count) {
     return colors;
 }
 </script>
-
-<style scoped>
-canvas {
-    width: 100%;
-    height: 400px;
-    /* Adjust height as needed */
-}
-</style>
