@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watchEffect } from 'vue';
+import { ref, computed, watchEffect } from 'vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
@@ -188,8 +188,11 @@ watchEffect(() => {
 });
 
 const handlePrint = () => {
-  console.log('FILTERS DATA CHART', dataChart);
+  setTimeout(() => {
+    window.print();
+  }, 500);
 };
+
 const start_date = ref('');
 const end_date = ref('');
 
@@ -246,10 +249,6 @@ const previousPage = () => {
     currentPage.value--;
   }
 };
-
-onMounted(() => {
-  console.log('FILTERS', dataChart);
-});
 </script>
 
 <template>
@@ -340,7 +339,7 @@ onMounted(() => {
                   </div>
                 </div>
                 <LineChart :dataChart="dataChart" />
-                <SecondaryButton click="handlePrint()" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
+                <SecondaryButton @click="handlePrint" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
                   <PrinterIcon />
                 </SecondaryButton>
               </div>

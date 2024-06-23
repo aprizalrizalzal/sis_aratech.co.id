@@ -43,7 +43,7 @@ const isUser = computed(() => hasRole('user'));
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
                 <div class="flex justify-between h-24 ">
-                    <div :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
+                    <div v-if="isSuperAdmin" :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
                         class="me-2 flex items-center left-0 fixed bg-white bg-opacity-50 rounded-md">
                         <button @click="toggleSidebar()"
                             class="inline-flex py-9 items-center justify-center rounded-md p-2 text-green-400 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
