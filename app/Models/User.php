@@ -20,7 +20,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'role',
         'password',
     ];
 
@@ -47,18 +46,31 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    // Relasi ke Customer
+    // Mendefinisikan relasi one-to-many dengan model Role
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    // Metode untuk memeriksa apakah pengguna memiliki peran tertentu
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
+    // Mendefinisikan relasi one-to-one dengan model Customer
     public function customer()
     {
         return $this->hasOne(Customer::class);
     }
 
-    // Relasi ke ServiceDetail
+    // Mendefinisikan relasi one-to-many dengan model ServiceDetail
     public function serviceDetails()
     {
         return $this->hasMany(ServiceDetail::class);
     }
 
+    // Menambahkan global scope 'order' untuk mengurutkan hasil berdasarkan kolom 'name'
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {

@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             CarouselsTableSeeder::class,
             FootersTableSeeder::class,
             UsersTableSeeder::class,
+            RolesTableSeeder::class,
+            RoleUserTableSeeder::class,
             DeviceTypesTableSeeder::class,
             CustomersTableSeeder::class,
             DevicesTableSeeder::class,

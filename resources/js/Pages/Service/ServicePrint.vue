@@ -15,7 +15,7 @@ const currentUrl = computed(() => {
 onMounted(() => {
     setTimeout(() => {
         window.print();
-    }, 500); 
+    }, 500);
 });
 </script>
 
@@ -24,7 +24,7 @@ onMounted(() => {
     <Head title="Service Print" />
     <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-16 w-16"/>
+            <ApplicationLogo class="block h-16 w-16" />
         </div>
         <div class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
@@ -94,8 +94,8 @@ onMounted(() => {
     </table>
     <br>
     <div class="mt-4 text-sm/relaxed">
-        <p>Kunjungi <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-            :href="currentUrl">{{ currentUrl }}</a>
+        <p>Kunjungi <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold" :href="currentUrl">{{
+            currentUrl }}</a>
             gunakan Email: <span class="font-bold text-green-800">{{
                 service.customer.user.email }}</span> dan Password:
             <span class="font-bold text-green-800">password</span> untuk melihat perkembangan device yang diservice.

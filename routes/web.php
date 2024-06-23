@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // DashboardController
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('show.dashboard');
 
-    Route::middleware(['role:super admin'])->group(function () {
+    Route::middleware(['role:super-admin'])->group(function () {
 
         // UserController
         Route::get('/users', [UserController::class, 'show'])->name('show.users');
@@ -91,7 +91,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('service/print/{service_code}', [ServiceController::class, 'print'])->name('service.print');
     });
 
-    Route::middleware(['role:technician'])->group(function () {
+    Route::middleware(['role:user'])->group(function () {
 
         // ServiceDetailController
         Route::get('/service-details', [ServiceDetailController::class, 'show'])->name('show.service.details');

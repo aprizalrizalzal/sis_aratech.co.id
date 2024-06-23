@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function show()
     {
-        $users = User::all();
+        $users = User::with('roles')->get();
 
         return Inertia::render('User/Users', [
             'users' => $users

@@ -13,22 +13,26 @@ class CustomersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Customer::create([
-            'user_id' => 4,
-            'address' => 'Jl.Sunan Kalijaga 3',
-            'phone' => '08175763389',
-        ]);
+        $customers = [
+            [
+                'user_id' => 4,
+                'address' => 'Jl.Sunan Kalijaga 3',
+                'phone' => '08175763389',
+            ],
+            [
+                'user_id' => 5,
+                'address' => 'Tandek, Ds.Labulia, Kec.Jonggat, Kab.Lombok Tengah',
+                'phone' => '082236882796',
+            ],
+            [
+                'user_id' => 6,
+                'address' => 'Dasan Sebelek, Lombok Tengah',
+                'phone' => '082340285252',
+            ]
+        ];
 
-        Customer::create([
-            'user_id' => 5,
-            'address' => 'Tandek, Ds.Labulia, Kec.Jonggat, Kab.Lombok Tengah',
-            'phone' => '082236882796',
-        ]);
-
-        Customer::create([
-            'user_id' => 6,
-            'address' => 'Dasan Sebelek, Lombok Tengah',
-            'phone' => '082340285252',
-        ]);
+        foreach ($customers as $customer) {
+            Customer::create($customer);
+        }
     }
 }

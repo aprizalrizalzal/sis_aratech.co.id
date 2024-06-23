@@ -13,22 +13,26 @@ class PartUsagesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        PartUsage::create([
-            'service_detail_id' => 1,
-            'spare_part_id' => 1,
-            'quantity' => 1
-        ]);
+        $partUsages = [
+            [
+                'service_detail_id' => 1,
+                'spare_part_id' => 1,
+                'quantity' => 1
+            ],
+            [
+                'service_detail_id' => 2,
+                'spare_part_id' => 2,
+                'quantity' => 1
+            ],
+            [
+                'service_detail_id' => 3,
+                'spare_part_id' => 2,
+                'quantity' => 1
+            ]
+        ];
 
-        PartUsage::create([
-            'service_detail_id' => 2,
-            'spare_part_id' => 2,
-            'quantity' => 1
-        ]);
-
-        PartUsage::create([
-            'service_detail_id' => 3,
-            'spare_part_id' => 2,
-            'quantity' => 1
-        ]);
+        foreach ($partUsages as $partUsage) {
+            PartUsage::create($partUsage);
+        }
     }
 }

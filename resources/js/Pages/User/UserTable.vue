@@ -12,6 +12,10 @@ const props = defineProps({
 const { auth } = usePage().props;
 const userId = ref(auth.user.id);
 
+const getUserRoles = (user) => {
+    return user.roles.length > 0 ? user.roles : [{ id: 'default', name: 'customer' }];
+};
+
 const customerUserIdServices = computed(() => {
     return props.users.filter(user => user.id !== userId.value);
 });
@@ -90,7 +94,9 @@ const previousPage = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.role }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <span v-for="role in getUserRoles(user)" :key="role.id">[ {{ role.name }} ]</span>
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete</DangerButton>
                     </td>

@@ -8,38 +8,69 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import Footer from '@/Pages/Setting/Footer/Footer.vue';
 import SettingIcon from '@/Components/Icon/SettingIcon.vue';
+import SidebarLink from '@/Components/SidebarLink.vue';
+import UserIcon from '@/Components/Icon/UserIcon.vue';
+import DisplayIcon from '@/Components/Icon/DisplayIcon.vue';
+import SparePartIcon from '@/Components/Icon/SparePartIcon.vue';
+import CustomerIcon from '@/Components/Icon/CustomerIcon.vue';
+import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
+import ServiceDetailIcon from '@/Components/Icon/ServiceDetailIcon.vue';
+import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
+import ServiceIcon from '@/Components/Icon/ServiceIcon.vue';
 
 const showingNavigationDropdown = ref(false);
+const showingSidebar = ref(false);
+
+const toggleSidebar = () => {
+    showingSidebar.value = !showingSidebar.value;
+};
 
 const { auth } = usePage().props;
-const userRole = ref(auth.user.role);
+const roles = ref(auth.roles);
+const hasRole = (role) => roles.value.includes(role);
 
-const isSuperAdmin = computed(() => userRole.value === 'super admin');
-const isAdmin = computed(() => userRole.value === 'admin');
-const isTechnician = computed(() => userRole.value === 'technician');
+const isSuperAdmin = computed(() => hasRole('super-admin'));
+const isAdmin = computed(() => hasRole('admin'));
+const isUser = computed(() => hasRole('user'));
 
 </script>
 
 <template>
     <div class="min-h-screen bg-gray-50">
-        <nav class="bg-white border-b border-green-50">
+        <nav class="bg-white border-b border-green-50 ">
+
             <!-- Primary Navigation Menu -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-                <div class="flex justify-between h-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
+                <div class="flex justify-between h-24 ">
+                    <div :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
+                        class="me-2 flex items-center left-0 my-6 fixed bg-white rounded-md">
+                        <button @click="toggleSidebar()"
+                            class="inline-flex items-center justify-center rounded-md p-2 text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
+                            <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
+                                <!-- Panah ke kanan -->
+                                <path v-if="!showingSidebar" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M9 5l7 7-7 7" />
+                                <!-- Panah ke kiri -->
+                                <path v-if="showingSidebar" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </div>
                     <div class="flex">
                         <!-- Logo -->
                         <div v-for="header in $page.props.headers" :key="header.id" class="shrink-0 flex items-center">
                             <Link :href="route('show.welcome')">
-                            <ApplicationLogo class="block h-16 w-16 fill-current" />
+                            <ApplicationLogo class="ml-8 lg:ml-0 block h-16 w-16 fill-current" />
                             </Link>
                             <Link :href="route('show.welcome')"
                                 class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
                             {{ header.company }}
                             </Link>
+
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
+                        <div v-if="!isSuperAdmin" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
                             <NavLink :href="route('show.dashboard')" :active="route().current('show.dashboard')">
                                 Dashboard
                             </NavLink>
@@ -74,12 +105,12 @@ const isTechnician = computed(() => userRole.value === 'technician');
                                 Services
                             </NavLink>
 
-                            <NavLink v-if="isTechnician" :href="route('show.service.details')"
+                            <NavLink v-if="isUser" :href="route('show.service.details')"
                                 :active="route().current('show.service.details')">
                                 Service Details
                             </NavLink>
 
-                            <NavLink v-if="isTechnician" :href="route('show.part.usages')"
+                            <NavLink v-if="isUser" :href="route('show.part.usages')"
                                 :active="route().current('show.part.usages')">
                                 Part Usages
                             </NavLink>
@@ -144,7 +175,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
             <!-- Responsive Navigation Menu -->
             <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
 
-                <div class="pt-2 pb-3 space-y-1">
+                <div v-if="!isSuperAdmin" class="pt-2 pb-3 space-y-1">
                     <ResponsiveNavLink :href="route('show.dashboard')" :active="route().current('show.dashboard')">
                         Dashboard
                     </ResponsiveNavLink>
@@ -179,12 +210,12 @@ const isTechnician = computed(() => userRole.value === 'technician');
                         Services
                     </ResponsiveNavLink>
 
-                    <ResponsiveNavLink v-if="isTechnician" :href="route('show.service.details')"
+                    <ResponsiveNavLink v-if="isUser" :href="route('show.service.details')"
                         :active="route().current('show.service.details')">
                         Service Details
                     </ResponsiveNavLink>
 
-                    <ResponsiveNavLink v-if="isTechnician" :href="route('show.part.usages')"
+                    <ResponsiveNavLink v-if="isUser" :href="route('show.part.usages')"
                         :active="route().current('show.part.usages')">
                         Part Usages
                     </ResponsiveNavLink>
@@ -213,6 +244,58 @@ const isTechnician = computed(() => userRole.value === 'technician');
                     </div>
                 </div>
             </div>
+
+            <!-- Sidebar for Super Admins -->
+            <div v-if="isSuperAdmin && showingSidebar">
+                <div class="w-64 h-full bg-white border-green-200 fixed top-0 left-0 z-50">
+                    <div class="py-4">
+                        <h2 class="text-lg font-bold text-green-600 px-6 my-4 pb-5">SIService</h2>
+                        <hr>
+                        <SidebarLink class="font-bold" :href="route('show.dashboard')"
+                            :active="route().current('show.dashboard')" label="Dashboard">
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.users')" :active="route().current('show.users')" label="Users">
+                            <UserIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.device.types')" :active="route().current('show.device.types')"
+                            label="Device Types">
+                            <DisplayIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.spare.parts')" :active="route().current('show.spare.parts')"
+                            label="Spare Parts">
+                            <SparePartIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.customers')" :active="route().current('show.customers')"
+                            label="Customers">
+                            <CustomerIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.devices')" :active="route().current('show.devices')"
+                            label="Devices">
+                            <LaptopIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.services')" :active="route().current('show.services')"
+                            label="Service">
+                            <ServiceIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.service.details')"
+                            :active="route().current('show.service.details')" label="Service Detail">
+                            <ServiceDetailIcon />
+                        </SidebarLink>
+
+                        <SidebarLink :href="route('show.part.usages')" :active="route().current('show.part.usages')"
+                            label="Part Usage">
+                            <PartUsageIcon />
+                        </SidebarLink>
+                    </div>
+                </div>
+            </div>
         </nav>
 
         <!-- Page Heading -->
@@ -223,7 +306,7 @@ const isTechnician = computed(() => userRole.value === 'technician');
         </header>
 
         <!-- Page Content -->
-        <main>
+        <main :class="{ 'lg:ml-64 md:ml-64': isSuperAdmin && showingSidebar }">
             <slot />
         </main>
         <footer class="mt-8 pb-4 text-center text-sm text-green-900 bg-white">

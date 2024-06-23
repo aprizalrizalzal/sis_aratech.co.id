@@ -13,22 +13,26 @@ class DevicesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Device::create([
-            'device_type_id' => 1,
-            'model' => 'Lenovo ideapad 5-14IIL05 Laptop - Type 81YH',
-            'serial_number' => 'MP1T9QA5',
-        ]);
+        $devices = [
+            [
+                'device_type_id' => 1,
+                'model' => 'Lenovo ideapad 5-14IIL05 Laptop - Type 81YH',
+                'serial_number' => 'MP1T9QA5',
+            ],
+            [
+                'device_type_id' => 1,
+                'model' => 'ASUS E402YA',
+                'serial_number' => 'LBN0CV08485846C',
+            ],
+            [
+                'device_type_id' => 1,
+                'model' => 'ASUS X425EA',
+                'serial_number' => 'SN',
+            ]
+        ];
 
-        Device::create([
-            'device_type_id' => 1,
-            'model' => 'ASUS E402YA',
-            'serial_number' => 'LBN0CV08485846C',
-        ]);
-
-        Device::create([
-            'device_type_id' => 1,
-            'model' => 'ASUS X425EA',
-            'serial_number' => 'SN',
-        ]);
+        foreach ($devices as $device) {
+            Device::create($device);
+        }
     }
 }

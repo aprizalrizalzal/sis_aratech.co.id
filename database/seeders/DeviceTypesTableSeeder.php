@@ -13,11 +13,17 @@ class DeviceTypesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DeviceType::create([
-            'type_name' => 'Laptop'
-        ]);
-        DeviceType::create([
-            'type_name' => 'Printer'
-        ]);
+        $deviceTypes = [
+            [
+                'type_name' => 'Laptop'
+            ],
+            [
+                'type_name' => 'Printer'
+            ]
+        ];
+
+        foreach ($deviceTypes as $deviceType) {
+            DeviceType::create($deviceType);
+        }
     }
 }

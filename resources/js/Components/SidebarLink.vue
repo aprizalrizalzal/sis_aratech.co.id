@@ -18,7 +18,7 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'relative flex flex-row items-center h-11 focus:outline-none bg-green-50 text-green-800 border-l-4 border-green-300 pr-6'
+        ? 'relative flex flex-row items-center h-11 focus:outline-none bg-green-50 text-green-800 border-l-4 border-green-300 my-1'
         : 'relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-50 text-green-600 hover:text-green-800 border-l-4 border-transparent hover:border-green-300 pr-6'
 );
 </script>
@@ -26,10 +26,16 @@ const classes = computed(() =>
 <template>
     <li>
         <Link :href="href" :class="classes" style="padding-block: 1.80rem;">
-        <span class="inline-flex justify-center items-center ml-4">
+        <span class="inline-flex justify-center items-center ml-2">
             <slot></slot>
         </span>
         <span class="ml-2 text-sm tracking-wide truncate">{{ label }}</span>
         </Link>
     </li>
 </template>
+
+<style scoped>
+li {
+    list-style-type: none;
+}
+</style>

@@ -14,31 +14,36 @@ class ServiceDetailsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        ServiceDetail::create([
-            'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => 3,
-            'service_id' => 1,
-            'problem_description' => 'Lemot',
-            'repair_description' => 'Install Ulang Win 11',
-            'cost' => 50000,
-        ]);
+        $serviceDetails = [
+            [
+                'service_detail_code' => Str::upper(Str::random(8)),
+                'user_id' => 3,
+                'service_id' => 1,
+                'problem_description' => 'Lemot',
+                'repair_description' => 'Install Ulang Win 11',
+                'cost' => 50000,
 
-        ServiceDetail::create([
-            'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => 3,
-            'service_id' => 2,
-            'problem_description' => 'OverHeat',
-            'repair_description' => 'Cleaning processor Dan Upgrade HDD to SSD 128Gb',
-            'cost' => 100000,
-        ]);
+            ],
+            [
+                'service_detail_code' => Str::upper(Str::random(8)),
+                'user_id' => 3,
+                'service_id' => 2,
+                'problem_description' => 'OverHeat',
+                'repair_description' => 'Cleaning processor Dan Upgrade HDD to SSD 128Gb',
+                'cost' => 100000,
+            ],
+            [
+                'service_detail_code' => Str::upper(Str::random(8)),
+                'user_id' => 3,
+                'service_id' => 3,
+                'problem_description' => 'Lemot dan Keyboard Error',
+                'repair_description' => 'Bongkar Keyboard (Clean) dan Upgrade HDD to SSD 128Gb',
+                'cost' => 75000,
+            ]
+        ];
 
-        ServiceDetail::create([
-            'service_detail_code' => Str::upper(Str::random(8)),
-            'user_id' => 3,
-            'service_id' => 3,
-            'problem_description' => 'Lemot dan Keyboard Error',
-            'repair_description' => 'Bongkar Keyboard (Clean) dan Upgrade HDD to SSD 128Gb',
-            'cost' => 75000,
-        ]);
+        foreach ($serviceDetails as $serviceDetail) {
+            ServiceDetail::create($serviceDetail);
+        }
     }
 }

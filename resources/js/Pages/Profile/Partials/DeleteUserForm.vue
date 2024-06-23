@@ -77,7 +77,8 @@ const closeModal = () => {
                         class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="deleteUser" required autofocus /> -->
 
                     <TextInput id="password" ref="passwordInput" v-model="form.password" type="password"
-                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="validatePassword" required autofocus />
+                        class="mt-1 block w-3/4" placeholder="Password" @keyup.enter="validatePassword" required
+                        autofocus />
 
                     <InputError :message="form.errors.password" class="mt-2" />
                 </div>
@@ -101,11 +102,11 @@ const closeModal = () => {
         <Modal :show="showModalAnnouncement" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
-                    Only Super Admin Can Delete Accounts
+                    Only Super-admin Can Delete Accounts
                 </h2>
 
                 <p class="mt-1 text-sm text-green-600">
-                    Please note that only Super Admin user have the permissions to delete accounts. If your
+                    Please note that only Super-admin user have the permissions to delete accounts. If your
                     account is deleted, all of its resources and data will be permanently removed.
                 </p>
 

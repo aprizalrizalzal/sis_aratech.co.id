@@ -10,13 +10,13 @@ const contactFooters = computed(() => {
 });
 
 const getHref = (footer) => {
-  if (footer.platform === 'Email') {
-    return `mailto:${footer.value}`
-  } else if (footer.platform === 'Phone') {
-    return `tel:${footer.value}`
-  } else {
-    return footer.url
-  }
+    if (footer.platform === 'Email') {
+        return `mailto:${footer.value}`
+    } else if (footer.platform === 'Phone') {
+        return `tel:${footer.value}`
+    } else {
+        return footer.url
+    }
 }
 
 const socialMediaFooters = computed(() => {

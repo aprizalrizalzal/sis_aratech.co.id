@@ -14,7 +14,7 @@ const formatCurrency = (value) => {
 onMounted(() => {
     setTimeout(() => {
         window.print();
-    }, 500); 
+    }, 500);
 });
 </script>
 <template id="print-template">
@@ -22,7 +22,7 @@ onMounted(() => {
     <Head title="Service Detail Print" />
     <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-16 w-16"/>
+            <ApplicationLogo class="block h-16 w-16" />
         </div>
         <div class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>

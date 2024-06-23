@@ -65,13 +65,13 @@ const dataChart = [
 ];
 
 const { auth } = usePage().props;
-const userRole = ref(auth.user.role);
 const userId = ref(auth.user.id);
+const roles = ref(auth.roles);
+const hasRole = (role) => roles.value.includes(role);
 
-const isSuperAdmin = computed(() => userRole.value === 'super admin');
-const isAdmin = computed(() => userRole.value === 'admin');
-const isTechnician = computed(() => userRole.value === 'technician');
-const isCustomer = computed(() => userRole.value === 'customer');
+const isSuperAdmin = computed(() => hasRole('super-admin'));
+const isAdmin = computed(() => hasRole('admin'));
+const isUser = computed(() => hasRole('user'));
 
 const customerUserIdServices = computed(() => {
   return props.services.filter(service => service.customer.user_id === userId.value);
@@ -173,8 +173,8 @@ const previousPage = () => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="overflow-hidden sm:rounded-md">
             <!-- Your main content here -->
-            <div class="grid grid-cols-1 gap-4">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-2 gap-4 m-auto my-4">
+            <div class="grid grid-cols-1 gap-4 items-center">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
@@ -190,7 +190,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-2 gap-4 m-auto my-4">
+              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -210,7 +210,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isTechnician" class="grid grid-cols-1 sm:grid-cols-2 gap-4 m-auto my-4">
+              <div v-if="isUser" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
@@ -226,7 +226,7 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="!isCustomer && !isAdmin && !isTechnician" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
+              <div v-if="isSuperAdmin" class="flex flex-col items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <!-- <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
                       <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
@@ -239,16 +239,17 @@ const previousPage = () => {
                 </div> -->
                 <LineChart :dataChart="dataChart" />
               </div>
-              <div v-if="isCustomer" class="bg-white shadow-md rounded-md p-4 my-4">
+              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">
                   <div class="flex w-full gap-2 justify-between my-4">
                     <div class="flex items-center gap-2 bg-white">
                       <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
-                          placeholder="Select Start Date Time" />
-                      <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
+                        placeholder="Select Start Date Time" />
+                      <DateTimePicker id="end_date" label="End Date" v-model="end_date"
+                        placeholder="Select End Date Time" />
                     </div>
                     <div class="mt-auto">
-                        <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
+                      <SecondaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></SecondaryButton>
                     </div>
                   </div>
                   <table class="min-w-full bg-white border-collapse ">
@@ -272,10 +273,12 @@ const previousPage = () => {
                           +
                           index + 1 }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.name }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.name }}
+                        </td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}
+                        </td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}
@@ -297,7 +300,7 @@ const previousPage = () => {
       </div>
     </div>
   </AuthenticatedLayout>
-  
+
   <Modal v-model:show="showModalAddDeviceType">
     <div class="m-6">
       <div class="flex justify-end">

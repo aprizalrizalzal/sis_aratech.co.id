@@ -13,21 +13,27 @@ class CarouselsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Carousel::create([
-            'image_path' => 'storage/images/carousels/1.png',
-            'alt' => 'Satu',
-        ]);
-        Carousel::create([
-            'image_path' => 'storage/images/Carousels/2.png',
-            'alt' => 'Dua',
-        ]);
-        Carousel::create([
-            'image_path' => 'storage/images/Carousels/3.png',
-            'alt' => 'Tiga',
-        ]);
-        Carousel::create([
-            'image_path' => 'storage/images/Carousels/4.png',
-            'alt' => 'Empat',
-        ]);
+        $carousels = [
+            [
+                'image_path' => 'storage/images/carousels/1.png',
+                'alt' => 'Satu',
+            ],
+            [
+                'image_path' => 'storage/images/Carousels/2.png',
+                'alt' => 'Dua',
+            ],
+            [
+                'image_path' => 'storage/images/Carousels/3.png',
+                'alt' => 'Tiga'
+            ],
+            [
+                'image_path' => 'storage/images/Carousels/4.png',
+                'alt' => 'Empat'
+            ]
+        ];
+
+        foreach ($carousels as $carousel) {
+            Carousel::create($carousel);
+        }
     }
 }
