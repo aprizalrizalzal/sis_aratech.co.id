@@ -46,49 +46,48 @@ class FootersTableSeeder extends Seeder
                 'url' => 'https://www.instagram.com/asli_mandiri_com/',
                 'username' => '',
                 'value' => 'Aslı Mandiri(@asli_mandiri_com)',
-            ], [
+            ],
+            [
                 'image_path' => 'storage/images/footers/whatsapp.png',
                 'type' => 'Social Media',
                 'platform' => 'WhatsApp',
                 'url' => 'https://wa.me/6282247912220',
                 'username' => '',
                 'value' => 'AMITECH Official',
-            ], [
+            ],
+            [
                 'image_path' => 'storage/images/footers/shopping-bag.png',
                 'type' => 'Service',
                 'platform' => '',
                 'url' => 'https://www.aslimandiri.com',
                 'username' => '',
                 'value' => 'Asli Mandiri',
-            ], [
+            ],
+            [
                 'image_path' => 'storage/images/footers/laptop.png',
                 'type' => 'Service',
                 'platform' => '',
                 'url' => '#',
                 'username' => '',
                 'value' => 'Service Laptop/PC',
-            ], [
+            ],
+            [
                 'image_path' => 'storage/images/footers/printer.png',
                 'type' => 'Service',
                 'platform' => '',
                 'url' => '#',
                 'username' => '',
                 'value' => 'Service Printer',
-            ], [
+            ],
+            [
                 'image_path' => 'storage/images/footers/playstore.png',
                 'type' => 'App Download',
                 'platform' => 'Google',
                 'url' => 'https://play.google.com/store/',
                 'username' => '',
                 'value' => 'PlayStore',
-            ], [
-                'image_path' => 'storage/images/footers/playstore.png',
-                'type' => 'App Download',
-                'platform' => 'Google',
-                'url' => 'https://play.google.com/store/',
-                'username' => '',
-                'value' => 'PlayStore',
-            ], [
+            ],
+            [
                 'image_path' => 'storage/images/footers/appstore.png',
                 'type' => 'App Download',
                 'platform' => 'Apple',

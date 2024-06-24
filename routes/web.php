@@ -9,6 +9,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceDetailController;
 use App\Http\Controllers\SettingController;
@@ -16,7 +17,6 @@ use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 // WelcomeController
 Route::get('/', [WelcomeController::class, 'show'])->name('show.welcome');
@@ -32,6 +32,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // UserController
         Route::get('/users', [UserController::class, 'show'])->name('show.users');
         Route::delete('/user', [UserController::class, 'destroy'])->name('destroy.user');
+
+        Route::post('/assign-role', [RoleController::class, 'assignRoles'])->name('assign.role');
+        Route::delete('/roles/remove', [RoleController::class, 'removeRoles'])->name('remove.role');
 
         // DeviceTypeController
         Route::get('/device-types', [DeviceTypeController::class, 'show'])->name('show.device.types');

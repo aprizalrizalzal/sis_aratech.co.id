@@ -105,7 +105,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <span v-for="role in getUserRoles(user)" :key="role.id">[ {{ role.name }} ]</span>
+                        <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalUserUpdate(user)" class="m-2">Update
