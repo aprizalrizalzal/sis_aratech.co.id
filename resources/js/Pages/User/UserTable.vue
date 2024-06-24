@@ -1,4 +1,5 @@
 <script setup>
+import UserForm from '@/Pages/User/UserForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -9,6 +10,9 @@ const props = defineProps({
     users: Array,
 });
 
+const showingModelUserUpdate = ref(false);
+const selectedUser = ref(null);
+
 const { auth } = usePage().props;
 const userId = ref(auth.user.id);
 
@@ -16,9 +20,14 @@ const getUserRoles = (user) => {
     return user.roles.length > 0 ? user.roles : [{ id: 'default', name: 'customer' }];
 };
 
-const customerUserIdServices = computed(() => {
+const filteredUserId = computed(() => {
     return props.users.filter(user => user.id !== userId.value);
 });
+
+const showModalUserUpdate = (user) => {
+    selectedUser.value = user;
+    showingModelUserUpdate.value = true;
+};
 
 const confirmingUserDeletion = ref(false);
 
@@ -48,6 +57,7 @@ const deleteUser = () => {
 
 const closeModal = () => {
     confirmingUserDeletion.value = false;
+    showingModelUserUpdate.value = false;
 };
 
 const currentPage = ref(1);
@@ -56,11 +66,11 @@ const itemsPerPage = 15;
 const paginatedUsers = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return customerUserIdServices.value.slice(start, end);
+    return filteredUserId.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-    return Math.ceil(customerUserIdServices.value.length / itemsPerPage);
+    return Math.ceil(filteredUserId.value.length / itemsPerPage);
 });
 
 const nextPage = () => {
@@ -85,7 +95,7 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Role</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,6 +106,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <span v-for="role in getUserRoles(user)" :key="role.id">[ {{ role.name }} ]</span>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalUserUpdate(user)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete</DangerButton>
@@ -110,6 +124,15 @@ const previousPage = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
+
+    <Modal v-model:show="showingModelUserUpdate">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelUserUpdate = false">X</DangerButton>
+            </div>
+            <UserForm :user="selectedUser" />
+        </div>
+    </Modal>
 
     <Modal :show="confirmingUserDeletion" @close="closeModal">
         <div class="p-6">
