@@ -2,8 +2,6 @@
 import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import CardButton from '@/Components/CardButton.vue';
-import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 import Modal from '@/Components/Modal.vue';
 import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
 import CarouselForm from '@/Pages/Setting/Carousel/CarouselForm.vue';

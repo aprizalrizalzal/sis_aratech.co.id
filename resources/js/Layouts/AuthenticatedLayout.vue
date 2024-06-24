@@ -238,8 +238,8 @@ const isUser = computed(() => hasRole('user'));
             <div v-if="isSuperAdmin && showingSidebar">
                 <div class="w-64 h-full overflow-y-auto bg-white rounded-md border-green-200 fixed top-0 left-0 z-50">
                     <div class="py-4">
-                        <div class="flex gap-2 px-6 my-4 pb-5 font-bold">
-                            <ApplicationLogo /> SIService
+                        <div class="flex items-center gap-2 px-6 pb-4 font-bold">
+                            <ApplicationLogo class="block h-16 w-16" /> SIService
                             <h2 class="text-lg font-bold text-green-600 ">
                             </h2>
                         </div>
