@@ -33,7 +33,7 @@ class Service extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('date_received');
+            $builder->orderByDesc('created_at');
         });
     }
 }

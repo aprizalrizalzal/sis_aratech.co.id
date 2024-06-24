@@ -30,11 +30,11 @@ class ServiceDetail extends Model
     {
         return $this->hasMany(PartUsage::class);
     }
-    
+
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('service_detail_code');
+            $builder->orderByDesc('created_at');
         });
     }
 }

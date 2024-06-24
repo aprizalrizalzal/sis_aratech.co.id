@@ -27,7 +27,7 @@ class PartUsage extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('service_detail_id');
+            $builder->orderByDesc('created_at');
         });
     }
 }

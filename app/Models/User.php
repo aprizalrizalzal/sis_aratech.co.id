@@ -70,11 +70,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(ServiceDetail::class);
     }
 
-    // Menambahkan global scope 'order' untuk mengurutkan hasil berdasarkan kolom 'name'
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('name');
+            $builder->orderByDesc('created_at');
         });
     }
 }
