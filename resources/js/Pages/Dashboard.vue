@@ -341,7 +341,7 @@ const previousPage = () => {
                     <DateTimePicker id="end_date_line_chart" label="End Date" v-model="end_date_line_chart"
                       placeholder="Select End Date Time" />
                   </div>
-                  <div class="mt-auto">
+                  <div class="my-auto me-2">
                     <PrimaryButton @click="resetDateLineChartFilters"><span class="py-1 px-3">Reset</span>
                     </PrimaryButton>
                   </div>
@@ -360,7 +360,7 @@ const previousPage = () => {
                       <DateTimePicker id="end_date" label="End Date" v-model="end_date"
                         placeholder="Select End Date Time" />
                     </div>
-                    <div class="mt-auto">
+                    <div class="my-auto">
                       <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
                     </div>
                   </div>
