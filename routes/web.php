@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/users', [UserController::class, 'show'])->name('show.users');
         Route::delete('/user', [UserController::class, 'destroy'])->name('destroy.user');
 
+        // RoleController
         Route::post('/assign-role', [RoleController::class, 'assignRoles'])->name('assign.role');
         Route::delete('/roles/remove', [RoleController::class, 'removeRoles'])->name('remove.role');
 
