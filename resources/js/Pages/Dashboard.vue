@@ -123,9 +123,11 @@ const updateLableCharts = () => {
       'Customers',
       'Devices',
       'Services',
+      'Service Details',
     ];
   } else if (isUser.value) {
     lableCharts.value = [
+      'Services',
       'Service Details',
       'Part Usages'
     ];
@@ -244,9 +246,11 @@ const updateDataCharts = () => {
       filteredDateLineChart.value.customers.length, // Customers
       filteredDateLineChart.value.devices.length, // Devices
       filteredDateLineChart.value.services.length, // Services
+      filteredDateLineChart.value.serviceDetails.length, // Service Details
     ];
   } else if (isUser.value) {
     dataCharts.value = [
+      filteredDateLineChart.value.services.length, // Services
       filteredDateLineChart.value.serviceDetails.length, // Service Details
       filteredDateLineChart.value.partUsages.length, // Part Usages
     ];
