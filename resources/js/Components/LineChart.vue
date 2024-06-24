@@ -14,7 +14,7 @@ const props = defineProps({
 onMounted(() => {
     const ctx = chartCanvas.value;
 
-    const backgroundColors = generateRandomColors(props.dataChart.length).map(color => `${color}33`); // 33 for 20% opacity
+    const backgroundColors = generateRandomColors(props.dataChart.length).map(color => `${color}33`);
     const borderColors = generateRandomColors(props.dataChart.length);
 
     const myChart = new Chart(ctx, {
@@ -36,7 +36,12 @@ onMounted(() => {
                 data: props.dataChart,
                 backgroundColor: backgroundColors,
                 borderColor: borderColors,
-                borderWidth: 1
+                borderWidth: 2,
+                pointRadius: 4,
+                pointBorderWidth: 2,
+                pointHoverBorderWidth: 2,
+                pointHoverRadius: 8,
+                pointStyle: 'rectRounded'
             }]
         },
         options: {

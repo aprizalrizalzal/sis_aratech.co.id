@@ -24,7 +24,7 @@ import SearchInput from '@/Components/SearchInput.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
+// import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 
 const showModalAddCustomer = ref(false);
 const showModalAddDeviceType = ref(false);
@@ -80,10 +80,17 @@ const filteredServices = computed(() => {
 const start_date_line_chart = ref('');
 const end_date_line_chart = ref('');
 
+const defaultStartDate = new Date();
+defaultStartDate.setDate(defaultStartDate.getDate() - 30);
+const defaultEndDate = new Date();
+
 const resetDateLineChartFilters = () => {
-  start_date_line_chart.value = '';
-  end_date_line_chart.value = '';
+  start_date_line_chart.value = defaultStartDate;
+  end_date_line_chart.value = defaultEndDate;
 };
+
+start_date_line_chart.value = defaultStartDate;
+end_date_line_chart.value = defaultEndDate;
 
 let filteredDateLineChart = ref({});
 let dataChart = ref([]);
@@ -187,18 +194,19 @@ watchEffect(() => {
   updateDataChart();
 });
 
-const handlePrint = () => {
-  setTimeout(() => {
-    window.print();
-  }, 500);
-};
+// const handlePrint = () => {
+
+// };
 
 const start_date = ref('');
 const end_date = ref('');
 
+start_date.value = defaultStartDate;
+end_date.value = defaultEndDate;
+
 const resetDateFilters = () => {
-  start_date.value = '';
-  end_date.value = '';
+  start_date.value = defaultStartDate;;
+  end_date.value = defaultEndDate;;
 };
 
 const filteredDateServices = computed(() => {
@@ -339,9 +347,9 @@ const previousPage = () => {
                   </div>
                 </div>
                 <LineChart :dataChart="dataChart" />
-                <SecondaryButton @click="handlePrint" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
+                <!-- <SecondaryButton @click="handlePrint" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
                   <PrinterIcon />
-                </SecondaryButton>
+                </SecondaryButton> -->
               </div>
               <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">

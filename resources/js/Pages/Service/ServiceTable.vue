@@ -58,9 +58,16 @@ const closeModal = () => {
 const start_date = ref('');
 const end_date = ref('');
 
+const defaultStartDate = new Date();
+defaultStartDate.setDate(defaultStartDate.getDate() - 30);
+const defaultEndDate = new Date();
+
+start_date.value = defaultStartDate;
+end_date.value = defaultEndDate;
+
 const resetDateFilters = () => {
-    start_date.value = '';
-    end_date.value = '';
+    start_date.value = defaultStartDate;;
+    end_date.value = defaultEndDate;;
 };
 
 const currentPage = ref(1);
