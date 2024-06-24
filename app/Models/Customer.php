@@ -28,7 +28,7 @@ class Customer extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('created_at');
+            $builder->orderByDesc('created_at');
         });
     }
 }
