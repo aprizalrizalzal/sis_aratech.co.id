@@ -8,32 +8,23 @@ import Chart from 'chart.js/auto';
 
 const chartCanvas = ref(null);
 const props = defineProps({
-    dataChart: Array,
+    lableCharts: Array,
+    dataCharts: Array,
 });
 
 onMounted(() => {
     const ctx = chartCanvas.value;
 
-    const backgroundColors = generateRandomColors(props.dataChart.length).map(color => `${color}33`);
-    const borderColors = generateRandomColors(props.dataChart.length);
+    const backgroundColors = generateRandomColors(props.dataCharts.length).map(color => `${color}33`);
+    const borderColors = generateRandomColors(props.dataCharts.length);
 
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [
-                'Users',
-                'Device Types',
-                'Spare Parts',
-                'Carousels',
-                'Customers',
-                'Devices',
-                'Services',
-                'Service Details',
-                'Part Usages'
-            ],
+            labels: props.lableCharts,
             datasets: [{
                 label: 'Count',
-                data: props.dataChart,
+                data: props.dataCharts,
                 backgroundColor: backgroundColors,
                 borderColor: borderColors,
                 borderWidth: 2,
@@ -53,9 +44,9 @@ onMounted(() => {
         }
     });
 
-    // Watch for changes in dataChart prop
-    watch(() => props.dataChart, (newValue, oldValue) => {
-        // Update chart data when props.dataChart changes
+    // Watch for changes in dataCharts prop
+    watch(() => props.dataCharts, (newValue, oldValue) => {
+        // Update chart data when props.dataCharts changes
         myChart.data.datasets[0].data = newValue;
         myChart.update();
     });

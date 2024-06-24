@@ -35,14 +35,14 @@ const showModalAddSparePart = ref(false);
 const showModalAddPartUsage = ref(false);
 
 const props = defineProps({
+  users: Array,
   deviceTypes: Array,
+  spareParts: Array,
+  carousels: Array,
   customers: Array,
   devices: Array,
   services: Array,
   serviceDetails: Array,
-  spareParts: Array,
-  users: Array,
-  carousels: Array,
   partUsages: Array,
 });
 
@@ -93,7 +93,58 @@ start_date_line_chart.value = defaultStartDate;
 end_date_line_chart.value = defaultEndDate;
 
 let filteredDateLineChart = ref({});
-let dataChart = ref([]);
+let lableCharts = ref([
+  'Users',
+  'Device Types',
+  'Spare Parts',
+  'Carousels',
+  'Customers',
+  'Devices',
+  'Services',
+  'Service Details',
+  'Part Usages'
+]);
+
+const updateLableCharts = () => {
+  if (isSuperAdmin.value) {
+    lableCharts.value = [
+      'Users',
+      'Device Types',
+      'Spare Parts',
+      'Carousels',
+      'Customers',
+      'Devices',
+      'Services',
+      'Service Details',
+      'Part Usages'
+    ];
+  } else if (isAdmin.value) {
+    lableCharts.value = [
+      'Customers',
+      'Devices',
+      'Services',
+    ];
+  } else if (isUser.value) {
+    lableCharts.value = [
+      'Service Details',
+      'Part Usages'
+    ];
+  } else {
+    // Default to the original labelCharts if no role matches
+    lableCharts.value = [
+      'Users',
+      'Device Types',
+      'Spare Parts',
+      'Carousels',
+      'Customers',
+      'Devices',
+      'Services',
+      'Service Details',
+      'Part Usages'
+    ];
+  }
+};
+let dataCharts = ref([]);
 
 const computeFilteredDateLineChart = () => {
   let filteredDataLineChart = {};
@@ -175,23 +226,40 @@ const computeFilteredDateLineChart = () => {
   return filteredDataLineChart;
 };
 
-const updateDataChart = () => {
-  dataChart.value = [
-    filteredDateLineChart.value.users.length, // Users
-    filteredDateLineChart.value.deviceTypes.length, // Device Types
-    filteredDateLineChart.value.spareParts.length, // Spare Parts
-    filteredDateLineChart.value.carousels.length, // Carousels
-    filteredDateLineChart.value.customers.length, // Customers
-    filteredDateLineChart.value.devices.length, // Devices
-    filteredDateLineChart.value.services.length, // Services
-    filteredDateLineChart.value.serviceDetails.length, // Service Details
-    filteredDateLineChart.value.partUsages.length, // Part Usages
-  ];
+const updateDataCharts = () => {
+  if (isSuperAdmin.value) {
+    dataCharts.value = [
+      filteredDateLineChart.value.users.length, // Users
+      filteredDateLineChart.value.deviceTypes.length, // Device Types
+      filteredDateLineChart.value.spareParts.length, // Spare Parts
+      filteredDateLineChart.value.carousels.length, // Carousels
+      filteredDateLineChart.value.customers.length, // Customers
+      filteredDateLineChart.value.devices.length, // Devices
+      filteredDateLineChart.value.services.length, // Services
+      filteredDateLineChart.value.serviceDetails.length, // Service Details
+      filteredDateLineChart.value.partUsages.length, // Part Usages
+    ];
+  } else if (isAdmin.value) {
+    dataCharts.value = [
+      filteredDateLineChart.value.customers.length, // Customers
+      filteredDateLineChart.value.devices.length, // Devices
+      filteredDateLineChart.value.services.length, // Services
+    ];
+  } else if (isUser.value) {
+    dataCharts.value = [
+      filteredDateLineChart.value.serviceDetails.length, // Service Details
+      filteredDateLineChart.value.partUsages.length, // Part Usages
+    ];
+  } else {
+    // Default to empty data charts array if no role matches
+    dataCharts.value = [];
+  }
 };
 
 watchEffect(() => {
   filteredDateLineChart.value = computeFilteredDateLineChart();
-  updateDataChart();
+  updateLableCharts();
+  updateDataCharts();
 });
 
 // const handlePrint = () => {
@@ -280,7 +348,7 @@ const previousPage = () => {
           <div class="overflow-hidden sm:rounded-md">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 gap-4 items-center">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
                 <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
@@ -296,7 +364,8 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+              <hr v-if="isSuperAdmin">
+              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
                 <CardButton @click="showModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -316,7 +385,8 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isUser" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+              <hr v-if="isAdmin">
+              <div v-if="isUser" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
                 <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
@@ -332,7 +402,8 @@ const previousPage = () => {
                   </template>
                 </CardButton>
               </div>
-              <div v-if="isSuperAdmin"
+              <hr v-if="isUser">
+              <div v-if="isSuperAdmin || isAdmin || isUser"
                 class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
@@ -346,7 +417,7 @@ const previousPage = () => {
                     </PrimaryButton>
                   </div>
                 </div>
-                <LineChart :dataChart="dataChart" />
+                <LineChart :lableCharts="lableCharts" :dataCharts="dataCharts" />
                 <!-- <SecondaryButton @click="handlePrint" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
                   <PrinterIcon />
                 </SecondaryButton> -->
