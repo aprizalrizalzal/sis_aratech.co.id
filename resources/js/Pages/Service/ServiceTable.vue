@@ -127,46 +127,64 @@ const handlePrint = () => {
     const printWindow = window.open();
     printWindow.document.write(`
      <html>
-      <head>
-        <title>Print Service Details</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif; 
-          }
-          h1 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 12px;
-          }
-          .date-range {
-            text-align: center;
-            font-size: 12px;
-            margin-bottom: 16px;
-          }
-          table {
-            width: 100%;
-            font-size: 12px;
-            border-collapse: collapse;
-            margin-bottom: 16px;
-          }
-          th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-          }
-          th {
-            background-color: #f2f2f2;
-          }
-          tfoot td {
-            font-weight: bold;
-            text-align: right;
-          }
-        </style>
-      </head>
-      <body>
-        ${printContentEl.innerHTML}
-      </body>
+        <head>
+            <title>Print Service Details</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif; 
+                }
+                h1 {
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                .date-range {
+                    text-align: center;
+                    font-size: 12px;
+                    margin-bottom: 16px;
+                }
+                table {
+                    width: 100%;
+                    font-size: 12px;
+                    border-collapse: collapse;
+                    margin-bottom: 16px;
+                }
+                th, td {
+                    border: 1px solid black;
+                    padding: 8px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+                tfoot td {
+                    font-weight: bold;
+                    text-align: left;
+                }
+                .header-container {
+                    align-items: stretch;
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+                .header-company {
+                    display: flex;
+                    
+                }
+                .header-text {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+                .header-date {
+                    font-size: 12px;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    margin-left: auto;
+                }
+            </style>
+        </head>
+        <body>
+            ${printContentEl.innerHTML}
+        </body>
     </html>
   `);
     printWindow.document.close();
@@ -246,7 +264,7 @@ const handlePrint = () => {
     </SecondaryButton>
 
     <div ref="printContent" style="display: none;">
-      <ServicesPrint :services="filteredServices" :startDate="start_date" :endDate="end_date" />
+        <ServicesPrint :services="filteredServices" :startDate="start_date" :endDate="end_date" />
     </div>
     <Modal v-model:show="showingModelServiceUpdate">
         <div class="m-6">

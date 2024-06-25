@@ -9,12 +9,12 @@ const props = defineProps({
 
 function formatDate(dateString) {
     const date = new Date(dateString);
-    
+
     const options = {
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric', 
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
     };
 
     return date.toLocaleDateString('id-ID', options);
@@ -33,41 +33,45 @@ const totalCost = computed(() => {
 </script>
 
 <template>
-<div>
     <div>
-    <h1>Service Details Report</h1>
-    <p>{{ formatDate(startDate)}} - {{ formatDate(endDate)}}</p>
+        <div>
+            <div v-for="header in $page.props.headers" :key="header.id" class="header-container">
+                <h1>Service Details Report</h1>
+                <div class="header-company">
+                    <p class="header-text">SIService - {{ header.company }}</p>
+                    <p class="header-date">{{ formatDate(startDate) }} - {{ formatDate(endDate) }}</p>
+                </div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Service Detail Code</th>
+                    <th>Technician</th>
+                    <th>Service Code</th>
+                    <th>Problem Description</th>
+                    <th>Repair Description</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ serviceDetail.service_detail_code }}</td>
+                    <td>{{ serviceDetail.user.name }}</td>
+                    <td>{{ serviceDetail.service.service_code }}</td>
+                    <td>{{ serviceDetail.problem_description }}</td>
+                    <td>{{ serviceDetail.repair_description }}</td>
+                    <td>{{ formatCurrency(serviceDetail.cost) }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">Total Cost:</td>
+                    <td>{{ formatCurrency(totalCost) }}</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
-    <table>
-    <thead>
-        <tr>
-        <th>No</th>
-        <th>Service Detail Code</th>
-        <th>Technician</th>
-        <th>Service Code</th>
-        <th>Problem Description</th>
-        <th>Repair Description</th>
-        <th>Cost</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id">
-        <td>{{ index + 1 }}</td>
-        <td>{{ serviceDetail.service_detail_code }}</td>
-        <td>{{ serviceDetail.user.name }}</td>
-        <td>{{ serviceDetail.service.service_code }}</td>
-        <td>{{ serviceDetail.problem_description }}</td>
-        <td>{{ serviceDetail.repair_description }}</td>
-        <td>{{ formatCurrency(serviceDetail.cost) }}</td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-        <td colspan="6">Total Cost:</td>
-        <td>{{ formatCurrency(totalCost) }}</td>
-        </tr>
-    </tfoot>
-    </table>
-</div>
 </template>
-  

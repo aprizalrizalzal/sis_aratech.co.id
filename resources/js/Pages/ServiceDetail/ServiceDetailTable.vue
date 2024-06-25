@@ -139,59 +139,80 @@ const handlePrint = () => {
     const printWindow = window.open();
     printWindow.document.write(`
      <html>
-      <head>
-        <title>Print Service Details</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif; 
-          }
-          h1 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 12px;
-          }
-          .date-range {
-            text-align: center;
-            font-size: 12px;
-            margin-bottom: 16px;
-          }
-          table {
-            width: 100%;
-            font-size: 12px;
-            border-collapse: collapse;
-            margin-bottom: 16px;
-          }
-          th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-          }
-          th {
-            background-color: #f2f2f2;
-          }
-          tfoot td {
-            font-weight: bold;
-            text-align: right;
-          }
-        </style>
-      </head>
-      <body>
-        ${printContentEl.innerHTML}
-      </body>
-    </html>
+            <head>
+                <title>Print Service Details</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif; 
+                    }
+                    h1 {
+                        text-align: center;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                    .date-range {
+                        text-align: center;
+                        font-size: 12px;
+                        margin-bottom: 16px;
+                    }
+                    table {
+                        width: 100%;
+                        font-size: 12px;
+                        border-collapse: collapse;
+                        margin-bottom: 16px;
+                    }
+                    th, td {
+                        border: 1px solid black;
+                        padding: 8px;
+                        text-align: left;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                    tfoot td {
+                        font-weight: bold;
+                        text-align: left;
+                    }
+                    .header-container {
+                        align-items: stretch;
+                        font-size: 14px;
+                        line-height: 1.5;
+                    }
+                    .header-company {
+                        display: flex;
+                        
+                    }
+                    .header-text {
+                        font-weight: bold;
+                        font-size: 18px;
+                    }
+                    .header-date {
+                        font-size: 12px;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        margin-left: auto;
+                    }
+                </style>
+            </head>
+            <body>
+                ${printContentEl.innerHTML}
+            </body>
+        </html>
   `);
     printWindow.document.close();
     printWindow.focus();
-    printWindow.print();
-    printWindow.close();
+    setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+    }, 500);
 };
 </script>
 
 <template>
     <div class="flex w-full gap-2 justify-between my-4">
         <div class="flex items-center gap-2 bg-white">
-            <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
+            <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
+                placeholder="Select Start Date Time" />
             <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
         </div>
         <div class="my-auto">
@@ -213,30 +234,41 @@ const handlePrint = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}</td>
+                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
+                    class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })" target="_blank"
+                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
+                            target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             Print
                         </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update</SecondaryButton>
+                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete</DangerButton>
+                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
+                        </DangerButton>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6" class="py-2 px-4 border-b border-green-300 font-semibold">Total Cost</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{ formatCurrency(totalCost) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{
+                        formatCurrency(totalCost) }}</td>
                     <td colspan="3" class="py-2 px-4 border-b border-green-300"></td>
                 </tr>
             </tbody>
@@ -247,13 +279,13 @@ const handlePrint = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
-    
+
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
         <PrinterIcon />
     </SecondaryButton>
 
     <div ref="printContent" style="display: none;">
-      <ServiceDetailsPrint :serviceDetails="filteredServiceDetails" :startDate="start_date" :endDate="end_date" />
+        <ServiceDetailsPrint :serviceDetails="filteredServiceDetails" :startDate="start_date" :endDate="end_date" />
     </div>
 
     <Modal v-model:show="showingModelServiceDetailUpdate">
@@ -275,7 +307,8 @@ const handlePrint = () => {
             </p>
             <div class="mt-6 flex justify-end">
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteServiceDetail">
+                <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="deleteServiceDetail">
                     Delete Service Detail
                 </DangerButton>
             </div>

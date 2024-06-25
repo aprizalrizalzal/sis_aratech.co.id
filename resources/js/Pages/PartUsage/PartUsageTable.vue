@@ -129,47 +129,65 @@ const handlePrint = () => {
     const printContentEl = printContent.value;
     const printWindow = window.open();
     printWindow.document.write(`
-     <html>
-      <head>
-        <title>Print Service Details</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif; 
-          }
-          h1 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 12px;
-          }
-          .date-range {
-            text-align: center;
-            font-size: 12px;
-            margin-bottom: 16px;
-          }
-          table {
-            width: 100%;
-            font-size: 12px;
-            border-collapse: collapse;
-            margin-bottom: 16px;
-          }
-          th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-          }
-          th {
-            background-color: #f2f2f2;
-          }
-          tfoot td {
-            font-weight: bold;
-            text-align: right;
-          }
-        </style>
-      </head>
-      <body>
-        ${printContentEl.innerHTML}
-      </body>
+    <html>
+        <head>
+            <title>Print Service Details</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif; 
+                }
+                h1 {
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                .date-range {
+                    text-align: center;
+                    font-size: 12px;
+                    margin-bottom: 16px;
+                }
+                table {
+                    width: 100%;
+                    font-size: 12px;
+                    border-collapse: collapse;
+                    margin-bottom: 16px;
+                }
+                th, td {
+                    border: 1px solid black;
+                    padding: 8px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+                tfoot td {
+                    font-weight: bold;
+                    text-align: left;
+                }
+                .header-container {
+                    align-items: stretch;
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+                .header-company {
+                    display: flex;
+                    
+                }
+                .header-text {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+                .header-date {
+                    font-size: 12px;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    margin-left: auto;
+                }
+            </style>
+        </head>
+        <body>
+            ${printContentEl.innerHTML}
+        </body>
     </html>
   `);
     printWindow.document.close();
@@ -177,6 +195,20 @@ const handlePrint = () => {
     printWindow.print();
     printWindow.close();
 };
+
+const totalPrice = computed(() => {
+    return props.partUsages.reduce((total, partUsage) => {
+        const cost = parseFloat(partUsage.spare_part.price);
+        return total + (isNaN(cost) ? 0 : cost);
+    }, 0);
+});
+
+const totalQuantity = computed(() => {
+    return props.partUsages.reduce((total, partUsage) => {
+        const quantity = parseFloat(partUsage.quantity);
+        return total + (isNaN(quantity) ? 0 : quantity);
+    }, 0);
+});
 </script>
 
 <template>
@@ -209,7 +241,8 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         partUsage.service_detail.service_detail_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(partUsage.spare_part.price) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        formatCurrency(partUsage.spare_part.price) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update
@@ -218,6 +251,13 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmPartUsageDeletion(partUsage.id)" class="m-2">Delete</DangerButton>
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="py-2 px-4 border-b border-green-300 font-semibold">Total Price</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{
+                        formatCurrency(totalPrice) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{ totalQuantity }}</td>
+                    <td colspan="2" class="py-2 px-4 border-b border-green-300"></td>
                 </tr>
             </tbody>
         </table>
@@ -233,7 +273,7 @@ const handlePrint = () => {
     </SecondaryButton>
 
     <div ref="printContent" style="display: none;">
-      <PartUsagesPrint :partUsages="filteredPartUsages" :startDate="start_date" :endDate="end_date" />
+        <PartUsagesPrint :partUsages="filteredPartUsages" :startDate="start_date" :endDate="end_date" />
     </div>
 
     <Modal v-model:show="showingModelPartUsageUpdate">
