@@ -7,6 +7,7 @@ import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import ServicesPrint from './ServicesPrint.vue';
 
 const props = defineProps({
     services: Array,
@@ -119,9 +120,60 @@ const previousPage = () => {
     }
 };
 
-// const handlePrint = () => {
+const printContent = ref(null);
 
-// };
+const handlePrint = () => {
+    const printContentEl = printContent.value;
+    const printWindow = window.open();
+    printWindow.document.write(`
+     <html>
+      <head>
+        <title>Print Service Details</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif; 
+          }
+          h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 12px;
+          }
+          .date-range {
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 16px;
+          }
+          table {
+            width: 100%;
+            font-size: 12px;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+          }
+          th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background-color: #f2f2f2;
+          }
+          tfoot td {
+            font-weight: bold;
+            text-align: right;
+          }
+        </style>
+      </head>
+      <body>
+        ${printContentEl.innerHTML}
+      </body>
+    </html>
+  `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+};
 </script>
 
 <template>
@@ -192,6 +244,10 @@ const previousPage = () => {
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
         <PrinterIcon />
     </SecondaryButton>
+
+    <div ref="printContent" style="display: none;">
+      <ServicesPrint :services="filteredServices" :startDate="start_date" :endDate="end_date" />
+    </div>
     <Modal v-model:show="showingModelServiceUpdate">
         <div class="m-6">
             <div class="flex justify-end">

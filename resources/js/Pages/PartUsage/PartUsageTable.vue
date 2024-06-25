@@ -7,10 +7,15 @@ import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import PartUsagesPrint from './PartUsagesPrint.vue';
 
 const props = defineProps({
     partUsages: Array,
 });
+
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+};
 
 const showingModelPartUsageUpdate = ref(false);
 const selectedPartUsage = ref(null);
@@ -118,9 +123,60 @@ const previousPage = () => {
     }
 };
 
-// const handlePrint = () => {
+const printContent = ref(null);
 
-// };
+const handlePrint = () => {
+    const printContentEl = printContent.value;
+    const printWindow = window.open();
+    printWindow.document.write(`
+     <html>
+      <head>
+        <title>Print Service Details</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif; 
+          }
+          h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 12px;
+          }
+          .date-range {
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 16px;
+          }
+          table {
+            width: 100%;
+            font-size: 12px;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+          }
+          th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background-color: #f2f2f2;
+          }
+          tfoot td {
+            font-weight: bold;
+            text-align: right;
+          }
+        </style>
+      </head>
+      <body>
+        ${printContentEl.innerHTML}
+      </body>
+    </html>
+  `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+};
 </script>
 
 <template>
@@ -141,6 +197,7 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Quantity</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
@@ -152,6 +209,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         partUsage.service_detail.service_detail_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(partUsage.spare_part.price) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalPartUsageUpdate(partUsage)" class="m-2">Update
@@ -173,6 +231,10 @@ const previousPage = () => {
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
         <PrinterIcon />
     </SecondaryButton>
+
+    <div ref="printContent" style="display: none;">
+      <PartUsagesPrint :partUsages="filteredPartUsages" :startDate="start_date" :endDate="end_date" />
+    </div>
 
     <Modal v-model:show="showingModelPartUsageUpdate">
         <div class="m-6">

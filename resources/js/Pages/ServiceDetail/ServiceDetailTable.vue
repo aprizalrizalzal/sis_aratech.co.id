@@ -1,13 +1,14 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import ServiceDetailForm from '@/Pages/ServiceDetail/ServiceDetailForm.vue';
+import ServiceDetailForm from './ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
+import ServiceDetailsPrint from './ServiceDetailsPrint.vue'
 
 const props = defineProps({
     serviceDetails: Array,
@@ -71,8 +72,8 @@ start_date.value = defaultStartDate;
 end_date.value = defaultEndDate;
 
 const resetDateFilters = () => {
-    start_date.value = defaultStartDate;;
-    end_date.value = defaultEndDate;;
+    start_date.value = defaultStartDate;
+    end_date.value = defaultEndDate;
 };
 
 const currentPage = ref(1);
@@ -102,6 +103,13 @@ const filteredServiceDetails = computed(() => {
     return serviceDetails;
 });
 
+const totalCost = computed(() => {
+    return filteredServiceDetails.value.reduce((total, serviceDetail) => {
+        const cost = parseFloat(serviceDetail.cost);
+        return total + (isNaN(cost) ? 0 : cost);
+    }, 0);
+});
+
 const paginatedServiceDetails = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
@@ -124,23 +132,73 @@ const previousPage = () => {
     }
 };
 
-// const handlePrint = () => {
+const printContent = ref(null);
 
-// };
+const handlePrint = () => {
+    const printContentEl = printContent.value;
+    const printWindow = window.open();
+    printWindow.document.write(`
+     <html>
+      <head>
+        <title>Print Service Details</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif; 
+          }
+          h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 12px;
+          }
+          .date-range {
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 16px;
+          }
+          table {
+            width: 100%;
+            font-size: 12px;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+          }
+          th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background-color: #f2f2f2;
+          }
+          tfoot td {
+            font-weight: bold;
+            text-align: right;
+          }
+        </style>
+      </head>
+      <body>
+        ${printContentEl.innerHTML}
+      </body>
+    </html>
+  `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+};
 </script>
 
 <template>
     <div class="flex w-full gap-2 justify-between my-4">
         <div class="flex items-center gap-2 bg-white">
-            <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
-                placeholder="Select Start Date Time" />
+            <DateTimePicker id="start_date" label="Start Date" v-model="start_date" placeholder="Select Start Date Time" />
             <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
         </div>
         <div class="my-auto">
             <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
         </div>
     </div>
-    <div class=" overflow-x-auto">
+    <div class="overflow-x-auto">
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
@@ -155,36 +213,31 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
-                    class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
-                        index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
-                    </td>
+                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
-                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
-                            target="_blank"
+                        <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             Print
                         </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
-                        </SecondaryButton>
+                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update</SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
-                        </DangerButton>
+                        <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete</DangerButton>
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="py-2 px-4 border-b border-green-300 font-semibold">Total Cost</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{ formatCurrency(totalCost) }}</td>
+                    <td colspan="3" class="py-2 px-4 border-b border-green-300"></td>
                 </tr>
             </tbody>
         </table>
@@ -194,9 +247,14 @@ const previousPage = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
+    
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
         <PrinterIcon />
     </SecondaryButton>
+
+    <div ref="printContent" style="display: none;">
+      <ServiceDetailsPrint :serviceDetails="filteredServiceDetails" :startDate="start_date" :endDate="end_date" />
+    </div>
 
     <Modal v-model:show="showingModelServiceDetailUpdate">
         <div class="m-6">
@@ -217,8 +275,7 @@ const previousPage = () => {
             </p>
             <div class="mt-6 flex justify-end">
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-                <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                    @click="deleteServiceDetail">
+                <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteServiceDetail">
                     Delete Service Detail
                 </DangerButton>
             </div>
