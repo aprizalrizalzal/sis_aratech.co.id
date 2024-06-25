@@ -15,6 +15,7 @@ const currentUrl = computed(() => {
 onMounted(() => {
     setTimeout(() => {
         window.print();
+        window.close();
     }, 500);
 });
 </script>

@@ -14,6 +14,7 @@ const formatCurrency = (value) => {
 onMounted(() => {
     setTimeout(() => {
         window.print();
+        window.close();
     }, 500);
 });
 </script>
