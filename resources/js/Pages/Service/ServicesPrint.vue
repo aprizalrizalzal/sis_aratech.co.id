@@ -23,7 +23,7 @@ function formatDate(dateString) {
 <div>
     <div>
     <h1>Services Report</h1>
-    <p>Date: {{ formatDate(startDate)}} - {{ formatDate(endDate)}}</p>
+    <p>{{ formatDate(startDate)}} - {{ formatDate(endDate)}}</p>
     </div>
     <table>
     <thead>

@@ -36,7 +36,7 @@ const totalCost = computed(() => {
 <div>
     <div>
     <h1>Service Details Report</h1>
-    <p>Date: {{ formatDate(startDate)}} - {{ formatDate(endDate)}}</p>
+    <p>{{ formatDate(startDate)}} - {{ formatDate(endDate)}}</p>
     </div>
     <table>
     <thead>
