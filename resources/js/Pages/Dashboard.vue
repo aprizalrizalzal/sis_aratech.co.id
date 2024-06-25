@@ -37,7 +37,6 @@ const props = defineProps({
   users: Array,
   deviceTypes: Array,
   spareParts: Array,
-  carousels: Array,
   customers: Array,
   devices: Array,
   services: Array,
@@ -96,7 +95,6 @@ let lableCharts = ref([
   'Users',
   'Device Types',
   'Spare Parts',
-  'Carousels',
   'Customers',
   'Devices',
   'Services',
@@ -110,7 +108,6 @@ const updateLableCharts = () => {
       'Users',
       'Device Types',
       'Spare Parts',
-      'Carousels',
       'Customers',
       'Devices',
       'Services',
@@ -136,7 +133,6 @@ const updateLableCharts = () => {
       'Users',
       'Device Types',
       'Spare Parts',
-      'Carousels',
       'Customers',
       'Devices',
       'Services',
@@ -167,12 +163,6 @@ const computeFilteredDateLineChart = () => {
       }),
       spareParts: props.spareParts.filter(sparePart => {
         const createdDate = new Date(sparePart.created_at);
-        const start = new Date(start_date_line_chart.value);
-        const end = new Date(end_date_line_chart.value);
-        return createdDate >= start && createdDate <= end;
-      }),
-      carousels: props.carousels.filter(carousel => {
-        const createdDate = new Date(carousel.created_at);
         const start = new Date(start_date_line_chart.value);
         const end = new Date(end_date_line_chart.value);
         return createdDate >= start && createdDate <= end;
@@ -214,7 +204,6 @@ const computeFilteredDateLineChart = () => {
       users: props.users,
       deviceTypes: props.deviceTypes,
       spareParts: props.spareParts,
-      carousels: props.carousels,
       customers: props.customers,
       devices: props.devices,
       services: props.services,
@@ -233,7 +222,6 @@ const updateDataCharts = () => {
       filteredDateLineChart.value.users.length, // Users
       filteredDateLineChart.value.deviceTypes.length, // Device Types
       filteredDateLineChart.value.spareParts.length, // Spare Parts
-      filteredDateLineChart.value.carousels.length, // Carousels
       filteredDateLineChart.value.customers.length, // Customers
       filteredDateLineChart.value.devices.length, // Devices
       filteredDateLineChart.value.services.length, // Services

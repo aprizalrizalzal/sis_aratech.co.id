@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carousel;
 use App\Models\Customer;
 use App\Models\DeviceType;
 use App\Models\Device;
@@ -24,7 +23,6 @@ class DashboardController extends Controller
         $serviceDetails = ServiceDetail::with('user', 'service')->get();
         $spareParts = SparePart::all();
 
-        $carousels = Carousel::all();
         $customers = Customer::all();
         $devices = Device::all();
         $deviceTypes = DeviceType::all();
@@ -37,7 +35,6 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'users' => $users,
             'customers' => $customers,
-            'carousels' => $carousels,
             'deviceTypes' => $deviceTypes,
             'devices' => $devices,
             'partUsages' => $partUsages,
