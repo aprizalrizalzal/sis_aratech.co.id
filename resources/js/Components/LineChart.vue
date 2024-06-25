@@ -40,7 +40,13 @@ onMounted(() => {
                 y: {
                     beginAtZero: true,
                     // Calculate max value for y axis based on props.dataCharts
-                    max: calculateMaxY(props.dataCharts) + 2
+                    max: calculateMaxY(props.dataCharts) + 2,
+                    ticks: {
+                        stepSize: 1, // Ensure the step size is 1 to only show integers
+                        callback: function (value) {
+                            return Math.round(value); // Ensure only integers are displayed
+                        },
+                    }
                 }
             }
         }
