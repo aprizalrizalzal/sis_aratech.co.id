@@ -118,6 +118,10 @@ const previousPage = () => {
         currentPage.value--;
     }
 };
+
+// const handlePrint = () => {
+
+// };
 </script>
 
 <template>
@@ -185,7 +189,9 @@ const previousPage = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
-
+    <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
+        <PrinterIcon />
+    </SecondaryButton>
     <Modal v-model:show="showingModelServiceUpdate">
         <div class="m-6">
             <div class="flex justify-end">

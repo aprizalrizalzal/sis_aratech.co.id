@@ -24,7 +24,6 @@ import SearchInput from '@/Components/SearchInput.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-// import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 
 const showModalAddCustomer = ref(false);
 const showModalAddDeviceType = ref(false);
@@ -266,10 +265,6 @@ watchEffect(() => {
   updateDataCharts();
 });
 
-// const handlePrint = () => {
-
-// };
-
 const start_date = ref('');
 const end_date = ref('');
 
@@ -422,9 +417,6 @@ const previousPage = () => {
                   </div>
                 </div>
                 <LineChart :lableCharts="lableCharts" :dataCharts="dataCharts" />
-                <!-- <SecondaryButton @click="handlePrint" class="mt-8 w-full mb-4"><span class="py-1 w-full">Print</span>
-                  <PrinterIcon />
-                </SecondaryButton> -->
               </div>
               <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">

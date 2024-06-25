@@ -1,11 +1,12 @@
 <script setup>
+import { ref, computed } from 'vue';
+import { useForm } from '@inertiajs/vue3';
 import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-
-import { useForm } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
+import DateTimePicker from '@/Components/DateTimePicker.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     partUsages: Array,
@@ -53,17 +54,56 @@ const closeModal = () => {
     confirmingPartUsageDeletion.value = false;
 };
 
+const start_date = ref('');
+const end_date = ref('');
+
+const defaultStartDate = new Date();
+defaultStartDate.setDate(defaultStartDate.getDate() - 30);
+const defaultEndDate = new Date();
+
+start_date.value = defaultStartDate;
+end_date.value = defaultEndDate;
+
+const resetDateFilters = () => {
+    start_date.value = defaultStartDate;;
+    end_date.value = defaultEndDate;;
+};
+
 const currentPage = ref(1);
 const itemsPerPage = 15;
+
+const filteredPartUsages = computed(() => {
+    let partUsages = props.partUsages;
+
+    if (start_date.value || end_date.value) {
+        partUsages = partUsages.filter(serviceDetail => {
+            const createdDate = new Date(serviceDetail.created_at);
+            const start = start_date.value ? new Date(start_date.value) : null;
+            const end = end_date.value ? new Date(end_date.value) : null;
+
+            if (start && end) {
+                return createdDate >= start && createdDate <= end;
+            } else if (start) {
+                return createdDate >= start;
+            } else if (end) {
+                return createdDate <= end;
+            }
+
+            return true;
+        });
+    }
+
+    return partUsages;
+});
 
 const paginatedPartUsages = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return props.partUsages.slice(start, end);
+    return filteredPartUsages.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-    return Math.ceil(props.partUsages.length / itemsPerPage);
+    return Math.ceil(filteredPartUsages.value.length / itemsPerPage);
 });
 
 const nextPage = () => {
@@ -77,9 +117,23 @@ const previousPage = () => {
         currentPage.value--;
     }
 };
+
+// const handlePrint = () => {
+
+// };
 </script>
 
 <template>
+    <div class="flex w-full gap-2 justify-between my-4">
+        <div class="flex items-center gap-2 bg-white">
+            <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
+                placeholder="Select Start Date Time" />
+            <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
+        </div>
+        <div class="my-auto">
+            <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
+        </div>
+    </div>
     <div class=" overflow-x-auto">
         <table class="min-w-full bg-white border-collapse">
             <thead>
@@ -116,6 +170,9 @@ const previousPage = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
+    <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
+        <PrinterIcon />
+    </SecondaryButton>
 
     <Modal v-model:show="showingModelPartUsageUpdate">
         <div class="m-6">
