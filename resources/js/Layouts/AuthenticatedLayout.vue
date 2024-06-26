@@ -44,16 +44,14 @@ const isUser = computed(() => hasRole('user'));
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
                 <div class="flex justify-between h-24 ">
                     <div v-if="isSuperAdmin" :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
-                        class="me-2 flex items-center left-0 fixed bg-white bg-opacity-50 rounded-md">
+                        class="me-2 flex items-center left-0 fixed bg-green-50 bg-opacity-50 rounded-md">
                         <button @click="toggleSidebar()"
-                            class="inline-flex py-9 items-center justify-center rounded-md p-2 text-green-400 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
-                            <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
+                            class="inline-flex py-9 items-center justify-center rounded-md p-2 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
                                 <!-- Panah ke kanan -->
-                                <path v-if="!showingSidebar" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M9 5l7 7-7 7" />
+                                <path v-if="!showingSidebar" fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
                                 <!-- Panah ke kiri -->
-                                <path v-if="showingSidebar" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M15 19l-7-7 7-7" />
+                                <path v-if="showingSidebar"  fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
                             </svg>
                         </button>
                     </div>
