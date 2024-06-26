@@ -15,8 +15,8 @@ const currentUrl = computed(() => {
 
 const footers = usePage().props.footers;
 
-const contactFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'Contact');
+const platformPhoneFooters = computed(() => {
+    return footers.filter(footer => footer.platform === 'Phone');
 });
 
 onMounted(() => {
@@ -32,12 +32,12 @@ onMounted(() => {
     <Head title="Service Print" />
     <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-24 w-24" />
+            <ApplicationLogo class="block h-20 w-20" />
         </div>
         <div class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
             <p>{{ header.description }}</p>
-            <div v-for="footer in contactFooters" :key="footer.id">
+            <div v-for="footer in platformPhoneFooters" :key="footer.id">
                 <span>{{ footer.value }}</span>
             </div>
         </div>
@@ -138,21 +138,23 @@ onMounted(() => {
     <div id="footer" class="flex gap-4 justify-between text-sm/relaxed text-left">
         <div class="flex flex-col gap-10">
             <p>Admin</p>
-            <span>Widiya</span>
+            <span>________</span>
         </div>
         <div class="flex flex-col gap-10">
             <p>Technician</p>
-            <span>Aprizal</span>
+            <span>___________</span>
         </div>
         <div class="flex flex-col gap-10">
             <p>Customer</p>
-            <span>Ibnu</span>
+            <span>{{ service.customer.user.name }}</span>
         </div>
-        <div class="flex flex-col items-center border px-2">
-            <p>Notes!</p>
-            <span>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</span>
-            <span>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</span>
-            <span>Harap menunjukkan nota service saat pengambilan barang.</span>
+        <div class="flex flex-col items-left border px-2">
+            <p class="font-bold">Notes!</p>
+            <ul>
+                <li>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</li>
+                <li>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</li>
+                <li>Harap menunjukkan nota service saat pengambilan barang.</li>
+            </ul>
         </div>
     </div>
     <div class="mt-2 text-sm/relaxed text-left">
