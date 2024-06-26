@@ -17,13 +17,15 @@ const filteredServices = computed(() => {
   }
   return props.services.filter(service =>
     service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.customer.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.customer.phone.includes(searchQuery.value) ||
     service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.status.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });

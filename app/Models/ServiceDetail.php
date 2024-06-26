@@ -11,7 +11,7 @@ class ServiceDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['service_detail_code', 'user_id', 'service_id', 'repair_description', 'cost'];
+    protected $fillable = ['service_detail_code', 'user_id', 'service_id', 'repair_description', 'cost', 'notes'];
 
     // Relasi ke User
     public function user()

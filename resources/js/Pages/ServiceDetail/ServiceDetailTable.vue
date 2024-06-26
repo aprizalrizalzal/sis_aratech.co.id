@@ -229,6 +229,7 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Technician</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
@@ -245,6 +246,8 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"

@@ -16,6 +16,7 @@ const form = useForm({
     service_id: '',
     repair_description: '',
     cost: '',
+    notes: '',
 });
 
 const props = defineProps({
@@ -93,7 +94,8 @@ const submitForm = () => {
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />
-                    <textarea id="repair_description" type="text" class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                    <textarea id="repair_description" type="text"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.repair_description" placeholder="Repair Description" required />
                     <InputError class="mt-3" :message="form.errors.repair_description" />
                 </div>
@@ -102,6 +104,13 @@ const submitForm = () => {
                     <TextInput id="cost" type="text" class="mt-1 block w-full" v-model="form.cost" placeholder="Cost"
                         required />
                     <InputError class="mt-3" :message="form.errors.cost" />
+                </div>
+                <div>
+                    <InputLabel class="mt-3" for="notes" value="Notes" />
+                    <textarea id="notes" type="text"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        v-model="form.notes" placeholder="Notes" required />
+                    <InputError class="mt-3" :message="form.errors.notes" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">

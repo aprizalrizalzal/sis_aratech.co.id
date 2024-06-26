@@ -34,7 +34,7 @@ class ServiceController extends Controller
 
 
         $service = Service::create([
-            'service_code' => Str::upper(Str::random(8)),
+            'service_code' => Str::upper(Str::random(6)),
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
             'status_warranty' => $request->status_warranty,

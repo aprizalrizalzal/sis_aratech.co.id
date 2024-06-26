@@ -16,7 +16,7 @@ class ServicesTableSeeder extends Seeder
     {
         $services = [
             [
-                'service_code' => Str::upper(Str::random(8)),
+                'service_code' => Str::upper(Str::random(6)),
                 'customer_id' => 1,
                 'device_id' => 1,
                 'status_warranty' => 'Out Warranty',
@@ -28,7 +28,7 @@ class ServicesTableSeeder extends Seeder
 
             ],
             [
-                'service_code' => Str::upper(Str::random(8)),
+                'service_code' => Str::upper(Str::random(6)),
                 'customer_id' => 2,
                 'device_id' => 2,
                 'status_warranty' => 'Out Warranty',
@@ -39,7 +39,7 @@ class ServicesTableSeeder extends Seeder
                 'status' => 'Completed',
             ],
             [
-                'service_code' => Str::upper(Str::random(8)),
+                'service_code' => Str::upper(Str::random(6)),
                 'customer_id' => 3,
                 'device_id' => 3,
                 'status_warranty' => 'Out Warranty',

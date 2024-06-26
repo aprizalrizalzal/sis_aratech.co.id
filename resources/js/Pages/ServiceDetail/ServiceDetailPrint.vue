@@ -41,7 +41,7 @@ onMounted(() => {
                     {{ serviceDetail.service_detail_code }}
                 </td>
             </tr>
-            <tr class="font-bold bg-green-50">
+            <tr>
                 <td class="text-green-900">
                     Service Code
                 </td>
@@ -65,7 +65,7 @@ onMounted(() => {
                     {{ serviceDetail.repair_description }}
                 </td>
             </tr>
-            <tr class="font-bold text-green-900">
+            <tr class="font-bold bg-green-50">
                 <td class="text-green-900">
                     Cost
                 </td>
@@ -76,8 +76,19 @@ onMounted(() => {
         </tbody>
     </table>
     <hr>
+    <div id="footer" class="grid grid-cols-2 gap-4 my-2 justify-between text-sm/relaxed text-left">
+        <div class="flex flex-col gap-10">
+            <p>Admin</p>
+            <span>{{ $page.props.auth.user.name }}</span>
+        </div>
+        <div class="flex flex-col items-left border px-2">
+            <p class="font-bold">Notes!</p>
+            {{ serviceDetail.notes }}
+        </div>
+    </div>
+    <hr>
     <div class="my-2 text-sm/relaxed">
-        <p>Notes! <span class="font-bold text-green-800">Cost</span> tidak termasuk harga Spare Part jika ada
+        <p><span class="font-bold text-green-800">Cost</span> tidak termasuk harga Spare Part jika ada
             penggantian selama service.
         </p>
     </div>

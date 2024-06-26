@@ -19,8 +19,9 @@ const filteredServiceDetails = computed(() => {
     serviceDetail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.repair_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.notes.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.cost.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });

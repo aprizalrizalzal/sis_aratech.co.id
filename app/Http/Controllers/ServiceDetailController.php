@@ -25,8 +25,9 @@ class ServiceDetailController extends Controller
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
             'problem_description' => 'required|string|max:255',
-            'repair_description' => 'nullable|string|max:255',
+            'repair_description' => 'required|string|max:255',
             'cost' => 'required|numeric',
+            'notes' => 'nullable|string|max:255',
         ]);
 
         $existingServiceDetail = ServiceDetail::where('service_id', $request->service_id)->first();
@@ -36,12 +37,13 @@ class ServiceDetailController extends Controller
         }
 
         $serviceDetail = ServiceDetail::create([
-            'service_detail_code' => Str::upper(Str::random(8)),
+            'service_detail_code' => Str::upper(Str::random(6)),
             'user_id' => $request->user_id,
             'service_id' => $request->service_id,
             'problem_description' => $request->problem_description,
             'repair_description' => $request->repair_description,
             'cost' => $request->cost,
+            'notes' => $request->notes,
         ]);
 
         $printServiceDetail = route('service.detail.print', $serviceDetail->service_detail_code);
@@ -60,6 +62,7 @@ class ServiceDetailController extends Controller
             'service_id' => 'required|exists:services,id',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|integer',
+            'notes' => 'nullable|string|max:255',
         ]);
 
         $serviceDetail = ServiceDetail::findOrFail($request->id);
@@ -69,6 +72,7 @@ class ServiceDetailController extends Controller
             'service_id' => $request->service_id,
             'repair_description' => $request->repair_description,
             'cost' => $request->cost,
+            'notes' => $request->notes,
         ]);
 
         return Redirect::back();

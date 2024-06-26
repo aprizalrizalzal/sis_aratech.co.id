@@ -77,7 +77,7 @@ const closeModal = () => {
                 agar sistem dapat menemukan data yang sesuai dengan benar.</p>
             <p class="text-sm/relaxed">Harap dicatat: Service Code hanya boleh
                 menggunakan huruf
-                kapital. Contohnya: <strong>SNDFGYHN</strong>.</p>
+                kapital. Contohnya: <strong>DFGYHN</strong>.</p>
         </div>
     </div>
 
