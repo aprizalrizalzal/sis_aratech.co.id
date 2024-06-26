@@ -1,7 +1,6 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Head } from '@inertiajs/vue3';
-import { usePage } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
 
 const props = defineProps({
@@ -13,12 +12,6 @@ const currentUrl = computed(() => {
     return `${url.host}`;
 });
 
-const footers = usePage().props.footers;
-
-const platformPhoneFooters = computed(() => {
-    return footers.filter(footer => footer.platform === 'Phone');
-});
-
 onMounted(() => {
     setTimeout(() => {
         window.print();
@@ -27,30 +20,26 @@ onMounted(() => {
 });
 </script>
 
-<template id="print-template">
+<template id="print-service">
 
     <Head title="Service Print" />
-    <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
+    <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-20 w-20" />
+            <ApplicationLogo class="block h-14 w-14" />
         </div>
         <div class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
             <p>{{ header.description }}</p>
-            <div v-for="footer in platformPhoneFooters" :key="footer.id">
-                <span>{{ footer.value }}</span>
-            </div>
         </div>
     </div>
-    
-    <br>
-    <table class="table-auto w-full">
+    <hr>
+    <table class="table-auto w-full my-2">
         <tbody>
             <tr class="font-bold bg-green-50 ">
                 <td class=" text-green-900">
                     Service Code
                 </td>
-                <td colspan="3">
+                <td>
                     {{ service.service_code }}
                 </td>
             </tr>
@@ -61,24 +50,28 @@ onMounted(() => {
                 <td>
                     {{ service.customer.user.name }}
                 </td>
+            </tr>
+            <tr>
                 <td class=" text-green-900">
                     Phone
                 </td>
-                <td >
+                <td>
                     {{ service.customer.phone }}
                 </td>
             </tr>
             <tr>
                 <td class=" text-green-900">
-                Alamat
+                    Alamat
                 </td>
-                <td >
+                <td>
                     {{ service.customer.address }}
                 </td>
+            </tr>
+            <tr>
                 <td class=" text-green-900">
                     Model
                 </td>
-                <td >
+                <td>
                     {{ service.device.model }}
                 </td>
             </tr>
@@ -86,13 +79,15 @@ onMounted(() => {
                 <td class=" text-green-900">
                     Serial Number
                 </td>
-                <td >
+                <td>
                     {{ service.device.serial_number }}
                 </td>
+            </tr>
+            <tr>
                 <td class=" text-green-900">
                     Warranty Status
                 </td>
-                <td >
+                <td>
                     Out Warranty
                 </td>
             </tr>
@@ -100,27 +95,31 @@ onMounted(() => {
                 <td class=" text-green-900">
                     Date Received
                 </td>
-                <td >
+                <td>
                     {{ service.date_received }}
-                </td>
-                <td class=" text-green-900">
-                    Estimated Completion
-                </td>
-                <td >
-                    {{ service.estimated_completion }}
                 </td>
             </tr>
             <tr>
                 <td class=" text-green-900">
                     Problem Description
                 </td>
-                <td >
+                <td>
                     {{ service.problem_description }}
                 </td>
+            </tr>
+            <tr>
+                <td class=" text-green-900">
+                    Estimated Completion
+                </td>
+                <td>
+                    {{ service.estimated_completion }}
+                </td>
+            </tr>
+            <tr>
                 <td class=" text-green-900">
                     Items Brought
                 </td>
-                <td >
+                <td>
                     {{ service.items_brought }}
                 </td>
             </tr>
@@ -128,21 +127,17 @@ onMounted(() => {
                 <td class=" text-green-900">
                     Status
                 </td>
-                <td colspan="3">
+                <td>
                     {{ service.status }}
                 </td>
             </tr>
         </tbody>
     </table>
-    <br>
-    <div id="footer" class="flex gap-4 justify-between text-sm/relaxed text-left">
+    <hr>
+    <div id="footer" class="flex gap-4 my-2 justify-between text-sm/relaxed text-left">
         <div class="flex flex-col gap-10">
             <p>Admin</p>
-            <span>________</span>
-        </div>
-        <div class="flex flex-col gap-10">
-            <p>Technician</p>
-            <span>___________</span>
+            <span>{{ $page.props.auth.user.name }}</span>
         </div>
         <div class="flex flex-col gap-10">
             <p>Customer</p>
@@ -157,10 +152,12 @@ onMounted(() => {
             </ul>
         </div>
     </div>
-    <div class="mt-2 text-sm/relaxed text-left">
-        <span>Kunjungi! </span><a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold" :href="currentUrl">{{currentUrl }}</a> gunakan Email: 
-        <span class="font-bold text-green-800">{{ service.customer.user.email }}</span> dan Password:
-        <span class="font-bold text-green-800">password</span> untuk melihat perkembangan device yang diservice.
+    <hr>
+    <div id="footer" class="mt-2 text-sm/relaxed text-left">
+        <span>"Kunjungi situs web di </span><a target="_blank" rel="noopener noreferrer"
+            class="text-green-800 font-bold" :href="currentUrl">{{ currentUrl }}</a> dan masuk menggunakan email
+        <span class="font-bold text-green-800">{{ service.customer.user.email }}</span> <span>dan kata sandi 'password'
+            untuk melihat perkembangan perangkat yang sedang diperbaiki.</span>
     </div>
 </template>
 
@@ -179,16 +176,17 @@ onMounted(() => {
     }
 
     table {
-        font-size: 80%;
+        font-size: 75%;
         width: 100%;
     }
 
     .border {
-        border: 0.5px solid #000;
+        border: 0.5px solid #A9A9A9A9;
+        border-radius: 8px;
     }
 
     #footer {
-        font-size: 80%;
+        font-size: 75%;
     }
 }
 </style>

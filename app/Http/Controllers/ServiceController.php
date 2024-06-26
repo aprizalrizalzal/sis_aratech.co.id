@@ -24,6 +24,7 @@ class ServiceController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
+            'status_warranty' => 'required|string|max:255',
             'date_received' => 'date',
             'problem_description' => 'required|string|max:255',
             'estimated_completion' => 'date',
@@ -36,6 +37,7 @@ class ServiceController extends Controller
             'service_code' => Str::upper(Str::random(8)),
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
+            'status_warranty' => $request->status_warranty,
             'date_received' => $request->date_received,
             'problem_description' => $request->problem_description,
             'estimated_completion' => $request->estimated_completion,
@@ -56,6 +58,7 @@ class ServiceController extends Controller
             'id' => 'required|exists:services,id',
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
+            'status_warranty' => 'required|string|max:255',
             'date_received' => 'date',
             'problem_description' => 'required|string|max:255',
             'estimated_completion' => 'date',
@@ -68,6 +71,7 @@ class ServiceController extends Controller
         $service->update([
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
+            'status_warranty' => $request->status_warranty,
             'date_received' => $request->date_received,
             'problem_description' => $request->problem_description,
             'estimated_completion' => $request->estimated_completion,

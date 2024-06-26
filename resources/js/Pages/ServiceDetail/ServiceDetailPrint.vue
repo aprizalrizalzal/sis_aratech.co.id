@@ -18,74 +18,66 @@ onMounted(() => {
     }, 500);
 });
 </script>
-<template id="print-template">
+<template id="print-service-detail">
 
     <Head title="Service Detail Print" />
-    <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mt-4 gap-2 text-sm/relaxed">
+    <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-16 w-16" />
+            <ApplicationLogo class="block h-14 w-14" />
         </div>
         <div class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
             <p>{{ header.description }}</p>
         </div>
     </div>
-    <br>
-    <table class="table-auto w-full">
+    <hr>
+    <table class="table-auto w-full my-2">
         <tbody>
-            <tr class="font-bold text-green-900">
-                <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+            <tr class="font-bold bg-green-50">
+                <td class=" text-green-900">
                     Service Detail Code
                 </td>
-                <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                <td>
                     {{ serviceDetail.service_detail_code }}
                 </td>
             </tr>
-            <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Technician
-                </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ serviceDetail.user.name }}
-                </td>
-            </tr>
-            <tr class="font-bold text-green-900">
-                <td class="py-2 px-4 border border-green-50 text-center">
+            <tr class="font-bold bg-green-50">
+                <td class="text-green-900">
                     Service Code
                 </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
+                <td>
                     {{ serviceDetail.service.service_code }}
                 </td>
             </tr>
             <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    Problem Description
+                <td class="text-green-900">
+                    Technician
                 </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
-                    <!-- {{ serviceDetail.problem_description }} -->
+                <td>
+                    {{ serviceDetail.user.name }}
                 </td>
             </tr>
             <tr>
-                <td class="py-2 px-4 border border-green-50 text-center">
+                <td class="text-green-900">
                     Repair Description
                 </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
+                <td>
                     {{ serviceDetail.repair_description }}
                 </td>
             </tr>
             <tr class="font-bold text-green-900">
-                <td class="py-2 px-4 border border-green-50 text-center">
+                <td class="text-green-900">
                     Cost
                 </td>
-                <td class="py-2 px-4 border border-green-50 text-center">
+                <td>
                     {{ formatCurrency(serviceDetail.cost) }}
                 </td>
             </tr>
         </tbody>
     </table>
-    <br>
-    <div class="mt-4 text-sm/relaxed">
-        <p>Catatan: <span class="font-bold text-green-800">Cost</span> tidak termasuk harga Spare Part jika ada
+    <hr>
+    <div class="my-2 text-sm/relaxed">
+        <p>Notes! <span class="font-bold text-green-800">Cost</span> tidak termasuk harga Spare Part jika ada
             penggantian selama service.
         </p>
     </div>
@@ -102,16 +94,21 @@ onMounted(() => {
         width: 210mm;
         height: 297mm;
         margin: 2 auto;
-        padding: 10mm;
+        padding: 8mm;
     }
 
     table {
-        font-size: 80%;
+        font-size: 75%;
         width: 100%;
     }
 
     .border {
-        border: 1px solid #000;
+        border: 0.5px solid #A9A9A9A9;
+        border-radius: 8px;
+    }
+
+    #footer {
+        font-size: 75%;
     }
 }
 </style>

@@ -11,12 +11,18 @@ import TextInput from '@/Components/TextInput.vue';
 const form = useForm({
     customer_id: '',
     device_id: '',
+    status_warranty: '',
     date_received: '',
     problem_description: '',
     estimated_completion: '',
     items_brought: '',
     status: '',
 });
+
+const statusWarranty = ref([
+    { id: '1', name: 'In Warranty' },
+    { id: '2', name: 'Out Warranty' },
+]);
 
 const statusOptions = ref([
     { id: '1', name: 'Received' },
@@ -39,6 +45,7 @@ const props = defineProps({
 if (props.service) {
     form.customer_id = props.service.customer_id;
     form.device_id = props.service.device_id;
+    form.status_warranty = props.service.status_warranty;
     form.date_received = props.service.date_received;
     form.problem_description = props.service.problem_description;
     form.estimated_completion = props.service.estimated_completion;
@@ -59,7 +66,7 @@ const submitForm = () => {
                 };
             },
             onError: (errors) => {
-                if (errors.customer_id || errors.device_id || errors.date_received || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
+                if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
                     alert('Service addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -72,7 +79,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.customer_id || errors.device_id || errors.date_received || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
+                if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
                     alert('Service update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -98,6 +105,12 @@ const submitForm = () => {
                         valueProperty="id" :options="devices" v-model="form.device_id"
                         placeholder="Select Serial Number" />
                     <InputError class="mt-3" :message="form.errors.device_id" />
+                </div>
+                <div>
+                    <DropdownSelect id="status_warranty" label="Status Warranty" :options="statusWarranty"
+                        optionProperty="name" valueProperty="name" v-model="form.status_warranty"
+                        :placeholder="props.service ? props.service.status_warranty : 'Select Status Warranty'" />
+                    <InputError class="mt-3" :message="form.errors.status_warranty" />
                 </div>
                 <div>
                     <DateTimePicker id="date_received" label="Date Received" v-model="form.date_received"
