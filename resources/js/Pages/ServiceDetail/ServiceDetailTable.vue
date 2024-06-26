@@ -243,7 +243,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.problem_description }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.problem_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>

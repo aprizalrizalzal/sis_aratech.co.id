@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('device_id')->constrained()->onDelete('cascade');
             $table->date('date_received');
-            $table->text('items_brought')->nullable();
+            $table->text('problem_description');
             $table->date('estimated_completion')->nullable();
+            $table->text('items_brought')->nullable();
             $table->string('status');
             $table->timestamps();
         });

@@ -14,7 +14,6 @@ const userId = ref(auth.user.id);
 const form = useForm({
     user_id: userId,
     service_id: '',
-    problem_description: '',
     repair_description: '',
     cost: '',
 });
@@ -33,7 +32,6 @@ const props = defineProps({
 if (props.serviceDetail) {
     form.user_id = props.serviceDetail.user_id;
     form.service_id = props.serviceDetail.service_id;
-    form.problem_description = props.serviceDetail.problem_description;
     form.repair_description = props.serviceDetail.repair_description;
     form.cost = props.serviceDetail.cost;
 }
@@ -51,7 +49,7 @@ const submitForm = () => {
                 console.log('printServiceDetail', printServiceDetail);
             },
             onError: (errors) => {
-                if (errors.user_id || errors.service_id || errors.problem_description || errors.repair_description || errors.cost) {
+                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost) {
                     alert('Service detail addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -65,7 +63,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.user_id || errors.service_id || errors.problem_description || errors.repair_description || errors.cost) {
+                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost) {
                     alert('Service detail update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -92,12 +90,6 @@ const submitForm = () => {
                         valueProperty="id" :options="services" v-model="form.service_id"
                         placeholder="Select Service Code" />
                     <InputError class="mt-3" :message="form.errors.service_id" />
-                </div>
-                <div>
-                    <InputLabel class="mt-3" for="problem_description" value="Problem Description" />
-                    <TextInput id="problem_description" type="text" class="mt-1 block w-full"
-                        v-model="form.problem_description" placeholder="Problem Description" required />
-                    <InputError class="mt-3" :message="form.errors.problem_description" />
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />

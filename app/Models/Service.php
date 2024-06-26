@@ -10,7 +10,7 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['service_code', 'customer_id', 'device_id', 'date_received', 'items_brought', 'estimated_completion', 'status'];
+    protected $fillable = ['service_code', 'customer_id', 'device_id', 'date_received',  'problem_description', 'estimated_completion', 'items_brought', 'status'];
 
     // Relasi ke Customer
     public function customer()

@@ -26,7 +26,6 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
-            'email_verified_at' => 'nullable|string|max:255',
             'phone' => 'required|string|max:255|unique:' . Customer::class,
             'address' => 'required|string|max:255',
         ]);

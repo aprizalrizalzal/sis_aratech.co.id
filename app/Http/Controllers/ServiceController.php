@@ -25,8 +25,9 @@ class ServiceController extends Controller
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
             'date_received' => 'date',
-            'items_brought' => 'required|string|max:255',
+            'problem_description' => 'required|string|max:255',
             'estimated_completion' => 'date',
+            'items_brought' => 'required|string|max:255',
             'status' => 'required|string|max:255',
         ]);
 
@@ -36,8 +37,9 @@ class ServiceController extends Controller
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
             'date_received' => $request->date_received,
-            'items_brought' => $request->items_brought,
+            'problem_description' => $request->problem_description,
             'estimated_completion' => $request->estimated_completion,
+            'items_brought' => $request->items_brought,
             'status' => $request->status,
         ]);
 
@@ -55,8 +57,9 @@ class ServiceController extends Controller
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
             'date_received' => 'date',
-            'items_brought' => 'required|string|max:255',
+            'problem_description' => 'required|string|max:255',
             'estimated_completion' => 'date',
+            'items_brought' => 'required|string|max:255',
             'status' => 'required|string|max:255',
         ]);
 
@@ -66,8 +69,9 @@ class ServiceController extends Controller
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
             'date_received' => $request->date_received,
-            'items_brought' => $request->items_brought,
+            'problem_description' => $request->problem_description,
             'estimated_completion' => $request->estimated_completion,
+            'items_brought' => $request->items_brought,
             'status' => $request->status,
         ]);
 

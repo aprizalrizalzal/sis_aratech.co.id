@@ -20,8 +20,9 @@ class ServicesTableSeeder extends Seeder
                 'customer_id' => 1,
                 'device_id' => 1,
                 'date_received' => '2024-05-28',
-                'items_brought' => 'None',
+                'problem_description' => 'Lemot',
                 'estimated_completion' => '2024-05-28',
+                'items_brought' => 'None',
                 'status' => 'Completed',
 
             ],
@@ -30,8 +31,9 @@ class ServicesTableSeeder extends Seeder
                 'customer_id' => 2,
                 'device_id' => 2,
                 'date_received' => '2024-06-10',
-                'items_brought' => 'Bag, Charger',
+                'problem_description' => 'OverHeat',
                 'estimated_completion' => '2024-06-11',
+                'items_brought' => 'Bag, Charger',
                 'status' => 'Completed',
             ],
             [
@@ -39,8 +41,9 @@ class ServicesTableSeeder extends Seeder
                 'customer_id' => 3,
                 'device_id' => 3,
                 'date_received' => '2024-06-14',
-                'items_brought' => 'Bag, Charger',
+                'problem_description' => 'Lemot dan Keyboard Error',
                 'estimated_completion' => '2024-06-15',
+                'items_brought' => 'Bag, Charger',
                 'status' => 'Completed',
             ]
         ];

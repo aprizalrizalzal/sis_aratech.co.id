@@ -12,8 +12,9 @@ const form = useForm({
     customer_id: '',
     device_id: '',
     date_received: '',
-    items_brought: '',
+    problem_description: '',
     estimated_completion: '',
+    items_brought: '',
     status: '',
 });
 
@@ -39,8 +40,9 @@ if (props.service) {
     form.customer_id = props.service.customer_id;
     form.device_id = props.service.device_id;
     form.date_received = props.service.date_received;
-    form.items_brought = props.service.items_brought;
+    form.problem_description = props.service.problem_description;
     form.estimated_completion = props.service.estimated_completion;
+    form.items_brought = props.service.items_brought;
     form.status = props.service.status;
 }
 
@@ -57,7 +59,7 @@ const submitForm = () => {
                 };
             },
             onError: (errors) => {
-                if (errors.customer_id || errors.device_id || errors.date_received || errors.items_brought || errors.estimated_completion || errors.status) {
+                if (errors.customer_id || errors.device_id || errors.date_received || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
                     alert('Service addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -70,7 +72,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.customer_id || errors.device_id || errors.date_received || errors.items_brought || errors.estimated_completion || errors.status) {
+                if (errors.customer_id || errors.device_id || errors.date_received || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
                     alert('Service update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -103,15 +105,21 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.date_received" />
                 </div>
                 <div>
-                    <InputLabel class="mt-3" for="items_brought" value="Items Brought" />
-                    <TextInput id="items_brought" type="text" class="mt-1 block w-full" v-model="form.items_brought"
-                        placeholder="Items Brought" required autofocus />
-                    <InputError class="mt-3" :message="form.errors.items_brought" />
+                    <InputLabel class="mt-3" for="problem_description" value="Problem Description" />
+                    <TextInput id="problem_description" type="text" class="mt-1 block w-full"
+                        v-model="form.problem_description" placeholder="Problem Description" required />
+                    <InputError class="mt-3" :message="form.errors.problem_description" />
                 </div>
                 <div>
                     <DateTimePicker id="estimated_completion" label="Estimated Completion"
                         v-model="form.estimated_completion" placeholder="Select Date and Time" />
                     <InputError class="mt-3" :message="form.errors.estimated_completion" />
+                </div>
+                <div>
+                    <InputLabel class="mt-3" for="items_brought" value="Items Brought" />
+                    <TextInput id="items_brought" type="text" class="mt-1 block w-full" v-model="form.items_brought"
+                        placeholder="Items Brought" required autofocus />
+                    <InputError class="mt-3" :message="form.errors.items_brought" />
                 </div>
                 <div>
                     <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"

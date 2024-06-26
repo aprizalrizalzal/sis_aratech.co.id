@@ -62,7 +62,7 @@ onMounted(() => {
                     Problem Description
                 </td>
                 <td class="py-2 px-4 border border-green-50 text-center">
-                    {{ serviceDetail.problem_description }}
+                    <!-- {{ serviceDetail.problem_description }} -->
                 </td>
             </tr>
             <tr>

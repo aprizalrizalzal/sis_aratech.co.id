@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('service_detail_code')->unique();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
-            $table->text('problem_description');
             $table->text('repair_description')->nullable();
             $table->decimal('cost', 8, 2);
             $table->timestamps();

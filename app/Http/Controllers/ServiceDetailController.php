@@ -58,7 +58,6 @@ class ServiceDetailController extends Controller
             'id' => 'required|exists:service_details,id',
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
-            'problem_description' => 'required|string|max:255',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|integer',
         ]);
@@ -68,7 +67,6 @@ class ServiceDetailController extends Controller
         $serviceDetail->update([
             'user_id' => $request->user_id,
             'service_id' => $request->service_id,
-            'problem_description' => $request->problem_description,
             'repair_description' => $request->repair_description,
             'cost' => $request->cost,
         ]);
