@@ -323,7 +323,7 @@ const previousPage = () => {
         <div class="flex items-center">
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Dashboard</h2>
         </div>
-        <div class="flex items-center">
+        <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex items-center">
           <SearchInput v-model:searchQuery="searchQuery" />
         </div>
       </div>
@@ -426,11 +426,12 @@ const previousPage = () => {
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
                       </tr>
                     </thead>
@@ -447,9 +448,11 @@ const previousPage = () => {
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}
                         </td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}
+                        </td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}
                         </td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                       </tr>
                     </tbody>
