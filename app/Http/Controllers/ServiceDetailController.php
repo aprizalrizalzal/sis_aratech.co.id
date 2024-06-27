@@ -24,7 +24,6 @@ class ServiceDetailController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
-            'problem_description' => 'required|string|max:255',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|numeric',
             'notes' => 'nullable|string|max:255',
@@ -40,7 +39,6 @@ class ServiceDetailController extends Controller
             'service_detail_code' => Str::upper(Str::random(6)),
             'user_id' => $request->user_id,
             'service_id' => $request->service_id,
-            'problem_description' => $request->problem_description,
             'repair_description' => $request->repair_description,
             'cost' => $request->cost,
             'notes' => $request->notes,

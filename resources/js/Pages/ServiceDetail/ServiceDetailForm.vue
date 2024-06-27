@@ -35,6 +35,7 @@ if (props.serviceDetail) {
     form.service_id = props.serviceDetail.service_id;
     form.repair_description = props.serviceDetail.repair_description;
     form.cost = props.serviceDetail.cost;
+    form.notes = props.serviceDetail.notes;
 }
 
 const submitForm = () => {
@@ -50,7 +51,7 @@ const submitForm = () => {
                 console.log('printServiceDetail', printServiceDetail);
             },
             onError: (errors) => {
-                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost) {
+                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
                     alert('Service detail addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -64,7 +65,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost) {
+                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
                     alert('Service detail update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
