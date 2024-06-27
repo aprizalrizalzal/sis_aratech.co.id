@@ -225,8 +225,10 @@ const handlePrint = () => {
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Technician</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
@@ -240,9 +242,15 @@ const handlePrint = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
                     </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        {{ serviceDetail.service.customer.user.name }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        serviceDetail.service.problem_description }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}

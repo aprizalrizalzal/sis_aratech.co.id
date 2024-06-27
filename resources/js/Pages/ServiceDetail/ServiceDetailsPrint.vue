@@ -50,6 +50,8 @@ const totalCost = computed(() => {
                     <th>Service Detail Code</th>
                     <th>Technician</th>
                     <th>Service Code</th>
+                    <th>Customer</th>
+                    <th>Problem Description</th>
                     <th>Repair Description</th>
                     <th>Cost</th>
                     <th>Notes</th>
@@ -61,6 +63,8 @@ const totalCost = computed(() => {
                     <td>{{ serviceDetail.service_detail_code }}</td>
                     <td>{{ serviceDetail.user.name }}</td>
                     <td>{{ serviceDetail.service.service_code }}</td>
+                    <td>{{ serviceDetail.service.customer.user.name }}</td>
+                    <td>{{ serviceDetail.service.problem_description }}</td>
                     <td>{{ serviceDetail.repair_description }}</td>
                     <td>{{ formatCurrency(serviceDetail.cost) }}</td>
                     <td>{{ serviceDetail.notes }}</td>
@@ -68,7 +72,7 @@ const totalCost = computed(() => {
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5">Total Cost:</td>
+                    <td colspan="7">Total Cost:</td>
                     <td>{{ formatCurrency(totalCost) }}</td>
                     <td></td>
                 </tr>

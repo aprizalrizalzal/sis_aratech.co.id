@@ -12,7 +12,7 @@ class ServiceDetailController extends Controller
 {
     public function show()
     {
-        $serviceDetails = ServiceDetail::with('user', 'service')->get();
+        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user')->get();
 
         return Inertia::render('ServiceDetail/ServiceDetails', [
             'serviceDetails' => $serviceDetails
@@ -91,7 +91,7 @@ class ServiceDetailController extends Controller
     public function print($service_detail_code)
     {
         $serviceDetail = ServiceDetail::where('service_detail_code', $service_detail_code)
-            ->with('user', 'service')
+            ->with('user', 'service', 'service.customer.user')
             ->firstOrFail();
 
         return inertia('ServiceDetail/ServiceDetailPrint', [
