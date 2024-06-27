@@ -78,7 +78,7 @@ onMounted(() => {
     <hr>
     <div id="footer" class="grid grid-cols-2 gap-4 my-2 justify-between text-sm/relaxed text-left">
         <div class="flex flex-col gap-10">
-            <p>Admin</p>
+            <p>Technician</p>
             <span>{{ $page.props.auth.user.name }}</span>
         </div>
         <div class="flex flex-col items-left border px-2">

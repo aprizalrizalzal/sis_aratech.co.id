@@ -28,6 +28,11 @@ class DevicesTableSeeder extends Seeder
                 'device_type_id' => 1,
                 'model' => 'ASUS X425EA',
                 'serial_number' => 'SN',
+            ],
+            [
+                'device_type_id' => 1,
+                'model' => 'Lenovo 500-14ACZ Laptop (ideapad) - Type 80K3',
+                'serial_number' => 'MP11J6NQ',
             ]
         ];
 

@@ -15,7 +15,7 @@ class PartUsagesTableSeeder extends Seeder
     {
         $partUsages = [
             [
-                'service_detail_id' => 1,
+                'service_detail_id' => 2,
                 'spare_part_id' => 1,
                 'quantity' => 1
             ],

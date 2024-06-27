@@ -25,7 +25,7 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-05-28',
                 'items_brought' => 'None',
                 'status' => 'Completed',
-
+                'created_at' => '2024-05-28 12:00:00'
             ],
             [
                 'service_code' => Str::upper(Str::random(6)),
@@ -37,6 +37,7 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-11',
                 'items_brought' => 'Bag, Charger',
                 'status' => 'Completed',
+                'created_at' => '2024-06-10 12:00:00'
             ],
             [
                 'service_code' => Str::upper(Str::random(6)),
@@ -48,6 +49,19 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-15',
                 'items_brought' => 'Bag, Charger',
                 'status' => 'Completed',
+                'created_at' => '2024-06-14 12:00:00'
+            ],
+            [
+                'service_code' => Str::upper(Str::random(6)),
+                'customer_id' => 4,
+                'device_id' => 4,
+                'status_warranty' => 'Out Warranty',
+                'date_received' => '2024-06-24',
+                'problem_description' => 'Lemot dan Engsel rusak',
+                'estimated_completion' => '2024-06-25',
+                'items_brought' => 'Charger',
+                'status' => 'Completed',
+                'created_at' => '2024-06-24 12:00:00'
             ]
         ];
 

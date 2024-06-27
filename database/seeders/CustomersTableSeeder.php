@@ -28,6 +28,11 @@ class CustomersTableSeeder extends Seeder
                 'user_id' => 6,
                 'address' => 'Dasan Sebelek, Lombok Tengah',
                 'phone' => '082340285252',
+            ],
+            [
+                'user_id' => 7,
+                'address' => 'Jl. Patin Raya No.48',
+                'phone' => '087874996997',
             ]
         ];
 

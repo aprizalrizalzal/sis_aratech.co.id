@@ -154,7 +154,7 @@ onMounted(() => {
     </div>
     <hr>
     <div id="footer" class="mt-2 text-sm/relaxed text-left">
-        <span>"Kunjungi situs web di </span><a target="_blank" rel="noopener noreferrer"
+        <span>Kunjungi situs web di </span><a target="_blank" rel="noopener noreferrer"
             class="text-green-800 font-bold" :href="currentUrl">{{ currentUrl }}</a> dan masuk menggunakan email
         <span class="font-bold text-green-800">{{ service.customer.user.email }}</span> <span>dan kata sandi 'password'
             untuk melihat perkembangan perangkat yang sedang diperbaiki.</span>

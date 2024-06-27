@@ -39,19 +39,25 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Agung',
                 'email' => 'agung@example.com',
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
             ],
             [
                 'name' => 'Nurhaliza Rusnia',
                 'email' => 'nurhalizarusnia@example.com',
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
             ],
             [
                 'name' => 'Suhartini',
                 'email' => 'suhartini@example.com',
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
+            ],
+            [
+                'name' => 'Lalu Saladin Jufri',
+                'email' => 'lalusaladinjufri@example.com',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('password'),
             ]
         ];
 
