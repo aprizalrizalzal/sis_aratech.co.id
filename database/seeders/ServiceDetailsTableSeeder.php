@@ -57,7 +57,7 @@ class ServiceDetailsTableSeeder extends Seeder
                 'service_id' => 5,
                 'repair_description' => 'Cleaned keyboard',
                 'cost' => 50000,
-                'notes' => 'Selagi masih bisa dibersihkan jangan diganti keyboard aslinya "Aprizal Teknisi AMITech',
+                'notes' => 'Selagi masih bisa dibersihkan tidak perlu diganti keyboard aslinya',
                 'created_at' => '2024-06-27 12:00:00'
             ]
         ];
