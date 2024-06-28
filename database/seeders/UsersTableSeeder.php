@@ -24,13 +24,13 @@ class UsersTableSeeder extends Seeder
 
             ],
             [
-                'name' => 'Admin',
+                'name' => 'Widiya',
                 'email' => 'admin@example.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
             ],
             [
-                'name' => 'User',
+                'name' => 'Aprizal',
                 'email' => 'user@example.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
