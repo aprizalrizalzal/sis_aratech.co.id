@@ -116,7 +116,7 @@ onMounted(() => {
         </div>
         <div class="flex flex-col items-left border px-2">
             <p class="font-bold">Notes!</p>
-            {{ serviceDetail.notes.replace(/\\n/g, '\n') }}
+            {{ serviceDetail.notes }}
         </div>
     </div>
     <hr>

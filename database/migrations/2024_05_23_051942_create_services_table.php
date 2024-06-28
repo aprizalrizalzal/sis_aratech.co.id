@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('service_code')->unique();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('device_id')->constrained()->onDelete('cascade');
-            $table->text('status_warranty');
+            $table->string('status_warranty');
             $table->date('date_received');
             $table->text('problem_description');
             $table->date('estimated_completion');

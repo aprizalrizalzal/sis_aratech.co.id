@@ -36,7 +36,7 @@ class SparePartController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'price' => 'required|integer',
         ]);
 
@@ -83,7 +83,7 @@ class SparePartController extends Controller
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'price' => 'required|integer',
         ]);
 

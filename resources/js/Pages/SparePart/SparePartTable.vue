@@ -116,7 +116,7 @@ const previousPage = () => {
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.description.replace(/\\n/g, '\n') }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">

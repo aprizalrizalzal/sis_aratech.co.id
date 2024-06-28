@@ -19,6 +19,7 @@ const formatCurrency = (value) => {
 </script>
 
 <template>
+
     <Head title="Spare Part Detail" />
     <nav class="bg-white border-b border-green-50">
         <!-- Primary Navigation Menu -->
@@ -106,24 +107,24 @@ const formatCurrency = (value) => {
         </div>
     </nav>
     <div class="bg-gray-50 text-green-900/50">
-        <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
+        <div
+            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="grid mt-4 mb-8">
                     <div class="flex overflow-x-auto m-auto">
-                        <div class="flex flex-row gap-4 justify-between items-stretch rounded-md overflow-hidden shadow-md bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 hover:ring-green-900/20 ring-1 ring-white/[0.05] transition ease-in-out duration-150 m-2">
+                        <div
+                            class="grid grid-cols-2 justify-between items-stretch rounded-md overflow-hidden shadow-md bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 hover:ring-green-900/20 ring-1 ring-white/[0.05] transition ease-in-out duration-150 m-2 p-4">
                             <div class="h-full flex items-center justify-center">
                                 <img :src="sparePart.image_path" :alt="sparePart.name">
                             </div>
-                            <div class="text-start px-4 pt-4">
-                                <h1 class="text-gray-500 font-bold">{{ sparePart.name }}</h1>
+                            <div class="text-start px-8">
+                                <h1 class="text-gray-500 font-bold mb-2">{{ sparePart.name }}</h1>
                                 <p class="text-gray-500 text-sm/relaxed">
-                                    {{ sparePart.description.replace(/\\n/g, '\n')  }}
+                                    {{ sparePart.description }}
                                 </p>
-                                <div class="text-end">
-                                    <span class="inline-block rounded-md text-gray-500">
-                                        {{ formatCurrency(sparePart.price) }}
-                                    </span>
-                                </div>
+                                <p class="inline-block rounded-md text-gray-500 mt-2">
+                                    {{ formatCurrency(sparePart.price) }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -132,4 +133,3 @@ const formatCurrency = (value) => {
         </div>
     </div>
 </template>
-
