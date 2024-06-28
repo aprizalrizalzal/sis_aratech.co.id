@@ -207,14 +207,14 @@ const handlePrint = () => {
 };
 
 const totalPrice = computed(() => {
-    return props.partUsages.reduce((total, partUsage) => {
+    return filteredPartUsages.value.reduce((total, partUsage) => {
         const cost = parseFloat(partUsage.spare_part.price);
         return total + (isNaN(cost) ? 0 : cost);
     }, 0);
 });
 
 const totalQuantity = computed(() => {
-    return props.partUsages.reduce((total, partUsage) => {
+    return filteredPartUsages.value.reduce((total, partUsage) => {
         const quantity = parseFloat(partUsage.quantity);
         return total + (isNaN(quantity) ? 0 : quantity);
     }, 0);
