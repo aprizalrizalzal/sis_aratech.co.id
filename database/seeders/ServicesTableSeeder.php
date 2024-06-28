@@ -62,6 +62,18 @@ class ServicesTableSeeder extends Seeder
                 'items_brought' => 'Charger',
                 'status' => 'Completed',
                 'created_at' => '2024-06-24 12:00:00'
+            ],
+            [
+                'service_code' => Str::upper(Str::random(6)),
+                'customer_id' => 5,
+                'device_id' => 5,
+                'status_warranty' => 'Out Warranty',
+                'date_received' => '2024-06-27',
+                'problem_description' => 'Lemot dan Engsel rusak',
+                'estimated_completion' => '2024-06-28',
+                'items_brought' => '-',
+                'status' => 'Completed',
+                'created_at' => '2024-06-27 12:00:00'
             ]
         ];
 

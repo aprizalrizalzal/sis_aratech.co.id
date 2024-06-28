@@ -37,7 +37,7 @@ class ServiceDetailsTableSeeder extends Seeder
                 'service_detail_code' => Str::upper(Str::random(6)),
                 'user_id' => 3,
                 'service_id' => 3,
-                'repair_description' => 'Bongkar Keyboard (Clean) dan Upgrade HDD to SSD 128GB',
+                'repair_description' => 'Bongkar Keyboard (Cleaned) dan Upgrade HDD to SSD 128GB',
                 'cost' => 75000,
                 'notes' => 'Rekomendasi beli portable HDD external',
                 'created_at' => '2024-06-14 12:00:00'
@@ -46,10 +46,19 @@ class ServiceDetailsTableSeeder extends Seeder
                 'service_detail_code' => Str::upper(Str::random(6)),
                 'user_id' => 3,
                 'service_id' => 4,
-                'repair_description' => 'Bongkar full Laptop (Clean) dan perbaikan Engsel',
+                'repair_description' => 'Bongkar full Laptop (Cleaned) dan perbaikan Engsel',
                 'cost' => 100000,
                 'notes' => 'Rekomendasi ganti HDD ke SSD',
                 'created_at' => '2024-06-24 12:00:00'
+            ],
+            [
+                'service_detail_code' => Str::upper(Str::random(6)),
+                'user_id' => 3,
+                'service_id' => 5,
+                'repair_description' => 'Cleaned keyboard',
+                'cost' => 50000,
+                'notes' => 'Selagi masih bisa dibersihkan jangan diganti keyboard aslinya "Aprizal Teknisi AMITech',
+                'created_at' => '2024-06-27 12:00:00'
             ]
         ];
 

@@ -215,6 +215,7 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
@@ -233,6 +234,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_warranty }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>

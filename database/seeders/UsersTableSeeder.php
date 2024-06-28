@@ -40,24 +40,35 @@ class UsersTableSeeder extends Seeder
                 'email' => 'agung@example.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
+                'created_at' => '2024-05-28 12:00:00'
             ],
             [
                 'name' => 'Nurhaliza Rusnia',
                 'email' => 'nurhalizarusnia@example.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
+                'created_at' => '2024-06-10 12:00:00'
             ],
             [
                 'name' => 'Suhartini',
                 'email' => 'suhartini@example.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
+                'created_at' => '2024-06-14 12:00:00'
             ],
             [
                 'name' => 'Lalu Saladin Jufri',
                 'email' => 'lalusaladinjufri@example.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
+                'created_at' => '2024-06-24 12:00:00'
+            ],
+            [
+                'name' => 'Ratna Hawati',
+                'email' => 'ratnahawati@example.com',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('password'),
+                'created_at' => '2024-06-27 12:00:00'
             ]
         ];
 
