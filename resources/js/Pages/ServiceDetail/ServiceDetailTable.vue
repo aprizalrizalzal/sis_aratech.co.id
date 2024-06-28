@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import ServiceDetailForm from './ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -12,6 +12,11 @@ import ServiceDetailsPrint from './ServiceDetailsPrint.vue';
 
 const props = defineProps({
     serviceDetails: Array,
+    partUsages: Array,
+});
+
+onMounted(() => {
+    console.log('partUsages', props.partUsages);
 });
 
 const formatCurrency = (value) => {
@@ -263,8 +268,11 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         serviceDetail.service.problem_description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.partUsages }}
-                    </td>
+                    <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id" class="py-2 px-4 border-b border-green-300 text-center">
+                        <td>
+                            {{ partUsage.spare_part.name }}
+                        </td>
+                    </tr>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PartUsage;
 use App\Models\ServiceDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,9 +14,11 @@ class ServiceDetailController extends Controller
     public function show()
     {
         $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user')->get();
-
+        $partUsages = PartUsage::with('serviceDetail', 'sparePart')->get();
+        
         return Inertia::render('ServiceDetail/ServiceDetails', [
-            'serviceDetails' => $serviceDetails
+            'serviceDetails' => $serviceDetails,
+            'partUsages' => $partUsages
         ]);
     }
 
