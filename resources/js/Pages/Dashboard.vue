@@ -82,9 +82,19 @@ const defaultStartDate = new Date();
 defaultStartDate.setDate(defaultStartDate.getDate() - 30);
 const defaultEndDate = new Date();
 
+// Add unique keys for DateTimePickers
+const datePickerKeys = ref({
+    startDate: 0,
+    endDate: 0,
+});
+
 const resetDateLineChartFilters = () => {
   start_date_line_chart.value = defaultStartDate;
   end_date_line_chart.value = defaultEndDate;
+
+  // Update the keys to force re-render
+  datePickerKeys.value.startDate += 1;
+  datePickerKeys.value.endDate += 1;
 };
 
 start_date_line_chart.value = defaultStartDate;
@@ -260,8 +270,12 @@ start_date.value = defaultStartDate;
 end_date.value = defaultEndDate;
 
 const resetDateFilters = () => {
-  start_date.value = defaultStartDate;;
-  end_date.value = defaultEndDate;;
+    start_date.value = defaultStartDate;
+    end_date.value = defaultEndDate;
+
+    // Update the keys to force re-render
+    datePickerKeys.value.startDate += 1;
+    datePickerKeys.value.endDate += 1;
 };
 
 const filteredDateServices = computed(() => {
@@ -394,10 +408,10 @@ const previousPage = () => {
                 class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
-                    <DateTimePicker id="start_date_line_chart" label="Start Date" v-model="start_date_line_chart"
-                      placeholder="Select Start Date Time" />
-                    <DateTimePicker id="end_date_line_chart" label="End Date" v-model="end_date_line_chart"
-                      placeholder="Select End Date Time" />
+                    <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date" v-model="start_date_line_chart"
+                          placeholder="Select Start Date Time" />
+                      <DateTimePicker :key="datePickerKeys.endDate" id="end_date_line_chart" label="End Date" v-model="end_date_line_chart"
+                          placeholder="Select End Date Time" />
                   </div>
                   <div class="my-auto me-2">
                     <PrimaryButton @click="resetDateLineChartFilters"><span class="py-1 px-3">Reset</span>
@@ -410,10 +424,10 @@ const previousPage = () => {
                 <div class="overflow-x-auto">
                   <div class="flex w-full gap-2 justify-between my-4">
                     <div class="flex items-center gap-2 bg-white">
-                      <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
-                        placeholder="Select Start Date Time" />
-                      <DateTimePicker id="end_date" label="End Date" v-model="end_date"
-                        placeholder="Select End Date Time" />
+                      <DateTimePicker :key="datePickerKeys.startDate" id="start_date" label="Start Date" v-model="start_date"
+                          placeholder="Select Start Date Time" />
+                      <DateTimePicker :key="datePickerKeys.endDate" id="end_date" label="End Date" v-model="end_date"
+                          placeholder="Select End Date Time" />
                     </div>
                     <div class="my-auto">
                       <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>

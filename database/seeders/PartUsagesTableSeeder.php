@@ -17,17 +17,20 @@ class PartUsagesTableSeeder extends Seeder
             [
                 'service_detail_id' => 2,
                 'spare_part_id' => 1,
-                'quantity' => 1
+                'quantity' => 1,
+                'created_at' => '2024-06-10 12:00:00'
             ],
             [
                 'service_detail_id' => 2,
                 'spare_part_id' => 2,
-                'quantity' => 1
+                'quantity' => 1,
+                'created_at' => '2024-06-10 12:00:00'
             ],
             [
                 'service_detail_id' => 3,
                 'spare_part_id' => 2,
-                'quantity' => 1
+                'quantity' => 1,
+                'created_at' => '2024-06-14 12:00:00'
             ]
         ];
 

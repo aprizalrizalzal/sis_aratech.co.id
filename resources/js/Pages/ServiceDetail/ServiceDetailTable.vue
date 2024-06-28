@@ -8,7 +8,7 @@ import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
-import ServiceDetailsPrint from './ServiceDetailsPrint.vue'
+import ServiceDetailsPrint from './ServiceDetailsPrint.vue';
 
 const props = defineProps({
     serviceDetails: Array,
@@ -71,9 +71,19 @@ const defaultEndDate = new Date();
 start_date.value = defaultStartDate;
 end_date.value = defaultEndDate;
 
+// Add unique keys for DateTimePickers
+const datePickerKeys = ref({
+    startDate: 0,
+    endDate: 0,
+});
+
 const resetDateFilters = () => {
     start_date.value = defaultStartDate;
     end_date.value = defaultEndDate;
+
+    // Update the keys to force re-render
+    datePickerKeys.value.startDate += 1;
+    datePickerKeys.value.endDate += 1;
 };
 
 const currentPage = ref(1);
@@ -211,9 +221,10 @@ const handlePrint = () => {
 <template>
     <div class="flex w-full gap-2 justify-between my-4">
         <div class="flex items-center gap-2 bg-white">
-            <DateTimePicker id="start_date" label="Start Date" v-model="start_date"
+            <DateTimePicker :key="datePickerKeys.startDate" id="start_date" label="Start Date" v-model="start_date"
                 placeholder="Select Start Date Time" />
-            <DateTimePicker id="end_date" label="End Date" v-model="end_date" placeholder="Select End Date Time" />
+            <DateTimePicker :key="datePickerKeys.endDate" id="end_date" label="End Date" v-model="end_date"
+                placeholder="Select End Date Time" />
         </div>
         <div class="my-auto">
             <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
