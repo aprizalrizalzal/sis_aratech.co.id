@@ -12,7 +12,6 @@ import ServiceDetailsPrint from './ServiceDetailsPrint.vue';
 
 const props = defineProps({
     serviceDetails: Array,
-    partUsages: Array,
 });
 
 onMounted(() => {
@@ -241,11 +240,12 @@ const handlePrint = () => {
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Technician</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Part Usags</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Customer User</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone Customer</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
@@ -259,25 +259,24 @@ const handlePrint = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        {{ serviceDetail.service.customer.user.name }}
+                        {{ serviceDetail.service.customer.user.email }}
                     </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.customer.phone
+                        }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        serviceDetail.service.problem_description }}
-                    </td>
-                    <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id" class="py-2 px-4 border-b border-green-300 text-center">
-                        <td>
-                            {{ partUsage.spare_part.name }}
-                        </td>
-                    </tr>
+                        serviceDetail.service.device.device_type.type_name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        serviceDetail.service.device.serial_number }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes.replace(/\\n/g, '\n') }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes.replace(/\\n/g,
+                        '\n') }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
@@ -296,10 +295,10 @@ const handlePrint = () => {
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6" class="py-2 px-4 border-b border-green-300 font-semibold">Total Cost</td>
+                    <td colspan="9" class="py-2 px-4 border-b border-green-300 font-semibold">Total Cost</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{
                         formatCurrency(totalCost) }}</td>
-                    <td colspan="3" class="py-2 px-4 border-b border-green-300"></td>
+                    <td colspan="4" class="py-2 px-4 border-b border-green-300"></td>
                 </tr>
             </tbody>
         </table>

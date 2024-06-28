@@ -1,7 +1,13 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Head } from '@inertiajs/vue3';
-import { onMounted, computed } from 'vue';
+import { Head, usePage } from '@inertiajs/vue3';
+import { computed, onMounted } from 'vue';
+
+const footers = usePage().props.footers;
+
+const contactFooters = computed(() => {
+    return footers.filter(footer => footer.type === 'Contact');
+});
 
 const props = defineProps({
     serviceDetail: Object,
@@ -23,79 +29,90 @@ onMounted(() => {
     <Head title="Service Detail Print" />
     <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-14 w-14" />
+            <ApplicationLogo class="block h-24 w-24" />
         </div>
         <div class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
             <p>{{ header.description }}</p>
+            <div v-for="footer in contactFooters" :key="footer.id">
+                <p>{{ footer.value }}</p>
+            </div>
         </div>
     </div>
     <hr>
     <table class="table-auto w-full my-2">
         <tbody>
             <tr class="font-bold bg-green-50">
-                <td class=" text-green-900">
-                    Service Detail Code
-                </td>
-                <td>
-                    {{ serviceDetail.service_detail_code }}
-                </td>
+                <td class=" text-green-900"> Service Detail Code </td>
+                <td> {{ serviceDetail.service_detail_code }} </td>
             </tr>
             <tr>
-                <td class="text-green-900">
-                    Technician
-                </td>
-                <td>
-                    {{ serviceDetail.user.name }}
-                </td>
+                <td class="text-green-900"> Technician </td>
+                <td> {{ serviceDetail.user.name }} </td>
+            </tr>
+            <tr class="font-bold bg-green-50 ">
+                <td class=" text-green-900">Service Code </td>
+                <td>{{ serviceDetail.service.service_code }} </td>
             </tr>
             <tr>
-                <td class="text-green-900">
-                    Service Code
-                </td>
-                <td>
-                    {{ serviceDetail.service.service_code }}
-                </td>
+                <td class=" text-green-900">Name</td>
+                <td>{{ serviceDetail.service.customer.user.name }} </td>
             </tr>
             <tr>
-                <td class="text-green-900">
-                    Customer
-                </td>
-                <td>
-                    {{ serviceDetail.service.customer.user.name }}
-                </td>
+                <td class=" text-green-900">Email / Phone</td>
+                <td>{{ serviceDetail.service.customer.user.email }}<span> / </span>{{
+                    serviceDetail.service.customer.phone }} </td>
             </tr>
             <tr>
-                <td class="text-green-900">
-                    Problem Description
-                </td>
-                <td>
-                    {{ serviceDetail.service.problem_description }}
-                </td>
+                <td class=" text-green-900">Address </td>
+                <td>{{ serviceDetail.service.customer.address }} </td>
             </tr>
             <tr>
-                <td class="text-green-900">
-                    Repair Description
-                </td>
-                <td>
-                    {{ serviceDetail.repair_description }}
-                </td>
+                <td class=" text-green-900">Device Type / Model</td>
+                <td>{{ serviceDetail.service.device.device_type.type_name }}<span> / </span>{{
+                    serviceDetail.service.device.model }}</td>
+            </tr>
+            <tr>
+                <td class=" text-green-900">Serial Number / Warranty Status </td>
+                <td>{{ serviceDetail.service.device.serial_number }}<span> / </span>{{
+                    serviceDetail.service.status_warranty }} </td>
+            </tr>
+            <tr>
+                <td class=" text-green-900">Date Received / Estimated Completion </td>
+                <td>{{ serviceDetail.service.date_received }}<span> / </span>{{
+                    serviceDetail.service.estimated_completion }} </td>
+            </tr>
+            <tr>
+                <td class=" text-green-900">Problem Description </td>
+                <td>{{ serviceDetail.service.problem_description }} </td>
+            </tr>
+            <tr>
+                <td class=" text-green-900">Items Brought </td>
+                <td>{{ serviceDetail.service.items_brought }} </td>
             </tr>
             <tr class="font-bold bg-green-50">
-                <td class="text-green-900">
-                    Cost
-                </td>
-                <td>
-                    {{ formatCurrency(serviceDetail.cost) }}
-                </td>
+                <td class=" text-green-900">Status </td>
+                <td>{{ serviceDetail.service.status }} </td>
+            </tr>
+            <tr>
+                <td class="text-green-900"> Repair Description </td>
+                <td> {{ serviceDetail.repair_description }} </td>
+            </tr>
+            <tr class="font-bold bg-green-50">
+                <td class="text-green-900"> Cost </td>
+                <td> {{ formatCurrency(serviceDetail.cost) }} </td>
             </tr>
         </tbody>
     </table>
     <hr>
-    <div id="footer" class="grid grid-cols-2 gap-4 my-2 justify-between text-sm/relaxed text-left">
+    <div id="footer" class="flex gap-4 my-2 justify-between text-sm/relaxed text-left">
         <div class="flex flex-col gap-10">
             <p>Technician</p>
             <span>{{ $page.props.auth.user.name }}</span>
+        </div>
+        <div class="flex flex-col gap-10">
+            <p>Customer</p>
+            <span>{{ serviceDetail.service.customer.user.name }}</span>
         </div>
         <div class="flex flex-col items-left border px-2">
             <p class="font-bold">Notes!</p>

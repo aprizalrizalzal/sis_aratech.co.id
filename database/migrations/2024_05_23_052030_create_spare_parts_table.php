@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('spare_parts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('image_path');
             $table->string('description');
             $table->decimal('price', 8, 2);

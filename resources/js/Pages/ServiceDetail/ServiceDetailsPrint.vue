@@ -48,10 +48,12 @@ const totalCost = computed(() => {
                 <tr>
                     <th>No</th>
                     <th>Service Detail Code</th>
-                    <th>Technician</th>
+                    <th>Email Technician</th>
                     <th>Service Code</th>
-                    <th>Customer</th>
-                    <th>Problem Description</th>
+                    <th>Email Customer User</th>
+                    <th>Phone Customer</th>
+                    <th>Device Type</th>
+                    <th>Serial Number</th>
                     <th>Repair Description</th>
                     <th>Cost</th>
                     <th>Notes</th>
@@ -61,10 +63,12 @@ const totalCost = computed(() => {
                 <tr v-for="(serviceDetail, index) in serviceDetails" :key="serviceDetail.id">
                     <td>{{ index + 1 }}</td>
                     <td>{{ serviceDetail.service_detail_code }}</td>
-                    <td>{{ serviceDetail.user.name }}</td>
+                    <td>{{ serviceDetail.user.email }}</td>
                     <td>{{ serviceDetail.service.service_code }}</td>
-                    <td>{{ serviceDetail.service.customer.user.name }}</td>
-                    <td>{{ serviceDetail.service.problem_description }}</td>
+                    <td>{{ serviceDetail.service.customer.user.email }}</td>
+                    <td>{{ serviceDetail.service.customer.phone }}</td>
+                    <td>{{ serviceDetail.service.device.device_type.type_name }}</td>
+                    <td>{{ serviceDetail.service.device.serial_number }}</td>
                     <td>{{ serviceDetail.repair_description }}</td>
                     <td>{{ formatCurrency(serviceDetail.cost) }}</td>
                     <td>{{ serviceDetail.notes.replace(/\\n/g, '\n') }}</td>
@@ -72,7 +76,7 @@ const totalCost = computed(() => {
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="7">Total Cost:</td>
+                    <td colspan="9">Total Cost:</td>
                     <td>{{ formatCurrency(totalCost) }}</td>
                     <td></td>
                 </tr>
