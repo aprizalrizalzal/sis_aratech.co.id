@@ -14,7 +14,7 @@ class HeaderController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:png|max:512',
             'company' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -39,7 +39,7 @@ class HeaderController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:headers,id',
-            'image' => 'required|image|mimes:png|max:512',
+            'image' => 'nullable|image|mimes:png|max:512',
         ]);
 
         $header = Header::findOrFail($request->id);
@@ -64,7 +64,7 @@ class HeaderController extends Controller
         $request->validate([
             'id' => 'required|exists:headers,id',
             'company' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
 
         $header = Header::findOrFail($request->id);

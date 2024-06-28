@@ -108,7 +108,7 @@ const submitForm = () => {
             <form @submit.prevent="submitForm" class="space-y-4">
                 <div v-if="!props.footer || !props.footer && props.footerId">
                     <InputLabel for="image" value="Image" />
-                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
+                    <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" required autofocus/>
                     <InputError :message="form.errors.image" />
                 </div>
                 <div v-if="!props.footerId">
@@ -121,7 +121,7 @@ const submitForm = () => {
                 <div v-if="!props.footerId">
                     <InputLabel for="platform" value="Platform" />
                     <TextInput id="platform" type="text" v-model="form.platform" class="mt-1 block w-full"
-                        placeholder="Email, Facebook, Instagram, etc..." autofocus />
+                        placeholder="Email, Phone, Facebook, Instagram, etc..."  required  />
                     <InputError :message="form.errors.platform" />
                     <p class="text-yellow-900 text-sm mt-2 italic">Enter Email or Phone for the Contact type.</p>
                 </div>
@@ -129,21 +129,21 @@ const submitForm = () => {
                 <div v-if="!props.footerId">
                     <InputLabel for="url" value="URL" />
                     <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full" placeholder="https://"
-                         />
+                    required  />
                     <InputError :message="form.errors.url" />
                 </div>
 
                 <div v-if="!props.footerId">
                     <InputLabel for="username" value="Username" />
                     <TextInput id="username" type="text" v-model="form.username" class="mt-1 block w-full"
-                        placeholder="Facebook, Instagram, etc..." />
+                        placeholder="Email, Phone, Facebook, Instagram, etc..."  required />
                     <InputError :message="form.errors.username" />
                 </div>
 
                 <div v-if="!props.footerId">
                     <InputLabel for="value" value="Value" />
                     <TextInput id="value" type="text" v-model="form.value" class="mt-1 block w-full"
-                        placeholder="Email, Facebook, Instagram, etc..." />
+                        placeholder="Email, Phone, Facebook, Instagram, etc..." required/>
                     <InputError :message="form.errors.value" />
                 </div>
 

@@ -14,10 +14,10 @@ class FooterController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
             'type' => 'required|string|max:255',
-            'platform' => 'nullable|string',
-            'url' => 'nullable|string',
-            'username' => 'nullable|string',
-            'value' => 'nullable|string',
+            'platform' => 'required|string',
+            'url' => 'required|string',
+            'username' => 'required|string',
+            'value' => 'required|string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -45,7 +45,7 @@ class FooterController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:footers,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
         ]);
 
         $footer = Footer::findOrFail($request->id);
@@ -70,10 +70,10 @@ class FooterController extends Controller
         $request->validate([
             'id' => 'required|exists:footers,id',
             'type' => 'required|string|max:255',
-            'platform' => 'nullable|string',
-            'url' => 'nullable|string',
-            'username' => 'nullable|string',
-            'value' => 'nullable|string',
+            'platform' => 'required|string',
+            'url' => 'required|string',
+            'username' => 'required|string',
+            'value' => 'required|string',
         ]);
 
         $footer = Footer::findOrFail($request->id);

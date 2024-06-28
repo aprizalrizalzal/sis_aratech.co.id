@@ -19,6 +19,7 @@ const filteredServices = computed(() => {
     service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.customer.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.customer.phone.includes(searchQuery.value) ||
+    service.device.device_type.type_name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||

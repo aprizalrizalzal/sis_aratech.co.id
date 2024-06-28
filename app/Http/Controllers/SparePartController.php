@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -19,11 +20,23 @@ class SparePartController extends Controller
         ]);
     }
 
+    public function show_detail(Request $request)
+    {
+        $sparePart = SparePart::findOrFail($request->id);
+
+        return Inertia::render('SparePart/SparePartDetail', [
+            'sparePart' => $sparePart,
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'description' => 'required|string|max:255',
             'price' => 'required|integer',
         ]);
 
@@ -34,6 +47,7 @@ class SparePartController extends Controller
         SparePart::create([
             'name' => $request->name,
             'image_path' => 'storage/' . $path,
+            'description' => $request->description,
             'price' => $request->price,
         ]);
 
@@ -44,7 +58,7 @@ class SparePartController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
         ]);
 
         $sparePart = SparePart::findOrFail($request->id);
@@ -69,6 +83,7 @@ class SparePartController extends Controller
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
             'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
             'price' => 'required|integer',
         ]);
 
@@ -76,6 +91,7 @@ class SparePartController extends Controller
 
         $sparePart->update([
             'name' => $request->name,
+            'description' => $request->description,
             'price' => $request->price,
         ]);
 

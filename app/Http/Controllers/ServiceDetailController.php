@@ -26,7 +26,7 @@ class ServiceDetailController extends Controller
             'service_id' => 'required|exists:services,id',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|numeric',
-            'notes' => 'nullable|string|max:255',
+            'notes' => 'required|string|max:255',
         ]);
 
         $existingServiceDetail = ServiceDetail::where('service_id', $request->service_id)->first();
@@ -60,7 +60,7 @@ class ServiceDetailController extends Controller
             'service_id' => 'required|exists:services,id',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|integer',
-            'notes' => 'nullable|string|max:255',
+            'notes' => 'required|string|max:255',
         ]);
 
         $serviceDetail = ServiceDetail::findOrFail($request->id);

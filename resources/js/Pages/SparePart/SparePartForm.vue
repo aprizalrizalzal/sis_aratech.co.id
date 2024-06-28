@@ -9,6 +9,7 @@ import TextInput from '@/Components/TextInput.vue';
 const form = useForm({
     name: '',
     image: null,
+    description: '',
     price: '',
 });
 
@@ -21,6 +22,7 @@ if (props.sparePart) {
     form.name = props.sparePart.name;
     form.image_path = props.sparePart.image_path;
     form.price = props.sparePart.price;
+    form.description = props.sparePart.description.replace(/\\n/g, '\n');
 }
 
 const previewUrl = ref(null);
@@ -61,7 +63,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.name || errors.image || errors.price) {
+                if (errors.name || errors.image || errors.description || errors.price) {
                     alert('Spare part addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -72,13 +74,11 @@ const submitForm = () => {
         const sparePartId = props.sparePart.id;
         form.put(route('update.spare.part', { id: sparePartId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
-                previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.name || errors.price) {
+                if (errors.name || errors.description || errors.price) {
                     alert('Spare part update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -106,9 +106,16 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div v-if="!props.sparePartId">
+                    <InputLabel class="mt-3" for="description" value="Description" />
+                    <textarea id="description" type="text"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        v-model="form.description" placeholder="Description" required />
+                    <InputError class="mt-3" :message="form.errors.description" />
+                </div>
+                <div v-if="!props.sparePartId">
                     <InputLabel class="mt-3" for="price" value="Price" />
                     <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
-                        required autofocus />
+                        required />
                     <InputError class="mt-3" :message="form.errors.price" />
                 </div>
                 <div v-if="previewUrl" class="my-4">

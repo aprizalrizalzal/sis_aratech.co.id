@@ -1,7 +1,7 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Head } from '@inertiajs/vue3';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 
 const props = defineProps({
     serviceDetail: Object,
@@ -99,12 +99,12 @@ onMounted(() => {
         </div>
         <div class="flex flex-col items-left border px-2">
             <p class="font-bold">Notes!</p>
-            {{ serviceDetail.notes }}
+            {{ serviceDetail.notes.replace(/\\n/g, '\n') }}
         </div>
     </div>
     <hr>
-    <div class="my-2 text-sm/relaxed">
-        <p><span class="font-bold text-green-800">Cost</span> tidak termasuk harga Spare Part jika ada
+    <div id="footer" class="my-2 text-sm/relaxed">
+        <p><span class="font-bold text-green-800">Cost</span> sudah termasuk harga Spare Part jika ada
             penggantian selama service.
         </p>
     </div>

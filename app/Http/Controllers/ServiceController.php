@@ -12,7 +12,7 @@ class ServiceController extends Controller
 {
     public function show()
     {
-        $services = Service::with('customer', 'customer.user', 'device')->get();
+        $services = Service::with('customer', 'customer.user', 'device', 'device.deviceType')->get();
 
         return Inertia::render('Service/Services', [
             'services' => $services
@@ -97,7 +97,7 @@ class ServiceController extends Controller
     public function print($service_code)
     {
         $service = Service::where('service_code', $service_code)
-            ->with('customer', 'customer.user', 'device')
+            ->with('customer', 'customer.user', 'device', 'device.deviceType')
             ->firstOrFail();
 
         return inertia('Service/ServicePrint', [

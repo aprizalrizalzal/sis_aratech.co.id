@@ -67,7 +67,7 @@ const totalCost = computed(() => {
                     <td>{{ serviceDetail.service.problem_description }}</td>
                     <td>{{ serviceDetail.repair_description }}</td>
                     <td>{{ formatCurrency(serviceDetail.cost) }}</td>
-                    <td>{{ serviceDetail.notes }}</td>
+                    <td>{{ serviceDetail.notes.replace(/\\n/g, '\n') }}</td>
                 </tr>
             </tbody>
             <tfoot>

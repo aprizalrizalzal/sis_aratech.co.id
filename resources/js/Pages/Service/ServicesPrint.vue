@@ -38,6 +38,7 @@ function formatDate(dateString) {
                     <th>Customer</th>
                     <th>Phone</th>
                     <th>Alamat</th>
+                    <th>Device Type</th>
                     <th>Model</th>
                     <th>Serial Number</th>
                     <th>Warranty Status</th>
@@ -55,6 +56,7 @@ function formatDate(dateString) {
                     <td>{{ service.customer.user.name }}</td>
                     <td>{{ service.customer.phone }}</td>
                     <td>{{ service.customer.address }}</td>
+                    <td>{{ service.device.device_type.type_name }}</td>
                     <td>{{ service.device.model }}</td>
                     <td>{{ service.device.serial_number }}</td>
                     <td>{{ service.status_warranty }}</td>

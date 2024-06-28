@@ -224,6 +224,7 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
@@ -237,12 +238,11 @@ const handlePrint = () => {
             </thead>
             <tbody>
                 <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
-                        +
-                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.device_type.type_name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_warranty }}</td>

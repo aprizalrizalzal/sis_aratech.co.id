@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'show'])->name('show.welcome');
 Route::post('/', [WelcomeController::class, 'store'])->name('store.welcome');
 
+// SparePartController
+Route::get('/spare-part-detail', [SparePartController::class, 'show_detail'])->name('show.spare.part.detail');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // DashboardController

@@ -240,6 +240,7 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Part Usags</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
@@ -262,11 +263,13 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         serviceDetail.service.problem_description }}
                     </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.partUsages }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes.replace(/\\n/g, '\n') }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"

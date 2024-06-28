@@ -69,6 +69,14 @@ onMounted(() => {
             </tr>
             <tr>
                 <td class=" text-green-900">
+                    Device Type
+                </td>
+                <td>
+                    {{ service.device.device_type.type_name }}
+                </td>
+            </tr>
+            <tr>
+                <td class=" text-green-900">
                     Model
                 </td>
                 <td>

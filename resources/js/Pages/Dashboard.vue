@@ -68,9 +68,12 @@ const filteredServices = computed(() => {
     service.customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.customer.phone.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     service.status.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
@@ -442,6 +445,7 @@ const previousPage = () => {
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status Warranty</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
                         <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
@@ -460,6 +464,8 @@ const previousPage = () => {
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}
+                        </td>
+                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_warranty }}
                         </td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
                         <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}

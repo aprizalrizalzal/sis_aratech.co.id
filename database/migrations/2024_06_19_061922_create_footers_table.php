@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('platform')->nullable();
-            $table->string('image_path')->nullable();
-            $table->string('url')->nullable();
-            $table->string('username')->nullable();
-            $table->string('value')->nullable();
+            $table->string('platform');
+            $table->string('image_path');
+            $table->string('url');
+            $table->string('username');
+            $table->string('value');
             $table->timestamps();
         });
     }

@@ -36,6 +36,13 @@ const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
+const sparePartDetail = (sparePartId) => {
+    router.visit('/spare-part-detail', {
+    method: 'get',
+    data: { sparePartId }
+  });
+};
+
 const nextPage = () => {
     if (currentPage.value < totalPages.value) {
         currentPage.value++;
@@ -65,12 +72,14 @@ watch(searchQuery, () => {
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
-        <CardView v-for="sparePart in paginatedSpareParts" :key="sparePart.id" :name="sparePart.name"
-            :price="formatCurrency(sparePart.price)">
-            <template #img>
-                <img :src="sparePart.image_path" :alt="sparePart.name">
-            </template>
-        </CardView>
+        <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
+            <CardView :href="route('show.spare.part.detail', { id: sparePart.id })" :name="sparePart.name"
+                :price="formatCurrency(sparePart.price)">
+                <template #img>
+                    <img :src="sparePart.image_path" :alt="sparePart.name">
+                </template>
+            </CardView>
+        </div>
     </div>
     <div class="flex justify-center gap-4 items-center p-6">
         <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>

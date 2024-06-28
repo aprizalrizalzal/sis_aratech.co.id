@@ -33,7 +33,7 @@ class CarouselController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:carousels,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
         ]);
 
         $carousel = Carousel::findOrFail($request->id);

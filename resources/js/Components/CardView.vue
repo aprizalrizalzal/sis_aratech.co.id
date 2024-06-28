@@ -1,6 +1,5 @@
 <template>
-    <button
-        class="flex flex-col justify-between items-stretch max-w-sm rounded-md text-sm/relaxed overflow-hidden shadow-md bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 hover:ring-green-900/20 ring-1 ring-white/[0.05] transition ease-in-out duration-150">
+    <a :href="href" class="flex flex-col justify-between items-stretch max-w-sm rounded-md text-sm/relaxed overflow-hidden shadow-md bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 hover:ring-green-900/20 ring-1 ring-white/[0.05] transition ease-in-out duration-150">
         <div class="h-full flex items-center justify-center">
             <slot name="img"></slot>
         </div>
@@ -12,11 +11,15 @@
                 {{ price }}
             </span>
         </div>
-    </button>
+    </a>
 </template>
 
 <script setup>
 const props = defineProps({
+    href: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true,

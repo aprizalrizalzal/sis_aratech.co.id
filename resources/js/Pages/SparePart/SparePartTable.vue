@@ -97,6 +97,7 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
@@ -115,6 +116,7 @@ const previousPage = () => {
                             </PrimaryButton>
                         </div>
                     </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.description.replace(/\\n/g, '\n') }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
