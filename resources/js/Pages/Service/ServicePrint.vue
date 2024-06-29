@@ -96,12 +96,12 @@ onMounted(() => {
             <p>Customer</p>
             <span>{{ service.customer.user.name }}</span>
         </div>
-        <div class="flex flex-col items-left border px-2">
+        <div class="flex flex-col items-left border px-2 mx-1">
             <p class="font-bold">Notes!</p>
             <ul>
                 <li>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</li>
                 <li>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</li>
-                <li>Harap menunjukkan nota service saat pengambilan barang.</li>
+                <li>Harap menunjukkan nota service ini saat pengambilan barang.</li>
             </ul>
         </div>
     </div>
