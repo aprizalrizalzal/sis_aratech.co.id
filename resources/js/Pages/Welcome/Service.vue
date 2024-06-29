@@ -85,75 +85,55 @@ const closeModal = () => {
         <div class="p-6">
             <table class="table-auto w-full">
                 <tbody>
-                    <tr class="font-bold text-green-900">
-                        <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                    <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
+                        <td class=" text-green-900">
                             Service Code
                         </td>
-                        <td class="py-2 px-4 border bg-green-50 border-green-50 text-center">
+                        <td>
                             {{ service.service_code }}
                         </td>
                     </tr>
-                    <tr>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            Customers
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">Email / Phone</td>
+                        <td>{{ service.customer.user.email }}<span> / </span>{{ service.customer.phone }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">Address </td>
+                        <td>{{ service.customer.address }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">Device Type / Model</td>
+                        <td>{{ service.device.device_type.type_name }}<span> / </span>{{ service.device.model }}</td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">Serial Number / Warranty Status </td>
+                        <td>{{ service.device.serial_number }}<span> / </span>{{ service.status_warranty }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">Date Received / Estimated Completion</td>
+                        <td>{{ service.date_received }}<span> / </span>{{ service.estimated_completion }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">
+                            Problem Description
                         </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            {{ service.customer.user.name }}
+                        <td>
+                            {{ service.problem_description }}
                         </td>
                     </tr>
-                    <tr>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            Phone
-                        </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            {{ service.customer.phone }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            Model
-                        </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            {{ service.device.model }}
-                        </td>
-                    </tr>
-                    <tr class="font-bold text-green-900">
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            Serial Number
-                        </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            {{ service.device.serial_number }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            Date Received
-                        </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            {{ service.date_received }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 px-4 border border-green-50 text-center">
+                    <tr class="py-2 px-4">
+                        <td class=" text-green-900">
                             Items Brought
                         </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
+                        <td>
                             {{ service.items_brought }}
                         </td>
                     </tr>
-                    <tr>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            Estimated Completion
-                        </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
-                            {{ service.estimated_completion }}
-                        </td>
-                    </tr>
-                    <tr class="font-bold text-green-900">
-                        <td class="py-2 px-4 border border-green-50 text-center">
+                    <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
+                        <td class=" text-green-900">
                             Status
                         </td>
-                        <td class="py-2 px-4 border border-green-50 text-center">
+                        <td>
                             {{ service.status }}
                         </td>
                     </tr>

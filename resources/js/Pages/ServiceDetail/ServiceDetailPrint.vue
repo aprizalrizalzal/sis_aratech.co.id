@@ -61,8 +61,8 @@ onMounted(() => {
                 <td> {{ serviceDetail.service_detail_code }} </td>
             </tr>
             <tr>
-                <td class="text-green-900"> Technician </td>
-                <td> {{ serviceDetail.user.name }} </td>
+                <td class="text-green-900">Email Technician </td>
+                <td> {{ serviceDetail.user.email }} </td>
             </tr>
             <tr class="font-bold bg-green-50 ">
                 <td class=" text-green-900">Service Code </td>

@@ -50,8 +50,8 @@ const totalCost = computed(() => {
                     <th>Service Detail Code</th>
                     <th>Email Technician</th>
                     <th>Service Code</th>
-                    <th>Email Customer User</th>
-                    <th>Phone Customer</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Device Type</th>
                     <th>Serial Number</th>
                     <th>Repair Description</th>

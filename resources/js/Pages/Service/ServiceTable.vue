@@ -222,8 +222,8 @@ const handlePrint = () => {
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Customer User</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone Customer</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
