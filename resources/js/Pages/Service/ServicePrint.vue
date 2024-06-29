@@ -31,9 +31,9 @@ onMounted(() => {
     <Head title="Service Print" />
     <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-24 w-24" />
+            <ApplicationLogo class="block h-20 w-20" />
         </div>
-        <div class="mt-auto">
+        <div id="footer" class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
             <p>{{ header.description }}</p>
             <div v-for="footer in contactFooters" :key="footer.id" class="flex flex-row">
@@ -129,7 +129,7 @@ onMounted(() => {
     }
 
     table {
-        font-size: 75%;
+        font-size: 70%;
         width: 100%;
     }
 
@@ -139,7 +139,7 @@ onMounted(() => {
     }
 
     #footer {
-        font-size: 75%;
+        font-size: 70%;
     }
 }
 </style>

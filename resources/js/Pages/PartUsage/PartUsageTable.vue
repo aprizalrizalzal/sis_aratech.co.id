@@ -208,8 +208,8 @@ const handlePrint = () => {
 
 const totalPrice = computed(() => {
     return filteredPartUsages.value.reduce((total, partUsage) => {
-        const cost = parseFloat(partUsage.spare_part.price);
-        return total + (isNaN(cost) ? 0 : cost);
+        const price = parseFloat(partUsage.spare_part.price);
+        return total + (isNaN(price) ? 0 : price);
     }, 0);
 });
 

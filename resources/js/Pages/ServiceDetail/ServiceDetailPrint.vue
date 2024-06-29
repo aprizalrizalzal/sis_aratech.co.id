@@ -11,6 +11,20 @@ const contactFooters = computed(() => {
 
 const props = defineProps({
     serviceDetail: Object,
+    partUsages: Array,
+});
+
+const serviceDetailTotal = computed(() => {
+    const sparePartsTotal = props.partUsages.reduce((total, partUsage) => {
+        const price = parseFloat(partUsage.spare_part.price);
+        return total + (isNaN(price) ? 0 : price);
+    }, 0);
+    
+    const serviceCost = parseFloat(props.serviceDetail.cost);
+    
+    const total = sparePartsTotal + serviceCost
+
+    return total;
 });
 
 const formatCurrency = (value) => {
@@ -29,12 +43,12 @@ onMounted(() => {
     <Head title="Service Detail Print" />
     <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
         <div>
-            <ApplicationLogo class="block h-24 w-24" />
+            <ApplicationLogo class="block h-20 w-20" />
         </div>
-        <div class="mt-auto">
+        <div id="footer" class="mt-auto">
             <p class="font-bold text-lg">SIService - {{ header.company }}</p>
             <p>{{ header.description }}</p>
-            <div v-for="footer in contactFooters" :key="footer.id">
+            <div id="text-sm" v-for="footer in contactFooters" :key="footer.id">
                 <p>{{ footer.value }}</p>
             </div>
         </div>
@@ -98,9 +112,21 @@ onMounted(() => {
                 <td class="text-green-900"> Repair Description </td>
                 <td> {{ serviceDetail.repair_description }} </td>
             </tr>
+            <tr>
+                <td class="text-green-900"> Spare Part</td>
+                <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id" >
+                    <td> {{ index + 1 }}. </td>
+                    <td> {{ partUsage.spare_part.name }} </td>
+                    <td class="font-bold"> | {{ formatCurrency(partUsage.spare_part.price) }} </td>
+                </tr>
+            </tr>
             <tr class="font-bold bg-green-50">
                 <td class="text-green-900"> Cost </td>
                 <td> {{ formatCurrency(serviceDetail.cost) }} </td>
+            </tr>
+            <tr class="font-bold bg-green-50">
+                <td class="text-green-900"> Total </td>
+                <td> {{ formatCurrency(serviceDetailTotal) }} </td>
             </tr>
         </tbody>
     </table>
@@ -121,9 +147,7 @@ onMounted(() => {
     </div>
     <hr>
     <div id="footer" class="my-2 text-sm/relaxed">
-        <p><span class="font-bold text-green-800">Cost</span> sudah termasuk harga Spare Part jika ada
-            penggantian selama service.
-        </p>
+        <p><span class="font-bold text-green-800">Cost</span> adalah biaya jasa service. <span class="font-bold text-green-800">Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
     </div>
 </template>
 
@@ -142,7 +166,7 @@ onMounted(() => {
     }
 
     table {
-        font-size: 75%;
+        font-size: 70%;
         width: 100%;
     }
 
@@ -152,7 +176,7 @@ onMounted(() => {
     }
 
     #footer {
-        font-size: 75%;
+        font-size: 70%;
     }
 }
 </style>

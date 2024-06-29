@@ -69,7 +69,7 @@ class ServicesTableSeeder extends Seeder
                 'device_id' => 5,
                 'status_warranty' => 'Out Warranty',
                 'date_received' => '2024-06-27',
-                'problem_description' => 'Lemot dan Engsel rusak',
+                'problem_description' => 'Keyboard Error',
                 'estimated_completion' => '2024-06-28',
                 'items_brought' => '-',
                 'status' => 'Completed',

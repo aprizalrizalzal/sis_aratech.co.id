@@ -275,8 +275,7 @@ const handlePrint = () => {
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes.replace(/\\n/g,
-                        '\n') }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"

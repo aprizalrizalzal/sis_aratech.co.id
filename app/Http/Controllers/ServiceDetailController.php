@@ -95,8 +95,11 @@ class ServiceDetailController extends Controller
             ->with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType')
             ->firstOrFail();
 
+        $partUsages = PartUsage::with('sparePart')->where('service_detail_id', $serviceDetail->id)->get();
+
         return inertia('ServiceDetail/ServiceDetailPrint', [
-            'serviceDetail' => $serviceDetail
+            'serviceDetail' => $serviceDetail,
+            'partUsages' => $partUsages
         ]);
     }
 }
