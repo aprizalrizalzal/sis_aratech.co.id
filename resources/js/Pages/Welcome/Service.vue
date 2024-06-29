@@ -86,35 +86,47 @@ const closeModal = () => {
             <table class="table-auto w-full">
                 <tbody>
                     <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
-                        <td class=" text-green-900">
-                            Service Code
-                        </td>
-                        <td>
-                            {{ service.service_code }}
-                        </td>
+                        <td class="text-green-900">Service Code</td>
+                        <td> {{ service.service_code }}</td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">Email / Phone</td>
-                        <td>{{ service.customer.user.email }}<span> / </span>{{ service.customer.phone }} </td>
+                        <td class="text-green-900">Email</td>
+                        <td>{{ service.customer.user.email }}</td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">Address </td>
+                        <td class="text-green-900">Phone</td>
+                        <td>{{ service.customer.phone }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class="text-green-900">Address </td>
                         <td>{{ service.customer.address }} </td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">Device Type / Model</td>
-                        <td>{{ service.device.device_type.type_name }}<span> / </span>{{ service.device.model }}</td>
+                        <td class="text-green-900">Device Type</td>
+                        <td>{{ service.device.device_type.type_name }}</td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">Serial Number / Warranty Status </td>
-                        <td>{{ service.device.serial_number }}<span> / </span>{{ service.status_warranty }} </td>
+                        <td class="text-green-900">Model</td>
+                        <td>{{ service.device.model }}</td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">Date Received / Estimated Completion</td>
-                        <td>{{ service.date_received }}<span> / </span>{{ service.estimated_completion }} </td>
+                        <td class="text-green-900">Serial Number</td>
+                        <td>{{ service.device.serial_number }}</td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">
+                        <td class="text-green-900">Warranty Status </td>
+                        <td>{{ service.status_warranty }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class="text-green-900">Date Received</td>
+                        <td>{{ service.date_received }}</td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class="text-green-900">Estimated Completion</td>
+                        <td>{{ service.estimated_completion }} </td>
+                    </tr>
+                    <tr class="py-2 px-4">
+                        <td class="text-green-900">
                             Problem Description
                         </td>
                         <td>
@@ -122,7 +134,7 @@ const closeModal = () => {
                         </td>
                     </tr>
                     <tr class="py-2 px-4">
-                        <td class=" text-green-900">
+                        <td class="text-green-900">
                             Items Brought
                         </td>
                         <td>
@@ -130,7 +142,7 @@ const closeModal = () => {
                         </td>
                     </tr>
                     <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
-                        <td class=" text-green-900">
+                        <td class="text-green-900">
                             Status
                         </td>
                         <td>
