@@ -25,7 +25,7 @@ const props = defineProps({
 
 <template>
 
-    <Head title="SIService" />
+    <Head title="Welcome" />
     <nav class="bg-white border-b border-green-50">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
