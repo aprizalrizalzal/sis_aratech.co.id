@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmailService;
+use App\Mail\SendEmailServiceDetail;
 
 class ServiceDetailController extends Controller
 {
@@ -96,6 +99,18 @@ class ServiceDetailController extends Controller
             ->firstOrFail();
 
         $partUsages = PartUsage::with('sparePart')->where('service_detail_id', $serviceDetail->id)->get();
+
+        $data = [
+            'title' => "SIService-AMITech-Detail",
+            'body' => 'Berikut rincian service detail Anda.',
+            'email' => $serviceDetail->service->customer->user->email,
+            //Data
+            'serviceDetail' => $serviceDetail,
+            'partUsages' => $partUsages,
+        ];
+
+        // Send the email detail
+        Mail::to($data['email'])->send(new SendEmailServiceDetail($data));
 
         return inertia('ServiceDetail/ServiceDetailPrint', [
             'serviceDetail' => $serviceDetail,

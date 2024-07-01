@@ -112,13 +112,12 @@ onMounted(() => {
                 <td class="text-green-900"> Repair Description </td>
                 <td> {{ serviceDetail.repair_description }} </td>
             </tr>
-            <tr>
-                <td class="text-green-900"> Spare Part</td>
-            <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id">
-                <td> {{ index + 1 }}. </td>
-                <td> {{ partUsage.spare_part.name }} </td>
-                <td class="font-bold"> | {{ formatCurrency(partUsage.spare_part.price) }} </td>
+            <tr class="font-bold bg-green-50">
+                <td colspan="2" class="text-green-900"> Spare Part</td>
             </tr>
+            <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id">
+                <td class="text-green-900"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
+                <td class="text-green-900"> {{ formatCurrency(partUsage.spare_part.price) }} </td>
             </tr>
             <tr class="font-bold bg-green-50">
                 <td class="text-green-900"> Cost </td>

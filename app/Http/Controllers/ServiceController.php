@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendEmail;
+use App\Mail\SendEmailService;
 
 class ServiceController extends Controller
 {
@@ -103,14 +103,15 @@ class ServiceController extends Controller
             ->firstOrFail();
 
         $data = [
-            'title' => "Service Code $service->service_code",
-            'body' => 'Di bawah ini adalah rincian service Anda.',
+            'title' => "SIService-AMITech",
+            'body' => 'Berikut rincian service Anda.',
             'email' => $service->customer->user->email,
+            // Data
             'service' => $service,
         ];
 
         // Send the email
-        Mail::to($data['email'])->send(new SendEmail($data));
+        Mail::to($data['email'])->send(new SendEmailService($data));
 
         return inertia('Service/ServicePrint', [
             'service' => $service
