@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\PartUsageController;

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
 
 class ServiceController extends Controller
 {
@@ -99,6 +101,16 @@ class ServiceController extends Controller
         $service = Service::where('service_code', $service_code)
             ->with('customer', 'customer.user', 'device', 'device.deviceType')
             ->firstOrFail();
+
+        $data = [
+            'title' => "Service Code $service->service_code",
+            'body' => 'Di bawah ini adalah rincian service Anda.',
+            'email' => $service->customer->user->email,
+            'service' => $service,
+        ];
+
+        // Send the email
+        Mail::to($data['email'])->send(new SendEmail($data));
 
         return inertia('Service/ServicePrint', [
             'service' => $service
