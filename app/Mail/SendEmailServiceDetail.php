@@ -251,7 +251,7 @@ class SendEmailServiceDetail extends Mailable
                 </div>
                 <hr>
                 <p class='footer-text'>Info status terbaru akan kami kirim lewat email ya.</p>
-                <p class='footer-text'>Terima kasih sudah pilih layanan kami. Salam hangat dari ADMIN SIService-AMITech!</p>
+                <p class='footer-text'>Terima kasih sudah pilih layanan kami. Salam hangat dari Technician SIService-AMITech!</p>
             </div>
         </body>
         </html>
