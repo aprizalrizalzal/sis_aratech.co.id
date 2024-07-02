@@ -26,7 +26,7 @@ class RoleUserTableSeeder extends Seeder
         // Cari pengguna dengan peran 'admin' dan berikan peran tersebut ke pengguna
         $adminRole = Role::where('name', 'admin')->first();
         if ($adminRole) {
-            $admins = User::where('email', 'widiya231200@gmail.com')->get();
+            $admins = User::where('email', 'widiyanur231200@gmail.com')->get();
             foreach ($admins as $user) {
                 $user->roles()->syncWithoutDetaching([$adminRole->id => ['created_at' => now(), 'updated_at' => now()]]);
             }
