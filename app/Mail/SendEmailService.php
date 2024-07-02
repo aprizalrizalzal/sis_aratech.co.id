@@ -189,8 +189,7 @@ class SendEmailService extends Mailable
                         untuk melihat perkembangan perangkat yang sedang diperbaiki.
                 </p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya.</p>
-                <p>Terima kasih sudah pilih layanan kami. Salam hangat dari Admin SIService-AMITech!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin SIService-AMITech!</p>
             </div>
         </body>
         </html>

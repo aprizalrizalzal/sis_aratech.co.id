@@ -244,8 +244,7 @@ class SendEmailServiceDetail extends Mailable
                 </div>
                 <p><span class='font-bold text-green-900'>Cost</span> adalah biaya jasa service. <span class='font-bold text-green-900'>Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya.</p>
-                <p>Terima kasih sudah pilih layanan kami. Salam hangat dari Technician SIService-AMITech!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Technician SIService-AMITech!</p>
             </div>
         </body>
         </html>
