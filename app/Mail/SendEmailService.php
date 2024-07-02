@@ -40,8 +40,7 @@ class SendEmailService extends Mailable
      */
     public function build()
     {
-        return $this->subject('SIService-AMITech')
-            ->html($this->buildEmailContent());
+        return $this->html($this->buildEmailContent());
     }
 
     /**

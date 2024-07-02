@@ -29,7 +29,7 @@ class SendEmailServiceDetail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'SIService-AMITech-Detail',
+            subject: 'SIService-AMITech Detail',
         );
     }
 
@@ -40,8 +40,7 @@ class SendEmailServiceDetail extends Mailable
      */
     public function build()
     {
-        return $this->subject('SIService-AMITech-Detail')
-            ->html($this->buildEmailContent());
+        return $this->html($this->buildEmailContent());
     }
 
     /**
