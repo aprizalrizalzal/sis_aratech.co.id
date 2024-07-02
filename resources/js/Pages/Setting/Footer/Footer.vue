@@ -91,7 +91,10 @@ const currentYear = computed(() => {
                     </ul>
                 </div>
             </div>
-            <p class="relative text-black">Copyright &copy; 2024-{{ currentYear }} <a href="https://aslimandiri.com" target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">Asli Mandiri Computer</span></a> Developed by <a href="https://github.com/aprizalrizalzal" target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">AprizalRizalZal</span></a> </p>
+            <p class="relative text-black">Copyright &copy; 2024-{{ currentYear }} <a href="https://aslimandiri.com"
+                    target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">Asli Mandiri
+                        Computer</span></a> Developed by <a href="https://github.com/aprizalrizalzal" target="_blank"
+                    rel="noopener noreferrer"><span class="text-green-900 font-bold">AprizalRizalZal</span></a> </p>
         </div>
     </div>
 </template>

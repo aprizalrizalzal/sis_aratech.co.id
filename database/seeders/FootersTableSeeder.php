@@ -94,6 +94,30 @@ class FootersTableSeeder extends Seeder
                 'url' => 'https://www.apple.com/id/app-store/',
                 'username' => '-',
                 'value' => 'AppStore',
+            ],
+            [
+                'type' => 'Notes',
+                'platform' => '-',
+                'image_path' => '-',
+                'url' => '-',
+                'username' => '-',
+                'value' => 'Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.',
+            ],
+            [
+                'type' => 'Notes',
+                'platform' => '-',
+                'image_path' => '-',
+                'url' => '-',
+                'username' => '-',
+                'value' => 'Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.',
+            ],
+            [
+                'type' => 'Notes',
+                'platform' => '-',
+                'image_path' => '-',
+                'url' => '-',
+                'username' => '-',
+                'value' => 'Harap menunjukkan nota service ini saat pengambilan barang.',
             ]
         ];
 

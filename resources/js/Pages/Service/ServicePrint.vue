@@ -13,6 +13,10 @@ const props = defineProps({
     service: Object,
 });
 
+const notesFooters = computed(() => {
+    return footers.filter(footer => footer.type === 'Notes');
+});
+
 const currentUrl = computed(() => {
     const url = new URL(window.location.href);
     return `${url.host}`;
@@ -98,10 +102,8 @@ onMounted(() => {
         </div>
         <div class="flex flex-col items-left border px-2 mx-1">
             <p class="font-bold">Notes!</p>
-            <ul>
-                <li>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</li>
-                <li>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</li>
-                <li>Harap menunjukkan nota service ini saat pengambilan barang.</li>
+            <ul v-for="footer in notesFooters" :key="footer.id">
+                <li>{{ footer.value }}</li>
             </ul>
         </div>
     </div>
