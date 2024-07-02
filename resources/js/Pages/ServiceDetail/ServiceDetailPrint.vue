@@ -147,8 +147,8 @@ onMounted(() => {
     </div>
     <hr>
     <div id="footer" class="my-2 text-sm/relaxed">
-        <p><span class="font-bold text-green-800">Cost</span> adalah biaya jasa service. <span
-                class="font-bold text-green-800">Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part
+        <p><span class="font-bold text-green-900">Cost</span> adalah biaya jasa service. <span
+                class="font-bold text-green-900">Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part
             yang diganti jika ada.</p>
     </div>
 </template>

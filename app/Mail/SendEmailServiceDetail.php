@@ -136,11 +136,6 @@ class SendEmailServiceDetail extends Mailable
                     margin-top: 10px;
                     margin-bottom: 10px;
                 }
-                .footer-text {
-                    font-size: 14px;
-                    margin-top: 10px;
-                    color: #6b7280;
-                }
                 .border {
                     border: 0.5px solid #A9A9A9A9;
                     border-radius: 8px;
@@ -243,15 +238,14 @@ class SendEmailServiceDetail extends Mailable
                 <hr>
                 <div class='border'>
                 <ul class='list'>
-                        <li class='list-item font-bold'>Notes!</li>
-                        <li class='list-item'>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</li>
-                        <li class='list-item'>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</li>
-                        <li class='list-item'>Harap menunjukkan nota service ini saat pengambilan barang.</li>
-                    </ul>
+                <li class='list-item font-bold'>Notes!</li>
+                <li class='list-item'>{$serviceDetail->notes}</li>
+                </ul>
                 </div>
+                <p><span class='font-bold text-green-900'>Cost</span> adalah biaya jasa service. <span class='font-bold text-green-900'>Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
                 <hr>
-                <p class='footer-text'>Info status terbaru akan kami kirim lewat email ya.</p>
-                <p class='footer-text'>Terima kasih sudah pilih layanan kami. Salam hangat dari Technician SIService-AMITech!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya.</p>
+                <p>Terima kasih sudah pilih layanan kami. Salam hangat dari Technician SIService-AMITech!</p>
             </div>
         </body>
         </html>

@@ -103,11 +103,12 @@ class ServiceController extends Controller
             ->firstOrFail();
 
         $data = [
-            'title' => "SIService-AMITech",
-            'body' => 'Berikut rincian service Anda.',
+            'title' => "Asli Mandiri Computer",
+            'body' => 'Rincian Service.',
             'email' => $service->customer->user->email,
             // Data
             'service' => $service,
+            'host_url' => url('/'),
         ];
 
         // Send the email
