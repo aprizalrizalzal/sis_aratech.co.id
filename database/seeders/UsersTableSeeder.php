@@ -17,58 +17,65 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Super Admin',
-                'email' => 'superadmin@example.com',
+                'name' => 'Muhamad Aprizal Hardi',
+                'email' => 'zalrizalaprizal@icloud.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
 
             ],
             [
                 'name' => 'Widiya',
-                'email' => 'admin@example.com',
+                'email' => 'admin@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
             ],
             [
                 'name' => 'Aprizal',
-                'email' => 'user@example.com',
+                'email' => 'parizalrizalzal@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
             ],
             [
                 'name' => 'Agung',
-                'email' => 'agung@example.com',
+                'email' => 'agung@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
                 'created_at' => '2024-05-28 12:00:00'
             ],
             [
                 'name' => 'Nurhaliza Rusnia',
-                'email' => 'nurhalizarusnia@example.com',
+                'email' => 'nurhalizarusnia@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
                 'created_at' => '2024-06-10 12:00:00'
             ],
             [
                 'name' => 'Suhartini',
-                'email' => 'suhartini@example.com',
+                'email' => 'suhartini@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
                 'created_at' => '2024-06-14 12:00:00'
             ],
             [
                 'name' => 'Lalu Saladin Jufri',
-                'email' => 'lalusaladinjufri@example.com',
+                'email' => 'lalusaladinjufri@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
                 'created_at' => '2024-06-24 12:00:00'
             ],
             [
                 'name' => 'Ratna Hawati',
-                'email' => 'ratnahawati@example.com',
+                'email' => 'ratnahawati@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password'),
                 'created_at' => '2024-06-27 12:00:00'
+            ],
+            [
+                'name' => 'Afan Alpian',
+                'email' => 'afanalpian@gmail.com',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('password'),
+                'created_at' => '2024-06-29 12:00:00'
             ]
         ];
 

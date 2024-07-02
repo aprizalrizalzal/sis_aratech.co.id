@@ -74,7 +74,20 @@ class ServicesTableSeeder extends Seeder
                 'items_brought' => '-',
                 'status' => 'Completed',
                 'created_at' => '2024-06-27 12:00:00'
+            ],
+            [
+                'service_code' => Str::upper(Str::random(6)),
+                'customer_id' => 6,
+                'device_id' => 6,
+                'status_warranty' => 'Out Warranty',
+                'date_received' => '2024-06-29',
+                'problem_description' => 'Keyboard Error',
+                'estimated_completion' => '2024-06-29',
+                'items_brought' => '-',
+                'status' => 'Completed',
+                'created_at' => '2024-06-29 12:00:00'
             ]
+
         ];
 
         foreach ($services as $service) {

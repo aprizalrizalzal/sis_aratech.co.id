@@ -59,6 +59,15 @@ class ServiceDetailsTableSeeder extends Seeder
                 'cost' => 50000,
                 'notes' => 'Selagi masih bisa dibersihkan tidak perlu diganti keyboard aslinya',
                 'created_at' => '2024-06-27 12:00:00'
+            ],
+            [
+                'service_detail_code' => Str::upper(Str::random(6)),
+                'user_id' => 3,
+                'service_id' => 6,
+                'repair_description' => 'Cleaned keyboard',
+                'cost' => 20000,
+                'notes' => 'Selagi masih bisa dibersihkan tidak perlu diganti keyboard aslinya',
+                'created_at' => '2024-06-29 12:00:00'
             ]
         ];
 

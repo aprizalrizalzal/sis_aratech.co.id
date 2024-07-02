@@ -43,6 +43,12 @@ class DevicesTableSeeder extends Seeder
                 'model' => 'Mybook Axioo (PNB08P)',
                 'serial_number' => '00222030050463006',
                 'created_at' => '2024-06-27 12:00:00'
+            ],
+            [
+                'device_type_id' => 1,
+                'model' => ' HP 14-r203TU',
+                'serial_number' => 'CND513B476',
+                'created_at' => '2024-06-27 12:00:00'
             ]
         ];
 

@@ -43,6 +43,12 @@ class CustomersTableSeeder extends Seeder
                 'address' => 'Perumahan Griya Permata Blok C No.16',
                 'phone' => '081999223721',
                 'created_at' => '2024-06-27 12:00:00'
+            ],
+            [
+                'user_id' => 9,
+                'address' => 'Jln. Genggos No.10 Karang Sukun',
+                'phone' => '081805555257	',
+                'created_at' => '2024-06-29 12:00:00'
             ]
         ];
 
