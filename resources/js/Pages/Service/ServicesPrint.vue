@@ -23,7 +23,7 @@ function formatDate(dateString) {
     <div>
         <div>
             <div v-for="header in $page.props.headers" :key="header.id" class="header-container">
-                <h1>Services Report</h1>
+                <h2>Services Report</h2>
                 <div class="header-company">
                     <p class="header-text">SIService - {{ header.company }}</p>
                     <p class="header-date">{{ formatDate(startDate) }} - {{ formatDate(endDate) }}</p>

@@ -25,10 +25,10 @@ const statusWarranty = ref([
 ]);
 
 const statusOptions = ref([
-    { id: '1', name: 'Received' },
-    { id: '2', name: 'In Progress' },
-    { id: '3', name: 'Completed' },
-    { id: '4', name: 'Failed' }
+    { id: '1', name: 'Completed' },
+    { id: '2', name: 'Failed' },
+    { id: '3', name: 'In Progress' },
+    { id: '4', name: 'Received' },
 ]);
 
 const props = defineProps({

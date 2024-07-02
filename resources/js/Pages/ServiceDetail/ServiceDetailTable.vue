@@ -159,7 +159,7 @@ const handlePrint = () => {
                     body {
                         font-family: Arial, sans-serif; 
                     }
-                    h1 {
+                    h2 {
                         text-align: center;
                         font-size: 24px;
                         font-weight: bold;

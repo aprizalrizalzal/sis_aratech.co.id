@@ -143,7 +143,7 @@ const handlePrint = () => {
                 body {
                     font-family: Arial, sans-serif; 
                 }
-                h1 {
+                h2 {
                     text-align: center;
                     font-size: 24px;
                     font-weight: bold;
@@ -199,8 +199,10 @@ const handlePrint = () => {
   `);
     printWindow.document.close();
     printWindow.focus();
-    printWindow.print();
-    printWindow.close();
+    setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+    }, 500);
 };
 </script>
 

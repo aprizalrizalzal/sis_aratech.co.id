@@ -69,7 +69,7 @@ class FootersTableSeeder extends Seeder
                 'image_path' => 'storage/images/footers/laptop.png',
                 'url' => '#',
                 'username' => '-',
-                'value' => 'Service Laptop/PC',
+                'value' => 'Service PC/Laptop',
             ],
             [
                 'type' => 'Service',

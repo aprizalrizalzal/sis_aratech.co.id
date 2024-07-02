@@ -36,7 +36,7 @@ const totalCost = computed(() => {
     <div>
         <div>
             <div v-for="header in $page.props.headers" :key="header.id" class="header-container">
-                <h1>Service Details Report</h1>
+                <h2>Service Details Report</h2>
                 <div class="header-company">
                     <p class="header-text">SIService - {{ header.company }}</p>
                     <p class="header-date">{{ formatDate(startDate) }} - {{ formatDate(endDate) }}</p>
