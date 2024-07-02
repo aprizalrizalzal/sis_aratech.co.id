@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendEmailService;
 use App\Mail\SendEmailServiceDetail;
 
 class ServiceDetailController extends Controller
