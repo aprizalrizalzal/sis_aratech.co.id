@@ -47,7 +47,7 @@ class CustomersTableSeeder extends Seeder
             [
                 'user_id' => 9,
                 'address' => 'Jln. Genggos No.10 Karang Sukun',
-                'phone' => '081805555257	',
+                'phone' => '081805555257',
                 'created_at' => '2024-06-29 12:00:00'
             ]
         ];
