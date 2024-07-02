@@ -114,6 +114,7 @@ onMounted(() => {
             </tr>
             <tr class="font-bold bg-green-50">
                 <td colspan="2" class="text-green-900"> Spare Part</td>
+                <td class="text-green-900"> Price</td>
             </tr>
             <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id">
                 <td class="text-green-900"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
@@ -123,7 +124,7 @@ onMounted(() => {
                 <td class="text-green-900"> Cost </td>
                 <td> {{ formatCurrency(serviceDetail.cost) }} </td>
             </tr>
-            <tr class="font-bold bg-green-50">
+            <tr class="font-bold">
                 <td class="text-green-900"> Total </td>
                 <td> {{ formatCurrency(serviceDetailTotal) }} </td>
             </tr>

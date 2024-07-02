@@ -110,7 +110,7 @@ class SendEmailService extends Mailable
                 }
                 .footer-text {
                     font-size: 14px;
-                    margin-top: 20px;
+                    margin-top: 10px;
                     color: #6b7280;
                 }
                 .border {

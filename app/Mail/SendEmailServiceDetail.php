@@ -139,7 +139,7 @@ class SendEmailServiceDetail extends Mailable
                 }
                 .footer-text {
                     font-size: 14px;
-                    margin-top: 20px;
+                    margin-top: 10px;
                     color: #6b7280;
                 }
                 .border {
@@ -218,7 +218,8 @@ class SendEmailServiceDetail extends Mailable
                             <td>{$serviceDetail->repair_description}</td>
                         </tr>
                         <tr class='font-bold bg-green-50'>
-                            <td colspan='2' class='text-green-900'> Spare Part</td>
+                            <td class='text-green-900'> Spare Part</td>
+                            <td class='text-green-900'> Price</td>
                         ";
         foreach ($partUsages as $index => $partUsage) {
             $content .= "
@@ -234,7 +235,7 @@ class SendEmailServiceDetail extends Mailable
                             <td class='text-green-900'> Cost </td>
                             <td> " . $this->formatCurrency($serviceDetail->cost) . " </td>
                         </tr>
-                        <tr class='font-bold bg-green-50'>
+                        <tr class='font-bold'>
                             <td class='text-green-900'> Total </td>
                             <td> " . $this->formatCurrency($serviceDetailTotal) . " </td>
                         </tr>

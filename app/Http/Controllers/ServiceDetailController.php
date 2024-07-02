@@ -101,7 +101,7 @@ class ServiceDetailController extends Controller
         $partUsages = PartUsage::with('sparePart')->where('service_detail_id', $serviceDetail->id)->get();
 
         $data = [
-            'title' => "SIService-AMITech-Detail",
+            'title' => "SIService-AMITech Detail",
             'body' => 'Berikut rincian service detail Anda.',
             'email' => $serviceDetail->service->customer->user->email,
             //Data
