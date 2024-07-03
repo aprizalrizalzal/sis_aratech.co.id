@@ -5,9 +5,13 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
-import ServicesPrint from './ServicesPrint.vue';
+
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+const page = usePage();
 
 const props = defineProps({
     services: Array,
@@ -130,79 +134,69 @@ const previousPage = () => {
     }
 };
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
 const printContent = ref(null);
 
 const handlePrint = () => {
+    const pdf = new jsPDF({
+        format: 'a3',
+        orientation: 'landscape',
+    });
+
+    pdf.text('Service Details Report', pdf.internal.pageSize.width / 2, 20, { align: 'center' });
+
     const printContentEl = printContent.value;
-    const printWindow = window.open();
-    printWindow.document.write(`
-     <html>
-        <head>
-            <title>Print Service Details</title>
-            <style>
-                body {
-                    font-family: Arial, sans-serif; 
-                }
-                h2 {
-                    text-align: center;
-                    font-size: 24px;
-                    font-weight: bold;
-                }
-                .date-range {
-                    text-align: center;
-                    font-size: 12px;
-                    margin-bottom: 16px;
-                }
-                table {
-                    width: 100%;
-                    font-size: 12px;
-                    border-collapse: collapse;
-                    margin-bottom: 16px;
-                }
-                th, td {
-                    border: 1px solid black;
-                    padding: 8px;
-                    text-align: left;
-                }
-                th {
-                    background-color: #f2f2f2;
-                }
-                tfoot td {
-                    font-weight: bold;
-                    text-align: left;
-                }
-                .header-container {
-                    align-items: stretch;
-                    font-size: 14px;
-                    line-height: 1.5;
-                }
-                .header-company {
-                    display: flex;
-                    
-                }
-                .header-text {
-                    font-weight: bold;
-                    font-size: 18px;
-                }
-                .header-date {
-                    font-size: 12px;
-                    margin-top: auto;
-                    margin-bottom: auto;
-                    margin-left: auto;
-                }
-            </style>
-        </head>
-        <body>
-            ${printContentEl.innerHTML}
-        </body>
-    </html>
-  `);
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => {
-        printWindow.print();
-        printWindow.close();
-    }, 500);
+    const headerCells = printContentEl.querySelectorAll('thead th');
+    const columns = Array.from(headerCells).map(th => th.innerText);
+
+    pdf.setFontSize(12);
+    const headers = page.props.headers;
+    headers.forEach(header => {
+        pdf.text(`SIService - ${header.company}`, pdf.internal.pageSize.width / 30, 30);  // Menambahkan nama perusahaan
+    });
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 30, 36);
+
+    const rows = [];
+    const content = printContentEl.querySelectorAll('tbody tr');
+    content.forEach((row) => {
+        const cells = row.querySelectorAll('td');
+        const rowData = Array.from(cells).map(cell => cell.innerText);
+        rows.push(rowData);
+    });
+
+    pdf.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 40,
+        styles: { font: 'helvetica', fontSize: 10 },
+        columnStyles: Array.from({ length: columns.length }, () => ({ cellWidth: 'wrap' })),
+        theme: 'grid',
+    });
+
+    const totalPages = pdf.internal.getNumberOfPages();
+    const timestamp = new Date().getTime();
+
+    pdf.setPage(totalPages);
+    pdf.setFontSize(8);
+    pdf.text(`Generated on ${new Date().toLocaleString('en-US')} / ${timestamp} by ${page.props.auth.user.name}`, pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
+
+    const blob = pdf.output('blob');
+    const pdfURL = URL.createObjectURL(blob);
+
+    const newTabPdf = window.open('', '_blank');
+    newTabPdf.location.href = pdfURL;
 };
 </script>
 
@@ -218,7 +212,9 @@ const handlePrint = () => {
             <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
         </div>
     </div>
-    <div class=" overflow-x-auto">
+
+    <!-- Table for User Display -->
+    <div class="overflow-x-auto">
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
@@ -275,13 +271,50 @@ const handlePrint = () => {
             <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
         </div>
     </div>
-    <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
+    <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print / pdf</span>
         <PrinterIcon />
     </SecondaryButton>
 
-    <div ref="printContent" style="display: none;">
-        <ServicesPrint :services="filteredServices" :startDate="start_date" :endDate="end_date" />
+    <!-- Table for PDF -->
+    <div ref="printContent" class="overflow-x-auto" style="display: none;">
+        <table class="min-w-full bg-white border-collapse">
+            <thead>
+                <tr>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.device_type.type_name
+                        }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_warranty }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
     <Modal v-model:show="showingModelServiceUpdate">
         <div class="m-6">
             <div class="flex justify-end">
