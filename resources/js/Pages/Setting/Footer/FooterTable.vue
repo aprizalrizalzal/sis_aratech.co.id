@@ -4,7 +4,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 
@@ -57,6 +57,31 @@ const closeModal = () => {
     showingModelFooterUpdate.value = false;
     showingModelFooterUpdateImage.value = false;
 };
+
+const currentPage = ref(1);
+const itemsPerPage = 5;
+
+const paginatedFooters = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return props.footers.slice(start, end);
+});
+
+const totalPages = computed(() => {
+    return Math.ceil(props.footers.length / itemsPerPage);
+});
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+};
+
+const previousPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+};
 </script>
 
 <template>
@@ -75,8 +100,9 @@ const closeModal = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(footer, index) in footers" :key="footer.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ index + 1 }}</td>
+                <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type"
@@ -101,6 +127,12 @@ const closeModal = () => {
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="flex justify-center gap-4 items-center p-6">
+        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
     <Modal v-model:show="showingModelFooterUpdateImage">

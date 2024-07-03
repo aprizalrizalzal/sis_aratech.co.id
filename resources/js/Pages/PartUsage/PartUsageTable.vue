@@ -263,22 +263,23 @@ const totalQuantity = computed(() => {
                         <DangerButton @click="confirmPartUsageDeletion(partUsage.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="3" class="py-2 px-4 border-b border-green-300 font-semibold">Total Price</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{
-                        formatCurrency(totalPrice) }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{ totalQuantity }}</td>
-                    <td colspan="2" class="py-2 px-4 border-b border-green-300"></td>
-                </tr>
             </tbody>
         </table>
-
-        <div class="flex justify-center gap-4 items-center p-6">
-            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
-        </div>
     </div>
+
+    <div class="flex inline-flex w-full">
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Price</p>
+        <p class="py-2 px-4 border-b border-green-300 text-center font-semibold w-full text-end">{{
+            formatCurrency(totalPrice) }}</p>
+        <p class="py-2 px-4 border-b border-green-300"></p>
+    </div>
+
+    <div class="flex justify-center gap-4 items-center p-6">
+        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+    </div>
+
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
         <PrinterIcon />
     </SecondaryButton>

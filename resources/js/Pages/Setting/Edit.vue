@@ -10,7 +10,7 @@ import DangerButton from '@/Components/DangerButton.vue';
 import CarouselTable from './Carousel/CarouselTable.vue';
 import FooterTable from './Footer/FooterTable.vue';
 import HeaderTable from './Header/HeaderTable.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const props = defineProps({
   carousels: Array
@@ -33,26 +33,26 @@ const showModalAddFooter = ref(false);
           <h2 class="font-bold my-4">Setting Header</h2>
           <HeaderTable :headers="$page.props.headers" />
           <div class="flex flex-col my-2 items-start">
-            <PrimaryButton v-if="!$page.props.headers || $page.props.headers.length === 0"
+            <SecondaryButton v-if="!$page.props.headers || $page.props.headers.length === 0"
               @click="showModalAddHeader = true" class="w-full">Add Header
-            </PrimaryButton>
+            </SecondaryButton>
           </div>
         </div>
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
           <h2 class="font-bold my-4">Setting Carousel</h2>
-          <div class="flex flex-col my-2 items-start">
-            <PrimaryButton @click="showModalAddCarousel = true" class="w-full">Add Carousel
-            </PrimaryButton>
-          </div>
           <CarouselTable :carousels="props.carousels" />
+          <div class="flex flex-col my-2 items-start">
+            <SecondaryButton @click="showModalAddCarousel = true" class="w-full">Add Carousel
+            </SecondaryButton>
+          </div>
         </div>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
           <h2 class="font-bold my-4">Setting Footer</h2>
           <FooterTable :footers="$page.props.footers" />
           <div class="flex flex-col my-2 items-start">
-            <PrimaryButton @click="showModalAddFooter = true" class="w-full">Add Footer
-            </PrimaryButton>
+            <SecondaryButton @click="showModalAddFooter = true" class="w-full">Add Footer
+            </SecondaryButton>
           </div>
         </div>
       </div>

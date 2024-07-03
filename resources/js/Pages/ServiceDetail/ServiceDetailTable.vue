@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import ServiceDetailForm from './ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -8,7 +8,11 @@ import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
-import ServiceDetailsPrint from './ServiceDetailsPrint.vue';
+
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+const page = usePage();
 
 const props = defineProps({
     serviceDetails: Array,
@@ -146,79 +150,90 @@ const previousPage = () => {
     }
 };
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
 const printContent = ref(null);
 
 const handlePrint = () => {
+    const pdf = new jsPDF({
+        format: 'a3',
+        orientation: 'landscape',
+    });
+
+    pdf.setFontSize(14);
+    pdf.text('Service Details Report', pdf.internal.pageSize.width / 2, 20, { align: 'center' });
+
     const printContentEl = printContent.value;
-    const printWindow = window.open();
-    printWindow.document.write(`
-     <html>
-            <head>
-                <title>Print Service Details</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif; 
-                    }
-                    h2 {
-                        text-align: center;
-                        font-size: 24px;
-                        font-weight: bold;
-                    }
-                    .date-range {
-                        text-align: center;
-                        font-size: 12px;
-                        margin-bottom: 16px;
-                    }
-                    table {
-                        width: 100%;
-                        font-size: 12px;
-                        border-collapse: collapse;
-                        margin-bottom: 16px;
-                    }
-                    th, td {
-                        border: 1px solid black;
-                        padding: 8px;
-                        text-align: left;
-                    }
-                    th {
-                        background-color: #f2f2f2;
-                    }
-                    tfoot td {
-                        font-weight: bold;
-                        text-align: left;
-                    }
-                    .header-container {
-                        align-items: stretch;
-                        font-size: 14px;
-                        line-height: 1.5;
-                    }
-                    .header-company {
-                        display: flex;
-                        
-                    }
-                    .header-text {
-                        font-weight: bold;
-                        font-size: 18px;
-                    }
-                    .header-date {
-                        font-size: 12px;
-                        margin-top: auto;
-                        margin-bottom: auto;
-                        margin-left: auto;
-                    }
-                </style>
-            </head>
-            <body>
-                ${printContentEl.innerHTML}
-            </body>
-        </html>
-  `);
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => {
-        printWindow.print();
-        printWindow.close();
-    }, 500);
+    const headerCells = printContentEl.querySelectorAll('thead th');
+    const columns = Array.from(headerCells).map(th => th.innerText);
+
+    pdf.setFontSize(12);
+    const headers = page.props.headers;
+    headers.forEach(header => {
+        pdf.text(`SIService - ${header.company}`, pdf.internal.pageSize.width / 30, 30);  // Menambahkan nama perusahaan
+    });
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 30, 36);
+
+    const rows = [];
+    const content = printContentEl.querySelectorAll('tbody tr');
+    content.forEach((row) => {
+        const cells = row.querySelectorAll('td');
+        const rowData = Array.from(cells).map(cell => cell.innerText);
+        rows.push(rowData);
+    });
+
+    const columnWidths = [10, 20, 50, 20, 50, 30, 25, 40, 60, 25, 60];
+
+    pdf.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 40,
+        styles: { font: 'helvetica', fontSize: 10 },
+        columnStyles: {
+            // Specify styles for each column
+            0: { cellWidth: columnWidths[0] },
+            1: { cellWidth: columnWidths[1] },
+            2: { cellWidth: columnWidths[2] },
+            3: { cellWidth: columnWidths[3] },
+            4: { cellWidth: columnWidths[4] },
+            5: { cellWidth: columnWidths[5] },
+            6: { cellWidth: columnWidths[6] },
+            7: { cellWidth: columnWidths[7] },
+            8: { cellWidth: columnWidths[8] },
+            9: { cellWidth: columnWidths[9] },
+            10: { cellWidth: columnWidths[10] },
+        },
+        theme: 'grid',
+    });
+
+    const totalPages = pdf.internal.getNumberOfPages();
+    const timestamp = new Date().getTime();
+
+    // Print Total Cost
+    const startY = pdf.autoTable.previous.finalY + 10;
+    pdf.text(`Total Cost:`, pdf.internal.pageSize.width - 406, startY, { align: 'left' });
+    pdf.text(`${formatCurrency(totalCost.value)}`, pdf.internal.pageSize.width - 14, startY, { align: 'right' });
+
+    pdf.setPage(totalPages);
+    pdf.setFontSize(8);
+    pdf.text(`Generated on ${new Date().toLocaleString('en-US')} / ${timestamp} by ${page.props.auth.user.name}`, pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
+
+    const blob = pdf.output('blob');
+    const pdfURL = URL.createObjectURL(blob);
+
+    const newTabPdf = window.open('', '_blank');
+    newTabPdf.location.href = pdfURL;
 };
 </script>
 
@@ -293,27 +308,78 @@ const handlePrint = () => {
                         </DangerButton>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="9" class="py-2 px-4 border-b border-green-300 font-semibold">Total Cost</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center font-semibold">{{
-                        formatCurrency(totalCost) }}</td>
-                    <td colspan="4" class="py-2 px-4 border-b border-green-300"></td>
-                </tr>
             </tbody>
         </table>
-        <div class="flex justify-center gap-4 items-center p-6">
-            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
-        </div>
+    </div>
+    <div class="flex inline-flex w-full">
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
+        <p class="py-2 px-4 border-b border-green-300 text-center font-semibold w-full text-end">{{
+            formatCurrency(totalCost) }}</p>
+        <p class="py-2 px-4 border-b border-green-300"></p>
+    </div>
+
+    <div class="flex justify-center gap-4 items-center p-6">
+        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
         <PrinterIcon />
     </SecondaryButton>
 
-    <div ref="printContent" style="display: none;">
-        <ServiceDetailsPrint :serviceDetails="filteredServiceDetails" :startDate="start_date" :endDate="end_date" />
+    <div ref="printContent" class="overflow-x-auto" style="display: none;">
+        <table class="min-w-full bg-white border-collapse">
+            <thead>
+                <tr>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
+                    class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        {{ serviceDetail.service.customer.user.email }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.customer.phone
+                        }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        serviceDetail.service.device.device_type.type_name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        serviceDetail.service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flex inline-flex w-full">
+            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
+            <p class="py-2 px-4 border-b border-green-300 text-center font-semibold w-full text-end">{{
+                formatCurrency(totalCost) }}</p>
+            <p class="py-2 px-4 border-b border-green-300"></p>
+        </div>
     </div>
 
     <Modal v-model:show="showingModelServiceDetailUpdate">

@@ -7,6 +7,7 @@ import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -155,7 +156,8 @@ const handlePrint = () => {
         orientation: 'landscape',
     });
 
-    pdf.text('Service Details Report', pdf.internal.pageSize.width / 2, 20, { align: 'center' });
+    pdf.setFontSize(14);
+    pdf.text('Services Report', pdf.internal.pageSize.width / 2, 20, { align: 'center' });
 
     const printContentEl = printContent.value;
     const headerCells = printContentEl.querySelectorAll('thead th');
@@ -176,12 +178,28 @@ const handlePrint = () => {
         rows.push(rowData);
     });
 
+    const columnWidths = [10, 20, 50, 30, 25, 40, 25, 25, 75, 25, 40, 25];
+
     pdf.autoTable({
         head: [columns],
         body: rows,
         startY: 40,
         styles: { font: 'helvetica', fontSize: 10 },
-        columnStyles: Array.from({ length: columns.length }, () => ({ cellWidth: 'wrap' })),
+        columnStyles: {
+            // Specify styles for each column
+            0: { cellWidth: columnWidths[0] },
+            1: { cellWidth: columnWidths[1] },
+            2: { cellWidth: columnWidths[2] },
+            3: { cellWidth: columnWidths[3] },
+            4: { cellWidth: columnWidths[4] },
+            5: { cellWidth: columnWidths[5] },
+            6: { cellWidth: columnWidths[6] },
+            7: { cellWidth: columnWidths[7] },
+            8: { cellWidth: columnWidths[8] },
+            9: { cellWidth: columnWidths[9] },
+            10: { cellWidth: columnWidths[10] },
+            11: { cellWidth: columnWidths[11] },
+        },
         theme: 'grid',
     });
 
@@ -265,12 +283,13 @@ const handlePrint = () => {
                 </tr>
             </tbody>
         </table>
-        <div class="flex justify-center gap-4 items-center p-6">
-            <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
-        </div>
     </div>
+    <div class="flex justify-center gap-4 items-center p-6">
+        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+    </div>
+
     <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print / pdf</span>
         <PrinterIcon />
     </SecondaryButton>
