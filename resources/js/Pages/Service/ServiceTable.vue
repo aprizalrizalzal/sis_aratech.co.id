@@ -156,19 +156,27 @@ const handlePrint = () => {
         orientation: 'landscape',
     });
 
-    pdf.setFontSize(14);
-    pdf.text('Services Report', pdf.internal.pageSize.width / 2, 20, { align: 'center' });
-
     const printContentEl = printContent.value;
     const headerCells = printContentEl.querySelectorAll('thead th');
     const columns = Array.from(headerCells).map(th => th.innerText);
 
-    pdf.setFontSize(12);
+    const logoImage = new Image();
+    logoImage.src = 'storage/images/header/company_logo.png'; // Ganti dengan path gambar logo Anda
+    pdf.addImage(logoImage, 'PNG', 15, 15, 25, 25); // Menambahkan gambar logo dengan posisi dan ukuran
+
     const headers = page.props.headers;
     headers.forEach(header => {
-        pdf.text(`SIService - ${header.company}`, pdf.internal.pageSize.width / 30, 30);  // Menambahkan nama perusahaan
+        pdf.setFontSize(18);
+        pdf.text(`SIService - ${header.company}`, pdf.internal.pageSize.width / 10, 22);  // Menambahkan nama perusahaan
+        pdf.setFontSize(14);
+        pdf.text(`${header.description}`, pdf.internal.pageSize.width / 10, 30);  // Menambahkan nama perusahaan
     });
-    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 30, 36);
+    pdf.setTextColor(0, 125, 0);
+    pdf.setFontSize(12);
+    pdf.text('Services Report', pdf.internal.pageSize.width / 10, 38);
+    pdf.setTextColor(0, 0, 0);
+    pdf.setFontSize(12);
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 2, 45, { align: 'center' });
 
     const rows = [];
     const content = printContentEl.querySelectorAll('tbody tr');
@@ -183,7 +191,7 @@ const handlePrint = () => {
     pdf.autoTable({
         head: [columns],
         body: rows,
-        startY: 40,
+        startY: 50,
         styles: { font: 'helvetica', fontSize: 10 },
         columnStyles: {
             // Specify styles for each column
@@ -290,8 +298,8 @@ const handlePrint = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print / pdf</span>
-        <PrinterIcon />
+    <SecondaryButton @click="handlePrint" class="w-full my-4">
+        <PrinterIcon /> <span class="py-1 mx-2 w-full">Print / pdf</span>
     </SecondaryButton>
 
     <!-- Table for PDF -->
