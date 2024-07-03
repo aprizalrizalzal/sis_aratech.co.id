@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import ServiceDetailForm from './ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -16,10 +16,6 @@ const page = usePage();
 
 const props = defineProps({
     serviceDetails: Array,
-});
-
-onMounted(() => {
-    console.log('partUsages', props.partUsages);
 });
 
 const formatCurrency = (value) => {
@@ -229,9 +225,9 @@ const handlePrint = () => {
     const timestamp = new Date().getTime();
 
     // Print Total Cost
-    const startY = pdf.autoTable.previous.finalY + 10;
-    pdf.text(`Total Cost:`, pdf.internal.pageSize.width - 406, startY, { align: 'left' });
-    pdf.text(`${formatCurrency(totalCost.value)}`, pdf.internal.pageSize.width - 16, startY, { align: 'right' });
+    const startY = pdf.autoTable.previous.finalY + 6;
+    pdf.setFontSize(10);
+    pdf.text(`Total Cost ${formatCurrency(totalCost.value)}`, pdf.internal.pageSize.width - 406, startY, { align: 'left' });
 
     pdf.setPage(totalPages);
     pdf.setFontSize(8);
@@ -319,11 +315,10 @@ const handlePrint = () => {
             </tbody>
         </table>
     </div>
-    <div class="flex inline-flex w-full">
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
-        <p class="py-2 px-4 border-b border-green-300 text-center font-semibold w-full text-end">{{
-            formatCurrency(totalCost) }}</p>
+    <div class="flex flex-col w-full">
         <p class="py-2 px-4 border-b border-green-300"></p>
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost {{
+            formatCurrency(totalCost) }}</p>
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">

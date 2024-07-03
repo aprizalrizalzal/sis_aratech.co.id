@@ -1,13 +1,17 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import PartUsageForm from '@/Pages/PartUsage/PartUsageForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import PartUsagesPrint from './PartUsagesPrint.vue';
+
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+const page = usePage();
 
 const props = defineProps({
     partUsages: Array,
@@ -133,79 +137,6 @@ const previousPage = () => {
     }
 };
 
-const printContent = ref(null);
-
-const handlePrint = () => {
-    const printContentEl = printContent.value;
-    const printWindow = window.open();
-    printWindow.document.write(`
-    <html>
-        <head>
-            <title>Print Service Details</title>
-            <style>
-                body {
-                    font-family: Arial, sans-serif; 
-                }
-                h1 {
-                    text-align: center;
-                    font-size: 24px;
-                    font-weight: bold;
-                }
-                .date-range {
-                    text-align: center;
-                    font-size: 12px;
-                    margin-bottom: 16px;
-                }
-                table {
-                    width: 100%;
-                    font-size: 12px;
-                    border-collapse: collapse;
-                    margin-bottom: 16px;
-                }
-                th, td {
-                    border: 1px solid black;
-                    padding: 8px;
-                    text-align: left;
-                }
-                th {
-                    background-color: #f2f2f2;
-                }
-                tfoot td {
-                    font-weight: bold;
-                    text-align: left;
-                }
-                .header-container {
-                    align-items: stretch;
-                    font-size: 14px;
-                    line-height: 1.5;
-                }
-                .header-company {
-                    display: flex;
-                    
-                }
-                .header-text {
-                    font-weight: bold;
-                    font-size: 18px;
-                }
-                .header-date {
-                    font-size: 12px;
-                    margin-top: auto;
-                    margin-bottom: auto;
-                    margin-left: auto;
-                }
-            </style>
-        </head>
-        <body>
-            ${printContentEl.innerHTML}
-        </body>
-    </html>
-  `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
-};
-
 const totalPrice = computed(() => {
     return filteredPartUsages.value.reduce((total, partUsage) => {
         const price = parseFloat(partUsage.spare_part.price);
@@ -219,6 +150,96 @@ const totalQuantity = computed(() => {
         return total + (isNaN(quantity) ? 0 : quantity);
     }, 0);
 });
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
+const printContent = ref(null);
+
+const handlePrint = () => {
+    const pdf = new jsPDF({
+        format: 'a3',
+        orientation: 'portrait',
+    });
+
+    const printContentEl = printContent.value;
+    const headerCells = printContentEl.querySelectorAll('thead th');
+    const columns = Array.from(headerCells).map(th => th.innerText);
+
+    const logoImage = new Image();
+    logoImage.src = 'storage/images/header/company_logo.png'; // Ganti dengan path gambar logo Anda
+    pdf.addImage(logoImage, 'PNG', 15, 15, 25, 25); // Menambahkan gambar logo dengan posisi dan ukuran
+
+    const headers = page.props.headers;
+    headers.forEach(header => {
+        pdf.setFontSize(18);
+        pdf.text(`SIService - ${header.company}`, pdf.internal.pageSize.width / 7, 22);  // Menambahkan nama perusahaan
+        pdf.setFontSize(14);
+        pdf.text(`${header.description}`, pdf.internal.pageSize.width / 7, 30);  // Menambahkan nama perusahaan
+    });
+    pdf.setTextColor(0, 125, 0);
+    pdf.setFontSize(12);
+    pdf.text('Part Usages Report', pdf.internal.pageSize.width / 7, 38);
+    pdf.setTextColor(0, 0, 0);
+    pdf.setFontSize(12);
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 2, 45, { align: 'center' });
+
+    const rows = [];
+    const content = printContentEl.querySelectorAll('tbody tr');
+    content.forEach((row) => {
+        const cells = row.querySelectorAll('td');
+        const rowData = Array.from(cells).map(cell => cell.innerText);
+        rows.push(rowData);
+    });
+
+    const columnWidths = [10, 50, 140, 50, 20];
+
+    pdf.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 50,
+        styles: { font: 'helvetica', fontSize: 10 },
+        columnStyles: {
+            // Specify styles for each column
+            0: { cellWidth: columnWidths[0] },
+            1: { cellWidth: columnWidths[1] },
+            2: { cellWidth: columnWidths[2] },
+            3: { cellWidth: columnWidths[3] },
+            4: { cellWidth: columnWidths[4] },
+        },
+        theme: 'grid',
+    });
+
+    const totalPages = pdf.internal.getNumberOfPages();
+    const timestamp = new Date().getTime();
+
+    // Print Total
+    const lineHeight = 6;
+    const startY = pdf.autoTable.previous.finalY + 6;
+    pdf.setFontSize(10);
+    pdf.text(`Total Price ${formatCurrency(totalPrice.value)}`, pdf.internal.pageSize.width / 22, startY);
+    pdf.text(`Total Quantity ${totalQuantity.value}`, pdf.internal.pageSize.width / 22, startY + lineHeight);
+
+    pdf.setPage(totalPages);
+    pdf.setFontSize(8);
+    pdf.text(`Generated on ${new Date().toLocaleString('en-US')} / ${timestamp} by ${page.props.auth.user.name}`, pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
+
+    const blob = pdf.output('blob');
+    const pdfURL = URL.createObjectURL(blob);
+
+    const newTabPdf = window.open('', '_blank');
+    newTabPdf.location.href = pdfURL;
+};
 </script>
 
 <template>
@@ -267,11 +288,11 @@ const totalQuantity = computed(() => {
         </table>
     </div>
 
-    <div class="flex inline-flex w-full">
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Price</p>
-        <p class="py-2 px-4 border-b border-green-300 text-center font-semibold w-full text-end">{{
-            formatCurrency(totalPrice) }}</p>
+    <div class="flex flex-col w-full">
         <p class="py-2 px-4 border-b border-green-300"></p>
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Price {{ formatCurrency(totalPrice)
+            }}</p>
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Quantity {{ totalQuantity }}</p>
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
@@ -280,12 +301,34 @@ const totalQuantity = computed(() => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <SecondaryButton @click="handlePrint" class="w-full my-4"><span class="py-1 w-full">Print</span>
-        <PrinterIcon />
+    <SecondaryButton @click="handlePrint" class="w-full my-4">
+        <PrinterIcon /><span class="py-1 w-full">Print / pdf</span>
     </SecondaryButton>
 
-    <div ref="printContent" style="display: none;">
-        <PartUsagesPrint :partUsages="filteredPartUsages" :startDate="start_date" :endDate="end_date" />
+    <div ref="printContent" class="overflow-x-auto" style="display: none;">
+        <table class="min-w-full bg-white border-collapse">
+            <thead>
+                <tr>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                        index + 1 }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        partUsage.service_detail.service_detail_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        formatCurrency(partUsage.spare_part.price) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <Modal v-model:show="showingModelPartUsageUpdate">
