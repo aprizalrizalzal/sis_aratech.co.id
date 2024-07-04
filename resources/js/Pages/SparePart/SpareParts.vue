@@ -16,8 +16,7 @@ const filteredSpareParts = computed(() => {
     return props.spareParts;
   }
   return props.spareParts.filter(sparePart =>
-    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
@@ -32,7 +31,7 @@ const filteredSpareParts = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Spare Parts</h2>
         </div>
         <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search name..." />
         </div>
       </div>
     </template>

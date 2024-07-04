@@ -15,10 +15,7 @@ const filteredCustomers = computed(() => {
     return props.customers;
   }
   return props.customers.filter(customer =>
-    customer.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    customer.phone.includes(searchQuery.value) ||
-    customer.address.toLowerCase().includes(searchQuery.value.toLowerCase())
+    customer.phone.includes(searchQuery.value)
   );
 });
 </script>
@@ -33,7 +30,7 @@ const filteredCustomers = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Customers</h2>
         </div>
         <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search phone..." />
         </div>
       </div>
     </template>

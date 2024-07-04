@@ -17,13 +17,7 @@ const filteredServiceDetails = computed(() => {
   }
   return props.serviceDetails.filter(serviceDetail =>
     serviceDetail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.repair_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.notes.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.cost.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+    serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
@@ -38,7 +32,7 @@ const filteredServiceDetails = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Service Details</h2>
         </div>
         <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search service detail code or service code..." />
         </div>
       </div>
     </template>

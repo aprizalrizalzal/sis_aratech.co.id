@@ -16,17 +16,7 @@ const filteredServices = computed(() => {
     return props.services;
   }
   return props.services.filter(service =>
-    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.customer.phone.includes(searchQuery.value) ||
-    service.device.device_type.type_name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.status.toLowerCase().includes(searchQuery.value.toLowerCase())
+    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
@@ -41,7 +31,7 @@ const filteredServices = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Services</h2>
         </div>
         <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search service code..." />
         </div>
       </div>
     </template>

@@ -16,9 +16,7 @@ const filteredPartUsages = computed(() => {
     return props.partUsages;
   }
   return props.partUsages.filter(partUsage =>
-    partUsage.service_detail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    partUsage.spare_part.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    partUsage.quantity.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+    partUsage.service_detail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
@@ -33,7 +31,7 @@ const filteredPartUsages = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Part Usages</h2>
         </div>
         <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search service detail code..." />
         </div>
       </div>
     </template>

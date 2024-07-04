@@ -16,7 +16,6 @@ const filteredUsers = computed(() => {
     return props.users;
   }
   return props.users.filter(user =>
-    user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
@@ -32,7 +31,7 @@ const filteredUsers = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4 ">Users</h2>
         </div>
         <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search email..." />
         </div>
       </div>
     </template>

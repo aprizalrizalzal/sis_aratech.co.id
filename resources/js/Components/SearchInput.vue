@@ -1,8 +1,13 @@
 <script setup>
 import { ref, watch } from 'vue';
-import TextInput from '@/Components/TextInput.vue';
 
 const emit = defineEmits(['update:searchQuery']);
+const props = defineProps({
+    placeholder: {
+        type: String,
+        default: 'Search...',
+    },
+});
 const searchQuery = ref('');
 
 watch(searchQuery, (newQuery) => {
@@ -12,6 +17,7 @@ watch(searchQuery, (newQuery) => {
 
 <template>
     <div class="flex justify-end">
-        <input id="search" class="border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm" type="text" v-model="searchQuery" placeholder="Search..." />
+        <input id="search" class="border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+            type="text" v-model="searchQuery" :placeholder="props.placeholder" />
     </div>
 </template>

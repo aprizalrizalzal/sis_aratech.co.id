@@ -17,8 +17,7 @@ const filteredSpareParts = computed(() => {
         return props.spareParts;
     }
     return props.spareParts.filter(sparePart =>
-        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        sparePart.price.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 
@@ -34,13 +33,6 @@ const totalPages = computed(() => {
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
-};
-
-const sparePartDetail = (sparePartId) => {
-    router.visit('/spare-part-detail', {
-    method: 'get',
-    data: { sparePartId }
-  });
 };
 
 const nextPage = () => {
@@ -68,7 +60,7 @@ watch(searchQuery, () => {
             </h2>
         </div>
         <div class="flex items-center">
-            <SearchInput v-model:searchQuery="searchQuery" />
+            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search name..." />
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
