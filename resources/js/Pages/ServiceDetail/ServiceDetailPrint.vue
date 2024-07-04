@@ -113,7 +113,7 @@ onMounted(() => {
                 <td> {{ serviceDetail.repair_description }} </td>
             </tr>
             <tr class="font-bold bg-green-50">
-                <td colspan="2" class="text-green-900"> Spare Part</td>
+                <td class="text-green-900"> Spare Part</td>
                 <td class="text-green-900"> Price</td>
             </tr>
             <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id">

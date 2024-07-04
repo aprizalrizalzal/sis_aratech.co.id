@@ -17,6 +17,7 @@ const filteredServiceDetails = computed(() => {
   }
   return props.serviceDetails.filter(serviceDetail =>
     serviceDetail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||

@@ -16,38 +16,38 @@ class DashboardController extends Controller
 {
     public function show()
     {
+        $users = User::all();
         $deviceTypes = DeviceType::all();
-        $customers = Customer::all();
-        $devices = Device::all();
-        $services = Service::with('customer', 'customer.user', 'device')->get();
-        $serviceDetails = ServiceDetail::with('user', 'service')->get();
         $spareParts = SparePart::all();
 
         $customers = Customer::all();
         $devices = Device::all();
-        $deviceTypes = DeviceType::all();
-        $partUsages = PartUsage::all();
-        $users = User::all();
+        $services = Service::all();
+
+        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType')->get();
+        $partUsages = PartUsage::with('sparePart')->get();
 
         $printService = session('printService');
         $printServiceDetail = session('printServiceDetail');
 
         return Inertia::render('Dashboard', [
             'users' => $users,
-            'customers' => $customers,
             'deviceTypes' => $deviceTypes,
-            'devices' => $devices,
-            'partUsages' => $partUsages,
+            'spareParts' => $spareParts,
 
-            'deviceTypes' => $deviceTypes,
             'customers' => $customers,
             'devices' => $devices,
             'services' => $services,
+
             'serviceDetails' => $serviceDetails,
-            'spareParts' => $spareParts,
+            'partUsages' => $partUsages,
 
             'printService' => $printService,
             'printServiceDetail' => $printServiceDetail,
+
+
+
+
         ]);
     }
 }

@@ -53,31 +53,6 @@ const isSuperAdmin = computed(() => hasRole('super-admin'));
 const isAdmin = computed(() => hasRole('admin'));
 const isUser = computed(() => hasRole('user'));
 
-const customerUserIdServices = computed(() => {
-  return props.services.filter(service => service.customer.user_id === userId.value);
-});
-
-const searchQuery = ref('');
-
-const filteredServices = computed(() => {
-  if (!searchQuery.value) {
-    return customerUserIdServices.value;
-  }
-  return customerUserIdServices.value.filter(service =>
-    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.customer.phone.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    service.status.toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
-});
-
 const start_date_line_chart = ref('');
 const end_date_line_chart = ref('');
 
@@ -266,6 +241,44 @@ watchEffect(() => {
   updateDataCharts();
 });
 
+const customerUserIdServiceDetails = computed(() => {
+  return props.serviceDetails.filter(serviceDetail => serviceDetail.service.customer.user_id === userId.value);
+});
+
+const serviceDetailIdPartUsages = computed(() => {
+  return props.partUsages.filter(partUsage => partUsage.service_detail_id === 2);
+});
+
+const searchQuery = ref('');
+
+const filteredServiceDetails = computed(() => {
+  if (!searchQuery.value) {
+    return customerUserIdServiceDetails.value;
+  }
+  return customerUserIdServiceDetails.value.filter(serviceDetail =>
+    serviceDetail.service_detail_code.toString().toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.customer.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.customer.phone.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.customer.address.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.device.device_type.type_name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.service.status.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.repair_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+
+    serviceDetail.cost.toString().toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.notes.toString().toLowerCase().includes(searchQuery.value.toLowerCase()) 
+  );
+});
+
 const start_date = ref('');
 const end_date = ref('');
 
@@ -281,41 +294,61 @@ const resetDateFilters = () => {
     datePickerKeys.value.endDate += 1;
 };
 
-const filteredDateServices = computed(() => {
-  let services = filteredServices.value;
+const filteredDateServiceDetails = computed(() => {
+  let serviceDetails = filteredServiceDetails.value;
 
   if (start_date.value || end_date.value) {
-    services = services.filter(service => {
-      const dateReceived = new Date(service.date_received);
+    serviceDetails = serviceDetails.filter(serviceDetail => {
+      const createdAt = new Date(serviceDetail.created_at);
       const start = start_date.value ? new Date(start_date.value) : null;
       const end = end_date.value ? new Date(end_date.value) : null;
 
       if (start && end) {
-        return dateReceived >= start && dateReceived <= end;
+        return createdAt >= start && createdAt <= end;
       } else if (start) {
-        return dateReceived >= start;
+        return createdAt >= start;
       } else if (end) {
-        return dateReceived <= end;
+        return createdAt <= end;
       }
 
       return true;
     });
   }
 
-  return services;
+  return serviceDetails;
+});
+
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+};
+
+const serviceDetailTotal = computed(() => {
+    const sparePartsTotal = serviceDetailIdPartUsages.value.reduce((total, partUsage) => {
+      const price = parseFloat(partUsage.spare_part.price);
+      return total + (isNaN(price) ? 0 : price);
+    }, 0);
+
+    const serviceCost = customerUserIdServiceDetails.value.reduce((total, serviceDetail) => {
+      const coast = parseFloat(serviceDetail.cost);
+      return total + (isNaN(coast) ? 0 : coast);
+    }, 0);
+
+    const total = sparePartsTotal + serviceCost
+
+    return total;
 });
 
 const currentPage = ref(1);
 const itemsPerPage = 15;
 
-const paginatedServices = computed(() => {
+const paginatedServiceDetails = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return filteredDateServices.value.slice(start, end);
+  return filteredDateServiceDetails.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-  return Math.ceil(filteredDateServices.value.length / itemsPerPage);
+  return Math.ceil(filteredDateServiceDetails.value.length / itemsPerPage);
 });
 
 const nextPage = () => {
@@ -436,47 +469,98 @@ const previousPage = () => {
                       <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
                     </div>
                   </div>
-                  <table class="min-w-full bg-white border-collapse ">
-                    <thead>
-                      <tr>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Customer</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status Warranty</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
-                        <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage
-                          +
-                          index + 1 }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.name }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.model }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_warranty }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
-                        <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Address</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description </th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought </th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
+                                <!-- <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th> -->
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
+                                <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
+                                class="hover:bg-green-50">
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                                    index + 1 }}</td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">
+                                    {{ serviceDetail.service.customer.user.name }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">
+                                    {{ serviceDetail.service.customer.user.email }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.customer.phone
+                                    }}</td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">
+                                    {{ serviceDetail.service.customer.address }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                                  serviceDetail.service.device.device_type.type_name }}</td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                                    serviceDetail.service.device.model }}</td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                                    serviceDetail.service.device.serial_number }}</td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status_warranty }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.date_received }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.estimated_completion }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.problem_description }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.items_brought }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">
+                                    <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
+                                        target="_blank"
+                                        class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        Print
+                                    </a>
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">
+                                    <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
+                                    </SecondaryButton>
+                                </td>
+                                <td class="py-2 px-4 border-b border-green-300 text-center">
+                                    <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
+                                    </DangerButton>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                   <div class="flex justify-center gap-4 items-center p-6">
                     <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
                     <span>Page {{ currentPage }} of {{ totalPages }}</span>
