@@ -18,6 +18,7 @@ import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
 import ServiceDetailIcon from '@/Components/Icon/ServiceDetailIcon.vue';
 import PartUsageIcon from '@/Components/Icon/PartUsageIcon.vue';
 import ServiceIcon from '@/Components/Icon/ServiceIcon.vue';
+import ToolsIcon from '@/Components/Icon/ToolsIcon.vue';
 
 const showingNavigationDropdown = ref(false);
 const showingSidebar = ref(false);
@@ -291,6 +292,10 @@ const isUser = computed(() => hasRole('user'));
                             <PartUsageIcon />
                         </SidebarLink>
                         <hr>
+                        <SidebarLink :href="route('show.part.usages')" :active="route().current('show.part.usages')"
+                            label="Tools">
+                            <ToolsIcon />
+                        </SidebarLink>
                     </div>
                 </div>
             </div>
