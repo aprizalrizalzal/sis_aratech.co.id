@@ -171,12 +171,12 @@ const handlePrint = () => {
         pdf.setFontSize(14);
         pdf.text(`${header.description}`, pdf.internal.pageSize.width / 10, 30);  // Menambahkan nama perusahaan
     });
+
     pdf.setTextColor(0, 125, 0);
     pdf.setFontSize(12);
-    pdf.text('Services Report', pdf.internal.pageSize.width / 10, 38);
-    pdf.setTextColor(0, 0, 0);
+    pdf.text('Services Report', 42, 38); 
     pdf.setFontSize(12);
-    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 2, 45, { align: 'center' });
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width - 14, 38, { align: 'right' });
 
     const rows = [];
     const content = printContentEl.querySelectorAll('tbody tr');
@@ -186,12 +186,12 @@ const handlePrint = () => {
         rows.push(rowData);
     });
 
-    const columnWidths = [10, 20, 50, 30, 25, 40, 25, 25, 75, 25, 40, 25];
+    const columnWidths = [10, 20, 50, 30, 25, 40, 25, 25, 75, 25, 43, 25];
 
     pdf.autoTable({
         head: [columns],
         body: rows,
-        startY: 50,
+        startY: 42,
         styles: { font: 'helvetica', fontSize: 10 },
         columnStyles: {
             // Specify styles for each column

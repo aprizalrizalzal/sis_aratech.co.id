@@ -184,10 +184,9 @@ const handlePrint = () => {
     });
     pdf.setTextColor(0, 125, 0);
     pdf.setFontSize(12);
-    pdf.text('Service Details Report', pdf.internal.pageSize.width / 10, 38);
-    pdf.setTextColor(0, 0, 0);
+    pdf.text('Service Details Report', 42, 38); 
     pdf.setFontSize(12);
-    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 2, 45, { align: 'center' });
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width - 14, 38, { align: 'right' });
 
     const rows = [];
     const content = printContentEl.querySelectorAll('tbody tr');
@@ -197,12 +196,12 @@ const handlePrint = () => {
         rows.push(rowData);
     });
 
-    const columnWidths = [10, 20, 50, 20, 50, 30, 25, 40, 60, 25, 60];
+    const columnWidths = [10, 20, 50, 20, 50, 30, 25, 40, 60, 28, 60];
 
     pdf.autoTable({
         head: [columns],
         body: rows,
-        startY: 50,
+        startY: 42,
         styles: { font: 'helvetica', fontSize: 10 },
         columnStyles: {
             // Specify styles for each column
@@ -224,10 +223,21 @@ const handlePrint = () => {
     const totalPages = pdf.internal.getNumberOfPages();
     const timestamp = new Date().getTime();
 
-    // Print Total Cost
-    const startY = pdf.autoTable.previous.finalY + 6;
-    pdf.setFontSize(10);
-    pdf.text(`Total Cost ${formatCurrency(totalCost.value)}`, pdf.internal.pageSize.width - 406, startY, { align: 'left' });
+    const columnTotalWidths = [305, 28, 60];
+    const startY = pdf.autoTable.previous.finalY; 
+    pdf.autoTable({
+        body: [
+            ['Total', formatCurrency(totalCost.value), ''],
+        ],
+        startY: startY,
+        styles: { fontSize: 10, fontStyle: 'bold'  },
+        columnStyles: {
+            0: { cellWidth: columnTotalWidths[0] },
+            1: { cellWidth: columnTotalWidths[1] },
+            2: { cellWidth: columnTotalWidths[2] },
+        },
+        theme: 'grid',
+    });
 
     pdf.setPage(totalPages);
     pdf.setFontSize(8);
@@ -315,10 +325,11 @@ const handlePrint = () => {
             </tbody>
         </table>
     </div>
-    <div class="flex flex-col w-full">
-        <p class="py-2 px-4 border-b border-green-300"></p>
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost {{
+    <div class="flex flex-row w-full text-center">
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
+        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{
             formatCurrency(totalCost) }}</p>
+            
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
@@ -376,13 +387,6 @@ const handlePrint = () => {
                 </tr>
             </tbody>
         </table>
-
-        <div class="flex inline-flex w-full">
-            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
-            <p class="py-2 px-4 border-b border-green-300 text-center font-semibold w-full text-end">{{
-                formatCurrency(totalCost) }}</p>
-            <p class="py-2 px-4 border-b border-green-300"></p>
-        </div>
     </div>
 
     <Modal v-model:show="showingModelServiceDetailUpdate">

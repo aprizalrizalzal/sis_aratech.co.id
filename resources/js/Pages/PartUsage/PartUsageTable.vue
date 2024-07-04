@@ -187,12 +187,12 @@ const handlePrint = () => {
         pdf.setFontSize(14);
         pdf.text(`${header.description}`, pdf.internal.pageSize.width / 7, 30);  // Menambahkan nama perusahaan
     });
+    
     pdf.setTextColor(0, 125, 0);
     pdf.setFontSize(12);
-    pdf.text('Part Usages Report', pdf.internal.pageSize.width / 7, 38);
-    pdf.setTextColor(0, 0, 0);
+    pdf.text('Part Usages Report', 42, 38); 
     pdf.setFontSize(12);
-    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width / 2, 45, { align: 'center' });
+    pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width - 14, 38, { align: 'right' });
 
     const rows = [];
     const content = printContentEl.querySelectorAll('tbody tr');
@@ -207,7 +207,7 @@ const handlePrint = () => {
     pdf.autoTable({
         head: [columns],
         body: rows,
-        startY: 50,
+        startY: 42,
         styles: { font: 'helvetica', fontSize: 10 },
         columnStyles: {
             // Specify styles for each column
@@ -223,12 +223,28 @@ const handlePrint = () => {
     const totalPages = pdf.internal.getNumberOfPages();
     const timestamp = new Date().getTime();
 
-    // Print Total
-    const lineHeight = 6;
-    const startY = pdf.autoTable.previous.finalY + 6;
-    pdf.setFontSize(10);
-    pdf.text(`Total Price ${formatCurrency(totalPrice.value)}`, pdf.internal.pageSize.width / 22, startY);
-    pdf.text(`Total Quantity ${totalQuantity.value}`, pdf.internal.pageSize.width / 22, startY + lineHeight);
+    const columnTotalWidths = [200, 50, 20];
+    const startY = pdf.autoTable.previous.finalY; 
+    pdf.autoTable({
+        body: [
+            ['Total', formatCurrency(totalPrice.value), totalQuantity.value],
+        ],
+        startY: startY,
+        styles: { fontSize: 10, fontStyle: 'bold' },
+        columnStyles: {
+            0: { cellWidth: columnTotalWidths[0] },
+            1: { cellWidth: columnTotalWidths[1] },
+            2: { cellWidth: columnTotalWidths[2] },
+        },
+        theme: 'grid',
+    });
+
+    // // Print Total
+    // const lineHeight = 6;
+    // const startY = pdf.autoTable.previous.finalY + 6;
+    // pdf.setFontSize(10);
+    // pdf.text(`Total Price ${formatCurrency(totalPrice.value)}`, pdf.internal.pageSize.width / 22, startY);
+    // pdf.text(`Total Quantity ${totalQuantity.value}`, pdf.internal.pageSize.width / 22, startY + lineHeight);
 
     pdf.setPage(totalPages);
     pdf.setFontSize(8);
@@ -288,11 +304,16 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <div class="flex flex-col w-full">
-        <p class="py-2 px-4 border-b border-green-300"></p>
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Price {{ formatCurrency(totalPrice)
-            }}</p>
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Quantity {{ totalQuantity }}</p>
+    <div class="flex flex-col w-full text-center">
+        <div class="flex flex-row w-full">
+            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Price</p>
+            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{ formatCurrency(totalPrice)
+                }}</p>
+        </div>
+        <div class="flex flex-row w-full">
+            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Quantity</p>
+            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{ totalQuantity }}</p>
+        </div>
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
