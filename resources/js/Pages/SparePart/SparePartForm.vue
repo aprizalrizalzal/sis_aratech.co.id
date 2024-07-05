@@ -9,6 +9,7 @@ import TextInput from '@/Components/TextInput.vue';
 const form = useForm({
     name: '',
     image: null,
+    category: '',
     description: '',
     price: '',
 });
@@ -19,10 +20,11 @@ const props = defineProps({
 });
 
 if (props.sparePart) {
-    form.name = props.sparePart.name;
     form.image_path = props.sparePart.image_path;
+    form.name = props.sparePart.name;
+    form.category = props.sparePart.category;
     form.price = props.sparePart.price;
-    form.description = props.sparePart.description.replace(/\\n/g, '\n');
+    form.description = props.sparePart.description;
 }
 
 const previewUrl = ref(null);
@@ -63,7 +65,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.name || errors.image || errors.description || errors.price) {
+                if (errors.image || errors.name || errors.category ||errors.description || errors.price) {
                     alert('Spare part addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -78,7 +80,7 @@ const submitForm = () => {
                 form.data();
             },
             onError: (errors) => {
-                if (errors.name || errors.description || errors.price) {
+                if (errors.name || errors.category || errors.description || errors.price) {
                     alert('Spare part update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -104,6 +106,12 @@ const submitForm = () => {
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
                     <InputError class="mt-3" :message="form.errors.name" />
+                </div>
+                <div v-if="!props.sparePartId">
+                    <InputLabel class="mt-3" for="category" value="Category" />
+                    <TextInput id="category" type="text" class="mt-1 block w-full" v-model="form.category" placeholder="Category"
+                        required autofocus />
+                    <InputError class="mt-3" :message="form.errors.category" />
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel class="mt-3" for="description" value="Description" />

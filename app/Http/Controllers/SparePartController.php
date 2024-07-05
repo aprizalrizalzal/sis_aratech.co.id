@@ -34,8 +34,9 @@ class SparePartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|integer',
         ]);
@@ -45,8 +46,9 @@ class SparePartController extends Controller
         $path = $request->file('image')->storeAs('images/spareParts', $uniqueName, 'public');
 
         SparePart::create([
-            'name' => $request->name,
             'image_path' => 'storage/' . $path,
+            'name' => $request->name,
+            'category' => $request->category,
             'description' => $request->description,
             'price' => $request->price,
         ]);
@@ -83,6 +85,7 @@ class SparePartController extends Controller
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
             'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|integer',
         ]);
@@ -91,6 +94,7 @@ class SparePartController extends Controller
 
         $sparePart->update([
             'name' => $request->name,
+            'category' => $request->category,
             'description' => $request->description,
             'price' => $request->price,
         ]);

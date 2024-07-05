@@ -120,6 +120,9 @@ const formatCurrency = (value) => {
                             <div class="text-start px-8">
                                 <h1 class="text-gray-500 font-bold mb-2">{{ sparePart.name }}</h1>
                                 <p class="text-gray-500 text-sm/relaxed">
+                                    {{ sparePart.category }}
+                                </p>
+                                <p class="text-gray-500 text-sm/relaxed">
                                     {{ sparePart.description }}
                                 </p>
                                 <p class="inline-block rounded-md text-gray-500 mt-2">

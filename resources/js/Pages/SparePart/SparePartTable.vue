@@ -95,8 +95,9 @@ const previousPage = () => {
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Category</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
@@ -106,7 +107,6 @@ const previousPage = () => {
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
@@ -116,6 +116,8 @@ const previousPage = () => {
                             </PrimaryButton>
                         </div>
                     </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.category }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
@@ -161,7 +163,7 @@ const previousPage = () => {
                 Are you sure you want to delete your Spare Part?
             </h2>
             <p class="mt-1 text-sm text-green-600">
-                Once your Service Detail is deleted, all of its resources and data will be permanently deleted.
+                Once your Spare Part is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
