@@ -183,7 +183,7 @@ class SendEmailService extends Mailable
                     </ul>
                 </div>
                 <p>
-                    Silahkan kunjungi situs web kami di <a target='_blank' rel='noopener noreferrer' class='text-green-900 font-bold'
+                    Silakan kunjungi situs web kami di <a target='_blank' rel='noopener noreferrer' class='text-green-900 font-bold'
                         href='{$host_url}'>{$host_url}</a> dan masuk menggunakan email
                     <span class='font-bold text-green-900'>{$service->customer->user->email}</span> dan kata sandi <span class='font-bold text-green-900'>password</span>
                         untuk melihat perkembangan perangkat yang sedang diperbaiki.

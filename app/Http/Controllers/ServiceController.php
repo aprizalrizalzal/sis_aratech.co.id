@@ -120,7 +120,7 @@ class ServiceController extends Controller
             Log::error('Failed to send email: ' . $e->getMessage());
 
             // You can also set a flash message or some indication for the user
-            session()->flash('error', 'Gagal mengirim email, silahkan coba lagi nanti.');
+            session()->flash('error', 'Gagal mengirim email, silakan coba lagi nanti.');
         }
 
         return inertia('Service/ServicePrint', [

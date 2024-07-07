@@ -57,13 +57,13 @@ class PasswordResetLinkController extends Controller
             Log::error('Failed to send email: ' . $e->getMessage());
 
             // Set a flash message for the user
-            return back()->with('error', 'Gagal mengirim email, silahkan coba lagi nanti.');
+            return back()->with('error', 'Gagal mengirim email, silakan coba lagi nanti.');
         } catch (\Exception $e) {
             // Log any other exceptions
             Log::error('An error occurred: ' . $e->getMessage());
 
             // Set a flash message for the user
-            return back()->with('error', 'Terjadi kesalahan, silahkan coba lagi nanti.');
+            return back()->with('error', 'Terjadi kesalahan, silakan coba lagi nanti.');
         }
     }
 }
