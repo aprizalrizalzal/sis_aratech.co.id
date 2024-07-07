@@ -245,18 +245,6 @@ const serviceByUserId = computed(() => {
   return props.services.filter(service => service.customer.user_id === userId.value);
 });
 
-const service = serviceByUserId.value
-
-const serviceDetailByServiceCode = computed(() => {
-  return props.serviceDetails.filter(serviceDetail => serviceDetail.service.service_code === service.service_code);
-});
-
-const serviceDetail = serviceDetailByServiceCode.value;
-
-const serviceDetailIdPartUsages = computed(() => {
-  return props.partUsages.filter(partUsage => partUsage.service_detail_id === 2);
-});
-
 const searchQuery = ref('');
 
 const filteredServices = computed(() => {
@@ -307,33 +295,58 @@ const filteredDateServices = computed(() => {
   return services;
 });
 
+const serviceDetailByServiceCode = computed(() => {
+  // Ambil service_code dari hasil pertama dari serviceByUserId.value (jika ada)
+  const serviceCode = serviceByUserId.value.length > 0 ? serviceByUserId.value[0].service_code : null;
+
+  if (serviceCode) {
+    // Filter serviceDetails berdasarkan service_code yang diambil dari serviceByUserId
+    return props.serviceDetails.filter(serviceDetail => serviceDetail.service.service_code === serviceCode);
+  } else {
+    return [];
+  }
+});
+
+const serviceDetail = serviceDetailByServiceCode.value[0];
+
+const partUsagesByServiceDetailId = computed(() => {
+  // Ambil service_detail_code dari hasil pertama dari serviceDetailByServiceCode.value (jika ada)
+  const serviceDetailId = serviceDetailByServiceCode.value.length > 0 ? serviceDetailByServiceCode.value[0].id : null;
+
+  if (serviceDetailId) {
+    // Filter partUsages berdasarkan service_detail_code yang diambil dari serviceDetailByServiceCode
+    return props.partUsages.filter(partUsage => partUsage.service_detail_id === serviceDetailId);
+  } else {
+    return [];
+  }
+});
+
+const partUsages = partUsagesByServiceDetailId.value;
+
+const serviceDetailTotal = computed(() => {
+  const sparePartsTotal = partUsages.reduce((total, partUsage) => {
+    const price = parseFloat(partUsage.spare_part.price);
+    return total + (isNaN(price) ? 0 : price);
+  }, 0);
+
+  const coast = parseFloat(serviceDetail.cost);
+
+  const total = sparePartsTotal + coast
+
+  return total;
+});
+
 const showingModelServiceDetailByServiceCode = ref(false);
 const selectedServiceCode = ref(null);
 
-const showModalServiceDetailByServiceCode = (serviceCode) => {
-  selectedServiceCode.value = serviceCode;
+const showModalServiceDetailByServiceCode = (service) => {
+  selectedServiceCode.value = service.service_code;
   showingModelServiceDetailByServiceCode.value = true;
 };
 
 const formatCurrency = (value) => {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
-
-const serviceDetailTotal = computed(() => {
-  const sparePartsTotal = serviceDetailIdPartUsages.value.reduce((total, partUsage) => {
-    const price = parseFloat(partUsage.spare_part.price);
-    return total + (isNaN(price) ? 0 : price);
-  }, 0);
-
-  const serviceCost = customerUserIdServiceDetails.value.reduce((total, serviceDetail) => {
-    const coast = parseFloat(serviceDetail.cost);
-    return total + (isNaN(coast) ? 0 : coast);
-  }, 0);
-
-  const total = sparePartsTotal + serviceCost
-
-  return total;
-});
 
 const currentPage = ref(1);
 const itemsPerPage = 15;
@@ -499,7 +512,7 @@ const closeModal = () => {
                             index + 1 }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.service_code
-                            }}
+                          }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             {{ service.customer.user.name }}
@@ -509,7 +522,7 @@ const closeModal = () => {
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.customer.phone
-                            }}</td>
+                          }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             {{ service.customer.address }}
                           </td>
@@ -524,7 +537,7 @@ const closeModal = () => {
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.date_received
-                            }}
+                          }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.estimated_completion }}
@@ -534,18 +547,18 @@ const closeModal = () => {
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.items_brought
-                            }}
+                          }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
-                            <SecondaryButton v-if="serviceDetail"
-                              @click="showModalServiceDetailByServiceCode(service.service_code)" class="m-2">
+                            <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
+                              class="m-2">
                               Detail
                             </SecondaryButton>
-                            <SecondaryButton v-else class="m-2">
-                              Wait
-                            </SecondaryButton>
+                            <p v-else class="m-2 text-green-900">
+                              Contact admin
+                            </p>
                           </td>
                         </tr>
                       </tbody>
@@ -627,26 +640,13 @@ const closeModal = () => {
       <div class="flex justify-end">
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <!-- <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
-        <div>
-          <ApplicationLogo class="block h-20 w-20" />
-        </div>
-        <div id="footer" class="mt-auto">
-          <p class="font-bold text-lg">SIService - {{ header.company }}</p>
-          <p>{{ header.description }}</p>
-          <div id="text-sm" v-for="footer in contactFooters" :key="footer.id">
-            <p>{{ footer.value }}</p>
-          </div>
-        </div>
-      </div> -->
-      <hr>
       <table class="table-auto w-full my-2">
         <tbody>
           <tr class="font-bold bg-green-50">
             <td class=" text-green-900"> Service Detail Code </td>
             <td> {{ serviceDetail.service_detail_code }} </td>
           </tr>
-          <!-- <tr>
+          <tr>
             <td class="text-green-900">Email Technician </td>
             <td> {{ serviceDetail.user.email }} </td>
           </tr>
@@ -713,24 +713,9 @@ const closeModal = () => {
           <tr class="font-bold">
             <td class="text-green-900"> Total </td>
             <td> {{ formatCurrency(serviceDetailTotal) }} </td>
-          </tr> -->
+          </tr>
         </tbody>
       </table>
-      <hr>
-      <!-- <div id="footer" class="flex gap-4 my-2 justify-between text-sm/relaxed text-left">
-        <div class="flex flex-col gap-10">
-          <p>Technician</p>
-          <span>{{ $page.props.auth.user.name }}</span>
-        </div>
-        <div class="flex flex-col gap-10">
-          <p>Customer</p>
-          <span>{{ serviceDetail.service.customer.user.name }}</span>
-        </div>
-        <div class="flex flex-col items-left border px-2 mx-1">
-          <p class="font-bold">Notes!</p>
-          {{ serviceDetail.notes }}
-        </div>
-      </div> -->
       <hr>
       <div id="footer" class="my-2 text-sm/relaxed">
         <p><span class="font-bold text-green-900">Cost</span> adalah biaya jasa service. <span
