@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +23,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register', [
+            'error' => session('error'),
+        ]);
     }
 
     /**
@@ -51,7 +55,16 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
         ]);
 
-        event(new Registered($user));
+        try {
+            // Send the email
+            event(new Registered($user));
+        } catch (\Exception $e) {
+            // Log the error message or take any action you need
+            Log::error('Failed to send email: ' . $e->getMessage());
+
+            // You can also set a flash message or some indication for the user
+            session()->flash('error', 'Gagal mengirim email, silahkan coba lagi nanti.');
+        }
 
         Auth::login($user);
 

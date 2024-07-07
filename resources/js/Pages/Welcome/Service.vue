@@ -5,10 +5,6 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import LaptopIcon from '@/Components/Icon/LaptopIcon.vue';
-import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
-import CameraIcon from '@/Components/Icon/CameraIcon.vue';
-import RouterIcon from '@/Components/Icon/RouterIcon.vue';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use App\Mail\SendEmailServiceDetail;
 
 class ServiceDetailController extends Controller
@@ -108,8 +109,16 @@ class ServiceDetailController extends Controller
             'partUsages' => $partUsages,
         ];
 
-        // Send the email detail
-        Mail::to($data['email'])->send(new SendEmailServiceDetail($data));
+        try {
+            // Send the email
+            Mail::to($data['email'])->send(new SendEmailServiceDetail($data));
+        } catch (\Exception $e) {
+            // Log the error message or take any action you need
+            Log::error('Failed to send email: ' . $e->getMessage());
+
+            // You can also set a flash message or some indication for the user
+            session()->flash('error', 'Gagal mengirim email, silahkan coba lagi nanti.');
+        }
 
         return inertia('ServiceDetail/ServiceDetailPrint', [
             'serviceDetail' => $serviceDetail,

@@ -87,7 +87,6 @@ const submitForm = () => {
             }
         });
     }
-
 };
 </script>
 

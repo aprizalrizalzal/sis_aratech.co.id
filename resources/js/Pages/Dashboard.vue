@@ -62,8 +62,8 @@ const defaultEndDate = new Date();
 
 // Add unique keys for DateTimePickers
 const datePickerKeys = ref({
-    startDate: 0,
-    endDate: 0,
+  startDate: 0,
+  endDate: 0,
 });
 
 const resetDateLineChartFilters = () => {
@@ -241,9 +241,17 @@ watchEffect(() => {
   updateDataCharts();
 });
 
-const customerUserIdServiceDetails = computed(() => {
-  return props.serviceDetails.filter(serviceDetail => serviceDetail.service.customer.user_id === userId.value);
+const serviceByUserId = computed(() => {
+  return props.services.filter(service => service.customer.user_id === userId.value);
 });
+
+const service = serviceByUserId.value
+
+const serviceDetailByServiceCode = computed(() => {
+  return props.serviceDetails.filter(serviceDetail => serviceDetail.service.service_code === service.service_code);
+});
+
+const serviceDetail = serviceDetailByServiceCode.value;
 
 const serviceDetailIdPartUsages = computed(() => {
   return props.partUsages.filter(partUsage => partUsage.service_detail_id === 2);
@@ -251,31 +259,12 @@ const serviceDetailIdPartUsages = computed(() => {
 
 const searchQuery = ref('');
 
-const filteredServiceDetails = computed(() => {
+const filteredServices = computed(() => {
   if (!searchQuery.value) {
-    return customerUserIdServiceDetails.value;
+    return serviceByUserId.value;
   }
-  return customerUserIdServiceDetails.value.filter(serviceDetail =>
-    serviceDetail.service_detail_code.toString().toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.customer.user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.customer.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.customer.phone.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.customer.address.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.device.device_type.type_name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.status_warranty.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.date_received.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.estimated_completion.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.problem_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.items_brought.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.service.status.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.repair_description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-
-    serviceDetail.cost.toString().toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    serviceDetail.notes.toString().toLowerCase().includes(searchQuery.value.toLowerCase()) 
+  return serviceByUserId.value.filter(service =>
+    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 
@@ -286,20 +275,20 @@ start_date.value = defaultStartDate;
 end_date.value = defaultEndDate;
 
 const resetDateFilters = () => {
-    start_date.value = defaultStartDate;
-    end_date.value = defaultEndDate;
+  start_date.value = defaultStartDate;
+  end_date.value = defaultEndDate;
 
-    // Update the keys to force re-render
-    datePickerKeys.value.startDate += 1;
-    datePickerKeys.value.endDate += 1;
+  // Update the keys to force re-render
+  datePickerKeys.value.startDate += 1;
+  datePickerKeys.value.endDate += 1;
 };
 
-const filteredDateServiceDetails = computed(() => {
-  let serviceDetails = filteredServiceDetails.value;
+const filteredDateServices = computed(() => {
+  let services = filteredServices.value;
 
   if (start_date.value || end_date.value) {
-    serviceDetails = serviceDetails.filter(serviceDetail => {
-      const createdAt = new Date(serviceDetail.created_at);
+    services = services.filter(service => {
+      const createdAt = new Date(service.created_at);
       const start = start_date.value ? new Date(start_date.value) : null;
       const end = end_date.value ? new Date(end_date.value) : null;
 
@@ -315,40 +304,48 @@ const filteredDateServiceDetails = computed(() => {
     });
   }
 
-  return serviceDetails;
+  return services;
 });
 
+const showingModelServiceDetailByServiceCode = ref(false);
+const selectedServiceCode = ref(null);
+
+const showModalServiceDetailByServiceCode = (serviceCode) => {
+  selectedServiceCode.value = serviceCode;
+  showingModelServiceDetailByServiceCode.value = true;
+};
+
 const formatCurrency = (value) => {
-    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
 const serviceDetailTotal = computed(() => {
-    const sparePartsTotal = serviceDetailIdPartUsages.value.reduce((total, partUsage) => {
-      const price = parseFloat(partUsage.spare_part.price);
-      return total + (isNaN(price) ? 0 : price);
-    }, 0);
+  const sparePartsTotal = serviceDetailIdPartUsages.value.reduce((total, partUsage) => {
+    const price = parseFloat(partUsage.spare_part.price);
+    return total + (isNaN(price) ? 0 : price);
+  }, 0);
 
-    const serviceCost = customerUserIdServiceDetails.value.reduce((total, serviceDetail) => {
-      const coast = parseFloat(serviceDetail.cost);
-      return total + (isNaN(coast) ? 0 : coast);
-    }, 0);
+  const serviceCost = customerUserIdServiceDetails.value.reduce((total, serviceDetail) => {
+    const coast = parseFloat(serviceDetail.cost);
+    return total + (isNaN(coast) ? 0 : coast);
+  }, 0);
 
-    const total = sparePartsTotal + serviceCost
+  const total = sparePartsTotal + serviceCost
 
-    return total;
+  return total;
 });
 
 const currentPage = ref(1);
 const itemsPerPage = 15;
 
-const paginatedServiceDetails = computed(() => {
+const paginatedServices = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return filteredDateServiceDetails.value.slice(start, end);
+  return filteredDateServices.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-  return Math.ceil(filteredDateServiceDetails.value.length / itemsPerPage);
+  return Math.ceil(filteredDateServices.value.length / itemsPerPage);
 });
 
 const nextPage = () => {
@@ -361,6 +358,10 @@ const previousPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
   }
+};
+
+const closeModal = () => {
+  showingModelServiceDetailByServiceCode.value = false;
 };
 </script>
 
@@ -444,10 +445,10 @@ const previousPage = () => {
                 class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
-                    <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date" v-model="start_date_line_chart"
-                          placeholder="Select Start Date Time" />
-                      <DateTimePicker :key="datePickerKeys.endDate" id="end_date_line_chart" label="End Date" v-model="end_date_line_chart"
-                          placeholder="Select End Date Time" />
+                    <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date"
+                      v-model="start_date_line_chart" placeholder="Select Start Date Time" />
+                    <DateTimePicker :key="datePickerKeys.endDate" id="end_date_line_chart" label="End Date"
+                      v-model="end_date_line_chart" placeholder="Select End Date Time" />
                   </div>
                   <div class="my-auto me-2">
                     <PrimaryButton @click="resetDateLineChartFilters"><span class="py-1 px-3">Reset</span>
@@ -460,10 +461,10 @@ const previousPage = () => {
                 <div class="overflow-x-auto">
                   <div class="flex w-full gap-2 justify-between my-4">
                     <div class="flex items-center gap-2 bg-white">
-                      <DateTimePicker :key="datePickerKeys.startDate" id="start_date" label="Start Date" v-model="start_date"
-                          placeholder="Select Start Date Time" />
+                      <DateTimePicker :key="datePickerKeys.startDate" id="start_date" label="Start Date"
+                        v-model="start_date" placeholder="Select Start Date Time" />
                       <DateTimePicker :key="datePickerKeys.endDate" id="end_date" label="End Date" v-model="end_date"
-                          placeholder="Select End Date Time" />
+                        placeholder="Select End Date Time" />
                     </div>
                     <div class="my-auto">
                       <PrimaryButton @click="resetDateFilters"><span class="py-1 px-3">Reset</span></PrimaryButton>
@@ -471,96 +472,85 @@ const previousPage = () => {
                   </div>
                   <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Address</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description </th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought </th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
-                                <!-- <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th> -->
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
-                                <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
-                                class="hover:bg-green-50">
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
-                                    index + 1 }}</td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service_detail_code }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">
-                                    {{ serviceDetail.service.customer.user.name }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">
-                                    {{ serviceDetail.service.customer.user.email }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.customer.phone
-                                    }}</td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">
-                                    {{ serviceDetail.service.customer.address }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                                  serviceDetail.service.device.device_type.type_name }}</td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                                    serviceDetail.service.device.model }}</td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                                    serviceDetail.service.device.serial_number }}</td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status_warranty }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.date_received }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.estimated_completion }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.problem_description }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.items_brought }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">
-                                    <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
-                                        target="_blank"
-                                        class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                        Print
-                                    </a>
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">
-                                    <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
-                                    </SecondaryButton>
-                                </td>
-                                <td class="py-2 px-4 border-b border-green-300 text-center">
-                                    <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
-                                    </DangerButton>
-                                </td>
-                            </tr>
-                        </tbody>
+                      <thead>
+                        <tr>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Address</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description </th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought </th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) *
+                            itemsPerPage +
+                            index + 1 }}</td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.service_code
+                            }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                            {{ service.customer.user.name }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                            {{ service.customer.user.email }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.customer.phone
+                            }}</td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                            {{ service.customer.address }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.device.device_type.type_name }}</td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.device.model }}</td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.device.serial_number }}</td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.status_warranty }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.date_received
+                            }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.estimated_completion }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.problem_description }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                            service.items_brought
+                            }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}
+                          </td>
+                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                            <SecondaryButton v-if="serviceDetail"
+                              @click="showModalServiceDetailByServiceCode(service.service_code)" class="m-2">
+                              Detail
+                            </SecondaryButton>
+                            <SecondaryButton v-else class="m-2">
+                              Wait
+                            </SecondaryButton>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
-                </div>
+                  </div>
                   <div class="flex justify-center gap-4 items-center p-6">
                     <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
                     <span>Page {{ currentPage }} of {{ totalPages }}</span>
@@ -629,6 +619,125 @@ const previousPage = () => {
         <DangerButton @click="showModalAddPartUsage = false">X</DangerButton>
       </div>
       <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" />
+    </div>
+  </Modal>
+
+  <Modal v-model:show="showingModelServiceDetailByServiceCode">
+    <div class="m-6">
+      <div class="flex justify-end">
+        <DangerButton @click="closeModal">X</DangerButton>
+      </div>
+      <!-- <div v-for="header in $page.props.headers" :key="header.id" class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
+        <div>
+          <ApplicationLogo class="block h-20 w-20" />
+        </div>
+        <div id="footer" class="mt-auto">
+          <p class="font-bold text-lg">SIService - {{ header.company }}</p>
+          <p>{{ header.description }}</p>
+          <div id="text-sm" v-for="footer in contactFooters" :key="footer.id">
+            <p>{{ footer.value }}</p>
+          </div>
+        </div>
+      </div> -->
+      <hr>
+      <table class="table-auto w-full my-2">
+        <tbody>
+          <tr class="font-bold bg-green-50">
+            <td class=" text-green-900"> Service Detail Code </td>
+            <td> {{ serviceDetail.service_detail_code }} </td>
+          </tr>
+          <!-- <tr>
+            <td class="text-green-900">Email Technician </td>
+            <td> {{ serviceDetail.user.email }} </td>
+          </tr>
+          <tr class="font-bold bg-green-50 ">
+            <td class=" text-green-900">Service Code </td>
+            <td>{{ serviceDetail.service.service_code }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Name</td>
+            <td>{{ serviceDetail.service.customer.user.name }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Email / Phone</td>
+            <td>{{ serviceDetail.service.customer.user.email }}<span> / </span>{{
+              serviceDetail.service.customer.phone }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Address </td>
+            <td>{{ serviceDetail.service.customer.address }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Device Type / Model</td>
+            <td>{{ serviceDetail.service.device.device_type.type_name }}<span> / </span>{{
+              serviceDetail.service.device.model }}</td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Serial Number / Warranty Status </td>
+            <td>{{ serviceDetail.service.device.serial_number }}<span> / </span>{{
+              serviceDetail.service.status_warranty }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Date Received / Estimated Completion </td>
+            <td>{{ serviceDetail.service.date_received }}<span> / </span>{{
+              serviceDetail.service.estimated_completion }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Problem Description </td>
+            <td>{{ serviceDetail.service.problem_description }} </td>
+          </tr>
+          <tr>
+            <td class=" text-green-900">Items Brought </td>
+            <td>{{ serviceDetail.service.items_brought }} </td>
+          </tr>
+          <tr class="font-bold bg-green-50">
+            <td class=" text-green-900">Status </td>
+            <td>{{ serviceDetail.service.status }} </td>
+          </tr>
+          <tr>
+            <td class="text-green-900"> Repair Description </td>
+            <td> {{ serviceDetail.repair_description }} </td>
+          </tr>
+          <tr class="font-bold bg-green-50">
+            <td class="text-green-900"> Spare Part</td>
+            <td class="text-green-900"> Price</td>
+          </tr>
+          <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id">
+            <td class="text-green-900"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
+            <td class="text-green-900"> {{ formatCurrency(partUsage.spare_part.price) }} </td>
+          </tr>
+          <tr class="font-bold bg-green-50">
+            <td class="text-green-900"> Cost </td>
+            <td> {{ formatCurrency(serviceDetail.cost) }} </td>
+          </tr>
+          <tr class="font-bold">
+            <td class="text-green-900"> Total </td>
+            <td> {{ formatCurrency(serviceDetailTotal) }} </td>
+          </tr> -->
+        </tbody>
+      </table>
+      <hr>
+      <!-- <div id="footer" class="flex gap-4 my-2 justify-between text-sm/relaxed text-left">
+        <div class="flex flex-col gap-10">
+          <p>Technician</p>
+          <span>{{ $page.props.auth.user.name }}</span>
+        </div>
+        <div class="flex flex-col gap-10">
+          <p>Customer</p>
+          <span>{{ serviceDetail.service.customer.user.name }}</span>
+        </div>
+        <div class="flex flex-col items-left border px-2 mx-1">
+          <p class="font-bold">Notes!</p>
+          {{ serviceDetail.notes }}
+        </div>
+      </div> -->
+      <hr>
+      <div id="footer" class="my-2 text-sm/relaxed">
+        <p><span class="font-bold text-green-900">Cost</span> adalah biaya jasa service. <span
+            class="font-bold text-green-900">Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part
+          yang diganti jika ada.</p>
+      </div>
+
     </div>
   </Modal>
 </template>

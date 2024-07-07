@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         $customers = Customer::all();
         $devices = Device::all();
-        $services = Service::all();
+        $services = Service::with('customer', 'customer.user', 'device', 'device.deviceType')->get();
 
         $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType')->get();
         $partUsages = PartUsage::with('sparePart')->get();

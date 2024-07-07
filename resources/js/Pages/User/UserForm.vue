@@ -47,7 +47,7 @@ const removeRole = (role) => {
 <template>
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
-            <p class="flex justify-center gap-2">Silakan pilih peran yang ingin ditambahkan untuk pengguna ini:</p>
+            <p class="flex justify-center gap-2">Silahkan pilih peran yang ingin ditambahkan untuk pengguna ini:</p>
             <div class="flex justify-center gap-2">
                 <PrimaryButton class="mt-3 mb-3" @click="assignRole('super-admin')">
                     Add #super-admin

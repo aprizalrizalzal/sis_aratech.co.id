@@ -25,13 +25,17 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         <Head title="Email Verification" />
 
         <div class="mb-4 text-sm text-green-600">
-            Thanks for signing up! Before getting started, could you verify your email address by clicking on the link
-            we just emailed to you? If you didn't receive the email, we will gladly send you another.
+            Terima kasih telah mendaftar! Sebelum memulai, bisakah Anda memverifikasi alamat email Anda dengan mengklik
+            link
+            kami baru saja mengirim email kepada Anda? Jika Anda tidak menerima email tersebut, kami dengan senang hati
+            akan mengirimkan email lainnya kepada Anda.
         </div>
 
         <div class="mb-4 font-medium text-sm text-green-600" v-if="verificationLinkSent">
-            A new verification link has been sent to the email address you provided during registration.
+            Tautan verifikasi baru telah dikirim ke alamat email yang Anda berikan saat pendaftaran.
         </div>
+
+        <p v-else class="text-sm text-red-900 my-2">Gagal mengirim email, silahkan coba lagi nanti.</p>
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">

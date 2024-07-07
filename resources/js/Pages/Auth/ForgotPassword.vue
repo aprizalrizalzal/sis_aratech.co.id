@@ -10,6 +10,9 @@ defineProps({
     status: {
         type: String,
     },
+    error: {
+        type: String,
+    },
 });
 
 const form = useForm({
@@ -44,6 +47,8 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
+
+            <p v-if="error" class="text-sm text-red-900 my-2">{{ error }}</p>
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

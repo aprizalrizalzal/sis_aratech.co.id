@@ -94,7 +94,7 @@ const currentYear = computed(() => {
             <p class="relative text-black">Copyright &copy; {{ currentYear }} <a href="https://aslimandiri.com"
                     target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">Asli Mandiri
                         Computer</span></a> Developed by <a href="https://github.com/aprizalrizalzal" target="_blank"
-                    rel="noopener noreferrer"><span class="text-green-900 font-bold">AprizalRizalZal</span></a> </p>
+                    rel="noopener noreferrer"><span class="text-green-900 font-bold">Technician</span></a> </p>
         </div>
     </div>
 </template>
