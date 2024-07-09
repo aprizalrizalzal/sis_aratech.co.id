@@ -10,7 +10,7 @@ const props = defineProps({
 
 const searchQuery = ref('');
 const currentPage = ref(1);
-const itemsPerPage = 6;
+const itemsPerPage = 12;
 
 const filteredSpareParts = computed(() => {
     if (!searchQuery.value) {

@@ -113,11 +113,11 @@ const formatCurrency = (value) => {
                 <main class="grid mt-4 mb-8">
                     <div class="flex overflow-x-auto m-auto">
                         <div
-                            class="grid grid-cols-2 justify-between items-stretch rounded-md overflow-hidden shadow-md bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 hover:ring-green-900/20 ring-1 ring-white/[0.05] transition ease-in-out duration-150 m-2 p-4">
-                            <div class="h-full flex items-center justify-center">
+                            class="grid sm:grid-cols-2 grid-cols-1 justify-between items-stretch rounded-md overflow-hidden shadow-md bg-white hover:bg-green-50 focus:bg-green-50 active:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-50 focus:ring-offset-2 hover:ring-green-900/20 ring-1 ring-white/[0.05] transition ease-in-out duration-150 m-2 p-4">
+                            <div class="h-full flex items-center justify-center p-2">
                                 <img :src="sparePart.image_path" :alt="sparePart.name">
                             </div>
-                            <div class="text-start px-8">
+                            <div class="text-start sm:py-2 px-2">
                                 <h1 class="text-gray-500 font-bold mb-2">{{ sparePart.name }}</h1>
                                 <p class="text-gray-500 text-sm/relaxed">
                                     {{ sparePart.category }}
