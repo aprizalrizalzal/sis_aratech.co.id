@@ -3,6 +3,9 @@ import { ref, computed, watch } from 'vue';
 import CardView from '@/Components/CardView.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import SparePartDetail from '../SparePart/SparePartDetail.vue';
+import Modal from '@/Components/Modal.vue';
+import DangerButton from '@/Components/DangerButton.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -50,6 +53,15 @@ const previousPage = () => {
 watch(searchQuery, () => {
     currentPage.value = 1;
 });
+
+const showingModelSparePartDetail = ref(false);
+const selectedSparePart = ref(null);
+
+const showModalSparePartDetail = (sparePart) => {
+    selectedSparePart.value = sparePart;
+    showingModelSparePartDetail.value = true;
+};
+
 </script>
 
 <template>
@@ -65,7 +77,7 @@ watch(searchQuery, () => {
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
-            <CardView :href="route('show.spare.part.detail', { id: sparePart.id })" :name="sparePart.name"
+            <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
                 :price="formatCurrency(sparePart.price)">
                 <template #img>
                     <img :src="sparePart.image_path" :alt="sparePart.name">
@@ -78,4 +90,13 @@ watch(searchQuery, () => {
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
+
+    <Modal maxWidth="4xl" v-model:show="showingModelSparePartDetail">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelSparePartDetail = false">X</DangerButton>
+            </div>
+            <SparePartDetail :sparePart="selectedSparePart" />
+        </div>
+    </Modal>
 </template>

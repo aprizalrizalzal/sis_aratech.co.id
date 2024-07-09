@@ -109,8 +109,12 @@ const previousPage = () => {
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ header.company }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ header.description }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ header.company }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ header.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalHeaderUpdate(header)" class="m-2">Update
                         </SecondaryButton>
@@ -168,3 +172,15 @@ const previousPage = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>

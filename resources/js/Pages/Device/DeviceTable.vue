@@ -94,7 +94,9 @@ const previousPage = () => {
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage + index + 1 }}
           </td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.device_type.type_name }}</td>
-          <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.model }}</td>
+          <td
+            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+            {{ device.model }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">{{ device.serial_number }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">
             <SecondaryButton @click="showModalDeviceUpdate(device)" class="m-2">Update</SecondaryButton>
@@ -142,3 +144,15 @@ const previousPage = () => {
     </div>
   </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: thin
+}
+</style>

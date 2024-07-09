@@ -184,7 +184,7 @@ const handlePrint = () => {
     });
     pdf.setTextColor(0, 125, 0);
     pdf.setFontSize(12);
-    pdf.text('Service Details Report', 42, 38); 
+    pdf.text('Service Details Report', 42, 38);
     pdf.setFontSize(12);
     pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width - 14, 38, { align: 'right' });
 
@@ -224,13 +224,13 @@ const handlePrint = () => {
     const timestamp = new Date().getTime();
 
     const columnTotalWidths = [305, 28, 60];
-    const startY = pdf.autoTable.previous.finalY; 
+    const startY = pdf.autoTable.previous.finalY;
     pdf.autoTable({
         body: [
             ['Total', formatCurrency(totalCost.value), ''],
         ],
         startY: startY,
-        styles: { fontSize: 10, fontStyle: 'bold'  },
+        styles: { fontSize: 10, fontStyle: 'bold' },
         columnStyles: {
             0: { cellWidth: columnTotalWidths[0] },
             1: { cellWidth: columnTotalWidths[1] },
@@ -300,22 +300,26 @@ const handlePrint = () => {
                         serviceDetail.service.device.device_type.type_name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         serviceDetail.service.device.serial_number }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.notes }}
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ serviceDetail.notes }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
+                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
                             target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                            Print
+                            <PrinterIcon />
                         </a>
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)" class="m-2">Update
-                        </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)" class="m-2">Delete
@@ -329,7 +333,7 @@ const handlePrint = () => {
         <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
         <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{
             formatCurrency(totalCost) }}</p>
-            
+
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
@@ -416,3 +420,15 @@ const handlePrint = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>

@@ -7,6 +7,7 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
+import SparePartDetail from './SparePartDetail.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -18,6 +19,7 @@ const formatCurrency = (value) => {
 
 const showingModelSparePartUpdateImage = ref(false);
 const showingModelSparePartUpdate = ref(false);
+const showingModelSparePartDetail = ref(false);
 const selectedSparePartId = ref(null);
 const selectedSparePart = ref(null);
 
@@ -29,6 +31,11 @@ const showModalSparePartUpdateImage = (sparePartId) => {
 const showModalSparePartUpdate = (sparePart) => {
     selectedSparePart.value = sparePart;
     showingModelSparePartUpdate.value = true;
+};
+
+const showModalSparePartDetail = (sparePart) => {
+    selectedSparePart.value = sparePart;
+    showingModelSparePartDetail.value = true;
 };
 
 const confirmingSparePartDeletion = ref(false);
@@ -100,7 +107,7 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Category</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,14 +123,27 @@ const previousPage = () => {
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.category }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.description }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ sparePart.name }}
+                    </td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ sparePart.category }}
+                    </td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ sparePart.description }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update
                         </SecondaryButton>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <PrimaryButton @click="showModalSparePartDetail(sparePart)" class="m-2">Detail
+                        </PrimaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmSparePartDeletion(sparePart.id)" class="m-2">Delete</DangerButton>
@@ -157,6 +177,15 @@ const previousPage = () => {
         </div>
     </Modal>
 
+    <Modal maxWidth="4xl" v-model:show="showingModelSparePartDetail">
+        <div class="m-6">
+            <div class="flex justify-end">
+                <DangerButton @click="showingModelSparePartDetail = false">X</DangerButton>
+            </div>
+            <SparePartDetail :sparePart="selectedSparePart" />
+        </div>
+    </Modal>
+
     <Modal :show="confirmingSparePartDeletion" @close="closeModal">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
@@ -175,3 +204,15 @@ const previousPage = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>

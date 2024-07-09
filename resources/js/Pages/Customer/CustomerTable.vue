@@ -93,9 +93,13 @@ const previousPage = () => {
                 <tr v-for="(customer, index) in paginatedCustomers" :key="customer.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.user.name }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ customer.user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ customer.address }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ customer.address }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCustomerUpdate(customer)" class="m-2">Update</SecondaryButton>
                     </td>
@@ -142,3 +146,15 @@ const previousPage = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>

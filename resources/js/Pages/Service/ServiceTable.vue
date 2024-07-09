@@ -174,7 +174,7 @@ const handlePrint = () => {
 
     pdf.setTextColor(0, 125, 0);
     pdf.setFontSize(12);
-    pdf.text('Services Report', 42, 38); 
+    pdf.text('Services Report', 42, 38);
     pdf.setFontSize(12);
     pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width - 14, 38, { align: 'right' });
 
@@ -269,11 +269,26 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.device_type.type_name
                         }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_warranty }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ service.status_warranty }}
+                    </td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ service.date_received }}
+                    </td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ service.problem_description }}
+                    </td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ service.estimated_completion }}
+                    </td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ service.items_brought }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
@@ -282,7 +297,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                            Print
+                            <PrinterIcon />
                         </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
@@ -371,3 +386,15 @@ const handlePrint = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>

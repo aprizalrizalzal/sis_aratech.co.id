@@ -86,7 +86,7 @@ const previousPage = () => {
 
 <template>
     <div class=" overflow-x-auto">
-        <table class="min-w-full bg-white border-collapse">
+        <table class="min-w-full bg-white border-collapse divide-y divide-gray-200">
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
@@ -116,7 +116,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.platform }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.url }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.username }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.value }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ footer.value }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalFooterUpdate(footer)" class="m-2">Update
                         </SecondaryButton>
@@ -174,3 +177,15 @@ const previousPage = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>

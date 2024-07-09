@@ -10,6 +10,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 
 const page = usePage();
 
@@ -187,10 +188,10 @@ const handlePrint = () => {
         pdf.setFontSize(14);
         pdf.text(`${header.description}`, pdf.internal.pageSize.width / 7, 30);  // Menambahkan nama perusahaan
     });
-    
+
     pdf.setTextColor(0, 125, 0);
     pdf.setFontSize(12);
-    pdf.text('Part Usages Report', 42, 38); 
+    pdf.text('Part Usages Report', 42, 38);
     pdf.setFontSize(12);
     pdf.text(`${formatDate(start_date.value)} - ${formatDate(end_date.value)}`, pdf.internal.pageSize.width - 14, 38, { align: 'right' });
 
@@ -224,7 +225,7 @@ const handlePrint = () => {
     const timestamp = new Date().getTime();
 
     const columnTotalWidths = [200, 50, 20];
-    const startY = pdf.autoTable.previous.finalY; 
+    const startY = pdf.autoTable.previous.finalY;
     pdf.autoTable({
         body: [
             ['Total', formatCurrency(totalPrice.value), totalQuantity.value],
@@ -238,13 +239,6 @@ const handlePrint = () => {
         },
         theme: 'grid',
     });
-
-    // // Print Total
-    // const lineHeight = 6;
-    // const startY = pdf.autoTable.previous.finalY + 6;
-    // pdf.setFontSize(10);
-    // pdf.text(`Total Price ${formatCurrency(totalPrice.value)}`, pdf.internal.pageSize.width / 22, startY);
-    // pdf.text(`Total Quantity ${totalQuantity.value}`, pdf.internal.pageSize.width / 22, startY + lineHeight);
 
     pdf.setPage(totalPages);
     pdf.setFontSize(8);
@@ -288,7 +282,9 @@ const handlePrint = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         partUsage.service_detail.service_detail_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ partUsage.spare_part.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         formatCurrency(partUsage.spare_part.price) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
@@ -343,7 +339,7 @@ const handlePrint = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         partUsage.service_detail.service_detail_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.spare_part.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center ">{{ partUsage.spare_part.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         formatCurrency(partUsage.spare_part.price) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
@@ -379,3 +375,15 @@ const handlePrint = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: thin
+}
+</style>
