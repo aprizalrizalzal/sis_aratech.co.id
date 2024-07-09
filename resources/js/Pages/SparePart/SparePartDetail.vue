@@ -9,6 +9,10 @@ const props = defineProps({
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
+
+const formatDescription = (description) => {
+    return description.replace(/\n/g, '<br>');
+};
 </script>
 
 <template>
@@ -28,8 +32,8 @@ const formatCurrency = (value) => {
                                 <p class="text-green-600 text-sm/relaxed font-bold">
                                     {{ sparePart.category }}
                                 </p>
-                                <p class="text-gray-500 text-sm/relaxed overflow-hidden">
-                                    {{ sparePart.description }}
+                                <p class="text-gray-500 text-sm/relaxed overflow-hidden"
+                                    v-html="formatDescription(sparePart.description)">
                                 </p>
                                 <p class="inline-block bg-green-600 p-1 rounded-md text-white mt-2">
                                     {{ formatCurrency(sparePart.price) }}
