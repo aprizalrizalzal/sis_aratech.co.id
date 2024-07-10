@@ -29,8 +29,8 @@ const filteredCustomers = computed(() => {
         <div class="flex items-center">
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Customers</h2>
         </div>
-        <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search phone..." />
+        <div class="flex w-full items-center">
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Name, Phone or Address" />
         </div>
       </div>
     </template>

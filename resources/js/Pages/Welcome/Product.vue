@@ -71,8 +71,8 @@ const showModalSparePartDetail = (sparePart) => {
                 <span>Spare Part</span>
             </h2>
         </div>
-        <div class="flex items-center">
-            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search name..." />
+        <div class="flex w-full items-center">
+            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Name" />
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">

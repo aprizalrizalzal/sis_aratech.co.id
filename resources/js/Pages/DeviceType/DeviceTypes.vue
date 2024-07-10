@@ -30,8 +30,8 @@ const filteredDeviceTypes = computed(() => {
         <div class="flex items-center">
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Device Types</h2>
         </div>
-        <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search type name..." />
+        <div class="flex w-full items-center">
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Type Name" />
         </div>
       </div>
     </template>

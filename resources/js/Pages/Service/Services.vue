@@ -16,7 +16,8 @@ const filteredServices = computed(() => {
     return props.services;
   }
   return props.services.filter(service =>
-    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase())
+    service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    service.device.device_type.type_name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
@@ -30,8 +31,8 @@ const filteredServices = computed(() => {
         <div class="flex items-center">
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Services</h2>
         </div>
-        <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search service code..." />
+        <div class="flex w-full items-center">
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Service Code or Device Type" />
         </div>
       </div>
     </template>

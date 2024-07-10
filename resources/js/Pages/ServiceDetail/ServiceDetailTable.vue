@@ -196,7 +196,7 @@ const handlePrint = () => {
         rows.push(rowData);
     });
 
-    const columnWidths = [10, 20, 50, 20, 50, 30, 25, 40, 60, 28, 60];
+    const columnWidths = [10, 20, 50, 30, 30, 110, 30];
 
     pdf.autoTable({
         head: [columns],
@@ -212,10 +212,6 @@ const handlePrint = () => {
             4: { cellWidth: columnWidths[4] },
             5: { cellWidth: columnWidths[5] },
             6: { cellWidth: columnWidths[6] },
-            7: { cellWidth: columnWidths[7] },
-            8: { cellWidth: columnWidths[8] },
-            9: { cellWidth: columnWidths[9] },
-            10: { cellWidth: columnWidths[10] },
         },
         theme: 'grid',
     });
@@ -223,7 +219,7 @@ const handlePrint = () => {
     const totalPages = pdf.internal.getNumberOfPages();
     const timestamp = new Date().getTime();
 
-    const columnTotalWidths = [305, 28, 60];
+    const columnTotalWidths = [250, 30];
     const startY = pdf.autoTable.previous.finalY;
     pdf.autoTable({
         body: [
@@ -271,10 +267,7 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
@@ -291,15 +284,8 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        {{ serviceDetail.service.customer.user.email }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.customer.phone
-                        }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        serviceDetail.service.device.device_type.type_name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        serviceDetail.service.device.serial_number }}</td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ serviceDetail.repair_description }}
@@ -354,10 +340,7 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
@@ -373,15 +356,8 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
-                        {{ serviceDetail.service.customer.user.email }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.customer.phone
-                        }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        serviceDetail.service.device.device_type.type_name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        serviceDetail.service.device.serial_number }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
@@ -392,7 +368,7 @@ const handlePrint = () => {
             </tbody>
         </table>
     </div>
-
+  
     <Modal v-model:show="showingModelServiceDetailUpdate">
         <div class="m-6">
             <div class="flex justify-end">

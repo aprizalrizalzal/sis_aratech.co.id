@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import DropdownSelect from '@/Components/DropdownSelect.vue'
 import InputError from '@/Components/InputError.vue';
@@ -8,16 +8,23 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const { auth } = usePage().props;
-const userName = ref(auth.user.name);
 const userId = ref(auth.user.id);
 
 const form = useForm({
-    user_id: userId,
+    user_id: userId.value,
     service_id: '',
+    status: '',
     repair_description: '',
     cost: '',
     notes: '',
 });
+
+const statusOptions = ref([
+    { id: '1', name: 'Completed' },
+    { id: '2', name: 'Failed' },
+    { id: '3', name: 'In Progress' },
+    { id: '4', name: 'Received' },
+]);
 
 const props = defineProps({
     users: Array,
@@ -30,13 +37,34 @@ const props = defineProps({
     service: Object,
 });
 
+const serviceStatus = ref('');
+
+const updateServiceStatus = (serviceId) => {
+    if (props.services) {
+        const selectedService = props.services.find(service => service.id === serviceId);
+        if (selectedService) {
+            serviceStatus.value = selectedService.status;
+            form.status = selectedService.status;
+        }  
+    } else {
+        serviceStatus.value = props.service.status;
+        form.status = props.service.status;
+    }
+    
+};
+
 if (props.serviceDetail) {
     form.user_id = props.serviceDetail.user_id;
     form.service_id = props.serviceDetail.service_id;
     form.repair_description = props.serviceDetail.repair_description;
     form.cost = props.serviceDetail.cost;
     form.notes = props.serviceDetail.notes;
+    updateServiceStatus(props.serviceDetail.service_id);
 }
+
+watch(() => form.service_id, (newServiceId) => {
+    updateServiceStatus(newServiceId);
+});
 
 const submitForm = () => {
     if (!props.serviceDetail) {
@@ -92,6 +120,12 @@ const submitForm = () => {
                         valueProperty="id" :options="services" v-model="form.service_id"
                         placeholder="Select Service Code" />
                     <InputError class="mt-3" :message="form.errors.service_id" />
+                </div>
+                <div v-if="form.service_id">
+                    <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"
+                        valueProperty="name" v-model="form.status"
+                        :placeholder="serviceStatus || 'Select Status'" />
+                    <InputError class="mt-3" :message="form.errors.status" />
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />

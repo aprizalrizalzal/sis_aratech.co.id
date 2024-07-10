@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\SendEmailServiceDetail;
+use App\Models\Service;
 
 class ServiceDetailController extends Controller
 {
@@ -28,6 +29,7 @@ class ServiceDetailController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
+            'status' => 'required|string|max:255',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|numeric',
             'notes' => 'required|string|max:255',
@@ -48,6 +50,11 @@ class ServiceDetailController extends Controller
             'notes' => $request->notes,
         ]);
 
+        $service = Service::findOrFail($request->service_id);
+        $service->update([
+            'status' => $request->status,
+        ]);
+
         $printServiceDetail = route('service.detail.print', $serviceDetail->service_detail_code);
 
         return Redirect::back()->with([
@@ -62,13 +69,18 @@ class ServiceDetailController extends Controller
             'id' => 'required|exists:service_details,id',
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
+            'status' => 'required|string|max:255',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|integer',
             'notes' => 'required|string|max:255',
         ]);
 
-        $serviceDetail = ServiceDetail::findOrFail($request->id);
+        $service = Service::findOrFail($request->service_id);
+        $service->update([
+            'status' => $request->status,
+        ]);
 
+        $serviceDetail = ServiceDetail::findOrFail($request->id);
         $serviceDetail->update([
             'user_id' => $request->user_id,
             'service_id' => $request->service_id,

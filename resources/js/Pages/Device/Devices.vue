@@ -16,6 +16,7 @@ const filteredDevices = computed(() => {
     return props.devices;
   }
   return props.devices.filter(device =>
+    device.model.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     device.serial_number.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
@@ -31,8 +32,8 @@ const filteredDevices = computed(() => {
         <div class="flex items-center">
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Devices</h2>
         </div>
-        <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search serial number..." />
+        <div class="flex w-full items-center">
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Model or Serial Number" />
         </div>
       </div>
     </template>

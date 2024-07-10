@@ -17,6 +17,7 @@ const filteredServiceDetails = computed(() => {
   }
   return props.serviceDetails.filter(serviceDetail =>
     serviceDetail.service_detail_code.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    serviceDetail.user.email.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     serviceDetail.service.service_code.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
@@ -31,8 +32,8 @@ const filteredServiceDetails = computed(() => {
         <div class="flex items-center">
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Service Details</h2>
         </div>
-        <div class="flex items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search service detail code or service code..." />
+        <div class="flex w-full items-center">
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Service Detail Code, Email Technician or Service Code" />
         </div>
       </div>
     </template>
