@@ -75,6 +75,11 @@ const showModalSparePartDetail = (sparePart) => {
             <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Name" />
         </div>
     </div>
+    <p class="pb-2">
+        Menyediakan sparepart berkualitas tinggi untuk komputer, laptop, printer, proyektor, dan lainnya. Kami
+        berkomitmen pada produk asli dengan garansi resmi, memberikan pengalaman belanja yang memuaskan dan produk andal
+        untuk performa terbaik.
+    </p>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
             <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
