@@ -32,7 +32,7 @@ const filteredServices = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Services</h2>
         </div>
         <div class="flex w-full items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Service Code or Device Type" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code or Device Type" />
         </div>
       </div>
     </template>

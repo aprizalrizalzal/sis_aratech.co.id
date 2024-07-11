@@ -31,7 +31,7 @@ const filteredSpareParts = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Spare Parts</h2>
         </div>
         <div class="flex w-full items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Name" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
         </div>
       </div>
     </template>

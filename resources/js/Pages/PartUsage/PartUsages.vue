@@ -32,7 +32,7 @@ const filteredPartUsages = computed(() => {
           <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Part Usages</h2>
         </div>
         <div class="flex w-full items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search Service Detail Code or Spare Part" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for service detail codes or part names" />
         </div>
       </div>
     </template>
