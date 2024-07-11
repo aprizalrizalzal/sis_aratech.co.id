@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     public function show()
     {
         $carousels = Carousel::all();
-        $spareParts = SparePart::all();
+        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->get();
 
         return Inertia::render('Welcome', [
             'carousels' => $carousels,
@@ -30,7 +30,7 @@ class WelcomeController extends Controller
         $service = Service::where('service_code', $service_code)->with('customer', 'customer.user', 'device', 'device.deviceType')->first();
 
         $carousels = Carousel::all();
-        $spareParts = SparePart::all();
+        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->get();
 
         if ($service) {
             return Inertia::render('Welcome', [

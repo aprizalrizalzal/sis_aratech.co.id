@@ -21,7 +21,13 @@ class SparePart extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('name');
+            $builder->orderBy('category');
         });
+    }
+
+    // Scope lokal untuk hasil acak
+    public function scopeRandom($query)
+    {
+        return $query->inRandomOrder();
     }
 }
