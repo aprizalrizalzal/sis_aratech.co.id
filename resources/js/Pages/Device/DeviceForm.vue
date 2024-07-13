@@ -60,7 +60,7 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div v-if="!props.deviceType">
+                <div>
                     <DropdownSelect id="device_type_id" label="Device Type" optionProperty="type_name"
                         valueProperty="id" :options="deviceTypes" v-model="form.device_type_id"
                         placeholder="Select Device Type" />

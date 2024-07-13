@@ -19,20 +19,16 @@ const form = useForm({
     notes: '',
 });
 
-const statusOptions = ref([
-    { id: '1', name: 'Completed' },
-    { id: '2', name: 'Failed' },
-    { id: '3', name: 'In Progress' },
-    { id: '4', name: 'Received' },
-]);
-
 const props = defineProps({
     users: Array,
     services: Array,
 
+    statusServices: Array,
+
     printServiceDetail: String,
 
     serviceDetail: Object,
+    
     user: Object,
     service: Object,
 });
@@ -115,17 +111,17 @@ const submitForm = () => {
                         v-model="form.user_id" placeholder="Email Technician" required autofocus />
                     <InputError class="mt-3" :message="form.errors.user_id" />
                 </div>
-                <div v-if="!props.service">
+                <div>
                     <DropdownSelect id="service_id" label="Service Code" optionProperty="service_code"
                         valueProperty="id" :options="services" v-model="form.service_id"
                         placeholder="Select Service Code" />
                     <InputError class="mt-3" :message="form.errors.service_id" />
                 </div>
                 <div v-if="form.service_id">
-                    <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"
-                        valueProperty="name" v-model="form.status"
-                        :placeholder="serviceStatus || 'Select Status'" />
-                    <InputError class="mt-3" :message="form.errors.status" />
+                    <DropdownSelect id="status_service_id" label="Status" optionProperty="status"
+                        valueProperty="id" :options="statusServices" v-model="form.status_service_id"
+                        placeholder="Select Status" />
+                    <InputError class="mt-3" :message="form.errors.status_service_id" />
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />

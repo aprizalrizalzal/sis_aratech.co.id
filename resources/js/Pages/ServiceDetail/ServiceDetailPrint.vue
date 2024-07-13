@@ -89,7 +89,7 @@ onMounted(() => {
             <tr>
                 <td class=" text-green-900">Serial Number / Warranty Status </td>
                 <td>{{ serviceDetail.service.device.serial_number }}<span> / </span>{{
-                    serviceDetail.service.status_warranty }} </td>
+                    serviceDetail.service.status_warranty_service_id }} </td>
             </tr>
             <tr>
                 <td class=" text-green-900">Date Received / Estimated Completion </td>
@@ -106,7 +106,7 @@ onMounted(() => {
             </tr>
             <tr class="font-bold bg-green-50">
                 <td class=" text-green-900">Status </td>
-                <td>{{ serviceDetail.service.status }} </td>
+                <td>{{ serviceDetail.service.status_service_id }} </td>
             </tr>
             <tr>
                 <td class="text-green-900"> Repair Description </td>

@@ -15,6 +15,7 @@ const props = defineProps({
     canRegister: Boolean,
 
     carousels: Array,
+    categorySpareParts: Array,
     spareParts: Array,
     service: Object,
 
@@ -123,7 +124,7 @@ const props = defineProps({
                     </div>
 
                     <div>
-                        <Product :spareParts="props.spareParts" />
+                        <Product :spareParts="props.spareParts" :categorySpareParts="categorySpareParts"/>
                     </div>
 
                     <div>

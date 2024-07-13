@@ -11,7 +11,12 @@ import SparePartDetail from './SparePartDetail.vue';
 
 const props = defineProps({
     spareParts: Array,
+    categorySpareParts: Array,
 });
+
+const getCategorySparePartName = (categorySparePartId) => {
+  return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
+};
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
@@ -129,7 +134,7 @@ const previousPage = () => {
                     </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        {{ sparePart.category }}
+                        {{ getCategorySparePartName(sparePart.category_spare_part_id) }}
                     </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
@@ -173,7 +178,7 @@ const previousPage = () => {
             <div class="flex justify-end">
                 <DangerButton @click="showingModelSparePartUpdate = false">X</DangerButton>
             </div>
-            <SparePartForm :sparePart="selectedSparePart" />
+            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>
     </Modal>
 
@@ -182,7 +187,7 @@ const previousPage = () => {
             <div class="flex justify-end">
                 <DangerButton @click="showingModelSparePartDetail = false">X</DangerButton>
             </div>
-            <SparePartDetail :sparePart="selectedSparePart" />
+            <SparePartDetail :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>
     </Modal>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use App\Models\CategorySparePart;
 use App\Models\Service;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
@@ -14,10 +15,12 @@ class WelcomeController extends Controller
     public function show()
     {
         $carousels = Carousel::all();
-        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->get();
+        $categorySpareParts = CategorySparePart::all();
+        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->with('categorySparePart')->get();
 
         return Inertia::render('Welcome', [
             'carousels' => $carousels,
+            'categorySpareParts' => $categorySpareParts,
             'spareParts' => $spareParts,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -30,11 +33,13 @@ class WelcomeController extends Controller
         $service = Service::where('service_code', $service_code)->with('customer', 'customer.user', 'device', 'device.deviceType')->first();
 
         $carousels = Carousel::all();
-        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->get();
+        $categorySpareParts = CategorySparePart::all();
+        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->with('categorySparePart')->get();
 
         if ($service) {
             return Inertia::render('Welcome', [
                 'carousels' => $carousels,
+                'categorySpareParts' => $categorySpareParts,
                 'spareParts' => $spareParts,
                 'service' => $service,
                 'canLogin' => Route::has('login'),

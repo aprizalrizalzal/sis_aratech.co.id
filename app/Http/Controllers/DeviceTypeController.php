@@ -21,11 +21,13 @@ class DeviceTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type_name' => 'required|string|max:255|unique:device_types,type_name',
+            'type_name' => 'required|string|max:255|unique:' . DeviceType::class,
+            'description' => 'required|string',
         ]);
 
         DeviceType::create([
             'type_name' => $request->type_name,
+            'description' => $request->description,
         ]);
 
         return Redirect::back();
@@ -35,13 +37,15 @@ class DeviceTypeController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:device_types,id',
-            'type_name' => 'required|string|max:255|unique:device_types,type_name',
+            'type_name' => 'required|string|max:255',
+            'description' => 'required|string',
         ]);
 
         $deviceType = DeviceType::findOrFail($request->id);
 
         $deviceType->update([
             'type_name' => $request->type_name,
+            'description' => $request->description,
         ]);
 
         return Redirect::back();

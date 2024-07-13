@@ -16,7 +16,14 @@ const page = usePage();
 
 const props = defineProps({
     serviceDetails: Array,
+    statusServices: Array,
+    services: Array,
 });
+
+const getStatusServiceStatus = (statusServiceId) => {
+  return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
+};
+
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
@@ -284,7 +291,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusServiceStatus(serviceDetail.service.status_service_id) }}
                     </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
@@ -356,7 +363,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.status }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusServiceStatus(serviceDetail.service.status_service_id) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
@@ -374,7 +381,7 @@ const handlePrint = () => {
             <div class="flex justify-end">
                 <DangerButton @click="showingModelServiceDetailUpdate = false">X</DangerButton>
             </div>
-            <ServiceDetailForm :serviceDetail="selectedServiceDetail" :user="selectedUser" :service="selectedService" />
+            <ServiceDetailForm :serviceDetail="selectedServiceDetail" :statusServices="statusServices" :services="services"  :user="selectedUser" :service="selectedService" />
         </div>
     </Modal>
 

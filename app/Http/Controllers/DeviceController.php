@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\DeviceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -11,10 +12,12 @@ class DeviceController extends Controller
 {
     public function show()
     {
+        $deviceTypes = DeviceType::all();
         $devices = Device::with('deviceType')->get();
 
         return Inertia::render('Device/Devices', [
-            'devices' => $devices
+            'devices' => $devices,
+            'deviceTypes' => $deviceTypes
         ]);
     }
 
@@ -23,7 +26,7 @@ class DeviceController extends Controller
         $request->validate([
             'device_type_id' => 'required|exists:device_types,id',
             'model' => 'required|string|max:255',
-            'serial_number' => 'required|string|max:255|unique:devices,serial_number',
+            'serial_number' => 'required|string|max:255|unique:' . Device::class,
         ]);
 
         Device::create([

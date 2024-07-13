@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('service_code')->unique();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('device_id')->constrained()->onDelete('cascade');
-            $table->string('status_warranty');
+            $table->foreignId('status_warranty_service_id')->constrained()->onDelete('cascade');
             $table->date('date_received');
             $table->text('problem_description');
             $table->date('estimated_completion');
             $table->text('items_brought');
-            $table->string('status');
+            $table->foreignId('status_service_id')->constrained()->onDelete('cascade');
+            $table->text('notes');
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ import DangerButton from '@/Components/DangerButton.vue';
 
 const props = defineProps({
     spareParts: Array,
+    categorySpareParts: Array
 });
 
 const searchQuery = ref('');
@@ -96,7 +97,7 @@ const showModalSparePartDetail = (sparePart) => {
             <div class="flex justify-end">
                 <DangerButton @click="showingModelSparePartDetail = false">X</DangerButton>
             </div>
-            <SparePartDetail :sparePart="selectedSparePart" />
+            <SparePartDetail :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>
     </Modal>
 </template>

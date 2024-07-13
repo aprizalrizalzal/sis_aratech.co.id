@@ -7,6 +7,7 @@ import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
     type_name: '',
+    description: '',
 });
 
 const props = defineProps({
@@ -15,6 +16,7 @@ const props = defineProps({
 
 if (props.deviceType) {
     form.type_name = props.deviceType.type_name;
+    form.description = props.deviceType.description;
 }
 
 const submitForm = () => {
@@ -57,6 +59,13 @@ const submitForm = () => {
                     <TextInput id="type_name" type="text" class="mt-1 block w-full" v-model="form.type_name"
                         placeholder="Type Name" required autofocus />
                     <InputError class="mt-3" :message="form.errors.type_name" />
+                </div>
+                <div>
+                    <InputLabel class="mt-3" for="description" value="Description" />
+                    <textarea id="description" type="text"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        v-model="form.description" placeholder="Description" required />
+                    <InputError class="mt-3" :message="form.errors.description" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">

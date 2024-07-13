@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategorySparePart;
 use App\Models\Customer;
 use App\Models\DeviceType;
 use App\Models\Device;
@@ -9,6 +10,8 @@ use App\Models\PartUsage;
 use App\Models\Service;
 use App\Models\ServiceDetail;
 use App\Models\SparePart;
+use App\Models\StatusService;
+use App\Models\StatusWarrantyService;
 use App\Models\User;
 use Inertia\Inertia;
 
@@ -18,11 +21,16 @@ class DashboardController extends Controller
     {
         $users = User::all();
         $deviceTypes = DeviceType::all();
-        $spareParts = SparePart::all();
+        $categorySpareParts = CategorySparePart::all();
+        $spareParts = SparePart::with('categorySparePart')->get();
 
         $customers = Customer::all();
         $devices = Device::all();
-        $services = Service::with('customer', 'customer.user', 'device', 'device.deviceType')->get();
+
+        $statusWarrantyServices = StatusWarrantyService::all();
+        $statusServices = StatusService::all();
+
+        $services = Service::with('customer', 'customer.user', 'statusWarrantyService', 'statusService', 'device', 'device.deviceType')->get();
 
         $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType')->get();
         $partUsages = PartUsage::with('sparePart')->get();
@@ -33,10 +41,15 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'users' => $users,
             'deviceTypes' => $deviceTypes,
+            'categorySpareParts' => $categorySpareParts,
             'spareParts' => $spareParts,
 
             'customers' => $customers,
             'devices' => $devices,
+
+            'statusWarrantyServices' => $statusWarrantyServices,
+            'statusServices' => $statusServices,
+
             'services' => $services,
 
             'serviceDetails' => $serviceDetails,
@@ -44,10 +57,6 @@ class DashboardController extends Controller
 
             'printService' => $printService,
             'printServiceDetail' => $printServiceDetail,
-
-
-
-
         ]);
     }
 }

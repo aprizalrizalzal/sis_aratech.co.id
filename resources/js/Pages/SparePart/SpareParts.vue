@@ -7,6 +7,7 @@ import { ref, computed } from 'vue';
 
 const props = defineProps({
   spareParts: Array,
+  categorySpareParts: Array,
 });
 
 const searchQuery = ref('');
@@ -41,7 +42,7 @@ const filteredSpareParts = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
-            <SparePartTable :spareParts="filteredSpareParts" />
+            <SparePartTable :spareParts="filteredSpareParts" :categorySpareParts="categorySpareParts" />
           </div>
         </div>
       </div>

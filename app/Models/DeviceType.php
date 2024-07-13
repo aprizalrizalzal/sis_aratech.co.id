@@ -10,7 +10,7 @@ class DeviceType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type_name'];
+    protected $fillable = ['type_name', 'description'];
 
     // Relasi ke Device
     public function devices()

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('spare_parts', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('category');
+            $table->foreignId('category_spare_part_id')->constrained()->onDelete('cascade');
             $table->string('image_path');
             $table->text('description');
             $table->decimal('price', 8, 2);

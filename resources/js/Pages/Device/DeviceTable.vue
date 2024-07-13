@@ -9,6 +9,7 @@ import { ref, computed } from 'vue';
 
 const props = defineProps({
   devices: Array,
+  deviceTypes: Array,
 });
 
 const showingModelDeviceUpdate = ref(false);
@@ -120,7 +121,7 @@ const previousPage = () => {
       <div class="flex justify-end">
         <DangerButton @click="showingModelDeviceUpdate = false">X</DangerButton>
       </div>
-      <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" />
+      <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes" />
     </div>
   </Modal>
   <Modal :show="confirmingDeviceDeletion" @close="closeModal">

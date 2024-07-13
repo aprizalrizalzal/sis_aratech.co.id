@@ -10,15 +10,29 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\SendEmailService;
+use App\Models\Customer;
+use App\Models\Device;
+use App\Models\StatusService;
+use App\Models\StatusWarrantyService;
 
 class ServiceController extends Controller
 {
     public function show()
     {
+        $customers = Customer::all();
+        $devices = Device::all();
+
+        $statusWarrantyServices = StatusWarrantyService::all();
+        $statusServices = StatusService::all();
+
         $services = Service::with('customer', 'customer.user', 'device', 'device.deviceType')->get();
 
         return Inertia::render('Service/Services', [
-            'services' => $services
+            'services' => $services,
+            'statusServices' => $statusServices,
+            'statusWarrantyServices' => $statusWarrantyServices,
+            'devices' => $devices,
+            'customers' => $customers,
         ]);
     }
 
@@ -27,12 +41,13 @@ class ServiceController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
-            'status_warranty' => 'required|string|max:255',
+            'status_warranty_service_id' => 'required|exists:status_warranty_services,id',
             'date_received' => 'date',
             'problem_description' => 'required|string|max:255',
             'estimated_completion' => 'date',
             'items_brought' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
+            'status_service_id' => 'required|exists:status_services,id',
+            'notes' => 'required|string',
         ]);
 
 
@@ -40,12 +55,13 @@ class ServiceController extends Controller
             'service_code' => Str::upper(Str::random(6)),
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
-            'status_warranty' => $request->status_warranty,
+            'status_warranty_service_id' => $request->status_warranty_service_id,
             'date_received' => $request->date_received,
             'problem_description' => $request->problem_description,
             'estimated_completion' => $request->estimated_completion,
             'items_brought' => $request->items_brought,
-            'status' => $request->status,
+            'status_service_id' => $request->status_service_id,
+            'notes' => $request->notes,
         ]);
 
         $printService = route('service.print', $service->service_code);
@@ -61,12 +77,13 @@ class ServiceController extends Controller
             'id' => 'required|exists:services,id',
             'customer_id' => 'required|exists:customers,id',
             'device_id' => 'required|exists:devices,id',
-            'status_warranty' => 'required|string|max:255',
+            'status_warranty_service_id' => 'required|exists:status_warranty_services,id',
             'date_received' => 'date',
             'problem_description' => 'required|string|max:255',
             'estimated_completion' => 'date',
             'items_brought' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
+            'status_service_id' => 'required|exists:status_services,id',
+            'notes' => 'required|string',
         ]);
 
         $service = Service::findOrFail($request->id);
@@ -74,12 +91,13 @@ class ServiceController extends Controller
         $service->update([
             'customer_id' => $request->customer_id,
             'device_id' => $request->device_id,
-            'status_warranty' => $request->status_warranty,
+            'status_warranty_service_id' => $request->status_warranty_service_id,
             'date_received' => $request->date_received,
             'problem_description' => $request->problem_description,
             'estimated_completion' => $request->estimated_completion,
             'items_brought' => $request->items_brought,
-            'status' => $request->status,
+            'status_service_id' => $request->status_service_id,
+            'notes' => $request->notes,
         ]);
 
         return Redirect::back();

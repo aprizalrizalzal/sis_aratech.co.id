@@ -5,16 +5,19 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import DropdownSelect from '@/Components/DropdownSelect.vue';
 
 const form = useForm({
     name: '',
     image: null,
-    category: '',
+    category_spare_part_id: '',
     description: '',
     price: '',
 });
 
 const props = defineProps({
+    categorySpareParts: Array,
+
     sparePartId: Number,
     sparePart: Object,
 });
@@ -22,7 +25,7 @@ const props = defineProps({
 if (props.sparePart) {
     form.image_path = props.sparePart.image_path;
     form.name = props.sparePart.name;
-    form.category = props.sparePart.category;
+    form.category_spare_part_id = props.sparePart.category_spare_part_id;
     form.price = props.sparePart.price;
     form.description = props.sparePart.description;
 }
@@ -65,7 +68,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.name || errors.category ||errors.description || errors.price) {
+                if (errors.image || errors.name || errors.category_spare_part_id ||errors.description || errors.price) {
                     alert('Spare part addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -80,7 +83,7 @@ const submitForm = () => {
                 form.data();
             },
             onError: (errors) => {
-                if (errors.name || errors.category || errors.description || errors.price) {
+                if (errors.name || errors.category_spare_part_id || errors.description || errors.price) {
                     alert('Spare part update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -108,10 +111,10 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-3" for="category" value="Category" />
-                    <TextInput id="category" type="text" class="mt-1 block w-full" v-model="form.category" placeholder="Category"
-                        required autofocus />
-                    <InputError class="mt-3" :message="form.errors.category" />
+                    <DropdownSelect id="category_spare_part_id" label="Category" optionProperty="name"
+                        valueProperty="id" :options="categorySpareParts" v-model="form.category_spare_part_id"
+                        placeholder="Select Category" />
+                    <InputError class="mt-3" :message="form.errors.category_spare_part_id" />
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel class="mt-3" for="description" value="Description" />

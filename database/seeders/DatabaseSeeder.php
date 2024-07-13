@@ -29,8 +29,11 @@ class DatabaseSeeder extends Seeder
             DeviceTypesTableSeeder::class,
             CustomersTableSeeder::class,
             DevicesTableSeeder::class,
+            StatusWarrantyServicesTableSeeder::class,
+            StatusServicesTableSeeder::class,
             ServicesTableSeeder::class,
             ServiceDetailsTableSeeder::class,
+            CategorySparePartsTableSeeder::class,
             SparePartsTableSeeder::class,
             PartUsagesTableSeeder::class,
         ]);

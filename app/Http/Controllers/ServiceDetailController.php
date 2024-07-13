@@ -12,15 +12,21 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\SendEmailServiceDetail;
 use App\Models\Service;
+use App\Models\StatusService;
+use App\Models\User;
 
 class ServiceDetailController extends Controller
 {
     public function show()
     {
+        $services = Service::all();
+        $statusServices = StatusService::all();
         $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType')->get();
 
         return Inertia::render('ServiceDetail/ServiceDetails', [
             'serviceDetails' => $serviceDetails,
+            'statusServices' => $statusServices,
+            'services' => $services,
         ]);
     }
 
@@ -29,7 +35,7 @@ class ServiceDetailController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
-            'status' => 'required|string|max:255',
+            'status_service_id' => 'required|exists:status_services,id',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|numeric',
             'notes' => 'required|string|max:255',
@@ -52,7 +58,7 @@ class ServiceDetailController extends Controller
 
         $service = Service::findOrFail($request->service_id);
         $service->update([
-            'status' => $request->status,
+            'status_service_id' => $request->status_service_id,
         ]);
 
         $printServiceDetail = route('service.detail.print', $serviceDetail->service_detail_code);
@@ -69,7 +75,7 @@ class ServiceDetailController extends Controller
             'id' => 'required|exists:service_details,id',
             'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
-            'status' => 'required|string|max:255',
+            'status_service_id' => 'required|exists:status_services,id',
             'repair_description' => 'required|string|max:255',
             'cost' => 'required|integer',
             'notes' => 'required|string|max:255',
@@ -77,7 +83,7 @@ class ServiceDetailController extends Controller
 
         $service = Service::findOrFail($request->service_id);
         $service->update([
-            'status' => $request->status,
+            'status_service_id' => $request->status_service_id,
         ]);
 
         $serviceDetail = ServiceDetail::findOrFail($request->id);

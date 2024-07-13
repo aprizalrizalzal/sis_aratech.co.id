@@ -36,9 +36,17 @@ const showModalAddPartUsage = ref(false);
 const props = defineProps({
   users: Array,
   deviceTypes: Array,
+
+  categorySpareParts: Array,
+
   spareParts: Array,
+  
   customers: Array,
   devices: Array,
+
+  statusWarrantyServices: Array,
+  statusServices: Array,
+
   services: Array,
   serviceDetails: Array,
   partUsages: Array,
@@ -591,7 +599,7 @@ const closeModal = () => {
       <div class="flex justify-end">
         <DangerButton @click="showModalAddSparePart = false">X</DangerButton>
       </div>
-      <SparePartForm />
+      <SparePartForm :categorySpareParts="categorySpareParts" />
     </div>
   </Modal>
   <Modal v-model:show="showModalAddCustomer">
@@ -615,7 +623,7 @@ const closeModal = () => {
       <div class="flex justify-end">
         <DangerButton @click="showModalAddService = false">X</DangerButton>
       </div>
-      <ServiceForm :customers="customers" :devices="devices" />
+      <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices" :statusServices="statusServices" />
     </div>
   </Modal>
   <Modal v-model:show="showModalAddServiceDetail">

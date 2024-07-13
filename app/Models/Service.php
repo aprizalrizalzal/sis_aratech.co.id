@@ -10,7 +10,7 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['service_code', 'customer_id', 'device_id', 'status_warranty', 'date_received',  'problem_description', 'estimated_completion', 'items_brought', 'status'];
+    protected $fillable = ['service_code', 'customer_id', 'device_id', 'status_warranty_service_id', 'date_received',  'problem_description', 'estimated_completion', 'items_brought', 'status_service_id', 'notes'];
 
     // Relasi ke Customer
     public function customer()
@@ -22,6 +22,18 @@ class Service extends Model
     public function device()
     {
         return $this->belongsTo(Device::class);
+    }
+
+    // Relasi ke Device
+    public function statusWarrantyService()
+    {
+        return $this->belongsTo(StatusWarrantyService::class);
+    }
+
+    // Relasi ke Device
+    public function statusService()
+    {
+        return $this->belongsTo(StatusService::class);
     }
 
     // Relasi ke ServiceDetail

@@ -7,6 +7,7 @@ import { ref, computed } from 'vue';
 
 const props = defineProps({
   devices: Array,
+  deviceTypes: Array,
 });
 
 const searchQuery = ref('');
@@ -43,7 +44,7 @@ const filteredDevices = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
-            <DeviceTable :devices="filteredDevices" />
+            <DeviceTable :devices="filteredDevices" :deviceTypes="deviceTypes" />
           </div>
         </div>
       </div>

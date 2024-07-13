@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import DropdownSelect from '@/Components/DropdownSelect.vue'
 import DateTimePicker from '@/Components/DateTimePicker.vue'
@@ -11,25 +10,14 @@ import TextInput from '@/Components/TextInput.vue';
 const form = useForm({
     customer_id: '',
     device_id: '',
-    status_warranty: '',
+    status_warranty_service_id: '',
     date_received: '',
     problem_description: '',
     estimated_completion: '',
     items_brought: '',
-    status: '',
+    status_service_id: '',
+    notes: '',
 });
-
-const statusWarranty = ref([
-    { id: '1', name: 'In Warranty' },
-    { id: '2', name: 'Out Warranty' },
-]);
-
-const statusOptions = ref([
-    { id: '1', name: 'Completed' },
-    { id: '2', name: 'Failed' },
-    { id: '3', name: 'In Progress' },
-    { id: '4', name: 'Received' },
-]);
 
 const props = defineProps({
     customers: Array,
@@ -38,19 +26,24 @@ const props = defineProps({
     printService: String,
 
     service: Object,
+
     customer: Object,
     device: Object,
+
+    statusWarrantyServices: Array,
+    statusServices: Array,
 });
 
 if (props.service) {
     form.customer_id = props.service.customer_id;
     form.device_id = props.service.device_id;
-    form.status_warranty = props.service.status_warranty;
+    form.status_warranty_service_id = props.service.status_warranty_service_id;
     form.date_received = props.service.date_received;
     form.problem_description = props.service.problem_description;
     form.estimated_completion = props.service.estimated_completion;
     form.items_brought = props.service.items_brought;
-    form.status = props.service.status;
+    form.status_service_id = props.service.status_service_id;
+    form.notes = props.service.notes;
 }
 
 const submitForm = () => {
@@ -66,7 +59,7 @@ const submitForm = () => {
                 };
             },
             onError: (errors) => {
-                if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
+                if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
                     alert('Service addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -79,7 +72,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => form.data(),
             onError: (errors) => {
-                if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status) {
+                if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
                     alert('Service update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -94,22 +87,22 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div v-if="!props.customer">
+                <div>
                     <DropdownSelect id="customer_id" label="Customer Phone" optionProperty="phone" valueProperty="id"
                         :options="customers" v-model="form.customer_id" placeholder="Select Phone" />
                     <InputError class="mt-3" :message="form.errors.customer_id" />
                 </div>
-                <div v-if="!props.device">
+                <div>
                     <DropdownSelect id="device_id" label="Serial Number" optionProperty="serial_number"
                         valueProperty="id" :options="devices" v-model="form.device_id"
                         placeholder="Select Serial Number" />
                     <InputError class="mt-3" :message="form.errors.device_id" />
                 </div>
                 <div>
-                    <DropdownSelect id="status_warranty" label="Status Warranty" :options="statusWarranty"
-                        optionProperty="name" valueProperty="name" v-model="form.status_warranty"
-                        :placeholder="props.service ? props.service.status_warranty : 'Select Status Warranty'" />
-                    <InputError class="mt-3" :message="form.errors.status_warranty" />
+                    <DropdownSelect id="status_warranty_service_id" label="Status Warranty"
+                        optionProperty="status" valueProperty="id" :options="statusWarrantyServices" v-model="form.status_warranty_service_id"
+                        placeholder="Select Status Warranty" />
+                    <InputError class="mt-3" :message="form.errors.status_warranty_service_id" />
                 </div>
                 <div>
                     <DateTimePicker id="date_received" label="Date Received" v-model="form.date_received"
@@ -118,7 +111,8 @@ const submitForm = () => {
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="problem_description" value="Problem Description" />
-                    <TextInput id="problem_description" type="text" class="mt-1 block w-full"
+                    <textarea id="problem_description" type="text"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.problem_description" placeholder="Problem Description" required />
                     <InputError class="mt-3" :message="form.errors.problem_description" />
                 </div>
@@ -134,10 +128,17 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.items_brought" />
                 </div>
                 <div>
-                    <DropdownSelect id="status" label="Status" :options="statusOptions" optionProperty="name"
-                        valueProperty="name" v-model="form.status"
-                        :placeholder="props.service ? props.service.status : 'Select Status'" />
-                    <InputError class="mt-3" :message="form.errors.status" />
+                    <DropdownSelect id="status_service_id" label="Status" optionProperty="status"
+                        valueProperty="id" :options="statusServices" v-model="form.status_service_id"
+                        placeholder="Select Status" />
+                    <InputError class="mt-3" :message="form.errors.status_service_id" />
+                </div>
+                <div>
+                    <InputLabel class="mt-3" for="notes" value="Notes" />
+                    <textarea id="notes" type="text"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        v-model="form.notes" placeholder="Notes" required />
+                    <InputError class="mt-3" :message="form.errors.notes" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
