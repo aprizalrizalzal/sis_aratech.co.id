@@ -15,7 +15,7 @@ class SparePartController extends Controller
     public function show()
     {
         $categorySpareParts = CategorySparePart::all();
-        $spareParts = SparePart::all();
+        $spareParts = SparePart::with('categorySparePart')->get();
 
         return Inertia::render('SparePart/SpareParts', [
             'spareParts' => $spareParts,

@@ -25,7 +25,7 @@ class ServiceController extends Controller
         $statusWarrantyServices = StatusWarrantyService::all();
         $statusServices = StatusService::all();
 
-        $services = Service::with('customer', 'customer.user', 'device', 'device.deviceType')->get();
+        $services = Service::with('customer', 'customer.user', 'device', 'device.deviceType', 'statusWarrantyService', 'statusService')->get();
 
         return Inertia::render('Service/Services', [
             'services' => $services,
@@ -118,7 +118,7 @@ class ServiceController extends Controller
     public function print($service_code)
     {
         $service = Service::where('service_code', $service_code)
-            ->with('customer', 'customer.user', 'device', 'device.deviceType')
+            ->with('customer', 'customer.user', 'device', 'device.deviceType', 'statusWarrantyService', 'statusService')
             ->firstOrFail();
 
         $data = [

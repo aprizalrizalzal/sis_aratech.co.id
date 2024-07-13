@@ -633,7 +633,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddService" @close="closeModal">
+  <Modal maxWidth="6xl" :show="showModalAddService" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold">Add Service</span>
@@ -650,7 +650,7 @@ const closeModal = () => {
         <span class="font-bold">Add Service Detail</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <ServiceDetailForm :users="users" :services="services" />
+      <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices" />
     </div>
   </Modal>
 

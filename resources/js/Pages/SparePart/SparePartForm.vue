@@ -22,10 +22,6 @@ const props = defineProps({
     sparePart: Object,
 });
 
-const getCategorySparePartName = (categorySparePartId) => {
-    return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
-};
-
 if (props.sparePart) {
     form.image_path = props.sparePart.image_path;
     form.name = props.sparePart.name;
@@ -118,7 +114,7 @@ const submitForm = () => {
                     <InputLabel class="mt-3" for="category_spare_part_id" value="Category" />
                     <div class="flex items-center justify-between">
                         <div v-if="props.sparePart" class="me-4 w-full">
-                            <span>{{ getCategorySparePartName(props.sparePart.category_spare_part_id) }}</span>
+                            <span>{{ props.sparePart.category_spare_part.name }}</span>
                         </div>
                         <DropdownSelect id="category_spare_part_id" optionProperty="name" valueProperty="id"
                             :options="categorySpareParts" v-model="form.category_spare_part_id"

@@ -14,7 +14,7 @@ const form = useForm({
 
 const props = defineProps({
     deviceTypes: Array,
-    
+
     device: Object,
     deviceType: Object,
 });
@@ -60,12 +60,16 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div>
-                    <DropdownSelect id="device_type_id" label="Device Type" optionProperty="type_name"
-                        valueProperty="id" :options="deviceTypes" v-model="form.device_type_id"
-                        placeholder="Select Device Type" />
-                        <InputError class="mt-3" :message="form.errors.device_type_id" />
+                <InputLabel class="mt-3" for="device_type_id" value="Device Type" />
+                <div class="flex items-center justify-between">
+                    <div v-if="props.device" class="me-4 w-full">
+                        <span>{{ props.device.device_type.type_name }}</span>
                     </div>
+                    <DropdownSelect id="device_type_id" optionProperty="type_name" valueProperty="id"
+                        :options="deviceTypes" v-model="form.device_type_id" placeholder="Select Device Type"
+                        class="w-full" />
+                    <InputError class="mt-3" :message="form.errors.device_type_id" />
+                </div>
                 <div>
                     <InputLabel class="mt-3" for="model" value="Model" />
                     <TextInput id="model" type="text" class="mt-1 block w-full" v-model="form.model" placeholder="Model"

@@ -70,7 +70,7 @@ onMounted(() => {
             </tr>
             <tr>
                 <td class=" text-green-900">Serial Number / Warranty Status </td>
-                <td>{{ service.device.serial_number }}<span> / </span>{{ service.status_warranty_service_id }} </td>
+                <td>{{ service.device.serial_number }}<span> / </span>{{ service.status_warranty_service.status }} </td>
             </tr>
             <tr>
                 <td class=" text-green-900">Date Received / Estimated Completion</td>
@@ -86,7 +86,7 @@ onMounted(() => {
             </tr>
             <tr class="font-bold bg-green-50">
                 <td class=" text-green-900">Status </td>
-                <td>{{ service.status_service_id }} </td>
+                <td>{{ service.status_service.status }} </td>
             </tr>
         </tbody>
     </table>
@@ -110,7 +110,8 @@ onMounted(() => {
     <hr>
     <p id="footer" class="mt-2 text-sm/relaxed text-left">
         Cek perkembangan perangkatmu di <a target="_blank" rel="noopener noreferrer" class="text-green-800 font-bold"
-            :href="currentUrl">{{ currentUrl }}</a> Jangan lupa cek inbox atau spam email Anda ya. Informasi login dan password ada di sana!
+            :href="currentUrl">{{ currentUrl }}</a> Jangan lupa cek inbox atau spam email Anda ya. Informasi login dan
+        password ada di sana!
     </p>
 </template>
 

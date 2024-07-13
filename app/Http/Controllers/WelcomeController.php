@@ -36,19 +36,15 @@ class WelcomeController extends Controller
 
     public function store(Request $request, Carousel $carousels)
     {
-        $statusServices = StatusService::all();
-        $statusWarrantyServices = StatusWarrantyService::all();
         $categorySpareParts = CategorySparePart::all();
         $carousels = Carousel::all();
         $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->with('categorySparePart')->get();
 
         $service_code = $request->input('service_code');
-        $service = Service::where('service_code', $service_code)->with('customer', 'customer.user', 'device', 'device.deviceType')->first();
+        $service = Service::where('service_code', $service_code)->with('customer', 'customer.user', 'device', 'device.deviceType', 'statusWarrantyService', 'statusService')->first();
 
         if ($service) {
             return Inertia::render('Welcome', [
-                'statusServices' => $statusServices,
-                'statusWarrantyServices' => $statusWarrantyServices,
                 'categorySpareParts' => $categorySpareParts,
                 'carousels' => $carousels,
                 'spareParts' => $spareParts,
@@ -60,8 +56,6 @@ class WelcomeController extends Controller
         }
 
         return Inertia::render('Welcome', [
-            'statusServices' => $statusServices,
-            'statusWarrantyServices' => $statusWarrantyServices,
             'categorySpareParts' => $categorySpareParts,
             'carousels' => $carousels,
             'spareParts' => $spareParts,
