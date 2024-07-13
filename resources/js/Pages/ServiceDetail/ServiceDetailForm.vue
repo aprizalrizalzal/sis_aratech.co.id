@@ -28,7 +28,7 @@ const props = defineProps({
     printServiceDetail: String,
 
     serviceDetail: Object,
-    
+
     user: Object,
     service: Object,
 });
@@ -41,12 +41,12 @@ const updateServiceStatus = (serviceId) => {
         if (selectedService) {
             serviceStatus.value = selectedService.status;
             form.status = selectedService.status;
-        }  
+        }
     } else {
         serviceStatus.value = props.service.status;
         form.status = props.service.status;
     }
-    
+
 };
 
 if (props.serviceDetail) {
@@ -111,21 +111,32 @@ const submitForm = () => {
                         v-model="form.user_id" placeholder="Email Technician" required autofocus />
                     <InputError class="mt-3" :message="form.errors.user_id" />
                 </div>
-                <div>
-                    <DropdownSelect id="service_id" label="Service Code" optionProperty="service_code"
-                        valueProperty="id" :options="services" v-model="form.service_id"
-                        placeholder="Select Service Code" />
+                <InputLabel class="mt-3" for="service_id" value="Service Code" />
+                <div class="flex items-center justify-between">
+                    <div v-if="props.serviceDetail" class="me-4 w-full">
+                        <span v-if="form.service_id">{{ props.service.service_code }}</span>
+                    </div>
+                    <DropdownSelect id="service_id" optionProperty="service_code" valueProperty="id" :options="services"
+                        v-model="form.service_id" placeholder="Service Code" class="w-full" />
                     <InputError class="mt-3" :message="form.errors.service_id" />
                 </div>
                 <div v-if="form.service_id">
-                    <DropdownSelect id="status_service_id" label="Status" optionProperty="status"
-                        valueProperty="id" :options="statusServices" v-model="form.status_service_id"
-                        placeholder="Select Status" />
-                    <InputError class="mt-3" :message="form.errors.status_service_id" />
+                    <InputLabel class="mt-3" for="status_service_id" value="Status" />
+                    <div class="flex items-center justify-between">
+                        <div v-if="form.service_id" class="me-4 w-full">
+                            <span v-if="form.service_id">{{
+                                props.serviceDetail.service.status_service.status
+                                }}</span>
+                        </div>
+                        <DropdownSelect id="status_service_id" optionProperty="status" valueProperty="id"
+                            :options="statusServices" v-model="form.status_service_id" placeholder="Select Status"
+                            class="w-full" />
+                        <InputError class="mt-3" :message="form.errors.status_service_id" />
+                    </div>
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />
-                    <textarea id="repair_description" type="text"
+                    <TextInput id="repair_description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.repair_description" placeholder="Repair Description" required />
                     <InputError class="mt-3" :message="form.errors.repair_description" />

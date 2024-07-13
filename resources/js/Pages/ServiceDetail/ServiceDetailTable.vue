@@ -20,11 +20,6 @@ const props = defineProps({
     services: Array,
 });
 
-const getStatusServiceStatus = (statusServiceId) => {
-    return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
-};
-
-
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
@@ -292,7 +287,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        getStatusServiceStatus(serviceDetail.service.status_service_id) }}
+                        serviceDetail.service.status_service.status }}
                     </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
@@ -365,7 +360,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                        getStatusServiceStatus(serviceDetail.service.status_service_id) }}
+                        serviceDetail.service.status_service.status }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>

@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
         $services = Service::with('customer', 'customer.user', 'statusWarrantyService', 'statusService', 'device', 'device.deviceType')->get();
 
-        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType')->get();
+        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusService')->get();
         $partUsages = PartUsage::with('sparePart')->get();
 
         $printService = session('printService');
