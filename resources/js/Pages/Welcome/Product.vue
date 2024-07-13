@@ -63,6 +63,9 @@ const showModalSparePartDetail = (sparePart) => {
     showingModelSparePartDetail.value = true;
 };
 
+const closeModal = () => {
+    showingModelSparePartDetail.value = false;
+};
 </script>
 
 <template>
@@ -92,10 +95,11 @@ const showModalSparePartDetail = (sparePart) => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal maxWidth="4xl" v-model:show="showingModelSparePartDetail">
+    <Modal maxWidth="4xl" :show="showingModelSparePartDetail" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelSparePartDetail = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Detail Spare Part</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <SparePartDetail :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>

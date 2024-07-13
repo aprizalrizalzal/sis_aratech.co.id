@@ -40,7 +40,7 @@ const props = defineProps({
   categorySpareParts: Array,
 
   spareParts: Array,
-  
+
   customers: Array,
   devices: Array,
 
@@ -382,6 +382,13 @@ const previousPage = () => {
 };
 
 const closeModal = () => {
+  showModalAddDeviceType.value = false;
+  showModalAddSparePart.value = false;
+  showModalAddCustomer.value = false;
+  showModalAddDevice.value = false;
+  showModalAddService.value = false;
+  showModalAddServiceDetail.value = false;
+  showModalAddPartUsage.value = false;
   showingModelServiceDetailByServiceCode.value = false;
 };
 </script>
@@ -520,7 +527,7 @@ const closeModal = () => {
                             index + 1 }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.service_code
-                          }}
+                            }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             {{ service.customer.user.name }}
@@ -530,7 +537,7 @@ const closeModal = () => {
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.customer.phone
-                          }}</td>
+                            }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             {{ service.customer.address }}
                           </td>
@@ -545,7 +552,7 @@ const closeModal = () => {
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.date_received
-                          }}
+                            }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.estimated_completion }}
@@ -555,7 +562,7 @@ const closeModal = () => {
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.items_brought
-                          }}
+                            }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}
                           </td>
@@ -586,64 +593,78 @@ const closeModal = () => {
     </div>
   </AuthenticatedLayout>
 
-  <Modal v-model:show="showModalAddDeviceType">
+  <Modal :show="showModalAddDeviceType" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddDeviceType = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Device Type</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <DeviceTypeForm />
     </div>
   </Modal>
-  <Modal v-model:show="showModalAddSparePart">
+
+  <Modal :show="showModalAddSparePart" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddSparePart = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Spare Part</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <SparePartForm :categorySpareParts="categorySpareParts" />
     </div>
   </Modal>
-  <Modal v-model:show="showModalAddCustomer">
+
+  <Modal :show="showModalAddCustomer" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddCustomer = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Customer</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <CustomerForm />
     </div>
   </Modal>
-  <Modal v-model:show="showModalAddDevice">
+
+  <Modal :show="showModalAddDevice" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddDevice = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Device</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <DeviceForm :deviceTypes="deviceTypes" />
     </div>
   </Modal>
-  <Modal v-model:show="showModalAddService">
+
+  <Modal :show="showModalAddService" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddService = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Service</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices" :statusServices="statusServices" />
+      <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
+        :statusServices="statusServices" />
     </div>
   </Modal>
-  <Modal v-model:show="showModalAddServiceDetail">
+
+  <Modal :show="showModalAddServiceDetail" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddServiceDetail = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Service Detail</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <ServiceDetailForm :users="users" :services="services" />
     </div>
   </Modal>
-  <Modal v-model:show="showModalAddPartUsage">
+
+  <Modal :show="showModalAddPartUsage" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddPartUsage = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Part Usage</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" />
     </div>
   </Modal>
 
-  <Modal v-model:show="showingModelServiceDetailByServiceCode">
+  <Modal :show="showingModelServiceDetailByServiceCode" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-end">
         <DangerButton @click="closeModal">X</DangerButton>

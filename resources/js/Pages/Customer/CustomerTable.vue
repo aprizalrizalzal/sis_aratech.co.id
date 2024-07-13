@@ -48,6 +48,7 @@ const deleteCustomer = () => {
 };
 
 const closeModal = () => {
+    showingModelCustomerUpdate.value = false;
     confirmingCustomerDeletion.value = false;
 };
 
@@ -117,10 +118,11 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelCustomerUpdate">
+    <Modal :show="showingModelCustomerUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelCustomerUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Customer</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CustomerForm :customer="selectedCustomer" />
         </div>

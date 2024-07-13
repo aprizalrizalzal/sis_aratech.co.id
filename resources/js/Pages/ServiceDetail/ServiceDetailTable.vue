@@ -21,7 +21,7 @@ const props = defineProps({
 });
 
 const getStatusServiceStatus = (statusServiceId) => {
-  return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
+    return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
 };
 
 
@@ -291,7 +291,8 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusServiceStatus(serviceDetail.service.status_service_id) }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        getStatusServiceStatus(serviceDetail.service.status_service_id) }}
                     </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
@@ -363,7 +364,8 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusServiceStatus(serviceDetail.service.status_service_id) }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        getStatusServiceStatus(serviceDetail.service.status_service_id) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
                     </td>
@@ -375,13 +377,15 @@ const handlePrint = () => {
             </tbody>
         </table>
     </div>
-  
-    <Modal v-model:show="showingModelServiceDetailUpdate">
+
+    <Modal :show="showingModelServiceDetailUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelServiceDetailUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Service Detail</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <ServiceDetailForm :serviceDetail="selectedServiceDetail" :statusServices="statusServices" :services="services"  :user="selectedUser" :service="selectedService" />
+            <ServiceDetailForm :serviceDetail="selectedServiceDetail" :statusServices="statusServices"
+                :services="services" :user="selectedUser" :service="selectedService" />
         </div>
     </Modal>
 

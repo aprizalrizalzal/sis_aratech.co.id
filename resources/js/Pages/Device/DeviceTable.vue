@@ -49,6 +49,7 @@ const deleteDevice = () => {
 };
 
 const closeModal = () => {
+  showingModelDeviceUpdate.value = false;
   confirmingDeviceDeletion.value = false;
 };
 
@@ -116,10 +117,11 @@ const previousPage = () => {
     <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
   </div>
 
-  <Modal v-model:show="showingModelDeviceUpdate">
+  <Modal v-model:show="showingModelDeviceUpdate" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showingModelDeviceUpdate = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Update Device</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes" />
     </div>

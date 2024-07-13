@@ -20,6 +20,12 @@ const showModalAddHeader = ref(false);
 const showModalAddCarousel = ref(false);
 const showModalAddFooter = ref(false);
 
+const closeModal = () => {
+  showModalAddHeader.value = false;
+  showModalAddCarousel.value = false;
+  showModalAddFooter.value = false;
+};
+
 </script>
 
 <template>
@@ -59,28 +65,31 @@ const showModalAddFooter = ref(false);
     </div>
   </AuthenticatedLayout>
 
-  <Modal v-model:show="showModalAddHeader">
+  <Modal :show="showModalAddHeader" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddHeader = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Header</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <HeaderForm />
     </div>
   </Modal>
 
-  <Modal v-model:show="showModalAddCarousel">
+  <Modal :show="showModalAddCarousel" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddCarousel = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Carousel</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <CarouselForm />
     </div>
   </Modal>
 
-  <Modal v-model:show="showModalAddFooter">
+  <Modal :show="showModalAddFooter" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
-        <DangerButton @click="showModalAddFooter = false">X</DangerButton>
+      <div class="flex justify-between items-center">
+        <span class="font-bold">Add Footer</span>
+        <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <FooterForm />
     </div>

@@ -22,6 +22,10 @@ const props = defineProps({
     sparePart: Object,
 });
 
+const getCategorySparePartName = (categorySparePartId) => {
+    return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
+};
+
 if (props.sparePart) {
     form.image_path = props.sparePart.image_path;
     form.name = props.sparePart.name;
@@ -68,7 +72,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.name || errors.category_spare_part_id ||errors.description || errors.price) {
+                if (errors.image || errors.name || errors.category_spare_part_id || errors.description || errors.price) {
                     alert('Spare part addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -111,10 +115,16 @@ const submitForm = () => {
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <DropdownSelect id="category_spare_part_id" label="Category" optionProperty="name"
-                        valueProperty="id" :options="categorySpareParts" v-model="form.category_spare_part_id"
-                        placeholder="Select Category" />
-                    <InputError class="mt-3" :message="form.errors.category_spare_part_id" />
+                    <InputLabel class="mt-3" for="category_spare_part_id" value="Category" />
+                    <div class="flex items-center justify-between">
+                        <div v-if="props.sparePart" class="me-4 w-full">
+                            <span>{{ getCategorySparePartName(props.sparePart.category_spare_part_id) }}</span>
+                        </div>
+                        <DropdownSelect id="category_spare_part_id" optionProperty="name" valueProperty="id"
+                            :options="categorySpareParts" v-model="form.category_spare_part_id"
+                            placeholder="Select Category" class="w-full" />
+                        <InputError class="mt-3" :message="form.errors.category_spare_part_id" />
+                    </div>
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel class="mt-3" for="description" value="Description" />

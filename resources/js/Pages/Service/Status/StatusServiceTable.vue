@@ -46,6 +46,7 @@ const deleteStatusService = () => {
 };
 
 const closeModal = () => {
+    showingModelStatusServiceUpdate.value = false;
     confirmingStatusServiceDeletion.value = false;
 };
 
@@ -87,11 +88,14 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(statusService, index) in paginatedStatusServices" :key="statusService.id" class="hover:bg-green-50">
+                <tr v-for="(statusService, index) in paginatedStatusServices" :key="statusService.id"
+                    class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ statusService.status }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ statusService.description }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ statusService.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalStatusServiceUpdate(statusService)" class="m-2">Update
                         </SecondaryButton>
@@ -111,10 +115,11 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelStatusServiceUpdate">
+    <Modal :show="showingModelStatusServiceUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelStatusServiceUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Status Service</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <StatusServiceForm :statusService="selectedStatusService" />
         </div>

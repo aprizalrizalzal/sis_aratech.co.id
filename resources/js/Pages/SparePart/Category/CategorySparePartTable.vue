@@ -46,6 +46,7 @@ const deleteCategorySparePart = () => {
 };
 
 const closeModal = () => {
+    showingModelCategorySparePartUpdate.value = false;
     confirmingCategorySparePartDeletion.value = false;
 };
 
@@ -87,11 +88,14 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(categorySparePart, index) in paginatedCategorySpareParts" :key="categorySparePart.id" class="hover:bg-green-50">
+                <tr v-for="(categorySparePart, index) in paginatedCategorySpareParts" :key="categorySparePart.id"
+                    class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ categorySparePart.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ categorySparePart.description }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ categorySparePart.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCategorySparePartUpdate(categorySparePart)" class="m-2">Update
                         </SecondaryButton>
@@ -111,14 +115,16 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelCategorySparePartUpdate">
+    <Modal :show="showingModelCategorySparePartUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelCategorySparePartUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Category Spare Part</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CategorySparePartForm :categorySparePart="selectedCategorySparePart" />
         </div>
     </Modal>
+
     <Modal :show="confirmingCategorySparePartDeletion" @close="closeModal">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">

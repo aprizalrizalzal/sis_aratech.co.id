@@ -61,6 +61,7 @@ const deletePartUsage = () => {
 };
 
 const closeModal = () => {
+    showingModelPartUsageUpdate.value = false;
     confirmingPartUsageDeletion.value = false;
 };
 
@@ -348,10 +349,11 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <Modal v-model:show="showingModelPartUsageUpdate">
+    <Modal :show="showingModelPartUsageUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelPartUsageUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Part Usage</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <PartUsageForm :partUsage="selectedPartUsage" :serviceDetail="selectedPartUsage.service_detail"
                 :sparePart="selectedPartUsage.spare_part" />

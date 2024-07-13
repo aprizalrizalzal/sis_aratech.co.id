@@ -8,7 +8,7 @@ const props = defineProps({
 });
 
 const getCategorySparePartName = (categorySparePartId) => {
-  return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
+    return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
 };
 
 const formatCurrency = (value) => {

@@ -26,7 +26,7 @@ const submitForm = () => {
             onSuccess: () => form.reset(),
             onError: (errors) => {
                 if (errors.name) {
-                    alert('Category Spare Part addition failed!');
+                    alert('Category addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -39,7 +39,7 @@ const submitForm = () => {
             onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.name) {
-                    alert('Category Spare Part update failed!');
+                    alert('Category update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -56,8 +56,8 @@ const submitForm = () => {
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div>
                     <InputLabel for="name" value="Name" />
-                    <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name"
-                        placeholder="Name" required autofocus />
+                    <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
+                        required autofocus />
                     <InputError class="mt-3" :message="form.errors.name" />
                 </div>
                 <div>
@@ -72,7 +72,7 @@ const submitForm = () => {
                         {{ props.categorySparePart ? 'Update Category Spare Part' : 'Add Category Spare Part' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.categorySparePart ? 'Category Spare Part update successfully!' : 'Category Spare Part added successfully!' }}
+                        {{ props.categorySparePart ? 'Category update successfully!' : 'Category added successfully!' }}
                     </span>
                 </div>
             </form>

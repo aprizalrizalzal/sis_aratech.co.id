@@ -124,7 +124,7 @@ const props = defineProps({
                     </div>
 
                     <div>
-                        <Product :spareParts="props.spareParts" :categorySpareParts="categorySpareParts"/>
+                        <Product :spareParts="props.spareParts" :categorySpareParts="categorySpareParts" />
                     </div>
 
                     <div>

@@ -46,6 +46,7 @@ const deleteStatusWarrantyService = () => {
 };
 
 const closeModal = () => {
+    showingModelStatusWarrantyServiceUpdate.value = false;
     confirmingStatusWarrantyServiceDeletion.value = false;
 };
 
@@ -87,17 +88,22 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(statusWarrantyService, index) in paginatedStatusWarrantyServices" :key="statusWarrantyService.id" class="hover:bg-green-50">
+                <tr v-for="(statusWarrantyService, index) in paginatedStatusWarrantyServices"
+                    :key="statusWarrantyService.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ statusWarrantyService.status }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ statusWarrantyService.description }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ statusWarrantyService.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalStatusWarrantyServiceUpdate(statusWarrantyService)" class="m-2">Update
+                        <SecondaryButton @click="showModalStatusWarrantyServiceUpdate(statusWarrantyService)"
+                            class="m-2">Update
                         </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <DangerButton @click="confirmStatusWarrantyServiceDeletion(statusWarrantyService.id)" class="m-2">Delete
+                        <DangerButton @click="confirmStatusWarrantyServiceDeletion(statusWarrantyService.id)"
+                            class="m-2">Delete
                         </DangerButton>
                     </td>
                 </tr>
@@ -111,10 +117,11 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelStatusWarrantyServiceUpdate">
+    <Modal :show="showingModelStatusWarrantyServiceUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelStatusWarrantyServiceUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Status Warranty Service</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <StatusWarrantyServiceForm :statusWarrantyService="selectedStatusWarrantyService" />
         </div>

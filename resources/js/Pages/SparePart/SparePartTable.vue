@@ -15,7 +15,7 @@ const props = defineProps({
 });
 
 const getCategorySparePartName = (categorySparePartId) => {
-  return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
+    return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
 };
 
 const formatCurrency = (value) => {
@@ -70,9 +70,10 @@ const deleteSparePart = () => {
 };
 
 const closeModal = () => {
-    confirmingSparePartDeletion.value = false;
-    showingModelSparePartUpdate.value = false;
     showingModelSparePartUpdateImage.value = false;
+    showingModelSparePartUpdate.value = false;
+    showingModelSparePartDetail.value = false;
+    confirmingSparePartDeletion.value = false;
 };
 
 const currentPage = ref(1);
@@ -164,28 +165,31 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelSparePartUpdateImage">
+    <Modal :show="showingModelSparePartUpdateImage" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Image Spare Part</span>
                 <DangerButton @click="showingModelSparePartUpdateImage = false">X</DangerButton>
             </div>
             <SparePartForm :sparePartId="selectedSparePartId" />
         </div>
     </Modal>
 
-    <Modal v-model:show="showingModelSparePartUpdate">
+    <Modal :show="showingModelSparePartUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Spare Part</span>
                 <DangerButton @click="showingModelSparePartUpdate = false">X</DangerButton>
             </div>
             <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>
     </Modal>
 
-    <Modal maxWidth="4xl" v-model:show="showingModelSparePartDetail">
+    <Modal maxWidth="4xl" :show="showingModelSparePartDetail" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelSparePartDetail = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Detail Spare Part</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <SparePartDetail :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>

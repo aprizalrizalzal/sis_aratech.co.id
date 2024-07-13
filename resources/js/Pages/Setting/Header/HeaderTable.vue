@@ -133,19 +133,21 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelHeaderUpdateImage">
+    <Modal :show="showingModelHeaderUpdateImage" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelHeaderUpdateImage = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Image Header</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <HeaderForm :headerId="selectedHeaderId" />
         </div>
     </Modal>
 
-    <Modal v-model:show="showingModelHeaderUpdate">
+    <Modal :show="showingModelHeaderUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelHeaderUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Header</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <HeaderForm :header="selectedHeader" />
         </div>

@@ -127,19 +127,21 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelCarouselUpdateImage">
+    <Modal :show="showingModelCarouselUpdateImage" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelCarouselUpdateImage = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Carousel Image</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CarouselForm :carouselId="selectedCarouselId" />
         </div>
     </Modal>
 
-    <Modal v-model:show="showingModelCarouselUpdate">
+    <Modal :show="showingModelCarouselUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelCarouselUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Carousel</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CarouselForm :carousel="selectedCarousel" />
         </div>

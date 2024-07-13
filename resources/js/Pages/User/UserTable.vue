@@ -125,10 +125,11 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelUserUpdate">
+    <Modal :show="showingModelUserUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelUserUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update User</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <UserForm :user="selectedUser" />
         </div>

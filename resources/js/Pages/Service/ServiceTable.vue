@@ -25,11 +25,11 @@ const props = defineProps({
 });
 
 const getStatusWarrantyServiceStatus = (statusWarrantyServiceId) => {
-  return props.statusWarrantyServices.find(statusWarrantyService => statusWarrantyService.id === statusWarrantyServiceId)?.status || 'Unknown Status';
+    return props.statusWarrantyServices.find(statusWarrantyService => statusWarrantyService.id === statusWarrantyServiceId)?.status || 'Unknown Status';
 };
 
 const getStatusServiceStatus = (statusServiceId) => {
-  return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
+    return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
 };
 
 const showingModelServiceUpdate = ref(false);
@@ -303,7 +303,8 @@ const handlePrint = () => {
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ service.items_brought }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusServiceStatus(service.status_service_id) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        getStatusServiceStatus(service.status_service_id) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
                         </SecondaryButton>
@@ -360,23 +361,27 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.device_type.type_name
                         }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusWarrantyServiceStatus(service.status_warranty_service_id) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        getStatusWarrantyServiceStatus(service.status_warranty_service_id) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ getStatusServiceStatus(service.status_service_id) }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                        getStatusServiceStatus(service.status_service_id) }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <Modal v-model:show="showingModelServiceUpdate">
+    <Modal :show="showingModelServiceUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-end">
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice" :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices" :statusServices="statusServices" />
+            <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice"
+                :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
+                :statusServices="statusServices" />
         </div>
     </Modal>
 
