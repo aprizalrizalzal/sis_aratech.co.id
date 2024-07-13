@@ -10,8 +10,20 @@ import DangerButton from '@/Components/DangerButton.vue';
 
 const props = defineProps({
     service: Object,
+
+    statusWarrantyServices: Array,
+    statusServices: Array,
+
     message: String,
 });
+
+const getStatusWarrantyServiceStatus = (statusWarrantyServiceId) => {
+    return props.statusWarrantyServices.find(statusWarrantyService => statusWarrantyService.id === statusWarrantyServiceId)?.status || 'Unknown Status';
+};
+
+const getStatusServiceStatus = (statusServiceId) => {
+    return props.statusServices.find(statusService => statusService.id === statusServiceId)?.status || 'Unknown Status';
+};
 
 const showModal = ref(false);
 
@@ -111,7 +123,7 @@ const closeModal = () => {
                     </tr>
                     <tr class="py-2 px-4">
                         <td class="text-green-900">Warranty Status </td>
-                        <td>{{ service.status_warranty }} </td>
+                        <td>{{ getStatusWarrantyServiceStatus(service.status_warranty_service_id) }} </td>
                     </tr>
                     <tr class="py-2 px-4">
                         <td class="text-green-900">Date Received</td>
@@ -142,7 +154,7 @@ const closeModal = () => {
                             Status
                         </td>
                         <td>
-                            {{ service.status }}
+                            {{ getStatusServiceStatus(service.status_service_id) }}
                         </td>
                     </tr>
                 </tbody>

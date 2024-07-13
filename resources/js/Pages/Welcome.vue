@@ -19,6 +19,9 @@ const props = defineProps({
     spareParts: Array,
     service: Object,
 
+    statusWarrantyServices: Array,
+    statusServices: Array,
+
     message: String,
 });
 
@@ -128,7 +131,8 @@ const props = defineProps({
                     </div>
 
                     <div>
-                        <Service :service="props.service" :message="props.message" />
+                        <Service :service="props.service" :statusWarrantyServices="statusWarrantyServices"
+                            :statusServices="statusServices" :message="props.message" />
                     </div>
                 </main>
             </div>

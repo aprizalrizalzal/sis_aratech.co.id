@@ -46,6 +46,7 @@ const deleteDeviceType = () => {
 };
 
 const closeModal = () => {
+    showingModelDeviceTypeUpdate.value = false;
     confirmingDeviceTypeDeletion.value = false;
 };
 
@@ -91,7 +92,9 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ deviceType.type_name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ deviceType.description }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ deviceType.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalDeviceTypeUpdate(deviceType)" class="m-2">Update
                         </SecondaryButton>
@@ -111,10 +114,11 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelDeviceTypeUpdate">
+    <Modal v-model:show="showingModelDeviceTypeUpdate" @close="closeModal">
         <div class="m-6">
-            <div class="flex justify-end">
-                <DangerButton @click="showingModelDeviceTypeUpdate = false">X</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">Update Device Type</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <DeviceTypeForm :deviceType="selectedDeviceType" />
         </div>
