@@ -121,7 +121,7 @@ const previousPage = () => {
     <Modal :show="showingModelCustomerUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Customer</span>
+                <span class="font-bold text-center w-full">Update Customer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CustomerForm :customer="selectedCustomer" />

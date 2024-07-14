@@ -118,7 +118,7 @@ const previousPage = () => {
     <Modal :show="showingModelCategorySparePartUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Category Spare Part</span>
+                <span class="font-bold text-center w-full">Update Category Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CategorySparePartForm :categorySparePart="selectedCategorySparePart" />

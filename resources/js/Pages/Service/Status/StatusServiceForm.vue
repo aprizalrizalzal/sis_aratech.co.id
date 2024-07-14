@@ -58,21 +58,22 @@ const submitForm = () => {
                     <InputLabel for="status" value="Status" />
                     <TextInput id="status" type="text" class="mt-1 block w-full" v-model="form.status"
                         placeholder="Status" required autofocus />
-                    <InputError class="mt-3" :message="form.errors.status" />
+                    <InputError class="mt-2" :message="form.errors.status" />
                 </div>
                 <div>
-                    <InputLabel class="mt-3" for="description" value="Description" />
+                    <InputLabel class="mt-2" for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />
-                    <InputError class="mt-3" :message="form.errors.description" />
+                    <InputError class="mt-2" :message="form.errors.description" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.statusService ? 'Update Status Service' : 'Add Status Service' }}
+                        {{ props.statusService ? 'Update Status Service' : 'Save Status Service' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.statusService ? 'Status Service update successfully!' : 'Status Service added successfully!' }}
+                        {{ props.statusService ? 'Status Service update successfully!' : 'Status Service added
+                        successfully!' }}
                     </span>
                 </div>
             </form>

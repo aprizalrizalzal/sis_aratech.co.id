@@ -141,7 +141,7 @@ const previousPage = () => {
     <Modal :show="showingModelFooterUpdateImage" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Image Footer</span>
+                <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <footerForm :footerId="selectedFooterId" />
@@ -151,7 +151,7 @@ const previousPage = () => {
     <Modal :show="showingModelFooterUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Footer</span>
+                <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <footerForm :footer="selectedFooter" />

@@ -65,27 +65,27 @@ const submitForm = () => {
                     <InputLabel for="name" value="Name" />
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
-                    <InputError class="mt-3" :message="form.errors.name" />
+                    <InputError class="mt-2" :message="form.errors.name" />
 
-                    <InputLabel class="mt-3" for="email" value="Email" />
+                    <InputLabel class="mt-2" for="email" value="Email" />
                     <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email"
                         placeholder="Email" required />
-                    <InputError class="mt-3" :message="form.errors.email" />
+                    <InputError class="mt-2" :message="form.errors.email" />
 
-                    <InputLabel class="mt-3" for="phone" value="Phone" />
+                    <InputLabel class="mt-2" for="phone" value="Phone" />
                     <TextInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" placeholder="Phone"
                         required />
-                    <InputError class="mt-3" :message="form.errors.phone" />
+                    <InputError class="mt-2" :message="form.errors.phone" />
 
-                    <InputLabel class="mt-3" for="address" value="Address" />
+                    <InputLabel class="mt-2" for="address" value="Address" />
                     <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address"
                         placeholder="Address" required />
-                    <InputError class="mt-3" :message="form.errors.address" />
+                    <InputError class="mt-2" :message="form.errors.address" />
 
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.customer ? 'Update Customer' : 'Add Customer' }}
+                        {{ props.customer ? 'Update Customer' : 'Save Customer' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.customer ? 'Customer update successfully!' : 'Customer added successfully!' }}

@@ -58,18 +58,18 @@ const submitForm = () => {
                     <InputLabel for="name" value="Name" />
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
-                    <InputError class="mt-3" :message="form.errors.name" />
+                    <InputError class="mt-2" :message="form.errors.name" />
                 </div>
                 <div>
-                    <InputLabel class="mt-3" for="description" value="Description" />
+                    <InputLabel class="mt-2" for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />
-                    <InputError class="mt-3" :message="form.errors.description" />
+                    <InputError class="mt-2" :message="form.errors.description" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.categorySparePart ? 'Update Category Spare Part' : 'Add Category Spare Part' }}
+                        {{ props.categorySparePart ? 'Update Category Spare Part' : 'Save Category Spare Part' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.categorySparePart ? 'Category update successfully!' : 'Category added successfully!' }}

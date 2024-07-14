@@ -117,7 +117,7 @@ const previousPage = () => {
     <Modal v-model:show="showingModelDeviceTypeUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Device Type</span>
+                <span class="font-bold text-center w-full">Update Device Type</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <DeviceTypeForm :deviceType="selectedDeviceType" />

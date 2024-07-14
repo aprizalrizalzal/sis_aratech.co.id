@@ -366,10 +366,10 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <Modal maxWidth="6xl" :show="showingModelServiceUpdate" @close="closeModal">
+    <Modal :show="showingModelServiceUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Service</span>
+                <span class="font-bold text-center w-full">Update Service</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice"

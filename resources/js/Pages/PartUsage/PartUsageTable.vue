@@ -354,7 +354,7 @@ const handlePrint = () => {
     <Modal :show="showingModelPartUsageUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Part Usage</span>
+                <span class="font-bold text-center w-full">Update Part Usage</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <PartUsageForm :partUsage="selectedPartUsage" :serviceDetails="serviceDetails" :spareParts="spareParts"

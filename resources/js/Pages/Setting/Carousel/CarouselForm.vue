@@ -52,20 +52,20 @@ const submitForm = () => {
         });
     } else if (!props.carousel) {
         form.post(route('store.carousel'), {
-        preserveScroll: true,
-        onSuccess: (response) => {
-            form.reset();
-            previewUrl.value = null;
-            uploadedImageUrl.value = response.image_url;
-        },
-        onError: (errors) => {
-            if (errors.image || errors.alt) {
-                alert('Carousel upload failed!');
-            } else {
-                console.error('An error occurred:', errors);
+            preserveScroll: true,
+            onSuccess: (response) => {
+                form.reset();
+                previewUrl.value = null;
+                uploadedImageUrl.value = response.image_url;
+            },
+            onError: (errors) => {
+                if (errors.image || errors.alt) {
+                    alert('Carousel upload failed!');
+                } else {
+                    console.error('An error occurred:', errors);
+                }
             }
-        }
-    });  
+        });
     } else {
         const carouselId = props.carousel.id;
         form.put(route('update.carousel', { id: carouselId }), {
@@ -97,7 +97,7 @@ const submitForm = () => {
                 <div v-if="!props.carouselId">
                     <InputLabel for="alt" value="Image Alt Text" />
                     <TextInput id="alt" type="text" v-model="form.alt" class="mt-1 block w-full"
-                        placeholder="Enter alt text" required autofocus/>
+                        placeholder="Enter alt text" required autofocus />
                     <InputError :message="form.errors.alt" />
                 </div>
                 <div v-if="previewUrl" class="mt-4">
@@ -106,7 +106,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.carousel ? 'Update Carousel' : 'Add Carousel' }}
+                        {{ props.carousel ? 'Update Carousel' : 'Save Carousel' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.carousel ? 'Carousel updated successfully!' : 'Carousel added successfully!' }}

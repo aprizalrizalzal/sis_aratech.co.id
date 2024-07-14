@@ -68,7 +68,7 @@ const closeModal = () => {
   <Modal :show="showModalAddHeader" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Header</span>
+                <span class="font-bold text-center w-full">Add Header</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <HeaderForm />
@@ -78,7 +78,7 @@ const closeModal = () => {
   <Modal :show="showModalAddCarousel" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Carousel</span>
+                <span class="font-bold text-center w-full">Add Carousel</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <CarouselForm />
@@ -88,7 +88,7 @@ const closeModal = () => {
   <Modal :show="showModalAddFooter" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Footer</span>
+                <span class="font-bold text-center w-full">Add Footer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <FooterForm />

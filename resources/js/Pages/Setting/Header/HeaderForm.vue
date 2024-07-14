@@ -116,7 +116,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.header ? 'Update Header' : 'Add Header' }}
+                        {{ props.header ? 'Update Header' : 'Save Header' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.header ? 'Header updated successfully!' : 'Header added successfully!' }}

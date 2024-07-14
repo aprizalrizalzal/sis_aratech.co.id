@@ -23,6 +23,7 @@ const assignRole = (role) => {
     form.post(route('assign.role'), {
         onSuccess: () => {
             form.reset('role');
+            emit('roleUpdated');
         },
         onError: (errors) => {
             console.error('An error occurred:', errors);
@@ -36,19 +37,24 @@ const removeRole = (role) => {
     form.delete(route('remove.role'), {
         onSuccess: () => {
             form.reset('role');
+            emit('roleUpdated');
         },
         onError: (errors) => {
             console.error('An error occurred:', errors);
         }
     });
 };
+
+const emit = defineEmits(['roleUpdated']);
 </script>
 
 <template>
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
-            <p class="flex justify-center gap-2">Silakan pilih peran yang ingin ditambahkan untuk pengguna ini:</p>
-            <div class="flex justify-center gap-2">
+            <p class="flex gap-2">Silakan pilih peran yang ingin ditambahkan untuk pengguna <span class="font-bold">#{{
+                props.user.name
+                    }}</span></p>
+            <div class="flex gap-2">
                 <PrimaryButton class="mt-3 mb-3" @click="assignRole('super-admin')">
                     Add #super-admin
                 </PrimaryButton>
@@ -60,11 +66,12 @@ const removeRole = (role) => {
                 </PrimaryButton>
             </div>
 
-            <p class="flex justify-center gap-2 mt-4">Peran yang dimiliki oleh pengguna ini:</p>
-            <div class="flex flex-wrap justify-center gap-2">
+            <p class="flex gap-2 mt-4">Peran yang dimiliki oleh pengguna<span class="font-bold">#{{ props.user.name
+                    }}</span></p>
+            <div class="flex flex-wrap gap-2">
                 <template v-for="role in getUserRoles(props.user)" :key="role.id">
                     <DangerButton class="mt-3 mb-3" @click="removeRole(role.name)">
-                        Hapus {{ role.name }}
+                        Delete #{{ role.name }}
                     </DangerButton>
                 </template>
             </div>

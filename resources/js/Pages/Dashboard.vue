@@ -596,7 +596,7 @@ const closeModal = () => {
   <Modal :show="showModalAddDeviceType" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Device Type</span>
+        <span class="font-bold text-center w-full">Add Device Type</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <DeviceTypeForm />
@@ -606,7 +606,7 @@ const closeModal = () => {
   <Modal :show="showModalAddSparePart" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Spare Part</span>
+        <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <SparePartForm :categorySpareParts="categorySpareParts" />
@@ -616,7 +616,7 @@ const closeModal = () => {
   <Modal :show="showModalAddCustomer" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Customer</span>
+        <span class="font-bold text-center w-full">Add Customer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <CustomerForm />
@@ -626,17 +626,17 @@ const closeModal = () => {
   <Modal :show="showModalAddDevice" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Device</span>
+        <span class="font-bold text-center w-full">Add Device</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <DeviceForm :deviceTypes="deviceTypes" />
     </div>
   </Modal>
 
-  <Modal maxWidth="6xl" :show="showModalAddService" @close="closeModal">
+  <Modal :show="showModalAddService" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Service</span>
+        <span class="font-bold text-center w-full">Add Service</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
@@ -647,7 +647,7 @@ const closeModal = () => {
   <Modal :show="showModalAddServiceDetail" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Service Detail</span>
+        <span class="font-bold text-center w-full">Add Service Detail</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices" />
@@ -657,7 +657,7 @@ const closeModal = () => {
   <Modal :show="showModalAddPartUsage" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-        <span class="font-bold">Add Part Usage</span>
+        <span class="font-bold text-center w-full">Add Part Usage</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" />

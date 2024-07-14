@@ -376,7 +376,7 @@ const handlePrint = () => {
     <Modal :show="showingModelServiceDetailUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Service Detail</span>
+                <span class="font-bold text-center w-full">Update Service Detail</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <ServiceDetailForm :serviceDetail="selectedServiceDetail" :statusServices="statusServices"

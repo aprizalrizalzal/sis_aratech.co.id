@@ -64,38 +64,29 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <InputLabel class="mt-3" for="status_service_id" value="Service Detail" />
-                <div class="flex items-center justify-between">
-                    <div v-if="props.partUsage" class="me-4 w-full">
-                        <span>{{
-                            props.serviceDetail.service_detail_code
-                            }}</span>
-                    </div>
-                    <DropdownSelect id="service_detail_id" optionProperty="service_detail_code" valueProperty="id"
-                        :options="serviceDetails" v-model="form.service_detail_id"
-                        placeholder="Select Service Detail Code" class="w-full" />
-                </div>
-                <InputError class="mt-3" :message="form.errors.service_detail_id" />
-                <InputLabel class="mt-3" for="status_service_id" value="Spare Part" />
-                <div class="flex items-center justify-between">
-                    <div v-if="props.partUsage" class="me-4 w-full">
-                        <span>{{
-                            props.partUsage.spare_part.name
-                            }}</span>
-                    </div>
-                    <DropdownSelect id="spare_part_id" optionProperty="name" valueProperty="id" :options="spareParts"
-                        v-model="form.spare_part_id" placeholder="Select Spare Part" class="w-full" />
-                </div>
-                <InputError class="mt-3" :message="form.errors.spare_part_id" />
                 <div>
-                    <InputLabel class="mt-3" for="quantity" value="Quantity" />
+                    <DropdownSelect id="service_detail_id" label="Service Detail" optionProperty="service_detail_code"
+                        valueProperty="id" :options="serviceDetails" v-model="form.service_detail_id"
+                        :placeholder='props.serviceDetail ? props.serviceDetail.service_detail_code : "Select Service Detail Code"'
+                        class="w-full" />
+                    <InputError class="mt-2" :message="form.errors.service_detail_id" />
+                </div>
+                <div>
+                    <DropdownSelect id="spare_part_id" label="Spare Part" optionProperty="name" valueProperty="id"
+                        :options="spareParts" v-model="form.spare_part_id"
+                        :placeholder='props.partUsage ? props.partUsage.spare_part.name : "Select Spare Part"'
+                        class="w-full" />
+                    <InputError class="mt-2" :message="form.errors.spare_part_id" />
+                </div>
+                <div>
+                    <InputLabel class="mt-2" for="quantity" value="Quantity" />
                     <TextInput id="quantity" type="text" class="mt-1 block w-full" v-model="form.quantity"
                         placeholder="Quantity" required autofocus />
-                    <InputError class="mt-3" :message="form.errors.quantity" />
+                    <InputError class="mt-2" :message="form.errors.quantity" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.partUsage ? 'Update Part Usage' : 'Add Part Usage' }}
+                        {{ props.partUsage ? 'Update Part Usage' : 'Save Part Usage' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.partUsage ? 'Part Usage update successfully!' : 'Part Usage added successfully!' }}

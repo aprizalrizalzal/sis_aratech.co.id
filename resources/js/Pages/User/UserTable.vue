@@ -128,10 +128,10 @@ const previousPage = () => {
     <Modal :show="showingModelUserUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update User</span>
+                <span class="font-bold text-center w-full">Update Role User</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <UserForm :user="selectedUser" />
+            <UserForm :user="selectedUser" @roleUpdated="closeModal" />
         </div>
     </Modal>
 
@@ -141,7 +141,7 @@ const previousPage = () => {
                 Are you sure you want to delete your User?
             </h2>
             <p class="mt-1 text-sm text-green-600">
-                Once your Service Detail is deleted, all of its resources and data will be permanently deleted.
+                Once your User is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>

@@ -117,7 +117,7 @@ const submitForm = () => {
                     <DropdownSelect id="type" label="Type" :options="typeOptions" optionProperty="name"
                         valueProperty="name" v-model="form.type"
                         :placeholder="props.footer ? props.footer.type : 'Select type'" />
-                    <InputError class="mt-3" :message="form.errors.type" />
+                    <InputError class="mt-2" :message="form.errors.type" />
                 </div>
 
                 <div v-if="!props.footerId">
@@ -155,7 +155,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.footer ? 'Update Footer' : 'Add Footer' }}
+                        {{ props.footer ? 'Update Footer' : 'Save Footer' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.footer ? 'Footer updated successfully!' : 'Footer added successfully!' }}

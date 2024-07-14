@@ -60,31 +60,28 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <InputLabel class="mt-3" for="device_type_id" value="Device Type" />
-                <div class="flex items-center justify-between">
-                    <div v-if="props.device" class="me-4 w-full">
-                        <span>{{ props.device.device_type.type_name }}</span>
-                    </div>
-                    <DropdownSelect id="device_type_id" optionProperty="type_name" valueProperty="id"
-                        :options="deviceTypes" v-model="form.device_type_id" placeholder="Select Device Type"
-                        class="w-full" />
-                </div>
-                <InputError class="mt-3" :message="form.errors.device_type_id" />
                 <div>
-                    <InputLabel class="mt-3" for="model" value="Model" />
+                    <DropdownSelect id="device_type_id" label="Device Type" optionProperty="type_name"
+                        valueProperty="id" :options="deviceTypes" v-model="form.device_type_id"
+                        :placeholder='props.device ? props.device.device_type.type_name : "Select Device Type"'
+                        class="w-full" />
+                    <InputError class="mt-2" :message="form.errors.device_type_id" />
+                </div>
+                <div>
+                    <InputLabel class="mt-2" for="model" value="Model" />
                     <TextInput id="model" type="text" class="mt-1 block w-full" v-model="form.model" placeholder="Model"
                         required autofocus />
-                    <InputError class="mt-3" :message="form.errors.model" />
+                    <InputError class="mt-2" :message="form.errors.model" />
                 </div>
                 <div>
-                    <InputLabel class="mt-3" for="serial_number" value="Serial Number" />
+                    <InputLabel class="mt-2" for="serial_number" value="Serial Number" />
                     <TextInput id="serial_number" type="text" class="mt-1 block w-full" v-model="form.serial_number"
                         placeholder="Serial Number" required />
-                    <InputError class="mt-3" :message="form.errors.serial_number" />
+                    <InputError class="mt-2" :message="form.errors.serial_number" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.device ? 'Update Device' : 'Add Device' }}
+                        {{ props.device ? 'Update Device' : 'Save Device' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.device ? 'Device update successfully!' : 'Device added successfully!' }}

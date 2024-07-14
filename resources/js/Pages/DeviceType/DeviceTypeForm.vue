@@ -58,18 +58,18 @@ const submitForm = () => {
                     <InputLabel for="type_name" value="Type Name" />
                     <TextInput id="type_name" type="text" class="mt-1 block w-full" v-model="form.type_name"
                         placeholder="Type Name" required autofocus />
-                    <InputError class="mt-3" :message="form.errors.type_name" />
+                    <InputError class="mt-2" :message="form.errors.type_name" />
                 </div>
                 <div>
-                    <InputLabel class="mt-3" for="description" value="Description" />
+                    <InputLabel class="mt-2" for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />
-                    <InputError class="mt-3" :message="form.errors.description" />
+                    <InputError class="mt-2" :message="form.errors.description" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.deviceType ? 'Update Device Type' : 'Add Device Type' }}
+                        {{ props.deviceType ? 'Update Device Type' : 'Save Device Type' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.deviceType ? 'Device Type update successfully!' : 'Device Type added successfully!' }}

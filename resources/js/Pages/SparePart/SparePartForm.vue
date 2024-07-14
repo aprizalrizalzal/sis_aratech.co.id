@@ -105,35 +105,30 @@ const submitForm = () => {
                     <InputError :message="form.errors.image" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-3" for="name" value="Name" />
+                    <InputLabel class="mt-2" for="name" value="Name" />
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
-                    <InputError class="mt-3" :message="form.errors.name" />
+                    <InputError class="mt-2" :message="form.errors.name" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-3" for="category_spare_part_id" value="Category" />
-                    <div class="flex items-center justify-between">
-                        <div v-if="props.sparePart" class="me-4 w-full">
-                            <span>{{ props.sparePart.category_spare_part.name }}</span>
-                        </div>
-                        <DropdownSelect id="category_spare_part_id" optionProperty="name" valueProperty="id"
-                            :options="categorySpareParts" v-model="form.category_spare_part_id"
-                            placeholder="Select Category" class="w-full" />
-                        <InputError class="mt-3" :message="form.errors.category_spare_part_id" />
-                    </div>
+                    <DropdownSelect id="category_spare_part_id" label="Category" optionProperty="name"
+                        valueProperty="id" :options="categorySpareParts" v-model="form.category_spare_part_id"
+                        :placeholder='props.sparePart ? props.sparePart.category_spare_part.name : "Select Category"'
+                        class="w-full" />
+                    <InputError class="mt-2" :message="form.errors.category_spare_part_id" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-3" for="description" value="Description" />
+                    <InputLabel class="mt-2" for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />
-                    <InputError class="mt-3" :message="form.errors.description" />
+                    <InputError class="mt-2" :message="form.errors.description" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-3" for="price" value="Price" />
+                    <InputLabel class="mt-2" for="price" value="Price" />
                     <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
                         required />
-                    <InputError class="mt-3" :message="form.errors.price" />
+                    <InputError class="mt-2" :message="form.errors.price" />
                 </div>
                 <div v-if="previewUrl" class="my-4">
                     <p class="font-semibold">Preview:</p>
@@ -141,7 +136,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.sparePart ? 'Update Spare Part' : 'Add Spare Part' }}
+                        {{ props.sparePart ? 'Update Spare Part' : 'Save Spare Part' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.sparePart ? 'Spare Part updated successfully!' : 'Spare Part added successfully!' }}

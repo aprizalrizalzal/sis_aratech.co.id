@@ -130,7 +130,7 @@ const previousPage = () => {
     <Modal :show="showingModelCarouselUpdateImage" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Carousel Image</span>
+                <span class="font-bold text-center w-full">Update Carousel Image</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CarouselForm :carouselId="selectedCarouselId" />
@@ -140,7 +140,7 @@ const previousPage = () => {
     <Modal :show="showingModelCarouselUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Carousel</span>
+                <span class="font-bold text-center w-full">Update Carousel</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <CarouselForm :carousel="selectedCarousel" />

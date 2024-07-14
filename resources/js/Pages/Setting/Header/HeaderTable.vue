@@ -136,7 +136,7 @@ const previousPage = () => {
     <Modal :show="showingModelHeaderUpdateImage" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Image Header</span>
+                <span class="font-bold text-center w-full">Update Image Header</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <HeaderForm :headerId="selectedHeaderId" />
@@ -146,7 +146,7 @@ const previousPage = () => {
     <Modal :show="showingModelHeaderUpdate" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold">Update Header</span>
+                <span class="font-bold text-center w-full">Update Header</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <HeaderForm :header="selectedHeader" />
