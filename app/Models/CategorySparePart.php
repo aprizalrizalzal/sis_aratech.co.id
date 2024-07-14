@@ -13,7 +13,7 @@ class CategorySparePart extends Model
     protected $fillable = ['name', 'description'];
 
     // Relasi ke SparePart
-    public function sparePart()
+    public function spareParts()
     {
         return $this->hasMany(SparePart::class);
     }

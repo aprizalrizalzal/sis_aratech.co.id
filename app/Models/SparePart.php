@@ -12,7 +12,7 @@ class SparePart extends Model
 
     protected $fillable = ['name', 'image_path', 'category_spare_part_id', 'description', 'price'];
 
-    // Relasi ke SparePart
+    // Relasi ke CategorySparePart
     public function categorySparePart()
     {
         return $this->belongsTo(CategorySparePart::class);

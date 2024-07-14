@@ -13,7 +13,7 @@ class StatusWarrantyService extends Model
     protected $fillable = ['status', 'description'];
 
     // Relasi ke Service
-    public function service()
+    public function services()
     {
         return $this->hasMany(Service::class);
     }
