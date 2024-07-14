@@ -7,6 +7,8 @@ import { ref, computed } from 'vue';
 
 const props = defineProps({
   partUsages: Array,
+  serviceDetails: Array,
+  spareParts: Array,
 });
 
 const searchQuery = ref('');
@@ -42,7 +44,8 @@ const filteredPartUsages = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
-            <PartUsageTable :partUsages="filteredPartUsages" />
+            <PartUsageTable :partUsages="filteredPartUsages" :serviceDetails="serviceDetails"
+              :spareParts="spareParts" />
           </div>
         </div>
       </div>

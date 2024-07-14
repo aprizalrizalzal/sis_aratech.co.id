@@ -15,7 +15,7 @@ const form = useForm({
 const props = defineProps({
     serviceDetails: Array,
     spareParts: Array,
-    
+
     partUsage: Object,
     serviceDetail: Object,
     sparePart: Object,
@@ -64,17 +64,29 @@ const submitForm = () => {
     <div class="relative flex w-full flex-1 items-stretch">
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
-                <div v-if="!props.serviceDetail">
-                    <DropdownSelect id="service_detail_id" label="Service Detail" optionProperty="service_detail_code"
-                        valueProperty="id" :options="serviceDetails" v-model="form.service_detail_id"
-                        placeholder="Select Service Detail Code" />
-                        <InputError class="mt-3" :message="form.errors.service_detail_id" />
+                <InputLabel class="mt-3" for="status_service_id" value="Service Detail" />
+                <div class="flex items-center justify-between">
+                    <div v-if="props.partUsage" class="me-4 w-full">
+                        <span>{{
+                            props.serviceDetail.service_detail_code
+                            }}</span>
                     </div>
-                <div v-if="!props.sparePart">
-                    <DropdownSelect id="spare_part_id" label="Spare Part" optionProperty="name" valueProperty="id"
-                        :options="spareParts" v-model="form.spare_part_id" placeholder="Select Spare Part" />
-                        <InputError class="mt-3" :message="form.errors.spare_part_id" />
+                    <DropdownSelect id="service_detail_id" optionProperty="service_detail_code" valueProperty="id"
+                        :options="serviceDetails" v-model="form.service_detail_id"
+                        placeholder="Select Service Detail Code" class="w-full" />
+                </div>
+                <InputError class="mt-3" :message="form.errors.service_detail_id" />
+                <InputLabel class="mt-3" for="status_service_id" value="Spare Part" />
+                <div class="flex items-center justify-between">
+                    <div v-if="props.partUsage" class="me-4 w-full">
+                        <span>{{
+                            props.partUsage.spare_part.name
+                            }}</span>
                     </div>
+                    <DropdownSelect id="spare_part_id" optionProperty="name" valueProperty="id" :options="spareParts"
+                        v-model="form.spare_part_id" placeholder="Select Spare Part" class="w-full" />
+                </div>
+                <InputError class="mt-3" :message="form.errors.spare_part_id" />
                 <div>
                     <InputLabel class="mt-3" for="quantity" value="Quantity" />
                     <TextInput id="quantity" type="text" class="mt-1 block w-full" v-model="form.quantity"

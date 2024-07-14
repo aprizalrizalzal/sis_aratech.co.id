@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PartUsage;
+use App\Models\ServiceDetail;
+use App\Models\SparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -11,10 +13,14 @@ class PartUsageController extends Controller
 {
     public function show()
     {
+        $spareParts = SparePart::all();
+        $serviceDetails = ServiceDetail::all();
         $partUsages = PartUsage::with('serviceDetail', 'sparePart')->get();
 
         return Inertia::render('PartUsage/PartUsages', [
-            'partUsages' => $partUsages
+            'partUsages' => $partUsages,
+            'serviceDetails' => $serviceDetails,
+            'spareParts' => $spareParts
         ]);
     }
 

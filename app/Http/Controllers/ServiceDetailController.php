@@ -21,7 +21,7 @@ class ServiceDetailController extends Controller
     {
         $services = Service::all();
         $statusServices = StatusService::all();
-        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusService')->get();
+        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusWarrantyService', 'service.statusService')->get();
 
         return Inertia::render('ServiceDetail/ServiceDetails', [
             'serviceDetails' => $serviceDetails,
@@ -113,7 +113,7 @@ class ServiceDetailController extends Controller
     public function print($service_detail_code)
     {
         $serviceDetail = ServiceDetail::where('service_detail_code', $service_detail_code)
-            ->with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusService')
+            ->with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusWarrantyService', 'service.statusService')
             ->firstOrFail();
 
         $partUsages = PartUsage::with('sparePart')->where('service_detail_id', $serviceDetail->id)->get();

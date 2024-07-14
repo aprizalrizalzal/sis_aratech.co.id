@@ -16,6 +16,8 @@ const page = usePage();
 
 const props = defineProps({
     partUsages: Array,
+    serviceDetails: Array,
+    spareParts: Array,
 });
 
 const formatCurrency = (value) => {
@@ -355,8 +357,8 @@ const handlePrint = () => {
                 <span class="font-bold">Update Part Usage</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <PartUsageForm :partUsage="selectedPartUsage" :serviceDetail="selectedPartUsage.service_detail"
-                :sparePart="selectedPartUsage.spare_part" />
+            <PartUsageForm :partUsage="selectedPartUsage" :serviceDetails="serviceDetails" :spareParts="spareParts"
+                :serviceDetail="selectedPartUsage.service_detail" :sparePart="selectedPartUsage.spare_part" />
         </div>
     </Modal>
     <Modal :show="confirmingPartUsageDeletion" @close="closeModal">

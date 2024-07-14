@@ -13,7 +13,7 @@ const userId = ref(auth.user.id);
 const form = useForm({
     user_id: userId.value,
     service_id: '',
-    status: '',
+    status_service_id: '',
     repair_description: '',
     cost: '',
     notes: '',
@@ -36,17 +36,16 @@ const props = defineProps({
 const serviceStatus = ref('');
 
 const updateServiceStatus = (serviceId) => {
-    if (props.services) {
+    if (!props.serviceDetail) {
         const selectedService = props.services.find(service => service.id === serviceId);
         if (selectedService) {
-            serviceStatus.value = selectedService.status;
-            form.status = selectedService.status;
+            serviceStatus.value = selectedService.status_service.status;
+            form.status_service_id = selectedService.status_service_id;
         }
     } else {
-        serviceStatus.value = props.service.status;
-        form.status = props.service.status;
+        serviceStatus.value = props.serviceDetail.service.status_service.status;
+        form.status_service_id = props.serviceDetail.service.status_service_id;
     }
-
 };
 
 if (props.serviceDetail) {
@@ -113,26 +112,24 @@ const submitForm = () => {
                 </div>
                 <InputLabel class="mt-3" for="service_id" value="Service Code" />
                 <div class="flex items-center justify-between">
-                    <div v-if="props.serviceDetail" class="me-4 w-full">
-                        <span v-if="form.service_id">{{ props.service.service_code }}</span>
+                    <div v-if="props.serviceDetail && form.service_id" class="me-4 w-full">
+                        <span>{{ props.service.service_code }}</span>
                     </div>
                     <DropdownSelect id="service_id" optionProperty="service_code" valueProperty="id" :options="services"
                         v-model="form.service_id" placeholder="Service Code" class="w-full" />
-                    <InputError class="mt-3" :message="form.errors.service_id" />
                 </div>
+                <InputError class="mt-3" :message="form.errors.service_id" />
                 <div v-if="form.service_id">
                     <InputLabel class="mt-3" for="status_service_id" value="Status" />
                     <div class="flex items-center justify-between">
-                        <div v-if="form.service_id" class="me-4 w-full">
-                            <span v-if="form.service_id">{{
-                                props.serviceDetail.service.status_service.status
-                                }}</span>
+                        <div class="me-4 w-full">
+                            <span>{{ serviceStatus }}</span>
                         </div>
                         <DropdownSelect id="status_service_id" optionProperty="status" valueProperty="id"
                             :options="statusServices" v-model="form.status_service_id" placeholder="Select Status"
                             class="w-full" />
-                        <InputError class="mt-3" :message="form.errors.status_service_id" />
                     </div>
+                    <InputError class="mt-3" :message="form.errors.status_service_id" />
                 </div>
                 <div>
                     <InputLabel class="mt-3" for="repair_description" value="Repair Description" />

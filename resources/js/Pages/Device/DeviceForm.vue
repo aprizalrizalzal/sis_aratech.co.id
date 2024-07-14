@@ -68,8 +68,8 @@ const submitForm = () => {
                     <DropdownSelect id="device_type_id" optionProperty="type_name" valueProperty="id"
                         :options="deviceTypes" v-model="form.device_type_id" placeholder="Select Device Type"
                         class="w-full" />
-                    <InputError class="mt-3" :message="form.errors.device_type_id" />
                 </div>
+                <InputError class="mt-3" :message="form.errors.device_type_id" />
                 <div>
                     <InputLabel class="mt-3" for="model" value="Model" />
                     <TextInput id="model" type="text" class="mt-1 block w-full" v-model="form.model" placeholder="Model"
