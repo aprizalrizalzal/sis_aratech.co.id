@@ -14,8 +14,8 @@ return new class extends Migration
 
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('platform');
+            $table->foreignId('type_footer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('platform_footer_id')->constrained()->onDelete('cascade');
             $table->string('image_path');
             $table->string('url');
             $table->string('username');

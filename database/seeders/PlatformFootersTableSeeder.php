@@ -37,6 +37,8 @@ class PlatformFootersTableSeeder extends Seeder
             ['platform' => 'Reddit', 'description' => '-'],
             ['platform' => 'GitHub', 'description' => '-'],
 
+            ['platform' => 'Me', 'description' => '-'],
+
             // Platform Bisnis
             ['platform' => 'Yelp', 'description' => '-'],
             ['platform' => 'Glassdoor', 'description' => '-'],

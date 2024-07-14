@@ -10,6 +10,9 @@ import EditIcon from '@/Components/Icon/EditIcon.vue';
 
 const props = defineProps({
     footers: Array,
+
+    typeFooters: Array,
+    platformFooters: Array,
 });
 
 const showingModelFooterUpdateImage = ref(false);
@@ -105,15 +108,16 @@ const previousPage = () => {
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
-                            <img :src="`${footer.image_path}`" :alt="footer.type"
+                            <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
                                 class="w-16 h-16 object-cover rounded-md mx-2" />
                             <PrimaryButton @click="showModalFooterUpdateImage(footer.id)">
                                 <EditIcon />
                             </PrimaryButton>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.type }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.platform }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.type_footer.type }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.platform_footer.platform }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.url }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.username }}</td>
                     <td
@@ -144,7 +148,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <footerForm :footerId="selectedFooterId" />
+            <FooterForm :footerId="selectedFooterId" />
         </div>
     </Modal>
 
@@ -154,7 +158,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <footerForm :footer="selectedFooter" />
+            <FooterForm :footer="selectedFooter" :typeFooters="typeFooters" :platformFooters="platformFooters" />
         </div>
     </Modal>
 

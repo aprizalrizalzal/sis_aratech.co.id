@@ -20,7 +20,7 @@ class ShareInertiaData
     {
         Inertia::share([
             'headers' => fn () => Header::all(),
-            'footers' => fn () => Footer::all(),
+            'footers' => fn () => Footer::with('typeFooter', 'platformFooter')->get(),
         ]);
 
         return $next($request);

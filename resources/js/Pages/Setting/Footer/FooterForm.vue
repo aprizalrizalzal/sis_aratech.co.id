@@ -7,31 +7,27 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import DropdownSelect from '@/Components/DropdownSelect.vue';
 
+const props = defineProps({
+    typeFooters: Array,
+    platformFooters: Array,
+
+    footerId: Number,
+    footer: Object,
+});
+
 const form = useForm({
     image: null,
-    type: '',
-    platform: '',
+    type_footer_id: '',
+    platform_footer_id: '',
     url: '',
     username: '',
     value: '',
 });
 
-const typeOptions = ref([
-    { id: '1', name: 'App Download' },
-    { id: '2', name: 'Contact' },
-    { id: '3', name: 'Service' },
-    { id: '4', name: 'Social Media' },
-]);
-
-const props = defineProps({
-    footerId: Number,
-    footer: Object,
-});
-
 if (props.footer) {
     form.image_path = props.footer.image_path;
-    form.type = props.footer.type;
-    form.platform = props.footer.platform;
+    form.type_footer_id = props.footer.type_footer_id;
+    form.platform_footer_id = props.footer.platform_footer_id;
     form.url = props.footer.url;
     form.username = props.footer.username;
     form.value = props.footer.value;
@@ -75,7 +71,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.type || errors.platform || errors.url || errors.username || errors.value) {
+                if (errors.image || errors.type_footer_id || errors.platform_footer_id || errors.url || errors.username || errors.value) {
                     alert('upload failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -90,7 +86,7 @@ const submitForm = () => {
                 form.data();
             },
             onError: (errors) => {
-                if (errors.type || errors.platform || errors.url || errors.username || errors.value) {
+                if (errors.type_footer_id || errors.platform_footer_id || errors.url || errors.username || errors.value) {
                     alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -113,18 +109,17 @@ const submitForm = () => {
                     <InputError :message="form.errors.image" />
                 </div>
                 <div v-if="!props.footerId">
-                    <DropdownSelect id="type" label="Type" :options="typeOptions" optionProperty="name"
-                        valueProperty="name" v-model="form.type"
-                        :placeholder="props.footer ? props.footer.type : 'Select type'" />
-                    <InputError class="mt-2" :message="form.errors.type" />
+                    <DropdownSelect id="type_footer_id" label="Type" :options="typeFooters" optionProperty="type"
+                        valueProperty="id" v-model="form.type_footer_id"
+                        :placeholder="props.footer ? props.footer.type_footer.type : 'Select Type'" />
+                    <InputError class="mt-2" :message="form.errors.type_footer_id" />
                 </div>
 
                 <div v-if="!props.footerId">
-                    <InputLabel for="platform" value="Platform" />
-                    <TextInput id="platform" type="text" v-model="form.platform" class="mt-1 block w-full"
-                        placeholder="Email, Phone, Facebook, Instagram, etc..." required />
-                    <InputError :message="form.errors.platform" />
-                    <p class="text-yellow-900 text-sm mt-2 italic">Enter Email or Phone for the Contact type.</p>
+                    <DropdownSelect id="platform_footer_id" label="Type" :options="platformFooters"
+                        optionProperty="platform" valueProperty="id" v-model="form.platform_footer_id"
+                        :placeholder="props.footer ? props.footer.platform_footer.platform : 'Select Platform'" />
+                    <InputError class="mt-2" :message="form.errors.platform_footer_id" />
                 </div>
 
                 <div v-if="!props.footerId">

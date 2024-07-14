@@ -13,7 +13,9 @@ import HeaderTable from './Header/HeaderTable.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const props = defineProps({
-  carousels: Array
+  carousels: Array,
+  typeFooters: Array,
+  platformFooters: Array,
 });
 
 const showModalAddHeader = ref(false);
@@ -55,7 +57,7 @@ const closeModal = () => {
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
           <h2 class="font-bold my-4">Setting Footer</h2>
-          <FooterTable :footers="$page.props.footers" />
+          <FooterTable :footers="$page.props.footers" :typeFooters="typeFooters" :platformFooters="platformFooters" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddFooter = true" class="w-full">Add Footer
             </SecondaryButton>
@@ -68,7 +70,7 @@ const closeModal = () => {
   <Modal :show="showModalAddHeader" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-                <span class="font-bold text-center w-full">Add Header</span>
+        <span class="font-bold text-center w-full">Add Header</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <HeaderForm />
@@ -78,7 +80,7 @@ const closeModal = () => {
   <Modal :show="showModalAddCarousel" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-                <span class="font-bold text-center w-full">Add Carousel</span>
+        <span class="font-bold text-center w-full">Add Carousel</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <CarouselForm />
@@ -88,10 +90,10 @@ const closeModal = () => {
   <Modal :show="showModalAddFooter" @close="closeModal">
     <div class="m-6">
       <div class="flex justify-between items-center">
-                <span class="font-bold text-center w-full">Add Footer</span>
+        <span class="font-bold text-center w-full">Add Footer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <FooterForm />
+      <FooterForm :typeFooters="typeFooters" :platformFooters="platformFooters" />
     </div>
   </Modal>
 </template>

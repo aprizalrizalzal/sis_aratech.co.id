@@ -13,8 +13,8 @@ class FooterController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
-            'type' => 'required|string|max:255',
-            'platform' => 'required|string',
+            'type_footer_id' => 'required|exists:type_footers,id',
+            'platform_footer_id' => 'required|exists:platform_footers,id',
             'url' => 'required|string',
             'username' => 'required|string',
             'value' => 'required|string',
@@ -31,8 +31,8 @@ class FooterController extends Controller
 
         Footer::create([
             'image_path' => $imagePath,
-            'type' => $request->type,
-            'platform' => $request->platform,
+            'type_footer_id' => $request->type_footer_id,
+            'platform_footer_id' => $request->platform_footer_id,
             'url' => $request->url,
             'username' => $request->username,
             'value' => $request->value,
@@ -69,8 +69,8 @@ class FooterController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:footers,id',
-            'type' => 'required|string|max:255',
-            'platform' => 'required|string',
+            'type_footer_id' => 'required|exists:type_footers,id',
+            'platform_footer_id' => 'required|exists:platform_footers,id',
             'url' => 'required|string',
             'username' => 'required|string',
             'value' => 'required|string',
@@ -79,8 +79,8 @@ class FooterController extends Controller
         $footer = Footer::findOrFail($request->id);
 
         $footer->update([
-            'type' => $request->type,
-            'platform' => $request->platform,
+            'type_footer_id' => $request->type_footer_id,
+            'platform_footer_id' => $request->platform_footer_id,
             'url' => $request->url,
             'username' => $request->username,
             'value' => $request->value,

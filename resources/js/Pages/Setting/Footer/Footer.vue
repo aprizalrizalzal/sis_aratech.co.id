@@ -6,7 +6,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 const footers = usePage().props.footers;
 
 const contactFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'Contact');
+    return footers.filter(footer => footer.type_footer.type === 'Contact');
 });
 
 const getHref = (footer) => {
@@ -20,15 +20,15 @@ const getHref = (footer) => {
 }
 
 const socialMediaFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'Social Media');
+    return footers.filter(footer => footer.type_footer.type === 'Social Media');
 });
 
 const serviceFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'Service');
+    return footers.filter(footer => footer.type_footer.type === 'Service');
 });
 
 const appDownloadFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'App Download');
+    return footers.filter(footer => footer.type_footer.type === 'App Download');
 });
 
 const currentYear = computed(() => {
