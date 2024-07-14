@@ -61,7 +61,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image) {
-                    alert('Footer update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -77,7 +77,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image || errors.type || errors.platform || errors.url || errors.username || errors.value) {
-                    alert('Footer upload failed!');
+                    alert('upload failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -92,7 +92,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.type || errors.platform || errors.url || errors.username || errors.value) {
-                    alert('Footer update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -155,10 +155,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.footer ? 'Update Footer' : 'Save Footer' }}
+                        {{ props.footer ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.footer ? 'Footer updated successfully!' : 'Footer added successfully!' }}
+                        {{ props.footer ? 'updated successfully!' : 'added successfully!' }}
                     </span>
                 </div>
             </form>

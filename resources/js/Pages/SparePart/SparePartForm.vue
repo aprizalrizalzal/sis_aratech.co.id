@@ -53,7 +53,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image) {
-                    alert('Spare part image update failed!');
+                    alert('image update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -69,7 +69,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image || errors.name || errors.category_spare_part_id || errors.description || errors.price) {
-                    alert('Spare part addition failed!');
+                    alert('addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -84,7 +84,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.name || errors.category_spare_part_id || errors.description || errors.price) {
-                    alert('Spare part update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -136,10 +136,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.sparePart ? 'Update Spare Part' : 'Save Spare Part' }}
+                        {{ props.sparePart ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.sparePart ? 'Spare Part updated successfully!' : 'Spare Part added successfully!' }}
+                        {{ props.sparePart ? 'updated successfully!' : 'added successfully!' }}
                     </span>
                 </div>
             </form>

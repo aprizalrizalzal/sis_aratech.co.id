@@ -168,7 +168,7 @@ const previousPage = () => {
 
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="deleteheader">
-                    Delete header
+                    Delete
                 </DangerButton>
             </div>
         </div>

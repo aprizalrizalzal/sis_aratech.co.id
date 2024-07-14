@@ -26,7 +26,7 @@ const submitForm = () => {
             onSuccess: () => form.reset(),
             onError: (errors) => {
                 if (errors.status) {
-                    alert('Status Warranty Service addition failed!');
+                    alert('addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -39,7 +39,7 @@ const submitForm = () => {
             onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.status) {
-                    alert('Status Warranty Service update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -69,12 +69,14 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.statusWarrantyService ? 'Update Status Warranty Service' : 'Save Status Warranty
-                        Service' }}
+                        {{
+                            props.statusWarrantyService ? 'Update' : 'Save'
+                        }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.statusWarrantyService ? 'Status Warranty Service update successfully!' : 'Status
-                        Warranty Service added successfully!' }}
+                        {{
+                            props.statusWarrantyService ? 'update successfully!' : 'added successfully!'
+                        }}
                     </span>
                 </div>
             </form>

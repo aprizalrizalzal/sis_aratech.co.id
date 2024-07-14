@@ -44,7 +44,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image) {
-                    alert('Carousel update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -60,7 +60,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image || errors.alt) {
-                    alert('Carousel upload failed!');
+                    alert('upload failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -75,7 +75,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.alt) {
-                    alert('Carousel update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -106,10 +106,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.carousel ? 'Update Carousel' : 'Save Carousel' }}
+                        {{ props.carousel ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.carousel ? 'Carousel updated successfully!' : 'Carousel added successfully!' }}
+                        {{ props.carousel ? 'updated successfully!' : 'added successfully!' }}
                     </span>
                 </div>
             </form>

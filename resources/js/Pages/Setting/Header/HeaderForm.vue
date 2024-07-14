@@ -46,7 +46,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image) {
-                    alert('Header update image failed!');
+                    alert('update image failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -62,7 +62,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.image || errors.company || errors.description) {
-                    alert('Header upload failed!');
+                    alert('upload failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -77,7 +77,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.company || errors.description) {
-                    alert('Header update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -116,10 +116,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
-                        {{ props.header ? 'Update Header' : 'Save Header' }}
+                        {{ props.header ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.header ? 'Header updated successfully!' : 'Header added successfully!' }}
+                        {{ props.header ? 'updated successfully!' : 'added successfully!' }}
                     </span>
                 </div>
             </form>

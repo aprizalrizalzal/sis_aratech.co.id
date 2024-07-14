@@ -26,7 +26,7 @@ const submitForm = () => {
             onSuccess: () => form.reset(),
             onError: (errors) => {
                 if (errors.name) {
-                    alert('Category addition failed!');
+                    alert('addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -39,7 +39,7 @@ const submitForm = () => {
             onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.name) {
-                    alert('Category update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -69,10 +69,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.categorySparePart ? 'Update Category Spare Part' : 'Save Category Spare Part' }}
+                        {{ props.categorySparePart ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.categorySparePart ? 'Category update successfully!' : 'Category added successfully!' }}
+                        {{ props.categorySparePart ? 'update successfully!' : 'added successfully!' }}
                     </span>
                 </div>
             </form>

@@ -108,7 +108,7 @@ const previousPage = () => {
                         <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalAssignRoles(user)" class="m-2">Assign Roles </SecondaryButton>
+                        <SecondaryButton @click="showModalAssignRoles(user)" class="m-2">Assign Roles</SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete</DangerButton>
@@ -146,7 +146,7 @@ const previousPage = () => {
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="deleteUser">
-                    Delete User
+                    Delete
                 </DangerButton>
             </div>
         </div>

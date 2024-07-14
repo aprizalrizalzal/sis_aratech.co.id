@@ -23,15 +23,16 @@ const filteredStatusWarrantyServices = computed(() => {
 
 <template>
 
-  <Head title="Status Warranty Service" />
+  <Head title="Status Warranty" />
   <AuthenticatedLayout>
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Status Warranty Service</h2>
+          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Status Warranty
+          </h2>
         </div>
         <div class="flex w-full items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for status" />
         </div>
       </div>
     </template>
@@ -41,7 +42,7 @@ const filteredStatusWarrantyServices = computed(() => {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
-            <StatusWarrantyServiceTable :statusWarrantyService="filteredStatusWarrantyServices" />
+            <StatusWarrantyServiceTable :statusWarrantyServices="filteredStatusWarrantyServices" />
           </div>
         </div>
       </div>

@@ -138,7 +138,7 @@ const previousPage = () => {
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="deleteStatusService">
-                    Delete Status Service
+                    Delete
                 </DangerButton>
             </div>
         </div>

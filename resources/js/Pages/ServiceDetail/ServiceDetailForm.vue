@@ -75,7 +75,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
-                    alert('Service detail addition failed!');
+                    alert('addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
                     alert(`${errorMessages}`);
@@ -89,7 +89,7 @@ const submitForm = () => {
             onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
-                    alert('Service detail update failed!');
+                    alert('update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
                     alert(`${errorMessages}`);
@@ -144,10 +144,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.user ? 'Update Service Detail' : 'Save Service Detail' }}
+                        {{ props.user ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.service ? 'Service Detail update successfully!' : 'Service Detail added successfully!'
+                        {{ props.service ? 'update successfully!' : 'added successfully!'
                         }}
                     </span>
                 </div>

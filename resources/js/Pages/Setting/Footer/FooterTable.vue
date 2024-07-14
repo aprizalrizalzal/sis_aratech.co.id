@@ -173,7 +173,7 @@ const previousPage = () => {
 
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="deleteFooter">
-                    Delete footer
+                    Delete
                 </DangerButton>
             </div>
         </div>

@@ -60,7 +60,7 @@ const submitForm = () => {
             },
             onError: (errors) => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
-                    alert('Service addition failed!');
+                    alert('addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -73,7 +73,7 @@ const submitForm = () => {
             onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
-                    alert('Service update failed!');
+                    alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
                 }
@@ -147,10 +147,10 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.service ? 'Update Service' : 'Save Service' }}
+                        {{ props.service ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.service ? 'Service update successfully!' : 'Service added successfully!' }}
+                        {{ props.service ? 'update successfully!' : 'added successfully!' }}
                     </span>
                 </div>
             </form>

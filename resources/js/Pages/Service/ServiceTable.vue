@@ -392,7 +392,7 @@ const handlePrint = () => {
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="deleteService">
-                    Delete Service
+                    Delete
                 </DangerButton>
             </div>
         </div>
