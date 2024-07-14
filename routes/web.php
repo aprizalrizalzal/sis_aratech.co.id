@@ -40,8 +40,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/user', [UserController::class, 'destroy'])->name('destroy.user');
 
         // RoleController
-        Route::post('/assign-role', [RoleController::class, 'assignRoles'])->name('assign.role');
-        Route::delete('/roles/remove', [RoleController::class, 'removeRoles'])->name('remove.role');
+        Route::post('/assign-roles', [RoleController::class, 'assignRoles'])->name('assign.roles');
+        Route::delete('/roles/remove', [RoleController::class, 'removeRoles'])->name('remove.roles');
 
         // DeviceTypeController
         Route::get('/device-types', [DeviceTypeController::class, 'show'])->name('show.device.types');

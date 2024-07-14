@@ -17,13 +17,12 @@ const getUserRoles = (user) => {
     return user.roles.length > 0 ? user.roles : [{ id: 'default', name: 'customer' }];
 };
 
-const assignRole = (role) => {
+const assignRoles = (role) => {
     form.role = role;
     form.email = props.user.email;
-    form.post(route('assign.role'), {
+    form.post(route('assign.roles'), {
         onSuccess: () => {
-            form.reset('role');
-            emit('roleUpdated');
+            emit('assignRoles');
         },
         onError: (errors) => {
             console.error('An error occurred:', errors);
@@ -34,10 +33,9 @@ const assignRole = (role) => {
 const removeRole = (role) => {
     form.role = role;
     form.email = props.user.email;
-    form.delete(route('remove.role'), {
+    form.delete(route('remove.roles'), {
         onSuccess: () => {
-            form.reset('role');
-            emit('roleUpdated');
+            emit('assignRoles');
         },
         onError: (errors) => {
             console.error('An error occurred:', errors);
@@ -45,33 +43,33 @@ const removeRole = (role) => {
     });
 };
 
-const emit = defineEmits(['roleUpdated']);
+const emit = defineEmits(['assignRoles']);
 </script>
 
 <template>
     <div class="relative flex w-full flex-1 items-stretch">
-        <div class="w-full">
-            <p class="flex gap-2">Silakan pilih peran yang ingin ditambahkan untuk pengguna <span class="font-bold">#{{
-                props.user.name
+        <div class="mt-4 w-full">
+            <p class="flex gap-2">Silakan pilih peran yang ingin ditambahkan atau dihapus untuk pengguna <span
+                    class="font-bold">#{{
+                        props.user.name
                     }}</span></p>
             <div class="flex gap-2">
-                <PrimaryButton class="mt-3 mb-3" @click="assignRole('super-admin')">
+                <PrimaryButton class="mt-3 mb-3" @click="assignRoles('super-admin')">
                     Add #super-admin
                 </PrimaryButton>
-                <PrimaryButton class="mt-3 mb-3" @click="assignRole('admin')">
+                <PrimaryButton class="mt-3 mb-3" @click="assignRoles('admin')">
                     Add #admin
                 </PrimaryButton>
-                <PrimaryButton class="mt-3 mb-3" @click="assignRole('user')">
+                <PrimaryButton class="mt-3 mb-3" @click="assignRoles('user')">
                     Add #user
                 </PrimaryButton>
             </div>
 
-            <p class="flex gap-2 mt-4">Peran yang dimiliki oleh pengguna<span class="font-bold">#{{ props.user.name
-                    }}</span></p>
+            <p class="flex gap-2 mt-4">Peran yang dimiliki oleh pengguna</p>
             <div class="flex flex-wrap gap-2">
                 <template v-for="role in getUserRoles(props.user)" :key="role.id">
                     <DangerButton class="mt-3 mb-3" @click="removeRole(role.name)">
-                        Delete #{{ role.name }}
+                        Remove #{{ role.name }}
                     </DangerButton>
                 </template>
             </div>

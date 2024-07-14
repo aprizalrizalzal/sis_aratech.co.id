@@ -10,7 +10,7 @@ const props = defineProps({
     users: Array,
 });
 
-const showingModelUserUpdate = ref(false);
+const showingModelAssignRoles = ref(false);
 const selectedUser = ref(null);
 
 const { auth } = usePage().props;
@@ -24,9 +24,9 @@ const filteredUserId = computed(() => {
     return props.users.filter(user => user.id !== userId.value);
 });
 
-const showModalUserUpdate = (user) => {
+const showModalAssignRoles = (user) => {
     selectedUser.value = user;
-    showingModelUserUpdate.value = true;
+    showingModelAssignRoles.value = true;
 };
 
 const confirmingUserDeletion = ref(false);
@@ -57,7 +57,7 @@ const deleteUser = () => {
 
 const closeModal = () => {
     confirmingUserDeletion.value = false;
-    showingModelUserUpdate.value = false;
+    showingModelAssignRoles.value = false;
 };
 
 const currentPage = ref(1);
@@ -108,8 +108,7 @@ const previousPage = () => {
                         <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
-                        <SecondaryButton @click="showModalUserUpdate(user)" class="m-2">Update
-                        </SecondaryButton>
+                        <SecondaryButton @click="showModalAssignRoles(user)" class="m-2">Assign Roles </SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete</DangerButton>
@@ -125,13 +124,13 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelUserUpdate" @close="closeModal">
+    <Modal :show="showingModelAssignRoles" @close="closeModal">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold text-center w-full">Update Role User</span>
+                <span class="font-bold text-center w-full">Assign User Roles</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <UserForm :user="selectedUser" @roleUpdated="closeModal" />
+            <UserForm :user="selectedUser" @assignRoles="closeModal" />
         </div>
     </Modal>
 
