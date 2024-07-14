@@ -21,7 +21,7 @@ const formatDescription = (description) => {
 </script>
 
 <template>
-    <h1 class="text-green-900 font-bold mt-4 mb-2 text-center sm:text-lg text-md">{{ sparePart.name }}</h1>
+    <h1 class="text-green-900 font-bold my-4 text-center sm:text-lg text-md">{{ sparePart.name }}</h1>
     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
         <div class="h-full">
             <img :src="sparePart.image_path" :alt="sparePart.name" class="rounded-md shadow-md">

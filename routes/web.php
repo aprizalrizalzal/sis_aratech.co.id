@@ -9,6 +9,7 @@ use App\Http\Controllers\DeviceTypeController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\PartUsageController;
+use App\Http\Controllers\PlatformFooterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\StatusServiceController;
 use App\Http\Controllers\StatusWarrantyServiceController;
+use App\Http\Controllers\TypeFooterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -76,6 +78,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/setting-carousel-image', [CarouselController::class, 'update_image'])->name('update.carousel.image');
         Route::put('/setting-carousel', [CarouselController::class, 'update'])->name('update.carousel');
         Route::delete('/setting-carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
+
+        // TypeFooterController
+        Route::get('/type/setting-footers', [TypeFooterController::class, 'show'])->name('show.type.footer');
+        Route::post('/type/setting-footer', [TypeFooterController::class, 'store'])->name('store.type.footer');
+        Route::put('/type/setting-footer', [TypeFooterController::class, 'update'])->name('update.type.footer');
+        Route::delete('/type/setting-footer', [TypeFooterController::class, 'destroy'])->name('destroy.type.footer');
+
+        // PlatformFooterController
+        Route::get('/platform/setting-footers', [PlatformFooterController::class, 'show'])->name('show.platform.footer');
+        Route::post('/platform/setting-footer', [PlatformFooterController::class, 'store'])->name('store.platform.footer');
+        Route::put('/platform/setting-footer', [PlatformFooterController::class, 'update'])->name('update.platform.footer');
+        Route::delete('/platform/setting-footer', [PlatformFooterController::class, 'destroy'])->name('destroy.platform.footer');
 
         // FooterController
         Route::post('/setting-footer', [FooterController::class, 'store'])->name('store.footer');

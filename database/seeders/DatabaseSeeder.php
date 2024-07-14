@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HeadersTableSeeder::class,
             CarouselsTableSeeder::class,
+            TypeFootersTableSeeder::class,
+            PlatformFootersTableSeeder::class,
             FootersTableSeeder::class,
             UsersTableSeeder::class,
             RolesTableSeeder::class,
