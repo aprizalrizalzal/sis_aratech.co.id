@@ -400,7 +400,7 @@ const closeModal = () => {
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Dashboard</h2>
+          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Dashboard</h2>
         </div>
         <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code" />

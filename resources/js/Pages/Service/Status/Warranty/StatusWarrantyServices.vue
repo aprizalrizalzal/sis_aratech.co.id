@@ -23,12 +23,12 @@ const filteredStatusWarrantyServices = computed(() => {
 
 <template>
 
-  <Head title="Status Warranty" />
+  <Head title="Status Warranty Service" />
   <AuthenticatedLayout>
     <template #header>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <h2 class="font-semibold text-lg text-green-800 leading-tight flex-none px-2 py-4">Status Warranty
+          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Status Warranty Service
           </h2>
         </div>
         <div class="flex w-full items-center">
