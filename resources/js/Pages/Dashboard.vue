@@ -666,7 +666,8 @@ const closeModal = () => {
 
   <Modal :show="showingModelServiceDetailByServiceCode" @close="closeModal">
     <div class="m-6">
-      <div class="flex justify-end">
+      <div class="flex justify-between items-center">
+        <span class="font-bold text-center w-full">Service Details</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <table class="table-auto w-full my-2">

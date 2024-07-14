@@ -71,7 +71,7 @@ const closeModal = () => {
             <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
                 dalam huruf kapital
                 agar sistem dapat menemukan data yang sesuai dengan benar.</p>
-            <p class="text-sm/relaxed">Harap dicatat: Service Code hanya boleh
+            <p class="text-sm/relaxed">Harap dicatat! Service Code hanya boleh
                 menggunakan huruf
                 kapital. Contohnya: <strong>DFGYHN</strong>.</p>
         </div>
@@ -79,7 +79,11 @@ const closeModal = () => {
 
     <Modal v-if="service" :show="showModal" @close="closeModal">
         <div class="p-6">
-            <table class="table-auto w-full">
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-center w-full">Service Details</span>
+                <DangerButton @click="closeModal">X</DangerButton>
+            </div>
+            <table class="table-auto w-full mt-4">
                 <tbody>
                     <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
                         <td class="text-green-900">Service Code</td>
@@ -147,18 +151,27 @@ const closeModal = () => {
                     </tr>
                 </tbody>
             </table>
-            <div class="flex justify-end mt-6">
-                <DangerButton @click="closeModal">Close</DangerButton>
+            <hr>
+            <div class="mt-3">
+                <p class="text-sm/relaxed">Jangan lupa untuk sering cek status servis Anda agar selalu mendapatkan
+                    informasi terbaru. Salam untuk Anda, semoga sehat selalu!</p>
             </div>
         </div>
     </Modal>
 
     <Modal v-if="message" :show="showModal" @close="closeModal">
         <div class="p-6">
-            <P class="font-bold text-green-900">{{ message }}</P>
-            <div class="flex justify-end mt-6">
-                <DangerButton @click="closeModal">Close</DangerButton>
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-center w-full">Service Details</span>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <P class="font-bold text-green-900 my-4">{{ message }}</P>
+            <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
+                dalam huruf kapital
+                agar sistem dapat menemukan data yang sesuai dengan benar.</p>
+            <p class="text-sm/relaxed">Harap dicatat! Service Code hanya boleh
+                menggunakan huruf
+                kapital. Contohnya: <strong>DFGYHN</strong>.</p>
         </div>
     </Modal>
 </template>
