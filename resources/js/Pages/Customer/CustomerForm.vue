@@ -85,7 +85,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.customer ? 'Update Customer' : 'Save Customer' }}
+                        {{ props.customer ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.customer ? 'Customer update successfully!' : 'Customer added successfully!' }}

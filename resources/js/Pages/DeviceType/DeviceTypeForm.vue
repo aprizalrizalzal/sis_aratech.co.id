@@ -69,7 +69,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{ props.deviceType ? 'Update Device Type' : 'Save Device Type' }}
+                        {{ props.deviceType ? 'Update' : 'Save' }}
                     </PrimaryButton>
                     <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
                         {{ props.deviceType ? 'Device Type update successfully!' : 'Device Type added successfully!' }}
