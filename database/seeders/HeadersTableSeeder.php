@@ -15,8 +15,8 @@ class HeadersTableSeeder extends Seeder
     {
         Header::create([
             'image_path' => 'storage/images/header/company_logo.png',
-            'company' => 'Asli Mandiri Computer',
-            'description' => 'Jl. Gajah Mada, Pagesangan, Kec. Mataram, Kota Mataram, Nusa Tenggara Bar.'
+            'company' => 'ASLI MANDIRI COMPUTER',
+            'description' => 'Jl. Gajah Mada, Jempong Baru, Sekarbela, Kota Mataram, Nusa Tenggara Barat.'
         ]);
     }
 }
