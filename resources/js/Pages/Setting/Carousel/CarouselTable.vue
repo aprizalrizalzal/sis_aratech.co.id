@@ -5,6 +5,7 @@ import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import ButtonImage from '@/Components/ButtonImage.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 
@@ -102,10 +103,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${carousel.image_path}`" :alt="carousel.alt"
-                                class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalCarouselUpdateImage(carousel.id)">
+                                class="h-8 object-cover rounded-md mx-2" />
+                            <ButtonImage @click="showModalCarouselUpdateImage(carousel.id)">
                                 <EditIcon />
-                            </PrimaryButton>
+                            </ButtonImage>
                         </div>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ carousel.alt }}</td>

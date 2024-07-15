@@ -6,6 +6,7 @@ import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ButtonImage from '@/Components/ButtonImage.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 import SparePartDetail from './SparePartDetail.vue';
 
@@ -119,10 +120,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                                class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalSparePartUpdateImage(sparePart.id)">
+                                class="h-8 object-cover rounded-md mx-2" />
+                            <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
                                 <EditIcon />
-                            </PrimaryButton>
+                            </ButtonImage>
                         </div>
                     </td>
                     <td

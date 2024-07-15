@@ -39,7 +39,7 @@ const currentYear = computed(() => {
 <template>
     <div class="flex flex-col items-center">
         <div v-for="header in $page.props.headers" :key="header.id" class="w-full max-w-2xl px-6 lg:max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2  mt-8 pb-8 items-start gap-2">
+            <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-8 pb-4 items-start gap-4">
                 <div class="text-start">
                     <ApplicationLogo class="block h-16 w-16" />
                     <h2 class="text-xl font-semibold text-green-900">{{ header.company }}</h2>
@@ -59,16 +59,6 @@ const currentYear = computed(() => {
                     <h2 class="text-xl font-semibold text-green-900 mt-8">Social Media</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in socialMediaFooters" :key="footer.id" class="flex items-center space-x-2">
-                            <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
-                            <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
-                                footer.value }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lg:mt-8 pb-6 text-start">
-                    <h2 class="text-xl font-semibold text-green-900 mt-8">Service</h2>
-                    <ul class="mt-4 text-sm/relaxed">
-                        <li v-for="footer in serviceFooters" :key="footer.id" class="flex items-center space-x-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
                             <a :href="footer.url" target="_blank" rel="noopener noreferrer">{{
                                 footer.value }}</a>

@@ -5,6 +5,7 @@ import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
+import ButtonImage from '@/Components/ButtonImage.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 
@@ -103,10 +104,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${header.image_path}`" :alt="header.Company"
-                                class="w-16 h-16 object-cover rounded-md mx-2" />
-                            <PrimaryButton @click="showModalHeaderUpdateImage(header.id)">
+                                class="h-8 object-cover rounded-md mx-2" />
+                            <ButtonImage @click="showModalHeaderUpdateImage(header.id)">
                                 <EditIcon />
-                            </PrimaryButton>
+                            </ButtonImage>
                         </div>
                     </td>
                     <td
