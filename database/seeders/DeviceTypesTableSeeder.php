@@ -15,11 +15,27 @@ class DeviceTypesTableSeeder extends Seeder
     {
         $deviceTypes = [
             [
-                'type_name' => 'Laptop',
+                'type_name' => 'PC Desktop',
                 'description' => '-'
             ],
             [
                 'type_name' => 'Printer',
+                'description' => '-'
+            ],
+            [
+                'type_name' => 'PC All In One',
+                'description' => '-'
+            ],
+            [
+                'type_name' => 'Laptop',
+                'description' => '-'
+            ],
+            [
+                'type_name' => 'LCD Projector',
+                'description' => '-'
+            ],
+            [
+                'type_name' => 'Others',
                 'description' => '-'
             ]
         ];
