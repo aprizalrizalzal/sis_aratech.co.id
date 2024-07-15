@@ -1,9 +1,15 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import TypeFooterTable from './TypeFooterTable.vue';
+import Modal from '@/Components/Modal.vue';
+import TypeFooterForm from './TypeFooterForm.vue';
 import SearchInput from '@/Components/SearchInput.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
+import DangerButton from '@/Components/DangerButton.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+
+const showModalAddTypeFooter = ref(false);
 
 const props = defineProps({
   typeFooters: Array,
@@ -19,6 +25,10 @@ const filteredTypeFooters = computed(() => {
     typeFooter.type.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const closeModal = () => {
+  showModalAddTypeFooter.value = false;
+};
 </script>
 
 <template>
@@ -42,10 +52,20 @@ const filteredTypeFooters = computed(() => {
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
             <TypeFooterTable :typeFooters="filteredTypeFooters" />
+            <SecondaryButton @click="showModalAddTypeFooter = true" class="w-full">Add Type Footer</SecondaryButton>
           </div>
         </div>
       </div>
     </div>
-
   </AuthenticatedLayout>
+
+  <Modal :show="showModalAddTypeFooter" @close="closeModal">
+    <div class="m-6">
+      <div class="flex justify-between items-center">
+        <span class="font-bold text-center w-full">Add Type Footer</span>
+        <DangerButton @click="closeModal">X</DangerButton>
+      </div>
+      <TypeFooterForm />
+    </div>
+  </Modal>
 </template>
