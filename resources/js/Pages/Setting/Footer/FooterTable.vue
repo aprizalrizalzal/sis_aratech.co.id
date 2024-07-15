@@ -116,10 +116,10 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.type_footer.type }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.platform_footer.platform }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.type_footer.type }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.platform_footer.platform }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.url }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.url }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.username }}</td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
