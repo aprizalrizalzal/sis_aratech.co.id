@@ -29,7 +29,7 @@ const filteredDevices = computed(() => {
   <Head title="Devices" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center gap-4">
         <div class="flex items-center">
           <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Devices</h2>
         </div>

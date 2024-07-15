@@ -51,7 +51,7 @@ const closeModal = () => {
           </div>
         </div>
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-          <h2 class="font-bold my-4 text-green-600">Setting Carousel</h2>
+          <h2 class="font-bold my-4 text-green-600">Setting Carousels</h2>
           <CarouselTable :carousels="props.carousels" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddCarousel = true" class="w-full">Add Carousel
@@ -67,7 +67,7 @@ const closeModal = () => {
                       <span class="inline-flex rounded-md">
                           <button type="button"
                               class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-medium rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
-                              Setting Footer&nbsp;
+                              Setting&nbsp;Footers&nbsp;
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                   fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                                   <path fill-rule="evenodd"
@@ -78,8 +78,8 @@ const closeModal = () => {
                   </template>
 
                   <template #content>
-                      <DropdownLink :href="route('show.type.footer')">Type Footers</DropdownLink>
-                      <DropdownLink :href="route('show.platform.footer')">Platform Footers</DropdownLink>
+                      <DropdownLink :href="route('show.type.footer')">Type</DropdownLink>
+                      <DropdownLink :href="route('show.platform.footer')">Platform</DropdownLink>
                   </template>
               </Dropdown>
             </div>

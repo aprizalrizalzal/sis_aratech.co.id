@@ -69,7 +69,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <div class="flex justify-between items-center pt-4 pb-2">
+    <div class="flex justify-between items-center pt-4 pb-2 gap-4">
         <div class="flex items-center">
             <h2 class="flex font-semibold text-green-900 leading-tight flex-none py-4">
                 <span>Spare Part</span>
