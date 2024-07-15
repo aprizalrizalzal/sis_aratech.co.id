@@ -47,7 +47,6 @@ class ServiceController extends Controller
             'estimated_completion' => 'date',
             'items_brought' => 'required|string|max:255',
             'status_service_id' => 'required|exists:status_services,id',
-            'notes' => 'required|string',
         ]);
 
 
@@ -61,7 +60,6 @@ class ServiceController extends Controller
             'estimated_completion' => $request->estimated_completion,
             'items_brought' => $request->items_brought,
             'status_service_id' => $request->status_service_id,
-            'notes' => $request->notes,
         ]);
 
         $printService = route('service.print', $service->service_code);
@@ -83,7 +81,6 @@ class ServiceController extends Controller
             'estimated_completion' => 'date',
             'items_brought' => 'required|string|max:255',
             'status_service_id' => 'required|exists:status_services,id',
-            'notes' => 'required|string',
         ]);
 
         $service = Service::findOrFail($request->id);
@@ -97,7 +94,6 @@ class ServiceController extends Controller
             'estimated_completion' => $request->estimated_completion,
             'items_brought' => $request->items_brought,
             'status_service_id' => $request->status_service_id,
-            'notes' => $request->notes,
         ]);
 
         return Redirect::back();

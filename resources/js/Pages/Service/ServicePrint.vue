@@ -13,10 +13,6 @@ const props = defineProps({
     service: Object,
 });
 
-const notesFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'Notes');
-});
-
 const currentUrl = computed(() => {
     const url = new URL(window.location.href);
     return `${url.host}`;
@@ -102,8 +98,8 @@ onMounted(() => {
         </div>
         <div class="flex flex-col items-left border px-2 mx-1">
             <p class="font-bold">Notes!</p>
-            <ul v-for="footer in notesFooters" :key="footer.id">
-                <li>{{ footer.value }}</li>
+            <ul v-for="note in $page.props.notes" :key="note.id">
+                <li>{{ note.description }}</li>
             </ul>
         </div>
     </div>

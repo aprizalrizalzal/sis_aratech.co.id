@@ -25,7 +25,6 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-05-28',
                 'items_brought' => 'None',
                 'status_service_id' => 1,
-                'notes' => '-',
                 'created_at' => '2024-05-28 12:00:00'
             ],
             [
@@ -38,7 +37,6 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-11',
                 'items_brought' => 'Bag, Charger',
                 'status_service_id' => 1,
-                'notes' => '-',
                 'created_at' => '2024-06-10 12:00:00'
             ],
             [
@@ -51,7 +49,6 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-15',
                 'items_brought' => 'Bag, Charger',
                 'status_service_id' => 1,
-                'notes' => '-',
                 'created_at' => '2024-06-14 12:00:00'
             ],
             [
@@ -64,7 +61,6 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-25',
                 'items_brought' => 'Charger',
                 'status_service_id' => 1,
-                'notes' => '-',
                 'created_at' => '2024-06-24 12:00:00'
             ],
             [
@@ -77,7 +73,6 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-28',
                 'items_brought' => '-',
                 'status_service_id' => 1,
-                'notes' => '-',
                 'created_at' => '2024-06-27 12:00:00'
             ],
             [
@@ -90,7 +85,6 @@ class ServicesTableSeeder extends Seeder
                 'estimated_completion' => '2024-06-29',
                 'items_brought' => '-',
                 'status_service_id' => 1,
-                'notes' => '-',
                 'created_at' => '2024-06-29 12:00:00'
             ]
 

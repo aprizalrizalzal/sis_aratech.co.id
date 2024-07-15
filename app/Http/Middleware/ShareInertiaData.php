@@ -2,8 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Footer;
 use App\Models\Header;
+use App\Models\Note;
+use App\Models\Footer;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,6 +21,7 @@ class ShareInertiaData
     {
         Inertia::share([
             'headers' => fn () => Header::all(),
+            'notes' => fn () => Note::all(),
             'footers' => fn () => Footer::with('typeFooter', 'platformFooter')->get(),
         ]);
 

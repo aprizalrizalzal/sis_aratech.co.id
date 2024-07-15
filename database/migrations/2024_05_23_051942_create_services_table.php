@@ -22,7 +22,6 @@ return new class extends Migration
             $table->date('estimated_completion');
             $table->text('items_brought');
             $table->foreignId('status_service_id')->constrained()->onDelete('cascade');
-            $table->text('notes');
             $table->timestamps();
         });
     }

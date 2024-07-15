@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('headers', function (Blueprint $table) {
             $table->id();
             $table->string('image_path');
-            $table->string('company');
+            $table->string('company')->unique();
             $table->text('description');
             $table->timestamps();
         });

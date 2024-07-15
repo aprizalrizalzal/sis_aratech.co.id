@@ -8,6 +8,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\PlatformFooterController;
 use App\Http\Controllers\ProfileController;
@@ -78,6 +79,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/setting-carousel-image', [CarouselController::class, 'update_image'])->name('update.carousel.image');
         Route::put('/setting-carousel', [CarouselController::class, 'update'])->name('update.carousel');
         Route::delete('/setting-carousel', [CarouselController::class, 'destroy'])->name('destroy.carousel');
+
+        // NoteController
+        Route::post('/setting-note', [NoteController::class, 'store'])->name('store.note');
+        Route::put('/setting-note', [NoteController::class, 'update'])->name('update.note');
+        Route::delete('/setting-note', [NoteController::class, 'destroy'])->name('destroy.note');
 
         // TypeFooterController
         Route::get('/type/setting-footers', [TypeFooterController::class, 'show'])->name('show.type.footer');

@@ -3,13 +3,15 @@ import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Modal from '@/Components/Modal.vue';
-import HeaderForm from '@/Pages/Setting/Header/HeaderForm.vue';
-import CarouselForm from '@/Pages/Setting/Carousel/CarouselForm.vue';
-import FooterForm from '@/Pages/Setting/Footer/FooterForm.vue';
+import HeaderForm from './Header/HeaderForm.vue';
+import CarouselForm from './Carousel/CarouselForm.vue';
+import FooterForm from './Footer/FooterForm.vue';
+import NoteForm from './Note/NoteForm.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import CarouselTable from './Carousel/CarouselTable.vue';
 import FooterTable from './Footer/FooterTable.vue';
 import HeaderTable from './Header/HeaderTable.vue';
+import NoteTable from './Note/NoteTable.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -24,11 +26,13 @@ const props = defineProps({
 
 const showModalAddHeader = ref(false);
 const showModalAddCarousel = ref(false);
+const showModalAddNote = ref(false);
 const showModalAddFooter = ref(false);
 
 const closeModal = () => {
   showModalAddHeader.value = false;
   showModalAddCarousel.value = false;
+  showModalAddNote.value = false;
   showModalAddFooter.value = false;
 };
 
@@ -42,7 +46,7 @@ const closeModal = () => {
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-          <h2 class="font-bold my-4 text-green-600">Setting Header</h2>
+          <h2 class="font-bold my-4 text-green-600">Header</h2>
           <HeaderTable :headers="$page.props.headers" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton v-if="!$page.props.headers || $page.props.headers.length === 0"
@@ -51,10 +55,19 @@ const closeModal = () => {
           </div>
         </div>
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
-          <h2 class="font-bold my-4 text-green-600">Setting Carousels</h2>
+          <h2 class="font-bold my-4 text-green-600">Carousels</h2>
           <CarouselTable :carousels="props.carousels" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddCarousel = true" class="w-full">Add Carousel
+            </SecondaryButton>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
+          <h2 class="font-bold my-4 text-green-600">Notes</h2>
+          <NoteTable :notes="$page.props.notes" />
+          <div class="flex flex-col my-2 items-start">
+            <SecondaryButton @click="showModalAddNote = true" class="w-full">Add Note
             </SecondaryButton>
           </div>
         </div>
@@ -66,8 +79,8 @@ const closeModal = () => {
                   <template #trigger>
                       <span class="inline-flex rounded-md">
                           <button type="button"
-                              class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-medium rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
-                              Setting&nbsp;Footers&nbsp;
+                              class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                              Footers&nbsp;
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                   fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                                   <path fill-rule="evenodd"
@@ -111,6 +124,16 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <CarouselForm />
+    </div>
+  </Modal>
+
+  <Modal :show="showModalAddNote" @close="closeModal">
+    <div class="m-6">
+      <div class="flex justify-between items-center">
+        <span class="font-bold text-center w-full">Add Note</span>
+        <DangerButton @click="closeModal">X</DangerButton>
+      </div>
+      <NoteForm />
     </div>
   </Modal>
 
