@@ -108,8 +108,9 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Category</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Pieces</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
@@ -134,11 +135,13 @@ const previousPage = () => {
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ sparePart.category_spare_part.name }}
                     </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ sparePart.pieces }}
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
+                    </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ sparePart.description }}
-                    </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(sparePart.price) }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update
@@ -188,7 +191,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <SparePartDetail :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
+            <SparePartDetail :sparePart="selectedSparePart" />
         </div>
     </Modal>
 

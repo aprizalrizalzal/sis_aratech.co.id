@@ -11,8 +11,9 @@ const form = useForm({
     name: '',
     image: null,
     category_spare_part_id: '',
-    description: '',
+    pieces: '',
     price: '',
+    description: '',
 });
 
 const props = defineProps({
@@ -26,6 +27,7 @@ if (props.sparePart) {
     form.image_path = props.sparePart.image_path;
     form.name = props.sparePart.name;
     form.category_spare_part_id = props.sparePart.category_spare_part_id;
+    form.pieces = props.sparePart.pieces;
     form.price = props.sparePart.price;
     form.description = props.sparePart.description;
 }
@@ -68,7 +70,7 @@ const submitForm = () => {
                 uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
-                if (errors.image || errors.name || errors.category_spare_part_id || errors.description || errors.price) {
+                if (errors.image || errors.name || errors.category_spare_part_id || errors.description || errors.pieces || errors.price) {
                     alert('addition failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -83,7 +85,7 @@ const submitForm = () => {
                 form.data();
             },
             onError: (errors) => {
-                if (errors.name || errors.category_spare_part_id || errors.description || errors.price) {
+                if (errors.name || errors.category_spare_part_id || errors.description || errors.pieces || errors.price) {
                     alert('update failed!');
                 } else {
                     console.error('An error occurred:', errors);
@@ -118,17 +120,23 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.category_spare_part_id" />
                 </div>
                 <div v-if="!props.sparePartId">
+                    <InputLabel class="mt-2" for="pieces" value="Pieces" />
+                    <TextInput id="pieces" type="number" class="mt-1 block w-full" v-model="form.pieces" placeholder="Pieces"
+                    required />
+                    <InputError class="mt-2" :message="form.errors.pieces" />
+                </div>
+                <div v-if="!props.sparePartId">
+                    <InputLabel class="mt-2" for="price" value="Price" />
+                    <TextInput id="price" type="number" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
+                    required />
+                    <InputError class="mt-2" :message="form.errors.price" />
+                </div>
+                <div v-if="!props.sparePartId">
                     <InputLabel class="mt-2" for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
-                </div>
-                <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-2" for="price" value="Price" />
-                    <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
-                        required />
-                    <InputError class="mt-2" :message="form.errors.price" />
                 </div>
                 <div v-if="previewUrl" class="my-4">
                     <p class="font-semibold">Preview:</p>

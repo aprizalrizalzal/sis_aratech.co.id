@@ -4,12 +4,7 @@ const props = defineProps({
     canRegister: Boolean,
 
     sparePart: Object,
-    categorySpareParts: Array,
 });
-
-const getCategorySparePartName = (categorySparePartId) => {
-    return props.categorySpareParts.find(categorySparePart => categorySparePart.id === categorySparePartId)?.name || 'Unknown Category';
-};
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
@@ -28,7 +23,7 @@ const formatDescription = (description) => {
         </div>
         <div class="text-start">
             <p class="text-green-600 text-sm/relaxed font-bold py-1 px-2 mb-2 rounded-md text-white bg-green-600">
-                #{{ getCategorySparePartName(sparePart.category_spare_part_id) }}
+                #{{ sparePart.category_spare_part.name }}
             </p>
             <p class="text-gray-500 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
             </p>

@@ -57,7 +57,7 @@ class FootersTableSeeder extends Seeder
             ],
             [
                 'type_footer_id' => 4,
-                'platform_footer_id' => 12,
+                'platform_footer_id' => 6,
                 'image_path' => 'storage/images/footers/playstore.png',
                 'url' => 'https://play.google.com/store/',
                 'username' => '-',
@@ -65,7 +65,7 @@ class FootersTableSeeder extends Seeder
             ],
             [
                 'type_footer_id' => 4,
-                'platform_footer_id' => 13,
+                'platform_footer_id' => 7,
                 'image_path' => 'storage/images/footers/appstore.png',
                 'url' => 'https://www.apple.com/id/app-store/',
                 'username' => '-',

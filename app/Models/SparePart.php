@@ -10,7 +10,7 @@ class SparePart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image_path', 'category_spare_part_id', 'description', 'price'];
+    protected $fillable = ['name', 'image_path', 'category_spare_part_id', 'pieces', 'price', 'description'];
 
     // Relasi ke CategorySparePart
     public function categorySparePart()
@@ -27,7 +27,7 @@ class SparePart extends Model
     protected static function booted()
     {
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('name');
+            $builder->orderBy('category_spare_part_id');
         });
     }
 

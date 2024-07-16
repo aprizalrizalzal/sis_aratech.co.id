@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->foreignId('category_spare_part_id')->constrained()->onDelete('cascade');
             $table->string('image_path');
+            $table->integer('pieces');
+            $table->decimal('price', 10, 2);
             $table->text('description');
-            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }

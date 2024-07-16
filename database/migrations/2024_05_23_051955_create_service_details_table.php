@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->text('repair_description');
-            $table->decimal('cost', 8, 2);
+            $table->decimal('cost', 10, 2);
             $table->text('notes');
             $table->timestamps();
         });

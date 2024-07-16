@@ -40,8 +40,9 @@ class SparePartController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
             'name' => 'required|string|max:255|unique:' . SparePart::class,
             'category_spare_part_id' => 'required|exists:category_spare_parts,id',
-            'description' => 'required|string',
+            'pieces' => 'required|integer',
             'price' => 'required|integer',
+            'description' => 'required|string',
         ]);
 
         $originalName = $request->file('image')->getClientOriginalName();
@@ -52,8 +53,9 @@ class SparePartController extends Controller
             'image_path' => 'storage/' . $path,
             'name' => $request->name,
             'category_spare_part_id' => $request->category_spare_part_id,
-            'description' => $request->description,
+            'pieces' => $request->pieces,
             'price' => $request->price,
+            'description' => $request->description,
         ]);
 
         return Redirect::back();
@@ -89,8 +91,9 @@ class SparePartController extends Controller
             'id' => 'required|exists:spare_parts,id',
             'name' => 'required|string|max:255',
             'category_spare_part_id' => 'required|exists:category_spare_parts,id',
-            'description' => 'required|string',
+            'pieces' => 'required|integer',
             'price' => 'required|integer',
+            'description' => 'required|string',
         ]);
 
         $sparePart = SparePart::findOrFail($request->id);
@@ -98,8 +101,9 @@ class SparePartController extends Controller
         $sparePart->update([
             'name' => $request->name,
             'category_spare_part_id' => $request->category_spare_part_id,
-            'description' => $request->description,
+            'pieces' => $request->pieces,
             'price' => $request->price,
+            'description' => $request->description,
         ]);
 
         return Redirect::back();
