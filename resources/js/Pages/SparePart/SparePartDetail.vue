@@ -23,10 +23,15 @@ const formatDescription = (description) => {
         </div>
         <div class="text-start">
             <p class="text-green-600 text-sm/relaxed font-bold py-1 px-2 mb-2 rounded-md text-white bg-green-600">
-                #{{ sparePart.category_spare_part.name }}
+                <span>Category </span>#{{ sparePart.category_spare_part.name }}
             </p>
+            <p class="text-green-900 text-sm/relaxed font-bold mb-2">
+                <span>Pieces </span>{{ sparePart.pieces }}
+            </p>
+            <hr>
             <p class="text-gray-500 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
             </p>
+            <hr>
             <p class="inline-block bg-green-600 py-1 px-2 rounded-md text-white mt-2">
                 {{ formatCurrency(sparePart.price) }}
             </p>

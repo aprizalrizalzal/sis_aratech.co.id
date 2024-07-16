@@ -67,17 +67,17 @@ const submitForm = () => {
                         required autofocus />
                     <InputError class="mt-2" :message="form.errors.name" />
 
-                    <InputLabel class="mt-2" for="email" value="Email" />
+                    <InputLabel for="email" value="Email" />
                     <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email"
                         placeholder="Email" required />
                     <InputError class="mt-2" :message="form.errors.email" />
 
-                    <InputLabel class="mt-2" for="phone" value="Phone" />
+                    <InputLabel for="phone" value="Phone" />
                     <TextInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" placeholder="Phone"
                         required />
                     <InputError class="mt-2" :message="form.errors.phone" />
 
-                    <InputLabel class="mt-2" for="address" value="Address" />
+                    <InputLabel for="address" value="Address" />
                     <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address"
                         placeholder="Address" required />
                     <InputError class="mt-2" :message="form.errors.address" />

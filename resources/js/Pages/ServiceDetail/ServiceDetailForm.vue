@@ -34,17 +34,23 @@ const props = defineProps({
 });
 
 const serviceStatus = ref('');
+const serviceEmail = ref('');
+const servicePhone = ref('');
 
 const updateServiceStatus = (serviceId) => {
     if (!props.serviceDetail) {
         const selectedService = props.services.find(service => service.id === serviceId);
         if (selectedService) {
-            serviceStatus.value = selectedService.status_service.status;
             form.status_service_id = selectedService.status_service_id;
+            serviceStatus.value = selectedService.status_service.status;
+            serviceEmail.value = selectedService.customer.user.email;
+            servicePhone.value = selectedService.customer.phone;
         }
     } else {
-        serviceStatus.value = props.serviceDetail.service.status_service.status;
         form.status_service_id = props.serviceDetail.service.status_service_id;
+        serviceStatus.value = props.serviceDetail.service.status_service.status;
+        serviceEmail.value = props.serviceDetail.service.customer.user.email;
+        servicePhone.value = props.serviceDetail.service.customer.phone;
     }
 };
 
@@ -105,8 +111,8 @@ const submitForm = () => {
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div v-if="!props.user" class="hidden">
-                    <InputLabel class="mt-2" for="user_id" value="Technician" />
-                    <TextInput id="user_id" type="text" class="mt-1 block w-full pointer-events-none bg-green-50"
+                    <InputLabel for="user_id" value="Technician" />
+                    <TextInput id="user_id" type="text" class="mt-1 block w-full"
                         v-model="form.user_id" placeholder="Email Technician" required autofocus />
                     <InputError class="mt-2" :message="form.errors.user_id" />
                 </div>
@@ -117,26 +123,35 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.service_id" />
                 </div>
                 <div v-if="form.service_id">
+                    <InputLabel for="email" value="Email" />
+                    <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="serviceEmail" disabled />
+                </div>
+                <div v-if="form.service_id"> 
+                    <InputLabel for="phone" value="Phone" />
+                    <TextInput id="phone" type="text" class="mt-1 block w-full" :placeholder="servicePhone" disabled />
+                </div>
+                <div v-if="form.service_id">
                     <DropdownSelect id="status_service_id" label="Status" optionProperty="status" valueProperty="id"
                         :options="statusServices" v-model="form.status_service_id"
-                        :placeholder='form.service_id ? serviceStatus : "Select Status"' class="w-full" />
+                        :placeholder='form.service_id ? serviceStatus : "Select Status"' class="mt-1 block w-full" />
                     <InputError class="mt-2" :message="form.errors.status_service_id" />
                 </div>
+                <hr v-if="form.service_id">
                 <div>
-                    <InputLabel class="mt-2" for="repair_description" value="Repair Description" />
+                    <InputLabel for="repair_description" value="Repair Description" />
                     <TextInput id="repair_description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full"
                         v-model="form.repair_description" placeholder="Repair Description" required />
                     <InputError class="mt-2" :message="form.errors.repair_description" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="cost" value="Cost" />
+                    <InputLabel for="cost" value="Cost" />
                     <TextInput id="cost" type="text" class="mt-1 block w-full" v-model="form.cost" placeholder="Cost"
                         required />
                     <InputError class="mt-2" :message="form.errors.cost" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="notes" value="Notes" />
+                    <InputLabel for="notes" value="Notes" />
                     <textarea id="notes" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.notes" placeholder="Notes" required />

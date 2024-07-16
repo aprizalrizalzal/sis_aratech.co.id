@@ -68,13 +68,13 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.device_type_id" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="model" value="Model" />
+                    <InputLabel for="model" value="Model" />
                     <TextInput id="model" type="text" class="mt-1 block w-full" v-model="form.model" placeholder="Model"
                         required autofocus />
                     <InputError class="mt-2" :message="form.errors.model" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="serial_number" value="Serial Number" />
+                    <InputLabel for="serial_number" value="Serial Number" />
                     <TextInput id="serial_number" type="text" class="mt-1 block w-full" v-model="form.serial_number"
                         placeholder="Serial Number" required />
                     <InputError class="mt-2" :message="form.errors.serial_number" />

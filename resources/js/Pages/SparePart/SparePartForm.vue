@@ -107,7 +107,7 @@ const submitForm = () => {
                     <InputError :message="form.errors.image" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-2" for="name" value="Name" />
+                    <InputLabel for="name" value="Name" />
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
                     <InputError class="mt-2" :message="form.errors.name" />
@@ -120,19 +120,19 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.category_spare_part_id" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-2" for="pieces" value="Pieces" />
+                    <InputLabel for="pieces" value="Pieces" />
                     <TextInput id="pieces" type="number" class="mt-1 block w-full" v-model="form.pieces" placeholder="Pieces"
                     required />
                     <InputError class="mt-2" :message="form.errors.pieces" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-2" for="price" value="Price" />
+                    <InputLabel for="price" value="Price" />
                     <TextInput id="price" type="number" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
                     required />
                     <InputError class="mt-2" :message="form.errors.price" />
                 </div>
                 <div v-if="!props.sparePartId">
-                    <InputLabel class="mt-2" for="description" value="Description" />
+                    <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />

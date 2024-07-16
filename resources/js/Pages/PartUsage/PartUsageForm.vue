@@ -79,7 +79,7 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.spare_part_id" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="quantity" value="Quantity" />
+                    <InputLabel for="quantity" value="Quantity" />
                     <TextInput id="quantity" type="text" class="mt-1 block w-full" v-model="form.quantity"
                         placeholder="Quantity" required autofocus />
                     <InputError class="mt-2" :message="form.errors.quantity" />

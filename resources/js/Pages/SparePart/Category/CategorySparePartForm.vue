@@ -61,7 +61,7 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.name" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="description" value="Description" />
+                    <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.description" placeholder="Description" required />

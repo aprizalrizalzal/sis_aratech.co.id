@@ -113,9 +113,9 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.date_received" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="problem_description" value="Problem Description" />
+                    <InputLabel for="problem_description" value="Problem Description" />
                     <TextInput id="problem_description" type="text"
-                        class="mt-2 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full"
                         v-model="form.problem_description" placeholder="Problem Description" required />
                     <InputError class="mt-2" :message="form.errors.problem_description" />
                 </div>
@@ -125,12 +125,12 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.estimated_completion" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="items_brought" value="Items Brought" />
-                    <TextInput id="items_brought" type="text" class="mt-2 block w-full" v-model="form.items_brought"
+                    <InputLabel for="items_brought" value="Items Brought" />
+                    <TextInput id="items_brought" type="text" class="mt-1 block w-full" v-model="form.items_brought"
                         placeholder="Items Brought" required autofocus />
                     <InputError class="mt-2" :message="form.errors.items_brought" />
                 </div>
-                <InputLabel class="mt-2" for="status_service_id" value="Status" />
+                <InputLabel for="status_service_id" value="Status" />
                 <div>
                     <DropdownSelect id="status_service_id" optionProperty="status" valueProperty="id"
                         :options="statusServices" v-model="form.status_service_id"
@@ -139,7 +139,7 @@ const submitForm = () => {
                     <InputError class="mt-2" :message="form.errors.status_service_id" />
                 </div>
                 <div>
-                    <InputLabel class="mt-2" for="notes" value="Notes" />
+                    <InputLabel for="notes" value="Notes" />
                     <textarea id="notes" type="text"
                         class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
                         v-model="form.notes" placeholder="Notes" required />
