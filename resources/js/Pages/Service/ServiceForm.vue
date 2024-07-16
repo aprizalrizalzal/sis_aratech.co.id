@@ -17,7 +17,6 @@ const form = useForm({
     estimated_completion: '',
     items_brought: '',
     status_service_id: '',
-    notes: '',
 });
 
 const props = defineProps({
@@ -47,7 +46,6 @@ if (props.service) {
     form.estimated_completion = props.service.estimated_completion;
     form.items_brought = props.service.items_brought;
     form.status_service_id = props.service.status_service_id;
-    form.notes = props.service.notes;
     const selectedCustomer = props.customers.find(customer => customer.id === form.customer_id);
     const selectedDevice = props.devices.find(device => device.id === form.device_id);
     if (selectedCustomer) {
@@ -173,13 +171,6 @@ watch(() => form.device_id, (newDeviceId) => {
                         :placeholder='props.service ? props.service.status_service.status : "Select Status"'
                         class="w-full" />
                     <InputError class="mt-2" :message="form.errors.status_service_id" />
-                </div>
-                <div>
-                    <InputLabel for="notes" value="Notes" />
-                    <textarea id="notes" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
-                        v-model="form.notes" placeholder="Notes" required />
-                    <InputError class="mt-2" :message="form.errors.notes" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
