@@ -33,26 +33,9 @@ const props = defineProps({
     service: Object,
 });
 
-const serviceStatus = ref('');
 const serviceEmail = ref('');
 const servicePhone = ref('');
-
-const updateServiceStatus = (serviceId) => {
-    if (!props.serviceDetail) {
-        const selectedService = props.services.find(service => service.id === serviceId);
-        if (selectedService) {
-            form.status_service_id = selectedService.status_service_id;
-            serviceStatus.value = selectedService.status_service.status;
-            serviceEmail.value = selectedService.customer.user.email;
-            servicePhone.value = selectedService.customer.phone;
-        }
-    } else {
-        form.status_service_id = props.serviceDetail.service.status_service_id;
-        serviceStatus.value = props.serviceDetail.service.status_service.status;
-        serviceEmail.value = props.serviceDetail.service.customer.user.email;
-        servicePhone.value = props.serviceDetail.service.customer.phone;
-    }
-};
+const serviceStatus = ref('');
 
 if (props.serviceDetail) {
     form.user_id = props.serviceDetail.user_id;
@@ -60,11 +43,21 @@ if (props.serviceDetail) {
     form.repair_description = props.serviceDetail.repair_description;
     form.cost = props.serviceDetail.cost;
     form.notes = props.serviceDetail.notes;
-    updateServiceStatus(props.serviceDetail.service_id);
+    const selectedService = props.services.find(service => service.id === form.service_id );
+    if (selectedService) {
+        serviceEmail.value = selectedService.customer.user.email;
+        servicePhone.value = selectedService.customer.phone;
+        serviceStatus.value = selectedService.status_service.status;
+    }
 }
 
 watch(() => form.service_id, (newServiceId) => {
-    updateServiceStatus(newServiceId);
+    const selectedService = props.services.find(service => service.id === newServiceId);
+    if (selectedService) {
+        serviceEmail.value = selectedService.customer.user.email;
+        servicePhone.value = selectedService.customer.phone;
+        serviceStatus.value = selectedService.status_service.status;
+    }
 });
 
 const submitForm = () => {

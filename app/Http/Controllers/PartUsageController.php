@@ -14,8 +14,8 @@ class PartUsageController extends Controller
     public function show()
     {
         $spareParts = SparePart::all();
-        $serviceDetails = ServiceDetail::all();
-        $partUsages = PartUsage::with('serviceDetail', 'sparePart')->get();
+        $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusService')->get();
+        $partUsages = PartUsage::with('serviceDetail', 'serviceDetail.user', 'serviceDetail.service', 'serviceDetail.service.customer.user', 'sparePart')->get();
 
         return Inertia::render('PartUsage/PartUsages', [
             'partUsages' => $partUsages,

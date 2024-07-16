@@ -56,6 +56,20 @@ if (props.service) {
     }
 }
 
+watch(() => form.customer_id, (newCustomerId) => {
+    const selectedCustomer = props.customers.find(customer => customer.id === newCustomerId);
+    if (selectedCustomer) {
+        customerEmail.value = selectedCustomer.user.email;
+    }
+});
+
+watch(() => form.device_id, (newDeviceId) => {
+    const selectedDevice = props.devices.find(device => device.id === newDeviceId);
+    if (selectedDevice) {
+        deviceModel.value = selectedDevice.model;
+    }
+});
+
 const submitForm = () => {
     if (!props.service) {
         form.post(route('store.service'), {
@@ -91,20 +105,6 @@ const submitForm = () => {
         });
     }
 };
-
-watch(() => form.customer_id, (newCustomerId) => {
-    const selectedCustomer = props.customers.find(customer => customer.id === newCustomerId);
-    if (selectedCustomer) {
-        customerEmail.value = selectedCustomer.user.email;
-    }
-});
-
-watch(() => form.device_id, (newDeviceId) => {
-    const selectedDevice = props.devices.find(device => device.id === newDeviceId);
-    if (selectedDevice) {
-        deviceModel.value = selectedDevice.model;
-    }
-});
 </script>
 
 <template>

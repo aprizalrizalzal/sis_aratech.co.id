@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Log;
 use App\Mail\SendEmailServiceDetail;
 use App\Models\Service;
 use App\Models\StatusService;
-use App\Models\User;
 
 class ServiceDetailController extends Controller
 {
     public function show()
     {
-        $services = Service::all();
+        $services = Service::with('customer', 'customer.user', 'statusWarrantyService', 'statusService', 'device', 'device.deviceType')->get();
         $statusServices = StatusService::all();
         $serviceDetails = ServiceDetail::with('user', 'service', 'service.customer.user', 'service.device', 'service.device.deviceType', 'service.statusWarrantyService', 'service.statusService')->get();
 
