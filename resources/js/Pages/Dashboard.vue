@@ -593,7 +593,7 @@ const closeModal = () => {
     </div>
   </AuthenticatedLayout>
 
-  <Modal :show="showModalAddDeviceType" @close="closeModal">
+  <Modal :show="showModalAddDeviceType">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Device Type</span>
@@ -603,7 +603,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddSparePart" @close="closeModal">
+  <Modal :show="showModalAddSparePart">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Spare Part</span>
@@ -613,7 +613,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddCustomer" @close="closeModal">
+  <Modal :show="showModalAddCustomer">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Customer</span>
@@ -623,7 +623,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddDevice" @close="closeModal">
+  <Modal :show="showModalAddDevice">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Device</span>
@@ -633,7 +633,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddService" @close="closeModal">
+  <Modal :show="showModalAddService">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Service</span>
@@ -644,7 +644,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddServiceDetail" @close="closeModal">
+  <Modal :show="showModalAddServiceDetail">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Service Detail</span>
@@ -654,7 +654,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddPartUsage" @close="closeModal">
+  <Modal :show="showModalAddPartUsage">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Part Usage</span>
@@ -664,7 +664,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModelServiceDetailByServiceCode" @close="closeModal">
+  <Modal :show="showingModelServiceDetailByServiceCode">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Service Details</span>

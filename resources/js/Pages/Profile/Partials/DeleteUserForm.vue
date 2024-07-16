@@ -59,7 +59,7 @@ const closeModal = () => {
 
         <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
 
-        <Modal :show="confirmingUserDeletion" @close="closeModal">
+        <Modal :show="confirmingUserDeletion">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
                     Are you sure you want to delete your account?
@@ -99,7 +99,7 @@ const closeModal = () => {
             </div>
         </Modal>
 
-        <Modal :show="showModalAnnouncement" @close="closeModal">
+        <Modal :show="showModalAnnouncement">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-green-900">
                     Only Super-admin Can Delete Accounts

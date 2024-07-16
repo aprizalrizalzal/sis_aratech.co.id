@@ -115,7 +115,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelPlatformFooterUpdate" @close="closeModal">
+    <Modal :show="showingModelPlatformFooterUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Platform Footer</span>
@@ -125,7 +125,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="confirmingPlatformFooterDeletion" @close="closeModal">
+    <Modal :show="confirmingPlatformFooterDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your Platform Footer?

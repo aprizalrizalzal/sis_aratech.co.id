@@ -77,7 +77,7 @@ const closeModal = () => {
         </div>
     </div>
 
-    <Modal v-if="service" :show="showModal" @close="closeModal">
+    <Modal v-if="service" :show="showModal">
         <div class="p-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Service Details</span>
@@ -159,7 +159,7 @@ const closeModal = () => {
         </div>
     </Modal>
 
-    <Modal v-if="message" :show="showModal" @close="closeModal">
+    <Modal v-if="message" :show="showModal">
         <div class="p-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Service Details</span>

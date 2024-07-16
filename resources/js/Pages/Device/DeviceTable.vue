@@ -117,7 +117,7 @@ const previousPage = () => {
     <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
   </div>
 
-  <Modal v-model:show="showingModelDeviceUpdate" @close="closeModal">
+  <Modal v-model:show="showingModelDeviceUpdate">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Update Device</span>
@@ -126,7 +126,7 @@ const previousPage = () => {
       <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes" />
     </div>
   </Modal>
-  <Modal :show="confirmingDeviceDeletion" @close="closeModal">
+  <Modal :show="confirmingDeviceDeletion">
     <div class="p-6">
       <h2 class="text-lg font-medium text-green-900">
         Are you sure you want to delete your Device?

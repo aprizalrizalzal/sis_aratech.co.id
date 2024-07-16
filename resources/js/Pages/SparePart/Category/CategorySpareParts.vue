@@ -59,7 +59,7 @@ const closeModal = () => {
     </div>
   </AuthenticatedLayout>
 
-  <Modal :show="showModalAddCategorySparePart" @close="closeModal">
+  <Modal :show="showModalAddCategorySparePart">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Category Spare Part</span>

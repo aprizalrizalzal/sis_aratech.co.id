@@ -124,7 +124,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelAssignRoles" @close="closeModal">
+    <Modal :show="showingModelAssignRoles">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Assign User Roles</span>
@@ -134,7 +134,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="confirmingUserDeletion" @close="closeModal">
+    <Modal :show="confirmingUserDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your User?

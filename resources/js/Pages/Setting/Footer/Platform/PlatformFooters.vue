@@ -60,7 +60,7 @@ const closeModal = () => {
 
   </AuthenticatedLayout>
 
-  <Modal :show="showModalAddPlatformFooter" @close="closeModal">
+  <Modal :show="showModalAddPlatformFooter">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Platform Footer</span>

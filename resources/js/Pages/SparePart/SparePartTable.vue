@@ -162,7 +162,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelSparePartUpdateImage" @close="closeModal">
+    <Modal :show="showingModelSparePartUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Image Spare Part</span>
@@ -172,7 +172,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelSparePartUpdate" @close="closeModal">
+    <Modal :show="showingModelSparePartUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
@@ -182,7 +182,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal maxWidth="4xl" :show="showingModelSparePartDetail" @close="closeModal">
+    <Modal maxWidth="4xl" :show="showingModelSparePartDetail">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
@@ -192,7 +192,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="confirmingSparePartDeletion" @close="closeModal">
+    <Modal :show="confirmingSparePartDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your Spare Part?

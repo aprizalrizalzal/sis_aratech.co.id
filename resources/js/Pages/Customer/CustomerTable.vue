@@ -118,7 +118,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelCustomerUpdate" @close="closeModal">
+    <Modal :show="showingModelCustomerUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Customer</span>
@@ -127,7 +127,7 @@ const previousPage = () => {
             <CustomerForm :customer="selectedCustomer" />
         </div>
     </Modal>
-    <Modal :show="confirmingCustomerDeletion" @close="closeModal">
+    <Modal :show="confirmingCustomerDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your customer?

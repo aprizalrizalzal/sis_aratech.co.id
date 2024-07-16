@@ -134,7 +134,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelHeaderUpdateImage" @close="closeModal">
+    <Modal :show="showingModelHeaderUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Image Header</span>
@@ -144,7 +144,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelHeaderUpdate" @close="closeModal">
+    <Modal :show="showingModelHeaderUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Header</span>
@@ -154,7 +154,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="confirmingHeaderDeletion" @close="closeModal">
+    <Modal :show="confirmingHeaderDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete this header?

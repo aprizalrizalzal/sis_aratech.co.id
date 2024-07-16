@@ -351,7 +351,7 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <Modal :show="showingModelPartUsageUpdate" @close="closeModal">
+    <Modal :show="showingModelPartUsageUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Part Usage</span>
@@ -361,7 +361,7 @@ const handlePrint = () => {
                 :serviceDetail="selectedPartUsage.service_detail" :sparePart="selectedPartUsage.spare_part" />
         </div>
     </Modal>
-    <Modal :show="confirmingPartUsageDeletion" @close="closeModal">
+    <Modal :show="confirmingPartUsageDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your PartUsage?

@@ -128,7 +128,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelCarouselUpdateImage" @close="closeModal">
+    <Modal :show="showingModelCarouselUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Carousel Image</span>
@@ -138,7 +138,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelCarouselUpdate" @close="closeModal">
+    <Modal :show="showingModelCarouselUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Carousel</span>
@@ -148,7 +148,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="confirmingCarouselDeletion" @close="closeModal">
+    <Modal :show="confirmingCarouselDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete this carousel?

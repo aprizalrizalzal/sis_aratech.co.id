@@ -107,7 +107,7 @@ const closeModal = () => {
     </div>
   </AuthenticatedLayout>
 
-  <Modal :show="showModalAddHeader" @close="closeModal">
+  <Modal :show="showModalAddHeader">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Header</span>
@@ -117,7 +117,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddCarousel" @close="closeModal">
+  <Modal :show="showModalAddCarousel">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Carousel</span>
@@ -127,7 +127,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddNote" @close="closeModal">
+  <Modal :show="showModalAddNote">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Note</span>
@@ -137,7 +137,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddFooter" @close="closeModal">
+  <Modal :show="showModalAddFooter">
     <div class="m-6">
       <div class="flex justify-between items-center">
         <span class="font-bold text-center w-full">Add Footer</span>
