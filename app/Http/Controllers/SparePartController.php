@@ -6,6 +6,7 @@ use App\Models\CategorySparePart;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -89,7 +90,12 @@ class SparePartController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('spare_parts')->ignore($request->id),
+            ],
             'category_spare_part_id' => 'required|exists:category_spare_parts,id',
             'pieces' => 'required|integer',
             'price' => 'required|integer',

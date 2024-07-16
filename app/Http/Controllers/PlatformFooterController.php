@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PlatformFooter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PlatformFooterController extends Controller
@@ -37,7 +38,12 @@ class PlatformFooterController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:platform_footers,id',
-            'platform' => 'required|string|max:255',
+            'platform' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('platform_footers')->ignore($request->id),
+            ],
             'description' => 'required|string',
         ]);
 

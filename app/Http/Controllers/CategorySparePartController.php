@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CategorySparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class CategorySparePartController extends Controller
@@ -37,7 +38,12 @@ class CategorySparePartController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:category_spare_parts,id',
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('category_spare_parts')->ignore($request->id),
+            ],
             'description' => 'required|string',
         ]);
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DeviceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class DeviceTypeController extends Controller
@@ -37,7 +38,12 @@ class DeviceTypeController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:device_types,id',
-            'type_name' => 'required|string|max:255',
+            'type_name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('device_types')->ignore($request->id),
+            ],
             'description' => 'required|string',
         ]);
 

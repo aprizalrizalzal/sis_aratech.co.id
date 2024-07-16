@@ -6,6 +6,7 @@ use App\Models\Device;
 use App\Models\DeviceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class DeviceController extends Controller
@@ -44,7 +45,12 @@ class DeviceController extends Controller
             'id' => 'required|exists:devices,id',
             'device_type_id' => 'required|exists:device_types,id',
             'model' => 'required|string|max:255',
-            'serial_number' => 'required|string|max:255',
+            'serial_number' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('devices')->ignore($request->id),
+            ],
         ]);
 
         $device = Device::findOrFail($request->id);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StatusWarrantyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class StatusWarrantyServiceController extends Controller
@@ -37,7 +38,12 @@ class StatusWarrantyServiceController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:status_warranty_services,id',
-            'status' => 'required|string|max:255',
+            'status' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('status_warranty_services')->ignore($request->id),
+            ],
             'description' => 'required|string',
         ]);
 
