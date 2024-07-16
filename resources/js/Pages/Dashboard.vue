@@ -548,7 +548,7 @@ const closeModal = () => {
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.device.serial_number }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
-                            service.status_warranty }}
+                            service.status_warranty_service.status }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.date_received
@@ -564,7 +564,7 @@ const closeModal = () => {
                             service.items_brought
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status }}
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_service.status }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
@@ -705,7 +705,7 @@ const closeModal = () => {
           <tr>
             <td class=" text-green-900">Serial Number / Warranty Status </td>
             <td>{{ serviceDetail.service.device.serial_number }}<span> / </span>{{
-              serviceDetail.service.status_warranty }} </td>
+              serviceDetail.service.status_warranty_service.status }} </td>
           </tr>
           <tr>
             <td class=" text-green-900">Date Received / Estimated Completion </td>
@@ -722,7 +722,7 @@ const closeModal = () => {
           </tr>
           <tr class="font-bold bg-green-50">
             <td class=" text-green-900">Status </td>
-            <td>{{ serviceDetail.service.status }} </td>
+            <td>{{ serviceDetail.service.status_service.status }} </td>
           </tr>
           <tr>
             <td class="text-green-900"> Repair Description </td>

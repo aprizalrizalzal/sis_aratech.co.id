@@ -189,7 +189,7 @@ class SendEmailServiceDetail extends Mailable
                         </tr>
                         <tr>
                             <td class='text-green-900'>Serial Number / Warranty Status </td>
-                            <td>{$serviceDetail->service->device->serial_number}<span> / </span>{$serviceDetail->service->status_warranty}</td>
+                            <td>{$serviceDetail->service->device->serial_number}<span> / </span>{$serviceDetail->service->statusWarrantyService->status}</td>
                         </tr>
                         <tr>
                             <td class='text-green-900'>Date Received / Estimated Completion </td>
@@ -205,7 +205,7 @@ class SendEmailServiceDetail extends Mailable
                         </tr>
                         <tr class='font-bold bg-green-50'>
                             <td class='text-green-900'>Status </td>
-                            <td>{$serviceDetail->service->status}</td>
+                            <td>{$serviceDetail->service->statusService->status}</td>
                         </tr>
                         <tr>
                             <td class='text-green-900'> Repair Description </td>
