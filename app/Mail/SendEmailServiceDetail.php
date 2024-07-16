@@ -126,7 +126,7 @@ class SendEmailServiceDetail extends Mailable
                     background-color: #f5f5f5;
                 }
                 .list {
-                    font-size: 12px;
+                    font-size: 16px;
                     color: #374151;
                     margin: 0;
                     padding: 0;
@@ -238,7 +238,7 @@ class SendEmailServiceDetail extends Mailable
                 <hr>
                 <div class='border'>
                 <ul class='list'>
-                <li class='list-item font-bold'>Notes!</li>
+                <li class='list-item font-bold text-green-900'>Notes!</li>
                 <li class='list-item'>{$serviceDetail->notes}</li>
                 </ul>
                 </div>

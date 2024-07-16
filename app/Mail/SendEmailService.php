@@ -98,7 +98,7 @@ class SendEmailService extends Mailable
                     background-color: #f5f5f5;
                 }
                 .list {
-                    font-size: 12px;
+                    font-size: 16px;
                     color: #374151;
                     margin: 0;
                     padding: 0;
@@ -176,7 +176,7 @@ class SendEmailService extends Mailable
                 <hr>
                 <div class='border'>
                 <ul class='list'>
-                        <li class='list-item font-bold'>Notes!</li>
+                        <li class='list-item font-bold text-green-900'>Notes!</li>
                         <li class='list-item'>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</li>
                         <li class='list-item'>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</li>
                         <li class='list-item'>Harap menunjukkan nota service ini saat pengambilan barang.</li>
