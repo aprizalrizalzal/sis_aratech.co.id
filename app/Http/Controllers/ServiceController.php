@@ -19,7 +19,7 @@ class ServiceController extends Controller
 {
     public function show()
     {
-        $customers = Customer::all();
+        $customers = Customer::with('user')->get();
         $devices = Device::all();
 
         $statusWarrantyServices = StatusWarrantyService::all();

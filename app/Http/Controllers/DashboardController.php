@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $categorySpareParts = CategorySparePart::all();
         $spareParts = SparePart::with('categorySparePart')->get();
 
-        $customers = Customer::all();
+        $customers = Customer::with('user')->get();
         $devices = Device::all();
 
         $statusWarrantyServices = StatusWarrantyService::all();

@@ -1,4 +1,5 @@
 <script setup>
+import { ref, watch } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import DropdownSelect from '@/Components/DropdownSelect.vue'
 import DateTimePicker from '@/Components/DateTimePicker.vue'
@@ -34,6 +35,9 @@ const props = defineProps({
     statusServices: Array,
 });
 
+const customerEmail = ref('');
+const deviceModel = ref('');
+
 if (props.service) {
     form.customer_id = props.service.customer_id;
     form.device_id = props.service.device_id;
@@ -44,6 +48,14 @@ if (props.service) {
     form.items_brought = props.service.items_brought;
     form.status_service_id = props.service.status_service_id;
     form.notes = props.service.notes;
+    const selectedCustomer = props.customers.find(customer => customer.id === form.customer_id);
+    const selectedDevice = props.devices.find(device => device.id === form.device_id);
+    if (selectedCustomer) {
+        customerEmail.value = selectedCustomer.user.email;
+    }
+    if (selectedDevice) {
+        deviceModel.value = selectedDevice.model;
+    }
 }
 
 const submitForm = () => {
@@ -81,6 +93,20 @@ const submitForm = () => {
         });
     }
 };
+
+watch(() => form.customer_id, (newCustomerId) => {
+    const selectedCustomer = props.customers.find(customer => customer.id === newCustomerId);
+    if (selectedCustomer) {
+        customerEmail.value = selectedCustomer.user.email;
+    }
+});
+
+watch(() => form.device_id, (newDeviceId) => {
+    const selectedDevice = props.devices.find(device => device.id === newDeviceId);
+    if (selectedDevice) {
+        deviceModel.value = selectedDevice.model;
+    }
+});
 </script>
 
 <template>
@@ -93,6 +119,11 @@ const submitForm = () => {
                         :placeholder='props.service ? props.service.customer.phone : "Select Phone"' class="w-full" />
                     <InputError class="mt-2" :message="form.errors.customer_id" />
                 </div>
+                <div v-if="form.customer_id">
+                    <InputLabel for="email" value="Email" />
+                    <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="customerEmail" disabled />
+                </div>
+                <hr v-if="form.customer_id">
                 <div>
                     <DropdownSelect id="device_id" label="Serial Number" optionProperty="serial_number"
                         valueProperty="id" :options="devices" v-model="form.device_id"
@@ -100,6 +131,11 @@ const submitForm = () => {
                         class="w-full" />
                     <InputError class="mt-2" :message="form.errors.device_id" />
                 </div>
+                <div v-if="form.device_id">
+                    <InputLabel for="model" value="Model" />
+                    <TextInput id="model" type="text" class="mt-1 block w-full" :placeholder="deviceModel" disabled />
+                </div>
+                <hr v-if="form.device_id">
                 <div>
                     <DropdownSelect id="status_warranty_service_id" label="Status Warranty" optionProperty="status"
                         valueProperty="id" :options="statusWarrantyServices" v-model="form.status_warranty_service_id"
