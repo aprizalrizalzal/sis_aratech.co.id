@@ -32,9 +32,10 @@ const submitForm = () => {
             onSuccess: () => form.reset(),
             onError: (errors) => {
                 if (errors.device_type_id || errors.model || errors.serial_number) {
-                    alert('Device addition failed!');
+                    alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -45,9 +46,10 @@ const submitForm = () => {
             onSuccess: () => form.data(),
             onError: (errors) => {
                 if (errors.device_type_id || errors.model || errors.serial_number) {
-                    alert('Device update failed!');
+                    alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

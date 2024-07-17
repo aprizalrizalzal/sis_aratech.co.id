@@ -24,7 +24,6 @@ if (props.header) {
 }
 
 const previewUrl = ref(null);
-const uploadedImageUrl = ref(null);
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -39,32 +38,32 @@ const submitForm = () => {
         const headerId = props.headerId;
         form.post(route('update.header.image', { id: headerId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image) {
-                    alert('update image failed!');
+                    alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
     } else if (!props.header) {
         form.post(route('store.header'), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.reset();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image || errors.company || errors.description) {
-                    alert('upload failed!');
+                    alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -79,7 +78,8 @@ const submitForm = () => {
                 if (errors.company || errors.description) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

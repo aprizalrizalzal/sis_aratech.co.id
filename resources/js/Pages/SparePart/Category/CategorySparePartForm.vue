@@ -28,7 +28,8 @@ const submitForm = () => {
                 if (errors.name) {
                     alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -41,7 +42,8 @@ const submitForm = () => {
                 if (errors.name) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

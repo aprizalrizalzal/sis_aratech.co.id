@@ -24,14 +24,15 @@ const submitForm = () => {
     if (!props.note) {
         form.post(route('store.note'), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.reset();
             },
             onError: (errors) => {
                 if (errors.note || errors.description) {
-                    alert('upload failed!');
+                    alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -46,7 +47,8 @@ const submitForm = () => {
                 if (errors.note || errors.description) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -61,8 +63,8 @@ const submitForm = () => {
             <form @submit.prevent="submitForm" class="space-y-4">
                 <div>
                     <InputLabel for="note" value="Note" />
-                    <TextInput id="note" type="text" v-model="form.note" class="mt-1 block w-full"
-                        placeholder="Note" required autofocus />
+                    <TextInput id="note" type="text" v-model="form.note" class="mt-1 block w-full" placeholder="Note"
+                        required autofocus />
                     <InputError :message="form.errors.note" />
                 </div>
                 <div>

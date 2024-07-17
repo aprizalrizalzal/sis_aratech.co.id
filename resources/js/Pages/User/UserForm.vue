@@ -25,7 +25,8 @@ const assignRoles = (role) => {
             emit('assignRoles');
         },
         onError: (errors) => {
-            console.error('An error occurred:', errors);
+            const errorMessages = Object.values(errors).flat();
+            alert(`${errorMessages}`);
         }
     });
 };
@@ -38,7 +39,8 @@ const removeRole = (role) => {
             emit('assignRoles');
         },
         onError: (errors) => {
-            console.error('An error occurred:', errors);
+            const errorMessages = Object.values(errors).flat();
+            alert(`${errorMessages}`);
         }
     });
 };

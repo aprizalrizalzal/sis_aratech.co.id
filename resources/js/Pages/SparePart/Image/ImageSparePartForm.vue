@@ -35,7 +35,6 @@ if (props.sparePart) {
 }
 
 const previewUrl = ref(null);
-const uploadedImageUrl = ref(null);
 const imageSpareParts = ref(props.sparePart.image_spare_parts || []);
 
 const handleFileChange = (event) => {
@@ -49,11 +48,9 @@ const handleFileChange = (event) => {
 const submitForm = () => {
     form.post(route('store.image.spare.part.image'), {
         preserveScroll: true,
-        onSuccess: (response) => {
+        onSuccess: () => {
             form.data();
             previewUrl.value = null;
-            uploadedImageUrl.value = response.image_url;
-            imageSpareParts.value.push({ uploadedImageUrl }); // Update the image list
             imageSuccessfullyAdded.value = true; // Set success message
             setTimeout(() => imageSuccessfullyAdded.value = false, 3000);
         },
@@ -61,7 +58,8 @@ const submitForm = () => {
             if (errors.image) {
                 alert('addition failed!');
             } else {
-                console.error('An error occurred:', errors);
+                const errorMessages = Object.values(errors).flat();
+                alert(`${errorMessages}`);
             }
         }
     });
@@ -71,13 +69,12 @@ const deleteImageSparePart = () => {
     form.delete(route('destroy.image.spare.part.image'), {
         preserveScroll: true,
         onSuccess: () => {
-            imageSpareParts.value = imageSpareParts.value.filter(imageSparePart => imageSparePart.id !== form.id); // Remove the deleted imageSparePart from the list
-            form.reset();
+            imageSpareParts.value = imageSpareParts.value.filter(imageSparePart => imageSparePart.id !== form.id);
             closeModal();
         },
         onError: (errors) => {
             if (errors) {
-                console.error('An error occurred:', errors);
+                closeModal();
             } else {
                 const errorMessages = Object.values(errors).flat();
                 alert(`${errorMessages}`);
@@ -102,8 +99,8 @@ const closeModal = () => {
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div v-if="props.sparePart" class="hidden">
                     <InputLabel for="spare_part_id" value="Spare Part ID" />
-                    <TextInput id="spare_part_id" type="number" class="mt-1 block w-full" v-model="form.spare_part_id" placeholder="Spare Part ID"
-                    required />
+                    <TextInput id="spare_part_id" type="number" class="mt-1 block w-full" v-model="form.spare_part_id"
+                        placeholder="Spare Part ID" required />
                     <InputError class="mt-2" :message="form.errors.spare_part_id" />
                 </div>
                 <div>
@@ -125,13 +122,16 @@ const closeModal = () => {
                 </div>
             </form>
 
-            <div v-if="imageSpareParts.length"class="mt-6">
+            <div v-if="imageSpareParts.length" class="mt-6">
                 <p class="font-semibold text-center">Existing Images</p>
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
                     <div v-for="(imageSparePart, index) in imageSpareParts" :key="index" class="relative">
                         <img :src="imageSparePart.image_path" alt="Image Spare Part" class="w-full h-auto rounded-md" />
                         {{ imageSparePart.id }}
-                        <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)" class="absolute top-1 right-1 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150"><EraserIcon /></ButtonImage>
+                        <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
+                            class="absolute top-1 right-1 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
+                            <EraserIcon />
+                        </ButtonImage>
                     </div>
                 </div>
             </div>

@@ -28,9 +28,10 @@ const submitForm = () => {
         },
         onError: (errors) => {
             if (errors.id) {
-                alert('Service Code not found');
+                alert('not found');
             } else {
-                console.error('An error occurred:', errors);
+                const errorMessages = Object.values(errors).flat();
+                alert(`${errorMessages}`);
             }
         }
     });

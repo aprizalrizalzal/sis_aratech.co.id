@@ -33,7 +33,6 @@ if (props.sparePart) {
 }
 
 const previewUrl = ref(null);
-const uploadedImageUrl = ref(null);
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -48,32 +47,34 @@ const submitForm = () => {
         const sparePartId = props.sparePartId;
         form.post(route('update.spare.part.image', { id: sparePartId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
+
             },
             onError: (errors) => {
                 if (errors.image) {
-                    alert('image update failed!');
+                    alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
     } else if (!props.sparePart) {
         form.post(route('store.spare.part'), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.reset();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
+
             },
             onError: (errors) => {
                 if (errors.image || errors.name || errors.category_spare_part_id || errors.description || errors.pieces || errors.price) {
                     alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -88,7 +89,8 @@ const submitForm = () => {
                 if (errors.name || errors.category_spare_part_id || errors.description || errors.pieces || errors.price) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -121,14 +123,14 @@ const submitForm = () => {
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel for="pieces" value="Pieces" />
-                    <TextInput id="pieces" type="number" class="mt-1 block w-full" v-model="form.pieces" placeholder="Pieces"
-                    required />
+                    <TextInput id="pieces" type="number" class="mt-1 block w-full" v-model="form.pieces"
+                        placeholder="Pieces" required />
                     <InputError class="mt-2" :message="form.errors.pieces" />
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel for="price" value="Price" />
-                    <TextInput id="price" type="number" class="mt-1 block w-full" v-model="form.price" placeholder="Price"
-                    required />
+                    <TextInput id="price" type="number" class="mt-1 block w-full" v-model="form.price"
+                        placeholder="Price" required />
                     <InputError class="mt-2" :message="form.errors.price" />
                 </div>
                 <div v-if="!props.sparePartId">

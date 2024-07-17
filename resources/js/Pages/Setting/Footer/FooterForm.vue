@@ -34,7 +34,6 @@ if (props.footer) {
 }
 
 const previewUrl = ref(null);
-const uploadedImageUrl = ref(null);
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -49,32 +48,32 @@ const submitForm = () => {
         const footerId = props.footerId;
         form.post(route('update.footer.image', { id: footerId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
     } else if (!props.footer) {
         form.post(route('store.footer'), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.reset();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image || errors.type_footer_id || errors.platform_footer_id || errors.url || errors.username || errors.value) {
-                    alert('upload failed!');
+                    alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -89,7 +88,8 @@ const submitForm = () => {
                 if (errors.type_footer_id || errors.platform_footer_id || errors.url || errors.username || errors.value) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

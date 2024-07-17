@@ -22,7 +22,6 @@ if (props.carousel) {
 }
 
 const previewUrl = ref(null);
-const uploadedImageUrl = ref(null);
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -37,32 +36,32 @@ const submitForm = () => {
         const carouselId = props.carouselId;
         form.post(route('update.carousel.image', { id: carouselId }), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
     } else if (!props.carousel) {
         form.post(route('store.carousel'), {
             preserveScroll: true,
-            onSuccess: (response) => {
+            onSuccess: () => {
                 form.reset();
                 previewUrl.value = null;
-                uploadedImageUrl.value = response.image_url;
             },
             onError: (errors) => {
                 if (errors.image || errors.alt) {
-                    alert('upload failed!');
+                    alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -77,7 +76,8 @@ const submitForm = () => {
                 if (errors.alt) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });

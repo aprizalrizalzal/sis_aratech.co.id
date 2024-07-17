@@ -86,7 +86,8 @@ const submitForm = () => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
                     alert('addition failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -99,7 +100,8 @@ const submitForm = () => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
                     alert('update failed!');
                 } else {
-                    console.error('An error occurred:', errors);
+                    const errorMessages = Object.values(errors).flat();
+                    alert(`${errorMessages}`);
                 }
             }
         });
@@ -148,8 +150,7 @@ const submitForm = () => {
                 </div>
                 <div>
                     <InputLabel for="problem_description" value="Problem Description" />
-                    <TextInput id="problem_description" type="text"
-                        class="mt-1 block w-full"
+                    <TextInput id="problem_description" type="text" class="mt-1 block w-full"
                         v-model="form.problem_description" placeholder="Problem Description" required />
                     <InputError class="mt-2" :message="form.errors.problem_description" />
                 </div>

@@ -26,12 +26,12 @@ class ImageSparePartController extends Controller
         $uniqueName = time() . '_' . $originalName;
         $path = $request->file('image')->storeAs('images/spareParts/images', $uniqueName, 'public');
 
-        $imageSparePart = ImageSparePart::create([
+        ImageSparePart::create([
             'image_path' => 'storage/' . $path,
             'spare_part_id' => $request->spare_part_id,
         ]);
 
-        return Redirect::back()->with(['image_url' => $imageSparePart->image_path]);
+        return Redirect::back();
     }
 
     public function destroy(Request $request)
