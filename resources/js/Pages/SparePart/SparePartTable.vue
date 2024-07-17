@@ -1,5 +1,6 @@
 <script setup>
-import SparePartForm from '@/Pages/SparePart/SparePartForm.vue';
+import SparePartForm from './SparePartForm.vue';
+import ImageSparePartForm from './ImageSparePartForm.vue'
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -9,6 +10,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 import SparePartDetail from './SparePartDetail.vue';
+import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -20,6 +22,7 @@ const formatCurrency = (value) => {
 };
 
 const showingModelSparePartUpdateImage = ref(false);
+const showingModelSparePartAddImages = ref(false);
 const showingModelSparePartUpdate = ref(false);
 const showingModelSparePartDetail = ref(false);
 const selectedSparePartId = ref(null);
@@ -28,6 +31,11 @@ const selectedSparePart = ref(null);
 const showModalSparePartUpdateImage = (sparePartId) => {
     selectedSparePartId.value = sparePartId;
     showingModelSparePartUpdateImage.value = true;
+};
+
+const showModalSparePartAddImages = (sparePart) => {
+    selectedSparePart.value = sparePart;
+    showingModelSparePartAddImages.value = true;
 };
 
 const showModalSparePartUpdate = (sparePart) => {
@@ -68,6 +76,7 @@ const deleteSparePart = () => {
 
 const closeModal = () => {
     showingModelSparePartUpdateImage.value = false;
+    showingModelSparePartAddImages.value = false;
     showingModelSparePartUpdate.value = false;
     showingModelSparePartDetail.value = false;
     confirmingSparePartDeletion.value = false;
@@ -121,10 +130,15 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                                class="h-8 object-cover rounded-md mx-2" />
-                            <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
+                                class="h-16 object-cover rounded-md me-2" />
+                            <div class="flex flex-col gap-2">
+                                <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
                                 <EditIcon />
-                            </ButtonImage>
+                                </ButtonImage>
+                                <ButtonImage @click="showModalSparePartAddImages(sparePart)">
+                                    <ImagesIcon />
+                                </ButtonImage>
+                            </div>
                         </div>
                     </td>
                     <td
@@ -169,7 +183,7 @@ const previousPage = () => {
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Image Spare Part</span>
-                <DangerButton @click="showingModelSparePartUpdateImage = false">X</DangerButton>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <SparePartForm :sparePartId="selectedSparePartId" />
         </div>
@@ -179,9 +193,19 @@ const previousPage = () => {
         <div class="m-6">
             <div class="flex justify-between items-center">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
-                <DangerButton @click="showingModelSparePartUpdate = false">X</DangerButton>
+                <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
+        </div>
+    </Modal>
+
+    <Modal :show="showingModelSparePartAddImages">
+        <div class="m-6">
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-center w-full">Add Images Spare Part</span>
+                <DangerButton @click="closeModal">X</DangerButton>
+            </div>
+            <ImageSparePartForm :sparePart="selectedSparePart"/>
         </div>
     </Modal>
 
@@ -191,7 +215,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <SparePartDetail :sparePart="selectedSparePart" />
+            <SparePartDetail :sparePart="selectedSparePart"/>
         </div>
     </Modal>
 

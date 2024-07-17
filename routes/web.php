@@ -8,6 +8,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\ImageSparePartController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\PlatformFooterController;
@@ -64,6 +65,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/spare-part-image', [SparePartController::class, 'update_image'])->name('update.spare.part.image');
         Route::put('/spare-part', [SparePartController::class, 'update'])->name('update.spare.part');
         Route::delete('/spare-part', [SparePartController::class, 'destroy'])->name('destroy.spare.part');
+
+        // ImageSparePartController
+        Route::post('/image/spare-part-image', [ImageSparePartController::class, 'store'])->name('store.image.spare.part.image');
+        Route::delete('/image/spare-part-image', [ImageSparePartController::class, 'destroy'])->name('destroy.image.spare.part.image');
 
         // SettingController
         Route::get('/setting', [SettingController::class, 'show'])->name('setting.edit');

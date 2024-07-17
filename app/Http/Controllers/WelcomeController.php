@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\CategorySparePart;
+use App\Models\ImageSparePart;
 use App\Models\Service;
 use App\Models\SparePart;
 use App\Models\StatusService;
@@ -20,7 +21,7 @@ class WelcomeController extends Controller
         $statusWarrantyServices = StatusWarrantyService::all();
         $categorySpareParts = CategorySparePart::all();
         $carousels = Carousel::all();
-        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->with('categorySparePart')->get();
+        $spareParts = SparePart::withoutGlobalScope('order')->inRandomOrder()->with('categorySparePart', 'imageSpareParts')->get();
 
         return Inertia::render('Welcome', [
             'statusServices' => $statusServices,

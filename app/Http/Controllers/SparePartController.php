@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategorySparePart;
+use App\Models\ImageSparePart;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -16,7 +17,7 @@ class SparePartController extends Controller
     public function show()
     {
         $categorySpareParts = CategorySparePart::all();
-        $spareParts = SparePart::with('categorySparePart')->get();
+        $spareParts = SparePart::with('categorySparePart', 'imageSpareParts')->get();
 
         return Inertia::render('SparePart/SpareParts', [
             'spareParts' => $spareParts,
