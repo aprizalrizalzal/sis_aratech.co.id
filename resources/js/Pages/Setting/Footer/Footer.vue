@@ -10,9 +10,9 @@ const contactFooters = computed(() => {
 });
 
 const getHref = (footer) => {
-    if (footer.platform === 'Email') {
+    if (footer.platform_footer.platform === 'Email') {
         return `mailto:${footer.value}`
-    } else if (footer.platform === 'Phone') {
+    } else if (footer.platform_footer.platform === 'Phone') {
         return `tel:${footer.value}`
     } else {
         return footer.url
@@ -21,10 +21,6 @@ const getHref = (footer) => {
 
 const socialMediaFooters = computed(() => {
     return footers.filter(footer => footer.type_footer.type === 'Social Media');
-});
-
-const serviceFooters = computed(() => {
-    return footers.filter(footer => footer.type_footer.type === 'Service');
 });
 
 const appDownloadFooters = computed(() => {
