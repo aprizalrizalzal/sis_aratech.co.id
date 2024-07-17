@@ -65,7 +65,7 @@ const submitForm = () => {
         form.post(route('store.footer'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset();
+                form.reset('image', 'url', 'username', 'value');
                 previewUrl.value = null;
             },
             onError: (errors) => {

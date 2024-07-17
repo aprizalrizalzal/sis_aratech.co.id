@@ -49,7 +49,7 @@ const submitForm = () => {
     form.post(route('store.image.spare.part.image'), {
         preserveScroll: true,
         onSuccess: () => {
-            form.data();
+            form.reset('image');
             previewUrl.value = null;
             imageSuccessfullyAdded.value = true; // Set success message
             setTimeout(() => imageSuccessfullyAdded.value = false, 3000);
@@ -69,6 +69,7 @@ const deleteImageSparePart = () => {
     form.delete(route('destroy.image.spare.part.image'), {
         preserveScroll: true,
         onSuccess: () => {
+            form.reset('id');
             imageSpareParts.value = imageSpareParts.value.filter(imageSparePart => imageSparePart.id !== form.id);
             closeModal();
         },

@@ -31,7 +31,7 @@ if (props.partUsage) {
     form.service_detail_id = props.partUsage.service_detail_id;
     form.spare_part_id = props.partUsage.spare_part_id;
     form.quantity = props.partUsage.quantity;
-    const selectedServiceDetail = props.serviceDetails.find(serviceDetail => serviceDetail.id === form.service_detail_id );
+    const selectedServiceDetail = props.serviceDetails.find(serviceDetail => serviceDetail.id === form.service_detail_id);
     if (selectedServiceDetail) {
         technicianEmail.value = selectedServiceDetail.user.email;
         serviceCode.value = selectedServiceDetail.service.service_code;
@@ -41,7 +41,7 @@ if (props.partUsage) {
 }
 
 watch(() => form.service_detail_id, (newServiceDetailId) => {
-    const selectedServiceDetail = props.serviceDetails.find(serviceDetail => serviceDetail.id === newServiceDetailId );
+    const selectedServiceDetail = props.serviceDetails.find(serviceDetail => serviceDetail.id === newServiceDetailId);
     if (selectedServiceDetail) {
         technicianEmail.value = selectedServiceDetail.user.email;
         serviceCode.value = selectedServiceDetail.service.service_code;
@@ -54,7 +54,7 @@ const submitForm = () => {
     if (!props.partUsage) {
         form.post(route('store.part.usage'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => form.reset('quantity'),
             onError: (errors) => {
                 if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage addition failed!');
@@ -96,11 +96,13 @@ const submitForm = () => {
                 </div>
                 <div v-if="form.service_detail_id">
                     <InputLabel for="email" value="Email Technician" />
-                    <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="technicianEmail" disabled />
+                    <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="technicianEmail"
+                        disabled />
                 </div>
                 <div v-if="form.service_detail_id">
                     <InputLabel for="service_code" value="Service Code" />
-                    <TextInput id="service_code" type="text" class="mt-1 block w-full" :placeholder="serviceCode" disabled />
+                    <TextInput id="service_code" type="text" class="mt-1 block w-full" :placeholder="serviceCode"
+                        disabled />
                 </div>
                 <div v-if="form.service_detail_id">
                     <InputLabel for="email" value="Email" />

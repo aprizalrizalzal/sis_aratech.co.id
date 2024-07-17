@@ -76,7 +76,7 @@ const submitForm = () => {
             preserveScroll: true,
             resetOnSuccess: false,
             onSuccess: (page) => {
-                form.reset();
+                form.reset('date_received', 'estimated_completion', 'items_brought', 'problem_description');
                 const printService = page.props.printService;
                 if (printService) {
                     window.open(printService, '_blank');

@@ -43,7 +43,7 @@ if (props.serviceDetail) {
     form.repair_description = props.serviceDetail.repair_description;
     form.cost = props.serviceDetail.cost;
     form.notes = props.serviceDetail.notes;
-    const selectedService = props.services.find(service => service.id === form.service_id );
+    const selectedService = props.services.find(service => service.id === form.service_id);
     if (selectedService) {
         serviceEmail.value = selectedService.customer.user.email;
         servicePhone.value = selectedService.customer.phone;
@@ -65,7 +65,7 @@ const submitForm = () => {
         form.post(route('store.service.detail'), {
             preserveScroll: true,
             onSuccess: (page) => {
-                form.reset();
+                form.reset('cost', 'notes', 'repair_description');
                 const printServiceDetail = page.props.printServiceDetail;
                 if (printServiceDetail) {
                     window.open(printServiceDetail, '_blank');
@@ -105,8 +105,8 @@ const submitForm = () => {
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div v-if="!props.user" class="hidden">
                     <InputLabel for="user_id" value="Technician" />
-                    <TextInput id="user_id" type="text" class="mt-1 block w-full"
-                        v-model="form.user_id" placeholder="Email Technician" required autofocus />
+                    <TextInput id="user_id" type="text" class="mt-1 block w-full" v-model="form.user_id"
+                        placeholder="Email Technician" required autofocus />
                     <InputError class="mt-2" :message="form.errors.user_id" />
                 </div>
                 <div>
@@ -119,7 +119,7 @@ const submitForm = () => {
                     <InputLabel for="email" value="Email" />
                     <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="serviceEmail" disabled />
                 </div>
-                <div v-if="form.service_id"> 
+                <div v-if="form.service_id">
                     <InputLabel for="phone" value="Phone" />
                     <TextInput id="phone" type="text" class="mt-1 block w-full" :placeholder="servicePhone" disabled />
                 </div>
@@ -132,8 +132,7 @@ const submitForm = () => {
                 <hr v-if="form.service_id">
                 <div>
                     <InputLabel for="repair_description" value="Repair Description" />
-                    <TextInput id="repair_description" type="text"
-                        class="mt-1 block w-full"
+                    <TextInput id="repair_description" type="text" class="mt-1 block w-full"
                         v-model="form.repair_description" placeholder="Repair Description" required />
                     <InputError class="mt-2" :message="form.errors.repair_description" />
                 </div>

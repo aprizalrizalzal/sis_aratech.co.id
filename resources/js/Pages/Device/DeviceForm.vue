@@ -29,7 +29,7 @@ const submitForm = () => {
     if (!props.device) {
         form.post(route('store.device'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => form.reset('model', 'serial_number'),
             onError: (errors) => {
                 if (errors.device_type_id || errors.model || errors.serial_number) {
                     alert('addition failed!');
