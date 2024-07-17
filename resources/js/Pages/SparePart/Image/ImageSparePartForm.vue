@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -29,13 +29,15 @@ const confirmImageSparePartDeletion = (imageSparePartId) => {
     form.id = imageSparePartId;
 };
 
+const imageSpareParts = ref(null);
+
 if (props.sparePart) {
     const sparePartId = props.sparePart.id;
     form.spare_part_id = sparePartId;
+    imageSpareParts.value = props.sparePart.image_spare_parts;
 }
 
 const previewUrl = ref(null);
-const imageSpareParts = ref(props.sparePart.image_spare_parts || []);
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -51,6 +53,7 @@ const submitForm = () => {
         onSuccess: () => {
             form.reset('image');
             previewUrl.value = null;
+            imageSpareParts.value = imageSpareParts.value.filter(imageSparePart => imageSparePart.id !== form.id);
             imageSuccessfullyAdded.value = true; // Set success message
             setTimeout(() => imageSuccessfullyAdded.value = false, 3000);
         },
@@ -69,7 +72,6 @@ const deleteImageSparePart = () => {
     form.delete(route('destroy.image.spare.part.image'), {
         preserveScroll: true,
         onSuccess: () => {
-            form.reset('id');
             imageSpareParts.value = imageSpareParts.value.filter(imageSparePart => imageSparePart.id !== form.id);
             closeModal();
         },
@@ -83,10 +85,6 @@ const deleteImageSparePart = () => {
         }
     });
 };
-
-watch(() => props.sparePart.image_spare_parts, (newImages) => {
-    imageSpareParts.value = newImages;
-});
 
 const closeModal = () => {
     confirmingImageSparePartDeletion.value = false;
@@ -128,7 +126,6 @@ const closeModal = () => {
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
                     <div v-for="(imageSparePart, index) in imageSpareParts" :key="index" class="relative">
                         <img :src="imageSparePart.image_path" alt="Image Spare Part" class="w-full h-auto rounded-md" />
-                        {{ imageSparePart.id }}
                         <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
                             class="absolute top-1 right-1 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
                             <EraserIcon />

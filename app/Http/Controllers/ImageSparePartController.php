@@ -47,6 +47,6 @@ class ImageSparePartController extends Controller
 
         $imageSparePart->delete();
 
-        return Redirect::back()->with('success', 'Image deleted successfully.');
+        return Redirect::back();
     }
 }
