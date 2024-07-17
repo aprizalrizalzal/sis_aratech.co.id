@@ -65,7 +65,7 @@ const submitForm = () => {
         form.post(route('store.spare.part'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset('name', 'description', 'pieces', 'price');
+                form.reset('image', 'name', 'description', 'pieces', 'price');
                 previewUrl.value = null;
 
             },

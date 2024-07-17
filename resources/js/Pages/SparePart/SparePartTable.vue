@@ -1,6 +1,6 @@
 <script setup>
 import SparePartForm from './SparePartForm.vue';
-import ImageSparePartForm from './ImageSparePartForm.vue'
+import ImageSparePartForm from './Image/ImageSparePartForm.vue'
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -133,7 +133,7 @@ const previousPage = () => {
                                 class="h-16 object-cover rounded-md me-2" />
                             <div class="flex flex-col gap-2">
                                 <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
-                                <EditIcon />
+                                    <EditIcon />
                                 </ButtonImage>
                                 <ButtonImage @click="showModalSparePartAddImages(sparePart)">
                                     <ImagesIcon />
@@ -205,7 +205,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Add Images Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <ImageSparePartForm :sparePart="selectedSparePart"/>
+            <ImageSparePartForm :sparePart="selectedSparePart" />
         </div>
     </Modal>
 
@@ -215,7 +215,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <SparePartDetail :sparePart="selectedSparePart"/>
+            <SparePartDetail :sparePart="selectedSparePart" />
         </div>
     </Modal>
 
