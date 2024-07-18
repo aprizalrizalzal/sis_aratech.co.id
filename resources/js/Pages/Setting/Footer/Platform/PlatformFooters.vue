@@ -52,7 +52,8 @@ const closeModal = () => {
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
             <PlatformFooterTable :platformFooters="filteredPlatformFooters" />
-            <SecondaryButton @click="showModalAddPlatformFooter = true" class="w-full">Add Platform Footer</SecondaryButton>
+            <SecondaryButton @click="showModalAddPlatformFooter = true" class="w-full">Add Platform Footer
+            </SecondaryButton>
           </div>
         </div>
       </div>
@@ -62,10 +63,11 @@ const closeModal = () => {
 
   <Modal :show="showModalAddPlatformFooter">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Platform Footer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <PlatformFooterForm />
     </div>
   </Modal>

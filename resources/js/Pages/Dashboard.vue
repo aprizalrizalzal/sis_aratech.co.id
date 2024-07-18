@@ -564,7 +564,8 @@ const closeModal = () => {
                             service.items_brought
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_service.status }}
+                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_service.status
+                            }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
@@ -595,50 +596,55 @@ const closeModal = () => {
 
   <Modal :show="showModalAddDeviceType">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Device Type</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <DeviceTypeForm />
     </div>
   </Modal>
 
   <Modal :show="showModalAddSparePart">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <SparePartForm :categorySpareParts="categorySpareParts" />
     </div>
   </Modal>
 
   <Modal :show="showModalAddCustomer">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Customer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <CustomerForm />
     </div>
   </Modal>
 
   <Modal :show="showModalAddDevice">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Device</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <DeviceForm :deviceTypes="deviceTypes" />
     </div>
   </Modal>
 
   <Modal :show="showModalAddService">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Service</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
         :statusServices="statusServices" />
     </div>
@@ -646,30 +652,33 @@ const closeModal = () => {
 
   <Modal :show="showModalAddServiceDetail">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Service Detail</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices" />
     </div>
   </Modal>
 
   <Modal :show="showModalAddPartUsage">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Part Usage</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" />
     </div>
   </Modal>
 
   <Modal :show="showingModelServiceDetailByServiceCode">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Service Details</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <table class="table-auto w-full my-2">
         <tbody>
           <tr class="font-bold bg-green-50">

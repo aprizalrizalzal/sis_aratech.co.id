@@ -76,24 +76,24 @@ const closeModal = () => {
           <div class="flex items-center gap-4">
             <div class="relative">
               <Dropdown align="left" width="48">
-                  <template #trigger>
-                      <span class="inline-flex rounded-md">
-                          <button type="button"
-                              class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
-                              Footers&nbsp;
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                  fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                  <path fill-rule="evenodd"
-                                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                              </svg>
-                          </button>
-                      </span>
-                  </template>
+                <template #trigger>
+                  <span class="inline-flex rounded-md">
+                    <button type="button"
+                      class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                      Footers&nbsp;
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-chevron-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                      </svg>
+                    </button>
+                  </span>
+                </template>
 
-                  <template #content>
-                      <DropdownLink :href="route('show.type.footer')">Type</DropdownLink>
-                      <DropdownLink :href="route('show.platform.footer')">Platform</DropdownLink>
-                  </template>
+                <template #content>
+                  <DropdownLink :href="route('show.type.footer')">Type</DropdownLink>
+                  <DropdownLink :href="route('show.platform.footer')">Platform</DropdownLink>
+                </template>
               </Dropdown>
             </div>
           </div>
@@ -109,40 +109,44 @@ const closeModal = () => {
 
   <Modal :show="showModalAddHeader">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Header</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <HeaderForm />
     </div>
   </Modal>
 
   <Modal :show="showModalAddCarousel">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Carousel</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <CarouselForm />
     </div>
   </Modal>
 
   <Modal :show="showModalAddNote">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Note</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <NoteForm />
     </div>
   </Modal>
 
   <Modal :show="showModalAddFooter">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Footer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <FooterForm :typeFooters="typeFooters" :platformFooters="platformFooters" />
     </div>
   </Modal>

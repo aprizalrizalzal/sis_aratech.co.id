@@ -80,10 +80,11 @@ const closeModal = () => {
 
     <Modal v-if="service" :show="showModal">
         <div class="p-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Service Details</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <table class="table-auto w-full mt-4">
                 <tbody>
                     <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
@@ -162,10 +163,11 @@ const closeModal = () => {
 
     <Modal v-if="message" :show="showModal">
         <div class="p-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Service Details</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <P class="font-bold text-green-900 my-4">{{ message }}</P>
             <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
                 dalam huruf kapital

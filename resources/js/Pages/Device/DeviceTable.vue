@@ -119,10 +119,11 @@ const previousPage = () => {
 
   <Modal v-model:show="showingModelDeviceUpdate">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Update Device</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes" />
     </div>
   </Modal>

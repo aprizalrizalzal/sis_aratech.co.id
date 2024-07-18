@@ -164,11 +164,13 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td
+                        class="py-2 px-4 border-b border-green-300 whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <div class="flex items-center">
-                            <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id" class="relative me-2">
+                            <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
+                                class="relative me-2">
                                 <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
-                                    class="h-16 object-cover rounded-md " style="max-width: 128px;"/>
+                                    class="h-16 object-cover rounded-md " style="max-width: 128px;" />
                                 <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
                                     class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
                                     <EraserIcon />
@@ -219,40 +221,44 @@ const previousPage = () => {
 
     <Modal :show="showingModelSparePartUpdateImage">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Cover Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <SparePartForm :sparePartId="selectedSparePartId" />
         </div>
     </Modal>
 
     <Modal :show="showingModelSparePartUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>
     </Modal>
 
     <Modal :show="showingModelSparePartAddImages">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Add Images Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <ImageSparePartForm :sparePart="selectedSparePart" />
         </div>
     </Modal>
 
     <Modal maxWidth="4xl" :show="showingModelSparePartDetail">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <SparePartDetail :sparePart="selectedSparePart" />
         </div>
     </Modal>
