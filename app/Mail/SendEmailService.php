@@ -185,11 +185,11 @@ class SendEmailService extends Mailable
                 <p>
                     Silakan kunjungi situs web kami di <a target='_blank' rel='noopener noreferrer' class='text-green-900 font-bold'
                         href='{$host_url}'>{$host_url}</a> dan masuk menggunakan email
-                    <span class='font-bold text-green-900'>{$service->customer->user->email}</span> dan kata sandi <span class='font-bold text-green-900'>password</span>
+                    <span class='font-bold text-green-900'>{$service->customer->user->email}</span> kata sandi <span class='font-bold text-green-900'>@amitech</span>
                         untuk melihat perkembangan perangkat yang sedang diperbaiki.
                 </p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin SIService-AMITech!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin ASLI Mandiri Computer - AMITech!</p>
             </div>
         </body>
         </html>
