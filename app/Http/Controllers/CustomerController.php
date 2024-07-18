@@ -35,7 +35,7 @@ class CustomerController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('password'),
+            'password' => Hash::make('@amitech'),
         ]);
 
         Customer::create([
