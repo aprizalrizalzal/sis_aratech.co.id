@@ -8,9 +8,11 @@ import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
+import EraserIcon from '@/Components/Icon/EraserIcon.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 import SparePartDetail from './SparePartDetail.vue';
 import ImagesIcon from '@/Components/Icon/ImagesIcon.vue';
+
 
 const props = defineProps({
     spareParts: Array,
@@ -74,12 +76,37 @@ const deleteSparePart = () => {
     });
 };
 
+const deleteImageSparePart = () => {
+    form.delete(route('destroy.image.spare.part.image'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            closeModal();
+        },
+        onError: (errors) => {
+            if (errors) {
+                closeModal();
+            } else {
+                const errorMessages = Object.values(errors).flat();
+                alert(`${errorMessages}`);
+            }
+        }
+    });
+};
+
+const confirmingImageSparePartDeletion = ref(false);
+
+const confirmImageSparePartDeletion = (imageSparePartId) => {
+    confirmingImageSparePartDeletion.value = true;
+    form.id = imageSparePartId;
+};
+
 const closeModal = () => {
     showingModelSparePartUpdateImage.value = false;
     showingModelSparePartAddImages.value = false;
     showingModelSparePartUpdate.value = false;
     showingModelSparePartDetail.value = false;
     confirmingSparePartDeletion.value = false;
+    confirmingImageSparePartDeletion.value = false;
 };
 
 const currentPage = ref(1);
@@ -109,11 +136,12 @@ const previousPage = () => {
 </script>
 
 <template>
-    <div class=" overflow-x-auto">
+    <div class="overflow-x-auto">
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cover</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300">Category</th>
@@ -131,14 +159,24 @@ const previousPage = () => {
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
                                 class="h-16 object-cover rounded-md me-2" />
-                            <div class="flex flex-col gap-2">
-                                <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
-                                    <EditIcon />
-                                </ButtonImage>
-                                <ButtonImage @click="showModalSparePartAddImages(sparePart)">
-                                    <ImagesIcon />
+                            <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
+                                <EditIcon />
+                            </ButtonImage>
+                        </div>
+                    </td>
+                    <td class="py-2 px-4 border-b border-green-300 whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        <div class="flex items-center">
+                            <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id" class="relative me-2">
+                                <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
+                                    class="h-16 object-cover rounded-md " style="max-width: 128px;"/>
+                                <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
+                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
+                                    <EraserIcon />
                                 </ButtonImage>
                             </div>
+                            <ButtonImage @click="showModalSparePartAddImages(sparePart)">
+                                <ImagesIcon />
+                            </ButtonImage>
                         </div>
                     </td>
                     <td
@@ -182,7 +220,7 @@ const previousPage = () => {
     <Modal :show="showingModelSparePartUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold text-center w-full">Update Image Spare Part</span>
+                <span class="font-bold text-center w-full">Update Cover Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <SparePartForm :sparePartId="selectedSparePartId" />
@@ -231,6 +269,24 @@ const previousPage = () => {
                 <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
                 <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                     @click="deleteSparePart">
+                    Delete
+                </DangerButton>
+            </div>
+        </div>
+    </Modal>
+
+    <Modal :show="confirmingImageSparePartDeletion">
+        <div class="p-6">
+            <h2 class="text-lg font-medium text-green-900">
+                Are you sure you want to delete your Image Spare Part?
+            </h2>
+            <p class="mt-1 text-sm text-green-600">
+                Once your Image Spare Part is deleted, all of its resources and data will be permanently deleted.
+            </p>
+            <div class="mt-6 flex justify-end">
+                <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                    @click="deleteImageSparePart">
                     Delete
                 </DangerButton>
             </div>

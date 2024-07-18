@@ -24,11 +24,9 @@ const formatDescription = (description) => {
         <div class="h-full">
             <img :src="sparePart.image_path" :alt="sparePart.name" class="rounded-md shadow-md">
             <div v-if="imageSpareParts.length"class="mt-6">
-                <p class="font-semibold text-center">Images</p>
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
                     <div v-for="(imageSparePart, index) in imageSpareParts" :key="index" class="relative">
                         <img :src="imageSparePart.image_path" alt="Image Spare Part" class="w-full h-auto rounded-md" />
-                        <ButtonImage class="absolute top-1 right-1 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150"><EraserIcon /></ButtonImage>
                     </div>
                 </div>
             </div>
