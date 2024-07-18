@@ -69,12 +69,9 @@ const closeModal = () => {
                     </form>
                 </div>
             </div>
-            <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
-                dalam huruf kapital
-                agar sistem dapat menemukan data yang sesuai dengan benar.</p>
-            <p class="text-sm/relaxed">Harap dicatat! Service Code hanya boleh
-                menggunakan huruf
-                kapital. Contohnya: <strong>DFGYHN</strong>.</p>
+            <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan menggunakan huruf kapital agar sistem dapat
+                menemukan data yang sesuai dengan benar. Contoh: <strong>DFGYHN</strong>.</p>
+            <p class="text-sm/relaxed">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.</p>
         </div>
     </div>
 
