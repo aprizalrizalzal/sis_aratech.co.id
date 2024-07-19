@@ -21,7 +21,9 @@ const filteredSpareParts = computed(() => {
         return props.spareParts;
     }
     return props.spareParts.filter(sparePart =>
-        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        sparePart.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+
     );
 });
 
@@ -76,7 +78,7 @@ const closeModal = () => {
             </h2>
         </div>
         <div class="flex w-full items-center">
-            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
+            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or description" />
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
@@ -84,8 +86,7 @@ const closeModal = () => {
             <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
                 :price="formatCurrency(sparePart.price)">
                 <template #img>
-                    <img :src="sparePart.image_path" :alt="sparePart.name">
-                </template>
+                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-40 w-full object-cover" </template>
             </CardView>
         </div>
     </div>
