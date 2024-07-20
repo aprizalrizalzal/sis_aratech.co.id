@@ -31,6 +31,17 @@ const filteredCategorySpareParts = computed(() => {
   );
 });
 
+const showingModalAddSuccessfully = ref(false);
+
+const showModalAddSuccessfully = () => {
+  showModalAddCategorySparePart.value = false;
+  showingModalAddSuccessfully.value = true;
+};
+
+const closeModalAddSuccessfully = () => {
+  showingModalAddSuccessfully.value = false;
+};
+
 const closeModal = () => {
   showModalAddCategorySparePart.value = false;
 };
@@ -75,7 +86,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <CategorySparePartForm />
+      <CategorySparePartForm @addCategorySparePart="showModalAddSuccessfully"/>
     </div>
   </Modal>
+
+  <Modal :show="showingModalAddSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Add Category Spare Part</span>
+                <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Adding  Spare Parts Successfully!
+            </p>
+            <div class="mt-2 flex">
+                <SecondaryButton @click="closeModalAddSuccessfully">Ok</SecondaryButton>
+            </div>
+        </div>
+    </Modal>
 </template>

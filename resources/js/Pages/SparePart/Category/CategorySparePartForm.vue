@@ -23,7 +23,10 @@ const submitForm = () => {
     if (!props.categorySparePart) {
         form.post(route('store.category.spare.part'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset(),
+                emit('addCategorySparePart');
+            },
             onError: (errors) => {
                 if (errors.name) {
                     alert('addition failed!');
@@ -37,7 +40,10 @@ const submitForm = () => {
         const categorySparePartId = props.categorySparePart.id;
         form.put(route('update.category.spare.part', { id: categorySparePartId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data()
+                emit('updateCategorySparePart');
+            },
             onError: (errors) => {
                 if (errors.name) {
                     alert('update failed!');
@@ -50,6 +56,11 @@ const submitForm = () => {
     }
 
 };
+
+const emit = defineEmits([
+    'addCategorySparePart', 
+    'updateCategorySparePart'
+    ]);
 </script>
 
 <template>
@@ -73,9 +84,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.categorySparePart ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.categorySparePart ? 'update successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>
