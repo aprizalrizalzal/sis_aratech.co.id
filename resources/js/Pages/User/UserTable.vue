@@ -10,7 +10,7 @@ const props = defineProps({
     users: Array,
 });
 
-const showingModelAssignRoles = ref(false);
+const showingModalAssignRoles = ref(false);
 const selectedUser = ref(null);
 
 const { auth } = usePage().props;
@@ -26,7 +26,7 @@ const filteredUserId = computed(() => {
 
 const showModalAssignRoles = (user) => {
     selectedUser.value = user;
-    showingModelAssignRoles.value = true;
+    showingModalAssignRoles.value = true;
 };
 
 const confirmingUserDeletion = ref(false);
@@ -57,7 +57,7 @@ const deleteUser = () => {
 
 const closeModal = () => {
     confirmingUserDeletion.value = false;
-    showingModelAssignRoles.value = false;
+    showingModalAssignRoles.value = false;
 };
 
 const currentPage = ref(1);
@@ -124,7 +124,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelAssignRoles">
+    <Modal :show="showingModalAssignRoles">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Assign User Roles</span>

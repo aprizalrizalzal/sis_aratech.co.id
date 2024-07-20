@@ -344,12 +344,12 @@ const serviceDetailTotal = computed(() => {
   return total;
 });
 
-const showingModelServiceDetailByServiceCode = ref(false);
+const showingModalServiceDetailByServiceCode = ref(false);
 const selectedServiceCode = ref(null);
 
 const showModalServiceDetailByServiceCode = (service) => {
   selectedServiceCode.value = service.service_code;
-  showingModelServiceDetailByServiceCode.value = true;
+  showingModalServiceDetailByServiceCode.value = true;
 };
 
 const formatCurrency = (value) => {
@@ -389,7 +389,7 @@ const closeModal = () => {
   showModalAddService.value = false;
   showModalAddServiceDetail.value = false;
   showModalAddPartUsage.value = false;
-  showingModelServiceDetailByServiceCode.value = false;
+  showingModalServiceDetailByServiceCode.value = false;
 };
 </script>
 
@@ -672,7 +672,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModelServiceDetailByServiceCode">
+  <Modal :show="showingModalServiceDetailByServiceCode">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Service Details</span>

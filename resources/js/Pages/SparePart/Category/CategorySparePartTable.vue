@@ -11,12 +11,12 @@ const props = defineProps({
     categorySpareParts: Array,
 });
 
-const showingModelCategorySparePartUpdate = ref(false);
+const showingModalCategorySparePartUpdate = ref(false);
 const selectedCategorySparePart = ref(null);
 
 const showModalCategorySparePartUpdate = (categorySparePart) => {
     selectedCategorySparePart.value = categorySparePart;
-    showingModelCategorySparePartUpdate.value = true;
+    showingModalCategorySparePartUpdate.value = true;
 };
 
 const confirmingCategorySparePartDeletion = ref(false);
@@ -46,7 +46,7 @@ const deleteCategorySparePart = () => {
 };
 
 const closeModal = () => {
-    showingModelCategorySparePartUpdate.value = false;
+    showingModalCategorySparePartUpdate.value = false;
     confirmingCategorySparePartDeletion.value = false;
 };
 
@@ -117,7 +117,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelCategorySparePartUpdate">
+    <Modal :show="showingModalCategorySparePartUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Category Spare Part</span>

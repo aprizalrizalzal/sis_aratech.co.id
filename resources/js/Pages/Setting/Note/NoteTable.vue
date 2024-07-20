@@ -13,7 +13,7 @@ const props = defineProps({
     notes: Array,
 });
 
-const showingModelNoteUpdate = ref(false);
+const showingModalNoteUpdate = ref(false);
 const selectedNote = ref(null);
 
 const confirmingNoteDeletion = ref(false);
@@ -23,7 +23,7 @@ const form = useForm({
 
 const showModalNoteUpdate = (note) => {
     selectedNote.value = note;
-    showingModelNoteUpdate.value = true;
+    showingModalNoteUpdate.value = true;
 };
 
 const confirmNoteDeletion = (noteId) => {
@@ -47,7 +47,7 @@ const deleteNote = () => {
 };
 
 const closeModal = () => {
-    showingModelNoteUpdate.value = false;
+    showingModalNoteUpdate.value = false;
     confirmingNoteDeletion.value = false;
 };
 
@@ -116,7 +116,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelNoteUpdate">
+    <Modal :show="showingModalNoteUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Note</span>

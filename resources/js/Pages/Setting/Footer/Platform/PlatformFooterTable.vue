@@ -11,12 +11,12 @@ const props = defineProps({
     platformFooters: Array,
 });
 
-const showingModelPlatformFooterUpdate = ref(false);
+const showingModalPlatformFooterUpdate = ref(false);
 const selectedPlatformFooter = ref(null);
 
 const showModalPlatformFooterUpdate = (platformFooter) => {
     selectedPlatformFooter.value = platformFooter;
-    showingModelPlatformFooterUpdate.value = true;
+    showingModalPlatformFooterUpdate.value = true;
 };
 
 const confirmingPlatformFooterDeletion = ref(false);
@@ -46,7 +46,7 @@ const deletePlatformFooter = () => {
 };
 
 const closeModal = () => {
-    showingModelPlatformFooterUpdate.value = false;
+    showingModalPlatformFooterUpdate.value = false;
     confirmingPlatformFooterDeletion.value = false;
 };
 
@@ -117,7 +117,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelPlatformFooterUpdate">
+    <Modal :show="showingModalPlatformFooterUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Platform Footer</span>

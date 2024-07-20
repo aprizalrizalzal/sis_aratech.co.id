@@ -14,12 +14,12 @@ const props = defineProps({
     }
 });
 
-const showingModelCustomerUpdate = ref(false);
+const showingModalCustomerUpdate = ref(false);
 const selectedCustomer = ref(null);
 
 const showModalCustomerUpdate = (customer) => {
     selectedCustomer.value = customer;
-    showingModelCustomerUpdate.value = true;
+    showingModalCustomerUpdate.value = true;
 };
 
 const confirmingCustomerDeletion = ref(false);
@@ -48,7 +48,7 @@ const deleteCustomer = () => {
 };
 
 const closeModal = () => {
-    showingModelCustomerUpdate.value = false;
+    showingModalCustomerUpdate.value = false;
     confirmingCustomerDeletion.value = false;
 };
 
@@ -118,7 +118,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelCustomerUpdate">
+    <Modal :show="showingModalCustomerUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Customer</span>

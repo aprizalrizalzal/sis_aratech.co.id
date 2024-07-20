@@ -13,19 +13,19 @@ const props = defineProps({
     carousels: Array,
 });
 
-const showingModelCarouselUpdateImage = ref(false);
-const showingModelCarouselUpdate = ref(false);
+const showingModalCarouselUpdateImage = ref(false);
+const showingModalCarouselUpdate = ref(false);
 const selectedCarouselId = ref(null);
 const selectedCarousel = ref(null);
 
 const showModalCarouselUpdateImage = (carouselId) => {
     selectedCarouselId.value = carouselId;
-    showingModelCarouselUpdateImage.value = true;
+    showingModalCarouselUpdateImage.value = true;
 };
 
 const showModalCarouselUpdate = (carousel) => {
     selectedCarousel.value = carousel;
-    showingModelCarouselUpdate.value = true;
+    showingModalCarouselUpdate.value = true;
 };
 
 const confirmingCarouselDeletion = ref(false);
@@ -55,8 +55,8 @@ const deleteCarousel = () => {
 
 const closeModal = () => {
     confirmingCarouselDeletion.value = false;
-    showingModelCarouselUpdate.value = false;
-    showingModelCarouselUpdateImage.value = false;
+    showingModalCarouselUpdate.value = false;
+    showingModalCarouselUpdateImage.value = false;
 };
 
 const currentPage = ref(1);
@@ -128,7 +128,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelCarouselUpdateImage">
+    <Modal :show="showingModalCarouselUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Carousel Image</span>
@@ -139,7 +139,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelCarouselUpdate">
+    <Modal :show="showingModalCarouselUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Carousel</span>

@@ -11,12 +11,12 @@ const props = defineProps({
     typeFooters: Array,
 });
 
-const showingModelTypeFooterUpdate = ref(false);
+const showingModalTypeFooterUpdate = ref(false);
 const selectedTypeFooter = ref(null);
 
 const showModalTypeFooterUpdate = (typeFooter) => {
     selectedTypeFooter.value = typeFooter;
-    showingModelTypeFooterUpdate.value = true;
+    showingModalTypeFooterUpdate.value = true;
 };
 
 const confirmingTypeFooterDeletion = ref(false);
@@ -46,7 +46,7 @@ const deleteTypeFooter = () => {
 };
 
 const closeModal = () => {
-    showingModelTypeFooterUpdate.value = false;
+    showingModalTypeFooterUpdate.value = false;
     confirmingTypeFooterDeletion.value = false;
 };
 
@@ -116,7 +116,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelTypeFooterUpdate">
+    <Modal :show="showingModalTypeFooterUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Type Footer</span>

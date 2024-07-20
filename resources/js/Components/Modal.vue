@@ -8,7 +8,7 @@ const props = defineProps({
     },
     maxWidth: {
         type: String,
-        default: '2xl',
+        default: '3xl',
     },
     closeable: {
         type: Boolean,
@@ -54,9 +54,9 @@ const maxWidthClass = computed(() => {
         md: 'sm:max-w-md',
         lg: 'sm:max-w-lg',
         xl: 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
-        '4xl': 'sm:max-w-4xl',
-        '6xl': 'sm:max-w-6xl',
+        '3xl': 'sm:max-w-3xl',
+        '5xl': 'sm:max-w-5xl',
+        '7xl': 'sm:max-w-7xl',
     }[props.maxWidth];
 });
 </script>

@@ -23,31 +23,31 @@ const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
-const showingModelSparePartUpdateImage = ref(false);
-const showingModelSparePartAddImages = ref(false);
-const showingModelSparePartUpdate = ref(false);
-const showingModelSparePartDetail = ref(false);
+const showingModalSparePartUpdateImage = ref(false);
+const showingModalSparePartAddImages = ref(false);
+const showingModalSparePartUpdate = ref(false);
+const showingModalSparePartDetail = ref(false);
 const selectedSparePartId = ref(null);
 const selectedSparePart = ref(null);
 
 const showModalSparePartUpdateImage = (sparePartId) => {
     selectedSparePartId.value = sparePartId;
-    showingModelSparePartUpdateImage.value = true;
+    showingModalSparePartUpdateImage.value = true;
 };
 
 const showModalSparePartAddImages = (sparePart) => {
     selectedSparePart.value = sparePart;
-    showingModelSparePartAddImages.value = true;
+    showingModalSparePartAddImages.value = true;
 };
 
 const showModalSparePartUpdate = (sparePart) => {
     selectedSparePart.value = sparePart;
-    showingModelSparePartUpdate.value = true;
+    showingModalSparePartUpdate.value = true;
 };
 
 const showModalSparePartDetail = (sparePart) => {
     selectedSparePart.value = sparePart;
-    showingModelSparePartDetail.value = true;
+    showingModalSparePartDetail.value = true;
 };
 
 const confirmingSparePartDeletion = ref(false);
@@ -76,13 +76,6 @@ const deleteSparePart = () => {
     });
 };
 
-
-const showingModalSuccessfullyAdded = ref(false);
-
-const showModalSuccessfullyAdded = () => {
-    showingModalSuccessfullyAdded.value = true;
-};
-
 const deleteImageSparePart = () => {
     form.delete(route('destroy.image.spare.part.image'), {
         preserveScroll: true,
@@ -100,6 +93,18 @@ const deleteImageSparePart = () => {
     });
 };
 
+
+const showingModalAddImageSuccessfully = ref(false);
+
+const showModalAddImageSuccessfully = () => {
+    showingModalSparePartAddImages.value = false;
+    showingModalAddImageSuccessfully.value = true;
+};
+
+const closeModalAddImageSuccessfully = () => {
+    showingModalAddImageSuccessfully.value = false;
+};
+
 const confirmingImageSparePartDeletion = ref(false);
 
 const confirmImageSparePartDeletion = (imageSparePartId) => {
@@ -108,12 +113,11 @@ const confirmImageSparePartDeletion = (imageSparePartId) => {
 };
 
 const closeModal = () => {
-    showingModelSparePartUpdateImage.value = false;
-    showingModelSparePartAddImages.value = false;
-    showingModelSparePartUpdate.value = false;
-    showingModelSparePartDetail.value = false;
+    showingModalSparePartUpdateImage.value = false;
+    showingModalSparePartAddImages.value = false;
+    showingModalSparePartUpdate.value = false;
+    showingModalSparePartDetail.value = false;
     confirmingSparePartDeletion.value = false;
-    showingModalSuccessfullyAdded.value = false;
     confirmingImageSparePartDeletion.value = false;
 };
 
@@ -227,7 +231,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelSparePartUpdateImage">
+    <Modal :show="showingModalSparePartUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Cover Spare Part</span>
@@ -238,28 +242,61 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelSparePartUpdate">
+    <Modal :show="showingModalSparePartUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
+            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSuccessfully"/>
         </div>
     </Modal>
 
-    <Modal :show="showingModelSparePartAddImages">
+    <Modal :show="showingModalAddSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-                <span class="font-bold text-center w-full">Add Images Spare Part</span>
-                <DangerButton @click="closeModal">X</DangerButton>
+                <span class="font-bold text-center w-full">Add Spare Part</span>
+                <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
             </div>
-            <ImageSparePartForm :sparePart="selectedSparePart" />
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Adding Spare Parts Successfully!
+            </p>
+            <div class="mt-2 flex">
+                <SecondaryButton @click="closeModalAddSuccessfully">Ok</SecondaryButton>
+            </div>
         </div>
     </Modal>
 
-    <Modal maxWidth="4xl" :show="showingModelSparePartDetail">
+    <Modal :show="showingModalSparePartAddImages">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Add Image Spare Part</span>
+                <DangerButton @click="closeModal">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <ImageSparePartForm :sparePart="selectedSparePart" @addSparePartImages="showModalAddImageSuccessfully"/>
+        </div>
+    </Modal>
+
+    <Modal :show="showingModalAddImageSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Add Image Spare Part</span>
+                <DangerButton @click="closeModalAddImageSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Adding Image Spare Parts Successfully!
+            </p>
+            <div class="mt-2 flex">
+                <SecondaryButton @click="closeModalAddImageSuccessfully">Ok</SecondaryButton>
+            </div>
+        </div>
+    </Modal>
+
+    <Modal maxWidth="7xl" :show="showingModalSparePartDetail">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
@@ -284,20 +321,6 @@ const previousPage = () => {
                     @click="deleteSparePart">
                     Delete
                 </DangerButton>
-            </div>
-        </div>
-    </Modal>
-
-    <Modal maxWidth="md" :show="showingModalSuccessfullyAdded">
-        <div class="m-6">
-            <h2 class="text-lg font-medium text-green-900">
-                Add Images Spare Part
-            </h2>
-            <p class="mt-1 text-sm text-green-600">
-                Add Images Spare Part Successfully
-            </p>
-            <div class="mt-6 flex justify-end">
-                <SecondaryButton @click="closeModal">Close</SecondaryButton>
             </div>
         </div>
     </Modal>

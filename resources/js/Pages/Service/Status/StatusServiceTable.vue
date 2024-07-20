@@ -11,12 +11,12 @@ const props = defineProps({
     statusServices: Array,
 });
 
-const showingModelStatusServiceUpdate = ref(false);
+const showingModalStatusServiceUpdate = ref(false);
 const selectedStatusService = ref(null);
 
 const showModalStatusServiceUpdate = (statusService) => {
     selectedStatusService.value = statusService;
-    showingModelStatusServiceUpdate.value = true;
+    showingModalStatusServiceUpdate.value = true;
 };
 
 const confirmingStatusServiceDeletion = ref(false);
@@ -46,7 +46,7 @@ const deleteStatusService = () => {
 };
 
 const closeModal = () => {
-    showingModelStatusServiceUpdate.value = false;
+    showingModalStatusServiceUpdate.value = false;
     confirmingStatusServiceDeletion.value = false;
 };
 
@@ -115,7 +115,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelStatusServiceUpdate">
+    <Modal :show="showingModalStatusServiceUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Status Service</span>

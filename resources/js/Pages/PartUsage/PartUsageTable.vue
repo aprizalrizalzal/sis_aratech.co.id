@@ -24,7 +24,7 @@ const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
-const showingModelPartUsageUpdate = ref(false);
+const showingModalPartUsageUpdate = ref(false);
 const selectedPartUsage = ref(null);
 const selectedServiceDetail = ref(null);
 const selectedSparePart = ref(null);
@@ -33,7 +33,7 @@ const showModalPartUsageUpdate = (partUsage) => {
     selectedPartUsage.value = partUsage;
     selectedServiceDetail.value = partUsage.service_detail;
     selectedSparePart.value = partUsage.spare_part;
-    showingModelPartUsageUpdate.value = true;
+    showingModalPartUsageUpdate.value = true;
 };
 
 const confirmingPartUsageDeletion = ref(false);
@@ -63,7 +63,7 @@ const deletePartUsage = () => {
 };
 
 const closeModal = () => {
-    showingModelPartUsageUpdate.value = false;
+    showingModalPartUsageUpdate.value = false;
     confirmingPartUsageDeletion.value = false;
 };
 
@@ -351,7 +351,7 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <Modal :show="showingModelPartUsageUpdate">
+    <Modal :show="showingModalPartUsageUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Part Usage</span>

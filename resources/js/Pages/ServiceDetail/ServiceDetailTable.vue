@@ -24,7 +24,7 @@ const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
-const showingModelServiceDetailUpdate = ref(false);
+const showingModalServiceDetailUpdate = ref(false);
 const selectedServiceDetail = ref(null);
 const selectedUser = ref(null);
 const selectedService = ref(null);
@@ -33,7 +33,7 @@ const showModalServiceDetailUpdate = (serviceDetail) => {
     selectedServiceDetail.value = serviceDetail;
     selectedUser.value = serviceDetail.user;
     selectedService.value = serviceDetail.service;
-    showingModelServiceDetailUpdate.value = true;
+    showingModalServiceDetailUpdate.value = true;
 };
 
 const confirmingServiceDetailDeletion = ref(false);
@@ -64,7 +64,7 @@ const deleteServiceDetail = () => {
 
 const closeModal = () => {
     confirmingServiceDetailDeletion.value = false;
-    showingModelServiceDetailUpdate.value = false;
+    showingModalServiceDetailUpdate.value = false;
 };
 
 const start_date = ref('');
@@ -373,7 +373,7 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <Modal :show="showingModelServiceDetailUpdate">
+    <Modal :show="showingModalServiceDetailUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Service Detail</span>

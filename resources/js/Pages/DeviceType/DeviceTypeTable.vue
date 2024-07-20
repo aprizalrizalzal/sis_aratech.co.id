@@ -11,12 +11,12 @@ const props = defineProps({
     deviceTypes: Array,
 });
 
-const showingModelDeviceTypeUpdate = ref(false);
+const showingModalDeviceTypeUpdate = ref(false);
 const selectedDeviceType = ref(null);
 
 const showModalDeviceTypeUpdate = (deviceType) => {
     selectedDeviceType.value = deviceType;
-    showingModelDeviceTypeUpdate.value = true;
+    showingModalDeviceTypeUpdate.value = true;
 };
 
 const confirmingDeviceTypeDeletion = ref(false);
@@ -46,7 +46,7 @@ const deleteDeviceType = () => {
 };
 
 const closeModal = () => {
-    showingModelDeviceTypeUpdate.value = false;
+    showingModalDeviceTypeUpdate.value = false;
     confirmingDeviceTypeDeletion.value = false;
 };
 
@@ -114,7 +114,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal v-model:show="showingModelDeviceTypeUpdate">
+    <Modal v-model:show="showingModalDeviceTypeUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Device Type</span>

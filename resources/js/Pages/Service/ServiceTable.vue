@@ -24,7 +24,7 @@ const props = defineProps({
     statusServices: Array,
 });
 
-const showingModelServiceUpdate = ref(false);
+const showingModalServiceUpdate = ref(false);
 const selectedService = ref(null);
 const selectedCustomer = ref(null);
 const selectedDevice = ref(null);
@@ -33,7 +33,7 @@ const showModalServiceUpdate = (service) => {
     selectedService.value = service;
     selectedCustomer.value = service.customer;
     selectedDevice.value = service.device;
-    showingModelServiceUpdate.value = true;
+    showingModalServiceUpdate.value = true;
 };
 
 const confirmingServiceDeletion = ref(false);
@@ -64,7 +64,7 @@ const deleteService = () => {
 
 const closeModal = () => {
     confirmingServiceDeletion.value = false;
-    showingModelServiceUpdate.value = false;
+    showingModalServiceUpdate.value = false;
 };
 
 const start_date = ref('');
@@ -366,7 +366,7 @@ const handlePrint = () => {
         </table>
     </div>
 
-    <Modal :show="showingModelServiceUpdate">
+    <Modal :show="showingModalServiceUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Service</span>

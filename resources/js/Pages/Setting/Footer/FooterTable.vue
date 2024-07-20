@@ -15,8 +15,8 @@ const props = defineProps({
     platformFooters: Array,
 });
 
-const showingModelFooterUpdateImage = ref(false);
-const showingModelFooterUpdate = ref(false);
+const showingModalFooterUpdateImage = ref(false);
+const showingModalFooterUpdate = ref(false);
 const selectedFooterId = ref(null);
 const selectedFooter = ref(null);
 
@@ -27,12 +27,12 @@ const form = useForm({
 
 const showModalFooterUpdateImage = (footerId) => {
     selectedFooterId.value = footerId;
-    showingModelFooterUpdateImage.value = true;
+    showingModalFooterUpdateImage.value = true;
 };
 
 const showModalFooterUpdate = (footer) => {
     selectedFooter.value = footer;
-    showingModelFooterUpdate.value = true;
+    showingModalFooterUpdate.value = true;
 };
 
 const confirmFooterDeletion = (footerId) => {
@@ -57,8 +57,8 @@ const deleteFooter = () => {
 
 const closeModal = () => {
     confirmingFooterDeletion.value = false;
-    showingModelFooterUpdate.value = false;
-    showingModelFooterUpdateImage.value = false;
+    showingModalFooterUpdate.value = false;
+    showingModalFooterUpdateImage.value = false;
 };
 
 const currentPage = ref(1);
@@ -148,7 +148,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelFooterUpdateImage">
+    <Modal :show="showingModalFooterUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Image Footer</span>
@@ -159,7 +159,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelFooterUpdate">
+    <Modal :show="showingModalFooterUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Footer</span>

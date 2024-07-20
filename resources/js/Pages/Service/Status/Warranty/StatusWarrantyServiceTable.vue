@@ -11,12 +11,12 @@ const props = defineProps({
     statusWarrantyServices: Array,
 });
 
-const showingModelStatusWarrantyServiceUpdate = ref(false);
+const showingModalStatusWarrantyServiceUpdate = ref(false);
 const selectedStatusWarrantyService = ref(null);
 
 const showModalStatusWarrantyServiceUpdate = (statusWarrantyService) => {
     selectedStatusWarrantyService.value = statusWarrantyService;
-    showingModelStatusWarrantyServiceUpdate.value = true;
+    showingModalStatusWarrantyServiceUpdate.value = true;
 };
 
 const confirmingStatusWarrantyServiceDeletion = ref(false);
@@ -46,7 +46,7 @@ const deleteStatusWarrantyService = () => {
 };
 
 const closeModal = () => {
-    showingModelStatusWarrantyServiceUpdate.value = false;
+    showingModalStatusWarrantyServiceUpdate.value = false;
     confirmingStatusWarrantyServiceDeletion.value = false;
 };
 
@@ -117,7 +117,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelStatusWarrantyServiceUpdate">
+    <Modal :show="showingModalStatusWarrantyServiceUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Status Warranty Service</span>

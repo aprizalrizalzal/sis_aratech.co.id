@@ -13,8 +13,8 @@ const props = defineProps({
     headers: Array,
 });
 
-const showingModelHeaderUpdateImage = ref(false);
-const showingModelHeaderUpdate = ref(false);
+const showingModalHeaderUpdateImage = ref(false);
+const showingModalHeaderUpdate = ref(false);
 const selectedHeaderId = ref(null);
 const selectedHeader = ref(null);
 
@@ -25,12 +25,12 @@ const form = useForm({
 
 const showModalHeaderUpdateImage = (headerId) => {
     selectedHeaderId.value = headerId;
-    showingModelHeaderUpdateImage.value = true;
+    showingModalHeaderUpdateImage.value = true;
 };
 
 const showModalHeaderUpdate = (header) => {
     selectedHeader.value = header;
-    showingModelHeaderUpdate.value = true;
+    showingModalHeaderUpdate.value = true;
 };
 
 const confirmHeaderDeletion = (headerId) => {
@@ -54,8 +54,8 @@ const deleteHeader = () => {
 };
 
 const closeModal = () => {
-    showingModelHeaderUpdateImage.value = false;
-    showingModelHeaderUpdate.value = false;
+    showingModalHeaderUpdateImage.value = false;
+    showingModalHeaderUpdate.value = false;
     confirmingHeaderDeletion.value = false;
 };
 
@@ -134,7 +134,7 @@ const previousPage = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal :show="showingModelHeaderUpdateImage">
+    <Modal :show="showingModalHeaderUpdateImage">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Image Header</span>
@@ -145,7 +145,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModelHeaderUpdate">
+    <Modal :show="showingModalHeaderUpdate">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Header</span>

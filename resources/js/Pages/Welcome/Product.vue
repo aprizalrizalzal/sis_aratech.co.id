@@ -57,16 +57,16 @@ watch(searchQuery, () => {
     currentPage.value = 1;
 });
 
-const showingModelSparePartDetail = ref(false);
+const showingModalSparePartDetail = ref(false);
 const selectedSparePart = ref(null);
 
 const showModalSparePartDetail = (sparePart) => {
     selectedSparePart.value = sparePart;
-    showingModelSparePartDetail.value = true;
+    showingModalSparePartDetail.value = true;
 };
 
 const closeModal = () => {
-    showingModelSparePartDetail.value = false;
+    showingModalSparePartDetail.value = false;
 };
 </script>
 
@@ -96,7 +96,7 @@ const closeModal = () => {
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
-    <Modal maxWidth="4xl" :show="showingModelSparePartDetail">
+    <Modal maxWidth="7xl" :show="showingModalSparePartDetail">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
