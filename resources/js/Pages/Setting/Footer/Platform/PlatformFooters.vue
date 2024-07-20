@@ -8,12 +8,17 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import BackIcon from '@/Components/Icon/BackIcon.vue';
 
 const showModalAddPlatformFooter = ref(false);
 
 const props = defineProps({
   platformFooters: Array,
 });
+
+const previousPage = () => {
+  window.history.back();
+}
 
 const searchQuery = ref('');
 
@@ -36,9 +41,12 @@ const closeModal = () => {
   <Head title="Platform Footers" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4">
+      <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Platform Footers</h2>
+          <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
+            <BackIcon />
+          </SecondaryButton>
+          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Platform</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />

@@ -4,10 +4,16 @@ import StatusWarrantyServiceTable from './StatusWarrantyServiceTable.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
+import BackIcon from '@/Components/Icon/BackIcon.vue';
 
 const props = defineProps({
   statusWarrantyServices: Array,
 });
+
+const previousPage = () => {
+  window.history.back();
+}
 
 const searchQuery = ref('');
 
@@ -26,9 +32,12 @@ const filteredStatusWarrantyServices = computed(() => {
   <Head title="Status Warranty Service" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4">
+      <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Status Warranty Service
+          <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
+            <BackIcon />
+          </SecondaryButton>
+          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Status Warranty
           </h2>
         </div>
         <div class="flex w-full items-center">

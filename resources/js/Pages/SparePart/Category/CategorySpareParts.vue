@@ -5,6 +5,7 @@ import Modal from '@/Components/Modal.vue';
 import CategorySparePartForm from './CategorySparePartForm.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import BackIcon from '@/Components/Icon/BackIcon.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
@@ -14,6 +15,10 @@ const showModalAddCategorySparePart = ref(false);
 const props = defineProps({
   categorySpareParts: Array,
 });
+
+const previousPage = () => {
+  window.history.back();
+}
 
 const searchQuery = ref('');
 
@@ -36,8 +41,11 @@ const closeModal = () => {
   <Head title="Category Spare Parts" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4">
+      <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
+          <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
+            <BackIcon />
+          </SecondaryButton>
           <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Category</h2>
         </div>
         <div class="flex w-full items-center">

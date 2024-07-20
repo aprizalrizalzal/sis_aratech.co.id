@@ -35,7 +35,7 @@ const filteredServices = computed(() => {
   <Head title="Service" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4">
+      <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
           <div class="relative">
             <Dropdown align="left" width="48">

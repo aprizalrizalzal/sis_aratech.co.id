@@ -27,7 +27,7 @@ const filteredUsers = computed(() => {
   <Head title="Users" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4">
+      <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
           <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4 ">Users</h2>
         </div>
