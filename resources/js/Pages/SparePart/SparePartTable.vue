@@ -76,6 +76,13 @@ const deleteSparePart = () => {
     });
 };
 
+
+const showingModalSuccessfullyAdded = ref(false);
+
+const showModalSuccessfullyAdded = () => {
+    showingModalSuccessfullyAdded.value = true;
+};
+
 const deleteImageSparePart = () => {
     form.delete(route('destroy.image.spare.part.image'), {
         preserveScroll: true,
@@ -106,6 +113,7 @@ const closeModal = () => {
     showingModelSparePartUpdate.value = false;
     showingModelSparePartDetail.value = false;
     confirmingSparePartDeletion.value = false;
+    showingModalSuccessfullyAdded.value = false;
     confirmingImageSparePartDeletion.value = false;
 };
 
@@ -243,7 +251,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Add Images Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <ImageSparePartForm :sparePart="selectedSparePart" />
+            <ImageSparePartForm :sparePart="selectedSparePart" @addSparePartImages="showModalSuccessfullyAdded"/>
         </div>
     </Modal>
 
@@ -275,6 +283,20 @@ const previousPage = () => {
         </div>
     </Modal>
 
+    <Modal maxWidth="md" :show="showingModalSuccessfullyAdded">
+        <div class="m-6">
+            <h2 class="text-lg font-medium text-green-900">
+                Add Images Spare Part
+            </h2>
+            <p class="mt-1 text-sm text-green-600">
+                Add Images Spare Part Successfully
+            </p>
+            <div class="mt-6 flex justify-end">
+                <SecondaryButton @click="closeModal">Close</SecondaryButton>
+            </div>
+        </div>
+    </Modal>
+
     <Modal :show="confirmingImageSparePartDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">
@@ -302,6 +324,6 @@ const previousPage = () => {
 
 .overflow-x-auto {
     -ms-overflow-style: none;
-    scrollbar-width: thin
+    scrollbar-width: none;
 }
 </style>

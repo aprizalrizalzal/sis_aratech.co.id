@@ -388,6 +388,6 @@ const handlePrint = () => {
 
 .overflow-x-auto {
     -ms-overflow-style: none;
-    scrollbar-width: thin
+    scrollbar-width: none;
 }
 </style>

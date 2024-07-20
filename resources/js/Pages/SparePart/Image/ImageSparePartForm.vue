@@ -16,8 +16,6 @@ const form = useForm({
     image: null,
 });
 
-const imageSuccessfullyAdded = ref(false);
-
 if (props.sparePart) {
     const sparePartId = props.sparePart.id;
     form.spare_part_id = sparePartId;
@@ -39,7 +37,7 @@ const submitForm = () => {
         onSuccess: () => {
             form.reset('image');
             previewUrl.value = null;
-            imageSpareParts.value = imageSpareParts.value.filter(imageSparePart => imageSparePart.id !== form.id);
+            emit('addSparePartImages');
         },
         onError: (errors) => {
             if (errors.image) {
@@ -52,6 +50,7 @@ const submitForm = () => {
     });
 };
 
+const emit = defineEmits(['addSparePartImages']);
 </script>
 
 <template>
@@ -77,9 +76,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         Save
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        added successfully!
-                    </span>
                 </div>
             </form>
         </div>
