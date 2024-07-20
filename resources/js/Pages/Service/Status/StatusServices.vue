@@ -1,11 +1,17 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import StatusServiceTable from './StatusServiceTable.vue';
+import Modal from '@/Components/Modal.vue';
+import StatusServiceForm from './StatusServiceForm.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import DangerButton from '@/Components/DangerButton.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
+
+const showModalAddStatusService = ref(false);
 
 const props = defineProps({
   statusServices: Array,
@@ -25,6 +31,21 @@ const filteredStatusServices = computed(() => {
     statusService.status.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const showingModalAddSuccessfully = ref(false);
+
+const showModalAddSuccessfully = () => {
+  showModalAddStatusService.value = false;
+  showingModalAddSuccessfully.value = true;
+};
+
+const closeModalAddSuccessfully = () => {
+  showingModalAddSuccessfully.value = false;
+};
+
+const closeModal = () => {
+  showModalAddStatusService.value = false;
+};
 </script>
 
 <template>
@@ -51,10 +72,39 @@ const filteredStatusServices = computed(() => {
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
             <StatusServiceTable :statusServices="filteredStatusServices" />
+            <SecondaryButton @click="showModalAddStatusService = true" class="w-full">Add Status Service
+            </SecondaryButton>
           </div>
         </div>
       </div>
     </div>
 
   </AuthenticatedLayout>
+
+  <Modal :show="showModalAddStatusService">
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Status Service</span>
+        <DangerButton @click="closeModal">X</DangerButton>
+      </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <StatusServiceForm @addStatusService="showModalAddSuccessfully"/>
+    </div>
+  </Modal>
+
+  <Modal :show="showingModalAddSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Status Service</span>
+              <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Status Service Add Successful!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
+  </Modal>
 </template>

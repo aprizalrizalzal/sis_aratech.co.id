@@ -48,6 +48,7 @@ if (props.serviceDetail) {
         serviceEmail.value = selectedService.customer.user.email;
         servicePhone.value = selectedService.customer.phone;
         serviceStatus.value = selectedService.status_service.status;
+        form.status_service_id = selectedService.status_service.id;
     }
 }
 
@@ -57,6 +58,7 @@ watch(() => form.service_id, (newServiceId) => {
         serviceEmail.value = selectedService.customer.user.email;
         servicePhone.value = selectedService.customer.phone;
         serviceStatus.value = selectedService.status_service.status;
+        form.status_service_id = selectedService.status_service.id;
     }
 });
 
@@ -66,11 +68,11 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: (page) => {
                 form.reset('cost', 'notes', 'repair_description');
+                emit('addServiceDetail');
                 const printServiceDetail = page.props.printServiceDetail;
                 if (printServiceDetail) {
                     window.open(printServiceDetail, '_blank');
                 };
-                console.log('printServiceDetail', printServiceDetail);
             },
             onError: (errors) => {
                 if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
@@ -85,7 +87,10 @@ const submitForm = () => {
         const serviceDetailId = props.serviceDetail.id
         form.put(route('update.service.detail', { id: serviceDetailId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updateServiceDetail');
+            },
             onError: (errors) => {
                 if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
                     alert('update failed!');
@@ -97,6 +102,13 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits(
+    [
+        'addServiceDetail', 
+        'updateServiceDetail'
+    ]
+);
 </script>
 
 <template>
@@ -153,10 +165,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.user ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.service ? 'update successfully!' : 'added successfully!'
-                        }}
-                    </span>
                 </div>
             </form>
         </div>

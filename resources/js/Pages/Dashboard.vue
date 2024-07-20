@@ -381,15 +381,81 @@ const previousPage = () => {
   }
 };
 
-const showingModalAddSuccessfully = ref(false);
+const showingModalAddDeviceTypeSuccessfully = ref(false);
 
-const showModalAddSuccessfully = () => {
-  showingModalAddSparePart.value = false;
-  showingModalAddSuccessfully.value = true;
+const showModalAddDeviceTypeSuccessfully = () => {
+  showingModalAddDeviceType.value = false;
+  showingModalAddDeviceTypeSuccessfully.value = true;
 };
 
-const closeModalAddSuccessfully = () => {
-  showingModalAddSuccessfully.value = false;
+const closeModalAddDeviceTypeSuccessfully = () => {
+  showingModalAddDeviceTypeSuccessfully.value = false;
+};
+
+const showingModalAddSparePartSuccessfully = ref(false);
+
+const showModalAddSparePartSuccessfully = () => {
+  showingModalAddSparePart.value = false;
+  showingModalAddSparePartSuccessfully.value = true;
+};
+
+const closeModalAddSparePartSuccessfully = () => {
+  showingModalAddSparePartSuccessfully.value = false;
+};
+
+const showingModalAddCustomerSuccessfully = ref(false);
+
+const showModalAddCustomerSuccessfully = () => {
+  showingModalAddCustomer.value = false;
+  showingModalAddCustomerSuccessfully.value = true;
+};
+
+const closeModalAddCustomerSuccessfully = () => {
+  showingModalAddCustomerSuccessfully.value = false;
+};
+
+const showingModalAddDeviceSuccessfully = ref(false);
+
+const showModalAddDeviceSuccessfully = () => {
+  showingModalAddDevice.value = false;
+  showingModalAddDeviceSuccessfully.value = true;
+};
+
+const closeModalAddDeviceSuccessfully = () => {
+  showingModalAddDeviceSuccessfully.value = false;
+};
+
+const showingModalAddServiceSuccessfully = ref(false);
+
+const showModalAddServiceSuccessfully = () => {
+  showingModalAddService.value = false;
+  showingModalAddServiceSuccessfully.value = true;
+};
+
+const closeModalAddServiceSuccessfully = () => {
+  showingModalAddServiceSuccessfully.value = false;
+};
+
+const showingModalAddServiceDetailSuccessfully = ref(false);
+
+const showModalAddServiceDetailSuccessfully = () => {
+  showingModalAddServiceDetail.value = false;
+  showingModalAddServiceDetailSuccessfully.value = true;
+};
+
+const closeModalAddServiceDetailSuccessfully = () => {
+  showingModalAddServiceDetailSuccessfully.value = false;
+};
+
+const showingModalAddPartUsageSuccessfully = ref(false);
+
+const showModalAddPartUsageSuccessfully = () => {
+  showingModalAddPartUsage.value = false;
+  showingModalAddPartUsageSuccessfully.value = true;
+};
+
+const closeModalAddPartUsageSuccessfully = () => {
+  showingModalAddPartUsageSuccessfully.value = false;
 };
 
 const closeModal = () => {
@@ -612,8 +678,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <DeviceTypeForm />
+      <DeviceTypeForm @addDeviceType="showModalAddDeviceTypeSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddDeviceTypeSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Device Type</span>
+              <DangerButton @click="closeModalAddDeviceTypeSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Device Type Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddDeviceTypeSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 
   <Modal :show="showingModalAddSparePart">
@@ -623,22 +705,22 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <SparePartForm :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSuccessfully"/>
+      <SparePartForm :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSparePartSuccessfully"/>
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddSuccessfully">
+  <Modal :show="showingModalAddSparePartSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Spare Part</span>
-              <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
+              <DangerButton @click="closeModalAddSparePartSuccessfully">X</DangerButton>
           </div>
           <hr class="mt-4 mb-2 border-green-100">
           <p class="my-4 text-sm text-green-600">
               Adding Spare Parts Successfully!
           </p>
           <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
+              <PrimaryButton @click="closeModalAddSparePartSuccessfully">Ok</PrimaryButton>
           </div>
       </div>
   </Modal>
@@ -650,8 +732,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <CustomerForm />
+      <CustomerForm @addCustomer="showModalAddCustomerSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddCustomerSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Customer</span>
+              <DangerButton @click="closeModalAddCustomerSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Customer Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddCustomerSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 
   <Modal :show="showingModalAddDevice">
@@ -661,8 +759,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <DeviceForm :deviceTypes="deviceTypes" />
+      <DeviceForm :deviceTypes="deviceTypes" @addDevice="showModalAddDeviceSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddDeviceSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Device</span>
+              <DangerButton @click="closeModalAddDeviceSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Device Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddDeviceSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 
   <Modal :show="showingModalAddService">
@@ -673,8 +787,24 @@ const closeModal = () => {
       </div>
       <hr class="mt-4 mb-2 border-green-100">
       <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
-        :statusServices="statusServices" />
+        :statusServices="statusServices" @addService="showModalAddServiceSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddServiceSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Service</span>
+              <DangerButton @click="closeModalAddServiceSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Service Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddServiceSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 
   <Modal :show="showingModalAddServiceDetail">
@@ -684,8 +814,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices" />
+      <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices" @addServiceDetail="showModalAddServiceDetailSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddServiceDetailSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Service Detail</span>
+              <DangerButton @click="closeModalAddServiceDetailSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Service Detail Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddServiceDetailSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 
   <Modal :show="showingModalAddPartUsage">
@@ -695,8 +841,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" />
+      <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" @addPartUsage="showModalAddPartUsageSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddPartUsageSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Part Usage</span>
+              <DangerButton @click="closeModalAddPartUsageSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Part Usage Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddPartUsageSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 
   <Modal :show="showingModalServiceDetailByServiceCode">

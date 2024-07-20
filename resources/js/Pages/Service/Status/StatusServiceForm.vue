@@ -23,7 +23,10 @@ const submitForm = () => {
     if (!props.statusService) {
         form.post(route('store.status.service'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset(),
+                emit('addStatusService');
+            },
             onError: (errors) => {
                 if (errors.status) {
                     alert('addition failed!');
@@ -37,7 +40,10 @@ const submitForm = () => {
         const statusServiceId = props.statusService.id;
         form.put(route('update.status.service', { id: statusServiceId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () =>  {
+                form.data(),
+                emit('updateStatusService');
+            },
             onError: (errors) => {
                 if (errors.status) {
                     alert('update failed!');
@@ -48,8 +54,14 @@ const submitForm = () => {
             }
         });
     }
-
 };
+
+const emit = defineEmits(
+    [
+        'addStatusService', 
+        'updateStatusService'
+    ]
+);
 </script>
 
 <template>

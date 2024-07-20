@@ -1,6 +1,7 @@
 <script setup>
 import StatusWarrantyServiceForm from './StatusWarrantyServiceForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 
@@ -43,6 +44,17 @@ const deleteStatusWarrantyService = () => {
             }
         }
     });
+};
+
+const showingModalUpdateSuccessfully = ref(false);
+
+const showModalUpdateSuccessfully = () => {
+    showingModalStatusWarrantyServiceUpdate.value = false;
+    showingModalUpdateSuccessfully.value = true;
+};
+
+const closeModalUpdateSuccessfully = () => {
+    showingModalUpdateSuccessfully.value = false;
 };
 
 const closeModal = () => {
@@ -124,9 +136,26 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <StatusWarrantyServiceForm :statusWarrantyService="selectedStatusWarrantyService" />
+            <StatusWarrantyServiceForm :statusWarrantyService="selectedStatusWarrantyService" @updateStatusWarrantyService="showModalUpdateSuccessfully"/>
         </div>
     </Modal>
+
+    <Modal :show="showingModalUpdateSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Update Status Warranty Service</span>
+                <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Status Warranty Service Update Successful!
+            </p>
+            <div class="mt-2 flex">
+                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
+            </div>
+        </div>
+    </Modal>
+
     <Modal :show="confirmingStatusWarrantyServiceDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">

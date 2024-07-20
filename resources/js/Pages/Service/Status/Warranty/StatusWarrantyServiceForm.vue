@@ -23,7 +23,10 @@ const submitForm = () => {
     if (!props.statusWarrantyService) {
         form.post(route('store.status.warranty.service'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset(),
+                emit('addStatusWarrantyService');
+            },
             onError: (errors) => {
                 if (errors.status) {
                     alert('addition failed!');
@@ -37,7 +40,10 @@ const submitForm = () => {
         const statusWarrantyServiceId = props.statusWarrantyService.id;
         form.put(route('update.status.warranty.service', { id: statusWarrantyServiceId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updateStatusWarrantyService');
+            },
             onError: (errors) => {
                 if (errors.status) {
                     alert('update failed!');
@@ -48,8 +54,14 @@ const submitForm = () => {
             }
         });
     }
-
 };
+
+const emit = defineEmits(
+    [
+        'addStatusWarrantyService', 
+        'updateStatusWarrantyService'
+    ]
+);
 </script>
 
 <template>
@@ -71,15 +83,8 @@ const submitForm = () => {
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
-                        {{
-                            props.statusWarrantyService ? 'Update' : 'Save'
-                        }}
+                        {{ props.statusWarrantyService ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{
-                            props.statusWarrantyService ? 'update successfully!' : 'added successfully!'
-                        }}
-                    </span>
                 </div>
             </form>
         </div>

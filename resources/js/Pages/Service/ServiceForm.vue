@@ -77,6 +77,7 @@ const submitForm = () => {
             resetOnSuccess: false,
             onSuccess: (page) => {
                 form.reset('date_received', 'estimated_completion', 'items_brought', 'problem_description');
+                emit('addService');
                 const printService = page.props.printService;
                 if (printService) {
                     window.open(printService, '_blank');
@@ -95,7 +96,10 @@ const submitForm = () => {
         const serviceId = props.service.id;
         form.put(route('update.service', { id: serviceId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updateService');
+            },
             onError: (errors) => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
                     alert('update failed!');
@@ -107,6 +111,13 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits(
+    [
+        'addService', 
+        'updateService'
+    ]
+);
 </script>
 
 <template>
@@ -177,9 +188,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.service ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.service ? 'update successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>
