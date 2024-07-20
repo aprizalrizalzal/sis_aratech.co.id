@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use App\Mail\SendEmailService;
 use App\Models\Customer;
 use App\Models\Device;
+use App\Models\Note;
 use App\Models\StatusService;
 use App\Models\StatusWarrantyService;
 
@@ -117,12 +118,15 @@ class ServiceController extends Controller
             ->with('customer', 'customer.user', 'device', 'device.deviceType', 'statusWarrantyService', 'statusService')
             ->firstOrFail();
 
+        $notes = Note::all();
+
         $data = [
             'title' => "ASLI Mandiri Computer - AMITech",
             'body' => 'Rincian Service.',
             'email' => $service->customer->user->email,
             // Data
             'service' => $service,
+            'notes' => $notes,
             'host_url' => url('/'),
         ];
 

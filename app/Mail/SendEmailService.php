@@ -51,6 +51,7 @@ class SendEmailService extends Mailable
     protected function buildEmailContent()
     {
         $service = $this->data['service'];
+        $notes = $this->data['notes'];
         $host_url = $this->data['host_url'];
 
         $content = "
@@ -175,11 +176,14 @@ class SendEmailService extends Mailable
                 </table>
                 <hr>
                 <div class='border'>
-                <ul class='list'>
-                        <li class='list-item font-bold text-green-900'>Notes!</li>
-                        <li class='list-item'>Pelayanan service Senin-Sabtu, pukul 08.00-17.00 WITA.</li>
-                        <li class='list-item'>Barang yang tidak diambil dalam 7 hari tidak lagi menjadi tanggung jawab kami.</li>
-                        <li class='list-item'>Harap menunjukkan nota service ini saat pengambilan barang.</li>
+                    <ul class='list'>
+                        <li class='list-item font-bold text-green-900'>Notes!</li>";
+        foreach ($notes as $index => $note) {
+            $content .= "
+            <li class='list-item'>" . $note->description . "</li>
+                                    ";
+        }
+        $content .= "
                     </ul>
                 </div>
                 <p>

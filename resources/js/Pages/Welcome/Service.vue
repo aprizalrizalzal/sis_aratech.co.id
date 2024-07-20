@@ -165,13 +165,10 @@ const closeModal = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <P class="font-bold text-green-900 my-4">{{ message }}</P>
-            <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan adalah
-                dalam huruf kapital
-                agar sistem dapat menemukan data yang sesuai dengan benar.</p>
-            <p class="text-sm/relaxed">Harap dicatat! Service Code hanya boleh
-                menggunakan huruf
-                kapital. Contohnya: <strong>DFGYHN</strong>.</p>
+            <P class="font-bold text-red-900 my-4">{{ message }}</P>
+            <p class="text-sm/relaxed">Pastikan Service Code yang dimasukkan menggunakan huruf kapital agar sistem dapat
+                menemukan data yang sesuai dengan benar. Contoh: <strong>DFGYHN</strong>.</p>
+            <p class="text-sm/relaxed">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.</p>
         </div>
     </Modal>
 </template>
