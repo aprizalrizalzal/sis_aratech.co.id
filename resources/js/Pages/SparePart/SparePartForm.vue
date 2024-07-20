@@ -50,7 +50,6 @@ const submitForm = () => {
             onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
-
             },
             onError: (errors) => {
                 if (errors.image) {
@@ -67,7 +66,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.reset('image', 'name', 'description', 'pieces', 'price');
                 previewUrl.value = null;
-
+                emit('addSparePart');
             },
             onError: (errors) => {
                 if (errors.image || errors.name || errors.category_spare_part_id || errors.description || errors.pieces || errors.price) {
@@ -84,6 +83,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data();
+                emit('updateSparePart');
             },
             onError: (errors) => {
                 if (errors.name || errors.category_spare_part_id || errors.description || errors.pieces || errors.price) {
@@ -97,6 +97,10 @@ const submitForm = () => {
     }
 };
 
+const emit = defineEmits([
+    'addSparePart', 
+    'updateSparePart'
+    ]);
 </script>
 
 <template>
@@ -148,9 +152,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         {{ props.sparePart ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.sparePart ? 'updated successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

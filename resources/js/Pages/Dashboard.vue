@@ -25,13 +25,13 @@ import DateTimePicker from '@/Components/DateTimePicker.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
-const showModalAddCustomer = ref(false);
-const showModalAddDeviceType = ref(false);
-const showModalAddDevice = ref(false);
-const showModalAddService = ref(false);
-const showModalAddServiceDetail = ref(false);
-const showModalAddSparePart = ref(false);
-const showModalAddPartUsage = ref(false);
+const showingModalAddCustomer = ref(false);
+const showingModalAddDeviceType = ref(false);
+const showingModalAddDevice = ref(false);
+const showingModalAddService = ref(false);
+const showingModalAddServiceDetail = ref(false);
+const showingModalAddSparePart = ref(false);
+const showingModalAddPartUsage = ref(false);
 
 const props = defineProps({
   users: Array,
@@ -381,14 +381,25 @@ const previousPage = () => {
   }
 };
 
+const showingModalAddSuccessfully = ref(false);
+
+const showModalAddSuccessfully = () => {
+  showingModalAddSparePart.value = false;
+  showingModalAddSuccessfully.value = true;
+};
+
+const closeModalAddSuccessfully = () => {
+  showingModalAddSuccessfully.value = false;
+};
+
 const closeModal = () => {
-  showModalAddDeviceType.value = false;
-  showModalAddSparePart.value = false;
-  showModalAddCustomer.value = false;
-  showModalAddDevice.value = false;
-  showModalAddService.value = false;
-  showModalAddServiceDetail.value = false;
-  showModalAddPartUsage.value = false;
+  showingModalAddDeviceType.value = false;
+  showingModalAddSparePart.value = false;
+  showingModalAddCustomer.value = false;
+  showingModalAddDevice.value = false;
+  showingModalAddService.value = false;
+  showingModalAddServiceDetail.value = false;
+  showingModalAddPartUsage.value = false;
   showingModalServiceDetailByServiceCode.value = false;
 };
 </script>
@@ -415,14 +426,14 @@ const closeModal = () => {
             <!-- Your main content here -->
             <div class="grid grid-cols-1 gap-4 items-center">
               <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
-                <CardButton @click="showModalAddDeviceType = true" title="Add Device Type"
+                <CardButton @click="showingModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
                   <template #svg>
                     <DisplayIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
-                <CardButton @click="showModalAddSparePart = true" title="Add Spare Part"
+                <CardButton @click="showingModalAddSparePart = true" title="Add Spare Part"
                   description="Menambahkan suku cadang baru ke inventaris."
                   :tags="['suku cadang', 'inventaris', 'stok']">
                   <template #svg>
@@ -432,19 +443,19 @@ const closeModal = () => {
               </div>
               <hr v-if="isSuperAdmin">
               <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
-                <CardButton @click="showModalAddCustomer = true" title="Add Customer"
+                <CardButton @click="showingModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
                     <CustomerIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
-                <CardButton @click="showModalAddDevice = true" title="Add Device"
+                <CardButton @click="showingModalAddDevice = true" title="Add Device"
                   description="Menambahkan perangkat baru ke sistem." :tags="['perangkat', 'registrasi', 'inventaris']">
                   <template #svg>
                     <LaptopIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
-                <CardButton @click="showModalAddService = true" title="Add Service"
+                <CardButton @click="showingModalAddService = true" title="Add Service"
                   description="Mencatat entri layanan baru." :tags="['layanan', 'entri', 'perbaikan']">
                   <template #svg>
                     <ServiceIcon width="32" height="32" fill="#0f4d0f" />
@@ -453,14 +464,14 @@ const closeModal = () => {
               </div>
               <hr v-if="isAdmin">
               <div v-if="isUser" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
-                <CardButton @click="showModalAddServiceDetail = true" title="Add Service Detail"
+                <CardButton @click="showingModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
                   <template #svg>
                     <ServiceDetailIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
                 </CardButton>
-                <CardButton @click="showModalAddPartUsage = true" title="Add Part Usage"
+                <CardButton @click="showingModalAddPartUsage = true" title="Add Part Usage"
                   description="Mendokumentasikan penggunaan suku cadang selama perbaikan."
                   :tags="['penggunaan suku cadang', 'dokumentasi', 'perbaikan']">
                   <template #svg>
@@ -594,7 +605,7 @@ const closeModal = () => {
     </div>
   </AuthenticatedLayout>
 
-  <Modal :show="showModalAddDeviceType">
+  <Modal :show="showingModalAddDeviceType">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Device Type</span>
@@ -605,18 +616,34 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddSparePart">
+  <Modal :show="showingModalAddSparePart">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <SparePartForm :categorySpareParts="categorySpareParts" />
+      <SparePartForm :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSuccessfully"/>
     </div>
   </Modal>
 
-  <Modal :show="showModalAddCustomer">
+  <Modal :show="showingModalAddSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Spare Part</span>
+              <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Adding Spare Parts Successfully!
+          </p>
+          <div class="mt-2 flex">
+              <SecondaryButton @click="closeModalAddSuccessfully">Ok</SecondaryButton>
+          </div>
+      </div>
+  </Modal>
+
+  <Modal :show="showingModalAddCustomer">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Customer</span>
@@ -627,7 +654,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddDevice">
+  <Modal :show="showingModalAddDevice">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Device</span>
@@ -638,7 +665,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddService">
+  <Modal :show="showingModalAddService">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Service</span>
@@ -650,7 +677,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddServiceDetail">
+  <Modal :show="showingModalAddServiceDetail">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Service Detail</span>
@@ -661,7 +688,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showModalAddPartUsage">
+  <Modal :show="showingModalAddPartUsage">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Part Usage</span>

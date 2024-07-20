@@ -6,7 +6,6 @@ import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import EditIcon from '@/Components/Icon/EditIcon.vue';
 
 const props = defineProps({

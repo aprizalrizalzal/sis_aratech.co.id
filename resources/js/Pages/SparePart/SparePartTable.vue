@@ -94,6 +94,17 @@ const deleteImageSparePart = () => {
 };
 
 
+const showingModalUpdateSuccessfully = ref(false);
+
+const showModalUpdateSuccessfully = () => {
+    showingModalSparePartUpdate.value = false;
+    showingModalUpdateSuccessfully.value = true;
+};
+
+const closeModalUpdateSuccessfully = () => {
+    showingModalUpdateSuccessfully.value = false;
+};
+
 const showingModalAddImageSuccessfully = ref(false);
 
 const showModalAddImageSuccessfully = () => {
@@ -249,22 +260,22 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSuccessfully"/>
+            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" @updateSparePart="showModalUpdateSuccessfully"/>
         </div>
     </Modal>
 
-    <Modal :show="showingModalAddSuccessfully">
+    <Modal :show="showingModalUpdateSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-                <span class="font-bold text-center w-full">Add Spare Part</span>
-                <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
+                <span class="font-bold text-center w-full">Update Spare Part</span>
+                <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
             <p class="my-4 text-sm text-green-600">
-                Adding Spare Parts Successfully!
+                Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
-                <SecondaryButton @click="closeModalAddSuccessfully">Ok</SecondaryButton>
+                <SecondaryButton @click="closeModalUpdateSuccessfully">Ok</SecondaryButton>
             </div>
         </div>
     </Modal>
