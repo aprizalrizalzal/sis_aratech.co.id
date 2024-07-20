@@ -118,7 +118,7 @@ class ServiceController extends Controller
             ->firstOrFail();
 
         $data = [
-            'title' => "Asli Mandiri Computer",
+            'title' => "ASLI Mandiri Computer - AMITech",
             'body' => 'Rincian Service.',
             'email' => $service->customer->user->email,
             // Data

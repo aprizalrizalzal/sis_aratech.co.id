@@ -92,7 +92,9 @@ const previousPage = () => {
                     class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ platformFooter.platform }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ platformFooter.platform }}</td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ platformFooter.description }}</td>
@@ -117,10 +119,11 @@ const previousPage = () => {
 
     <Modal :show="showingModelPlatformFooterUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Platform Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <PlatformFooterForm :platformFooter="selectedPlatformFooter" />
         </div>
     </Modal>

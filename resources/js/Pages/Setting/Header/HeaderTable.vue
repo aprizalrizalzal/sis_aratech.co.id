@@ -104,7 +104,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${header.image_path}`" :alt="header.Company"
-                                class="h-16 object-cover rounded-md me-2" />
+                                class="h-full object-cover rounded-md me-2" style="max-width: 64px;" />
                             <ButtonImage @click="showModalHeaderUpdateImage(header.id)">
                                 <EditIcon />
                             </ButtonImage>
@@ -136,20 +136,22 @@ const previousPage = () => {
 
     <Modal :show="showingModelHeaderUpdateImage">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Image Header</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <HeaderForm :headerId="selectedHeaderId" />
         </div>
     </Modal>
 
     <Modal :show="showingModelHeaderUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Header</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <HeaderForm :header="selectedHeader" />
         </div>
     </Modal>

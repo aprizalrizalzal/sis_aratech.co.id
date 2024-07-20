@@ -52,7 +52,8 @@ const closeModal = () => {
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
             <!-- Your main content here -->
             <CategorySparePartTable :categorySpareParts="filteredCategorySpareParts" />
-            <SecondaryButton @click="showModalAddCategorySparePart = true" class="w-full">Add Category Spare Part</SecondaryButton>
+            <SecondaryButton @click="showModalAddCategorySparePart = true" class="w-full">Add Category Spare Part
+            </SecondaryButton>
           </div>
         </div>
       </div>
@@ -61,10 +62,11 @@ const closeModal = () => {
 
   <Modal :show="showModalAddCategorySparePart">
     <div class="m-6">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Category Spare Part</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
       <CategorySparePartForm />
     </div>
   </Modal>

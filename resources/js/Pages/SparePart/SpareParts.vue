@@ -19,7 +19,8 @@ const filteredSpareParts = computed(() => {
     return props.spareParts;
   }
   return props.spareParts.filter(sparePart =>
-    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    sparePart.description.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 </script>
@@ -33,28 +34,28 @@ const filteredSpareParts = computed(() => {
         <div class="flex items-center">
           <div class="relative">
             <Dropdown align="left" width="48">
-                <template #trigger>
-                    <span class="inline-flex rounded-md">
-                        <button type="button"
-                            class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-md text-green-800 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
-                            Spare&nbsp;Parts&nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                            </svg>
-                        </button>
-                    </span>
-                </template>
+              <template #trigger>
+                <span class="inline-flex rounded-md">
+                  <button type="button"
+                    class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-md text-green-800 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                    Spare&nbsp;Parts&nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-chevron-down" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                    </svg>
+                  </button>
+                </span>
+              </template>
 
-                <template #content>
-                    <DropdownLink :href="route('show.category.spare.parts')">Category</DropdownLink>
-                </template>
+              <template #content>
+                <DropdownLink :href="route('show.category.spare.parts')">Category</DropdownLink>
+              </template>
             </Dropdown>
           </div>
         </div>
         <div class="flex w-full items-center">
-          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
+          <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or description" />
         </div>
       </div>
     </template>

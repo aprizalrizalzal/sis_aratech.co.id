@@ -21,7 +21,9 @@ const filteredSpareParts = computed(() => {
         return props.spareParts;
     }
     return props.spareParts.filter(sparePart =>
-        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        sparePart.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+
     );
 });
 
@@ -76,17 +78,16 @@ const closeModal = () => {
             </h2>
         </div>
         <div class="flex w-full items-center">
-            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
+            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or description" />
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
             <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
-            :price="formatCurrency(sparePart.price)">
-            <template #img>
-                <img :src="sparePart.image_path" :alt="sparePart.name">
-            </template>
-        </CardView>
+                :price="formatCurrency(sparePart.price)">
+                <template #img>
+                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-40 w-full object-cover" </template>
+            </CardView>
         </div>
     </div>
     <div class="flex justify-center gap-4 items-center p-6">
@@ -97,10 +98,11 @@ const closeModal = () => {
 
     <Modal maxWidth="4xl" :show="showingModelSparePartDetail">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <SparePartDetail :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" />
         </div>
     </Modal>

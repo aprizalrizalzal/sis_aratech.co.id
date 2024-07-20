@@ -109,16 +109,22 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
-                                class="h-16 object-cover rounded-md me-2" />
+                                class="h-full object-cover rounded-md me-2" style="max-width: 64px;" />
                             <ButtonImage @click="showModalFooterUpdateImage(footer.id)">
                                 <EditIcon />
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.type_footer.type }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.platform_footer.platform }}
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ footer.type_footer.type }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ footer.platform_footer.platform }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.url }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ footer.url }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.username }}</td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
@@ -144,20 +150,22 @@ const previousPage = () => {
 
     <Modal :show="showingModelFooterUpdateImage">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <FooterForm :footerId="selectedFooterId" />
         </div>
     </Modal>
 
     <Modal :show="showingModelFooterUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
+            <hr class="mt-4 mb-2 border-green-100">
             <FooterForm :footer="selectedFooter" :typeFooters="typeFooters" :platformFooters="platformFooters" />
         </div>
     </Modal>

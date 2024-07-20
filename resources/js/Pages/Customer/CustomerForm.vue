@@ -66,22 +66,24 @@ const submitForm = () => {
                     <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" placeholder="Name"
                         required autofocus />
                     <InputError class="mt-2" :message="form.errors.name" />
-
+                </div>
+                <div>
                     <InputLabel for="email" value="Email" />
                     <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email"
                         placeholder="Email" required />
                     <InputError class="mt-2" :message="form.errors.email" />
-
+                </div>
+                <div>
                     <InputLabel for="phone" value="Phone" />
                     <TextInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" placeholder="Phone"
                         required />
                     <InputError class="mt-2" :message="form.errors.phone" />
-
+                </div>
+                <div>
                     <InputLabel for="address" value="Address" />
                     <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address"
                         placeholder="Address" required />
                     <InputError class="mt-2" :message="form.errors.address" />
-
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3">
