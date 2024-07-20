@@ -606,7 +606,7 @@ const closeModal = () => {
                             service.service_code
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.user.name }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">
@@ -615,14 +615,14 @@ const closeModal = () => {
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.customer.phone
                             }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.address }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.device.device_type.type_name }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.device.model }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.device.serial_number }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.status_warranty_service.status }}
@@ -634,10 +634,10 @@ const closeModal = () => {
                           <td class="py-2 px-4 border-b border-green-300 text-center">{{
                             service.estimated_completion }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.problem_description }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.items_brought
                             }}
                           </td>
@@ -954,3 +954,15 @@ const closeModal = () => {
     </div>
   </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+</style>

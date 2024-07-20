@@ -373,7 +373,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         serviceDetail.service.status_service.status }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ serviceDetail.repair_description }}
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ serviceDetail.repair_description }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ formatCurrency(serviceDetail.cost) }}
                     </td>

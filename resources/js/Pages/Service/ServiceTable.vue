@@ -361,13 +361,13 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.device_type.type_name
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.device.device_type.type_name
                         }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.device.serial_number }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         service.status_warranty_service.status }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.problem_description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{

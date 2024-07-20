@@ -114,7 +114,7 @@ const previousPage = () => {
                 <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ user.name }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
@@ -181,3 +181,15 @@ const previousPage = () => {
         </div>
     </Modal>
 </template>
+
+<style scoped>
+/* Custom scrollbar style for overflow-x-auto */
+.overflow-x-auto::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+</style>
