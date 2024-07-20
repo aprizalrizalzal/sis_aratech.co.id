@@ -54,7 +54,10 @@ const submitForm = () => {
     if (!props.partUsage) {
         form.post(route('store.part.usage'), {
             preserveScroll: true,
-            onSuccess: () => form.reset('quantity'),
+            onSuccess: () => {
+                form.reset('quantity'),
+                emit('addPartUsage');
+            },
             onError: (errors) => {
                 if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage addition failed!');
@@ -68,7 +71,10 @@ const submitForm = () => {
         const partUsageId = props.partUsage.id;
         form.put(route('update.part.usage', { id: partUsageId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updatePartUsage');
+            },
             onError: (errors) => {
                 if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage update failed!');
@@ -81,6 +87,13 @@ const submitForm = () => {
     }
 
 };
+
+const emit = defineEmits(
+    [
+        'addPartUsage', 
+        'updatePartUsage'
+    ]
+);
 </script>
 
 <template>
@@ -130,9 +143,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.partUsage ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.partUsage ? 'Part Usage update successfully!' : 'Part Usage added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

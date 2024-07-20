@@ -53,7 +53,7 @@ const submitForm = () => {
         form.post(route('store.carousel'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset();
+                form.reset('image_path', 'alt');
                 previewUrl.value = null;
                 emit('addCarousel');
             },
@@ -116,9 +116,6 @@ const emit = defineEmits([
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         {{ props.carousel ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.carousel ? 'updated successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

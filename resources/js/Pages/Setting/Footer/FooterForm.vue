@@ -158,9 +158,6 @@ const emit = defineEmits([
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         {{ props.footer ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.footer ? 'updated successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

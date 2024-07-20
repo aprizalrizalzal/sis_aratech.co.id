@@ -24,7 +24,7 @@ const submitForm = () => {
         form.post(route('store.status.warranty.service'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset(),
+                form.reset('status', 'description'),
                 emit('addStatusWarrantyService');
             },
             onError: (errors) => {

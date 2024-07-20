@@ -23,7 +23,10 @@ const submitForm = () => {
     if (!props.deviceType) {
         form.post(route('store.device.type'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset('type_name', 'description'),
+                emit('addDeviceType');
+            },
             onError: (errors) => {
                 if (errors.type_name) {
                     alert('addition failed!');
@@ -37,7 +40,10 @@ const submitForm = () => {
         const deviceTypeId = props.deviceType.id;
         form.put(route('update.device.type', { id: deviceTypeId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () =>  {
+                form.data(),
+                emit('updateDeviceType');
+            },
             onError: (errors) => {
                 if (errors.type_name) {
                     alert('update failed!');
@@ -50,6 +56,13 @@ const submitForm = () => {
     }
 
 };
+
+const emit = defineEmits(
+    [
+        'addDeviceType', 
+        'updateDeviceType'
+    ]
+);
 </script>
 
 <template>
@@ -73,9 +86,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.deviceType ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.deviceType ? 'Device Type update successfully!' : 'Device Type added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

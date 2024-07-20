@@ -24,7 +24,7 @@ const submitForm = () => {
         form.post(route('store.type.footer'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset(),
+                form.reset('type', 'description'),
                 emit('addTypeFooter');
             },
             onError: (errors) => {

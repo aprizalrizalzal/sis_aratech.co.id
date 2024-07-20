@@ -29,7 +29,10 @@ const submitForm = () => {
     if (!props.device) {
         form.post(route('store.device'), {
             preserveScroll: true,
-            onSuccess: () => form.reset('model', 'serial_number'),
+            onSuccess: () => {
+                form.reset('model', 'serial_number'),
+                emit('addDevice');
+            },
             onError: (errors) => {
                 if (errors.device_type_id || errors.model || errors.serial_number) {
                     alert('addition failed!');
@@ -43,7 +46,10 @@ const submitForm = () => {
         const deviceId = props.device.id;
         form.put(route('update.device', { id: deviceId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updateDevice');
+            },
             onError: (errors) => {
                 if (errors.device_type_id || errors.model || errors.serial_number) {
                     alert('update failed!');
@@ -56,6 +62,13 @@ const submitForm = () => {
     }
 
 };
+
+const emit = defineEmits(
+    [
+        'addDevice', 
+        'updateDevice'
+    ]
+);
 </script>
 
 <template>
@@ -85,9 +98,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.device ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.device ? 'Device update successfully!' : 'Device added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

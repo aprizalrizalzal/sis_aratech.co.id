@@ -24,7 +24,7 @@ const submitForm = () => {
         form.post(route('store.category.spare.part'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset(),
+                form.reset('name', 'description'),
                 emit('addCategorySparePart');
             },
             onError: (errors) => {

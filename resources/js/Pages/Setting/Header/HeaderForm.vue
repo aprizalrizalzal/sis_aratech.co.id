@@ -55,7 +55,7 @@ const submitForm = () => {
         form.post(route('store.header'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset();
+                form.reset('image_path', 'company', 'description');
                 previewUrl.value = null;
                 emit('addHeader');
             },
@@ -125,9 +125,6 @@ const emit = defineEmits([
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         {{ props.header ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.header ? 'updated successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

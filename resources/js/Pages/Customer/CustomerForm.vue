@@ -29,7 +29,10 @@ const submitForm = () => {
     if (!props.customer) {
         form.post(route('store.customer'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset('name', 'email', 'phone', 'address'),
+                emit('addCustomer');
+            },
             onError: (errors) => {
                 if (errors.name || errors.email || errors.phone || errors.address) {
                     alert('Customer addition failed!');
@@ -43,7 +46,10 @@ const submitForm = () => {
         const customerId = props.customer.id;
         form.put(route('update.customer', { id: customerId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updateCustomer');
+            },
             onError: (errors) => {
                 if (errors.name || errors.email || errors.phone || errors.address) {
                     alert('Customer update failed!');
@@ -55,6 +61,13 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits(
+    [
+        'addCustomer', 
+        'updateCustomer'
+    ]
+);
 </script>
 
 <template>
@@ -89,9 +102,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.customer ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.customer ? 'Customer update successfully!' : 'Customer added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

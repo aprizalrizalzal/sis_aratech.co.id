@@ -1,11 +1,11 @@
 <script setup>
+import { useForm } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 import CustomerForm from '@/Pages/Customer/CustomerForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
-
-import { useForm } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     customers: {
@@ -45,6 +45,17 @@ const deleteCustomer = () => {
             }
         }
     });
+};
+
+const showingModalUpdateSuccessfully = ref(false);
+
+const showModalUpdateSuccessfully = () => {
+    showingModalCustomerUpdate.value = false;
+    showingModalUpdateSuccessfully.value = true;
+};
+
+const closeModalUpdateSuccessfully = () => {
+    showingModalUpdateSuccessfully.value = false;
 };
 
 const closeModal = () => {
@@ -125,9 +136,26 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <CustomerForm :customer="selectedCustomer" />
+            <CustomerForm :customer="selectedCustomer" @updateCustomer="showModalUpdateSuccessfully"/>
         </div>
     </Modal>
+
+    <Modal :show="showingModalUpdateSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Update Customer</span>
+                <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Customer Update Successful!
+            </p>
+            <div class="mt-2 flex">
+                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
+            </div>
+        </div>
+    </Modal>
+
     <Modal :show="confirmingCustomerDeletion">
         <div class="p-6">
             <h2 class="text-lg font-medium text-green-900">

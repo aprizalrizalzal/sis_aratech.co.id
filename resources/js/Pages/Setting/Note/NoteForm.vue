@@ -24,7 +24,7 @@ const submitForm = () => {
         form.post(route('store.note'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset();
+                form.reset('note', 'description');
                 emit('addNote');
             },
             onError: (errors) => {

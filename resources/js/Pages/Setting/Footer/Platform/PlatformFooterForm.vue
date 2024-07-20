@@ -24,7 +24,7 @@ const submitForm = () => {
         form.post(route('store.platform.footer'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset(),
+                form.reset('platform', 'description'),
                 emit('addPlatformFooter');
             },
             onError: (errors) => {
@@ -85,9 +85,6 @@ const emit = defineEmits([
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.platformFooter ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.platformFooter ? 'update successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>
