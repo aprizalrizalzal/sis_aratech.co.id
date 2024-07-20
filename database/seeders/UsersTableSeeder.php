@@ -35,48 +35,6 @@ class UsersTableSeeder extends Seeder
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
             ],
-            [
-                'name' => 'Agung',
-                'email' => 'agung@gmail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password'),
-                'created_at' => '2024-05-28 12:00:00'
-            ],
-            [
-                'name' => 'Nurhaliza Rusnia',
-                'email' => 'nurhalizarusnia@gmail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password'),
-                'created_at' => '2024-06-10 12:00:00'
-            ],
-            [
-                'name' => 'Suhartini',
-                'email' => 'suhartini@gmail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password'),
-                'created_at' => '2024-06-14 12:00:00'
-            ],
-            [
-                'name' => 'Lalu Saladin Jufri',
-                'email' => 'lalusaladinjufri@gmail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password'),
-                'created_at' => '2024-06-24 12:00:00'
-            ],
-            [
-                'name' => 'Ratna Hawati',
-                'email' => 'ratnahawati@gmail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password'),
-                'created_at' => '2024-06-27 12:00:00'
-            ],
-            [
-                'name' => 'Afan Alpian',
-                'email' => 'afanalpian@gmail.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password'),
-                'created_at' => '2024-06-29 12:00:00'
-            ]
         ];
 
         foreach ($users as $user) {
