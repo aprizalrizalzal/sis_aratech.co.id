@@ -150,7 +150,7 @@ const previousPage = () => {
                 Category Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
-                <SecondaryButton @click="closeModalUpdateSuccessfully">Ok</SecondaryButton>
+                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
             </div>
         </div>
     </Modal>

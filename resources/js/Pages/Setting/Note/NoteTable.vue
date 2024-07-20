@@ -46,6 +46,17 @@ const deleteNote = () => {
     });
 };
 
+const showingModalUpdateSuccessfully = ref(false);
+
+const showModalUpdateSuccessfully = () => {
+    showingModalNoteUpdate.value = false;
+    showingModalUpdateSuccessfully.value = true;
+};
+
+const closeModalUpdateSuccessfully = () => {
+    showingModalUpdateSuccessfully.value = false;
+};
+
 const closeModal = () => {
     showingModalNoteUpdate.value = false;
     confirmingNoteDeletion.value = false;
@@ -123,7 +134,23 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <NoteForm :note="selectedNote" />
+            <NoteForm :note="selectedNote" @updateNote="showModalUpdateSuccessfully"/>
+        </div>
+    </Modal>
+
+    <Modal :show="showingModalUpdateSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Update Note</span>
+                <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Note Update Successful!
+            </p>
+            <div class="mt-2 flex">
+                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
+            </div>
         </div>
     </Modal>
 

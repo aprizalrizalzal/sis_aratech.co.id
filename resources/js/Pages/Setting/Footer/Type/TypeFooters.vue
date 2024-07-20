@@ -5,6 +5,7 @@ import Modal from '@/Components/Modal.vue';
 import TypeFooterForm from './TypeFooterForm.vue';
 import SearchInput from '@/Components/SearchInput.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
@@ -30,6 +31,17 @@ const filteredTypeFooters = computed(() => {
     typeFooter.type.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const showingModalAddSuccessfully = ref(false);
+
+const showModalAddSuccessfully = () => {
+  showModalAddTypeFooter.value = false;
+  showingModalAddSuccessfully.value = true;
+};
+
+const closeModalAddSuccessfully = () => {
+  showingModalAddSuccessfully.value = false;
+};
 
 const closeModal = () => {
   showModalAddTypeFooter.value = false;
@@ -74,7 +86,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <TypeFooterForm />
+      <TypeFooterForm @addTypeFooter="showModalAddSuccessfully"/>
     </div>
+  </Modal>
+
+  <Modal :show="showingModalAddSuccessfully">
+      <div class="m-6">
+          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+              <span class="font-bold text-center w-full">Add Type Footer</span>
+              <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
+          </div>
+          <hr class="mt-4 mb-2 border-green-100">
+          <p class="my-4 text-sm text-green-600">
+              Type Footer Add Successful!
+          </p>
+          <div class="mt-2 flex">
+              <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
+          </div>
+      </div>
   </Modal>
 </template>

@@ -25,6 +25,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.reset();
+                emit('addNote');
             },
             onError: (errors) => {
                 if (errors.note || errors.description) {
@@ -41,6 +42,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data();
+                emit('updateNote');
             },
             onError: (errors) => {
                 if (errors.note || errors.description) {
@@ -53,6 +55,11 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits([
+    'addNote', 
+    'updateNote'
+    ]);
 
 </script>
 
@@ -77,9 +84,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">
                         {{ props.note ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.note ? 'updated successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

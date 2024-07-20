@@ -638,7 +638,7 @@ const closeModal = () => {
               Adding Spare Parts Successfully!
           </p>
           <div class="mt-2 flex">
-              <SecondaryButton @click="closeModalAddSuccessfully">Ok</SecondaryButton>
+              <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
           </div>
       </div>
   </Modal>

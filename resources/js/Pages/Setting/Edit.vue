@@ -13,6 +13,7 @@ import FooterTable from './Footer/FooterTable.vue';
 import HeaderTable from './Header/HeaderTable.vue';
 import NoteTable from './Note/NoteTable.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -28,6 +29,50 @@ const showModalAddHeader = ref(false);
 const showModalAddCarousel = ref(false);
 const showModalAddNote = ref(false);
 const showModalAddFooter = ref(false);
+
+const showingModalAddHeaderSuccessfully = ref(false);
+
+const showModalAddHeaderSuccessfully = () => {
+  showModalAddHeader.value = false;
+  showingModalAddHeaderSuccessfully.value = true;
+};
+
+const closeModalAddHeaderSuccessfully = () => {
+  showingModalAddHeaderSuccessfully.value = false;
+};
+
+const showingModalAddCarouselSuccessfully = ref(false);
+
+const showModalAddCarouselSuccessfully = () => {
+  showModalAddCarousel.value = false;
+  showingModalAddCarouselSuccessfully.value = true;
+};
+
+const closeModalAddCarouselSuccessfully = () => {
+  showingModalAddCarouselSuccessfully.value = false;
+};
+
+const showingModalAddNoteSuccessfully = ref(false);
+
+const showModalAddNoteSuccessfully = () => {
+  showModalAddNote.value = false;
+  showingModalAddNoteSuccessfully.value = true;
+};
+
+const closeModalAddNoteSuccessfully = () => {
+  showingModalAddNoteSuccessfully.value = false;
+};
+
+const showingModalAddFooterSuccessfully = ref(false);
+
+const showModalAddFooterSuccessfully = () => {
+  showModalAddFooter.value = false;
+  showingModalAddFooterSuccessfully.value = true;
+};
+
+const closeModalAddFooterSuccessfully = () => {
+  showingModalAddFooterSuccessfully.value = false;
+};
 
 const closeModal = () => {
   showModalAddHeader.value = false;
@@ -114,7 +159,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <HeaderForm />
+      <HeaderForm @addHeader="showModalAddHeaderSuccessfully"/>
+    </div>
+  </Modal>
+
+  <Modal :show="showingModalAddHeaderSuccessfully">
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Header</span>
+        <DangerButton @click="closeModalAddHeaderSuccessfully">X</DangerButton>
+      </div>
+        <hr class="mt-4 mb-2 border-green-100">
+        <p class="my-4 text-sm text-green-600">
+          Header Add Successful!
+        </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddHeaderSuccessfully">Ok</PrimaryButton>
+      </div>
     </div>
   </Modal>
 
@@ -125,7 +186,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <CarouselForm />
+      <CarouselForm @addCarousel="showModalAddCarouselSuccessfully"/>
+    </div>
+  </Modal>
+
+  <Modal :show="showingModalAddCarouselSuccessfully">
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Carousel</span>
+        <DangerButton @click="closeModalAddCarouselSuccessfully">X</DangerButton>
+      </div>
+        <hr class="mt-4 mb-2 border-green-100">
+        <p class="my-4 text-sm text-green-600">
+          Carousel Add Successful!
+        </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddCarouselSuccessfully">Ok</PrimaryButton>
+      </div>
     </div>
   </Modal>
 
@@ -136,7 +213,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <NoteForm />
+      <NoteForm @addNote="showModalAddNoteSuccessfully"/>
+    </div>
+  </Modal>
+
+  <Modal :show="showingModalAddNoteSuccessfully">
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Note</span>
+        <DangerButton @click="closeModalAddNoteSuccessfully">X</DangerButton>
+      </div>
+        <hr class="mt-4 mb-2 border-green-100">
+        <p class="my-4 text-sm text-green-600">
+          Note Add Successful!
+        </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddNoteSuccessfully">Ok</PrimaryButton>
+      </div>
     </div>
   </Modal>
 
@@ -147,7 +240,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <FooterForm :typeFooters="typeFooters" :platformFooters="platformFooters" />
+      <FooterForm :typeFooters="typeFooters" :platformFooters="platformFooters" @addFooter="showModalAddFooterSuccessfully"/>
+    </div>
+  </Modal>
+
+  <Modal :show="showingModalAddFooterSuccessfully">
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Footer</span>
+        <DangerButton @click="closeModalAddFooterSuccessfully">X</DangerButton>
+      </div>
+        <hr class="mt-4 mb-2 border-green-100">
+        <p class="my-4 text-sm text-green-600">
+          Footer Add Successful!
+        </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddFooterSuccessfully">Ok</PrimaryButton>
+      </div>
     </div>
   </Modal>
 </template>

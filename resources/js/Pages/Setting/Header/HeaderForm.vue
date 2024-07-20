@@ -57,6 +57,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.reset();
                 previewUrl.value = null;
+                emit('addHeader');
             },
             onError: (errors) => {
                 if (errors.image || errors.company || errors.description) {
@@ -73,6 +74,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data();
+                emit('updateHeader');
             },
             onError: (errors) => {
                 if (errors.company || errors.description) {
@@ -85,6 +87,11 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits([
+    'addHeader', 
+    'updateHeader'
+    ]);
 
 </script>
 

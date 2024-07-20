@@ -23,7 +23,10 @@ const submitForm = () => {
     if (!props.typeFooter) {
         form.post(route('store.type.footer'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset(),
+                emit('addTypeFooter');
+            },
             onError: (errors) => {
                 if (errors.type) {
                     alert('addition failed!');
@@ -37,7 +40,10 @@ const submitForm = () => {
         const typeFooterId = props.typeFooter.id;
         form.put(route('update.type.footer', { id: typeFooterId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updateTypeFooter');
+            },
             onError: (errors) => {
                 if (errors.type) {
                     alert('update failed!');
@@ -50,6 +56,12 @@ const submitForm = () => {
     }
 
 };
+
+const emit = defineEmits([
+    'addTypeFooter', 
+    'updateTypeFooter'
+    ]);
+
 </script>
 
 <template>
@@ -73,9 +85,6 @@ const submitForm = () => {
                     <PrimaryButton class="mt-6 mb-3">
                         {{ props.typeFooter ? 'Update' : 'Save' }}
                     </PrimaryButton>
-                    <span v-if="form.recentlySuccessful" class="text-green-500 ml-4">
-                        {{ props.typeFooter ? 'update successfully!' : 'added successfully!' }}
-                    </span>
                 </div>
             </form>
         </div>

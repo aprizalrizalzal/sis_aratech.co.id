@@ -1,6 +1,7 @@
 <script setup>
 import UserForm from '@/Pages/User/UserForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
@@ -53,6 +54,17 @@ const deleteUser = () => {
             }
         }
     });
+};
+
+const showingModalAssignSuccessfully = ref(false);
+
+const showModalAssignSuccessfully = () => {
+    showingModalAssignRoles.value = false;
+    showingModalAssignSuccessfully.value = true;
+};
+
+const closeModalAssignSuccessfully = () => {
+    showingModalAssignSuccessfully.value = false;
 };
 
 const closeModal = () => {
@@ -131,7 +143,23 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <UserForm :user="selectedUser" @assignRoles="closeModal" />
+            <UserForm :user="selectedUser" @assignRoles="showModalAssignSuccessfully" />
+        </div>
+    </Modal>
+
+    <Modal :show="showingModalAssignSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Assign User Roles</span>
+                <DangerButton @click="closeModalAssignSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Assign User Roles Successful!
+            </p>
+            <div class="mt-2 flex">
+                <PrimaryButton @click="closeModalAssignSuccessfully">Ok</PrimaryButton>
+            </div>
         </div>
     </Modal>
 

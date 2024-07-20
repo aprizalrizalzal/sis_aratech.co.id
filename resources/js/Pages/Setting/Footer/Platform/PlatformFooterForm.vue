@@ -23,7 +23,10 @@ const submitForm = () => {
     if (!props.platformFooter) {
         form.post(route('store.platform.footer'), {
             preserveScroll: true,
-            onSuccess: () => form.reset(),
+            onSuccess: () => {
+                form.reset(),
+                emit('addPlatformFooter');
+            },
             onError: (errors) => {
                 if (errors.platform) {
                     alert('addition failed!');
@@ -37,7 +40,10 @@ const submitForm = () => {
         const platformFooterId = props.platformFooter.id;
         form.put(route('update.platform.footer', { id: platformFooterId }), {
             preserveScroll: true,
-            onSuccess: () => form.data(),
+            onSuccess: () => {
+                form.data(),
+                emit('updatePlatformFooter');
+            },
             onError: (errors) => {
                 if (errors.platform) {
                     alert('update failed!');
@@ -50,6 +56,12 @@ const submitForm = () => {
     }
 
 };
+
+const emit = defineEmits([
+    'addPlatformFooter', 
+    'updatePlatformFooter'
+    ]);
+
 </script>
 
 <template>

@@ -274,7 +274,7 @@ const previousPage = () => {
                 Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
-                <SecondaryButton @click="closeModalUpdateSuccessfully">Ok</SecondaryButton>
+                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
             </div>
         </div>
     </Modal>
@@ -301,7 +301,7 @@ const previousPage = () => {
                 Adding Image Spare Parts Successfully!
             </p>
             <div class="mt-2 flex">
-                <SecondaryButton @click="closeModalAddImageSuccessfully">Ok</SecondaryButton>
+                <PrimaryButton @click="closeModalAddImageSuccessfully">Ok</PrimaryButton>
             </div>
         </div>
     </Modal>

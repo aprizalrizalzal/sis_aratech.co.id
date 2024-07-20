@@ -67,6 +67,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.reset('image', 'url', 'username', 'value');
                 previewUrl.value = null;
+                emit('addFooter');
             },
             onError: (errors) => {
                 if (errors.image || errors.type_footer_id || errors.platform_footer_id || errors.url || errors.username || errors.value) {
@@ -83,6 +84,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data();
+                emit('updateFooter');
             },
             onError: (errors) => {
                 if (errors.type_footer_id || errors.platform_footer_id || errors.url || errors.username || errors.value) {
@@ -95,6 +97,11 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits([
+    'addFooter', 
+    'updateFooter'
+    ]);
 
 </script>
 

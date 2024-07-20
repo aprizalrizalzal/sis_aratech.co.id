@@ -55,6 +55,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.reset();
                 previewUrl.value = null;
+                emit('addCarousel');
             },
             onError: (errors) => {
                 if (errors.image || errors.alt) {
@@ -71,6 +72,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data();
+                emit('updateCarousel');
             },
             onError: (errors) => {
                 if (errors.alt) {
@@ -83,6 +85,12 @@ const submitForm = () => {
         });
     }
 };
+
+const emit = defineEmits([
+    'addCarousel', 
+    'updateCarousel'
+    ]);
+
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup>
 import PlatformFooterForm from './PlatformFooterForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 
@@ -43,6 +44,17 @@ const deletePlatformFooter = () => {
             }
         }
     });
+};
+
+const showingModalUpdateSuccessfully = ref(false);
+
+const showModalUpdateSuccessfully = () => {
+    showingModalPlatformFooterUpdate.value = false;
+    showingModalUpdateSuccessfully.value = true;
+};
+
+const closeModalUpdateSuccessfully = () => {
+    showingModalUpdateSuccessfully.value = false;
 };
 
 const closeModal = () => {
@@ -124,7 +136,23 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <PlatformFooterForm :platformFooter="selectedPlatformFooter" />
+            <PlatformFooterForm :platformFooter="selectedPlatformFooter" @updatePlatformFooter="showModalUpdateSuccessfully"/>
+        </div>
+    </Modal>
+
+    <Modal :show="showingModalUpdateSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Update Platform Footer</span>
+                <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Platform Footer Update Successful!
+            </p>
+            <div class="mt-2 flex">
+                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
+            </div>
         </div>
     </Modal>
 
