@@ -369,7 +369,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.problem_description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.items_brought }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
                         service.status_service.status }}</td>
                 </tr>
