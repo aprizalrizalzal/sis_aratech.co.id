@@ -112,17 +112,17 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <SecondaryButton @click="showModalAssignRoles(user)" class="m-2">Assign Roles</SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <DangerButton @click="confirmUserDeletion(user.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>

@@ -116,7 +116,7 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
@@ -137,16 +137,16 @@ const previousPage = () => {
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ footer.url }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ footer.username }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ footer.username }}</td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ footer.value }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <SecondaryButton @click="showModalFooterUpdate(footer)" class="m-2">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <DangerButton @click="confirmFooterDeletion(footer.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>

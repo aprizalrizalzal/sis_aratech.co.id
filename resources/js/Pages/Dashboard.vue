@@ -599,20 +599,20 @@ const closeModal = () => {
                       </thead>
                       <tbody>
                         <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) *
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) *
                             itemsPerPage +
                             index + 1 }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.service_code
                             }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.user.name }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.user.email }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.customer.phone
                             }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
@@ -624,14 +624,14 @@ const closeModal = () => {
                             service.device.model }}</td>
                           <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.device.serial_number }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.status_warranty_service.status }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.date_received
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
                             service.estimated_completion }}
                           </td>
                           <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
@@ -641,10 +641,10 @@ const closeModal = () => {
                             service.items_brought
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.status_service.status
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.status_service.status
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
                               class="m-2">
                               Detail
