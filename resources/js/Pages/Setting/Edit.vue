@@ -163,7 +163,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddHeaderSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddHeaderSuccessfully">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Header</span>
@@ -190,7 +190,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddCarouselSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddCarouselSuccessfully">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Carousel</span>
@@ -217,7 +217,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddNoteSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddNoteSuccessfully">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Note</span>
@@ -244,7 +244,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddFooterSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddFooterSuccessfully">
     <div class="m-6">
       <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
         <span class="font-bold text-center w-full">Add Footer</span>

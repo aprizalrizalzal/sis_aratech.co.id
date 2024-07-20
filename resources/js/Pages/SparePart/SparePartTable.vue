@@ -263,7 +263,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModalUpdateSuccessfully">
+    <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
@@ -290,7 +290,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModalAddImageSuccessfully">
+    <Modal maxWidth="xl" :show="showingModalAddImageSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Add Image Spare Part</span>

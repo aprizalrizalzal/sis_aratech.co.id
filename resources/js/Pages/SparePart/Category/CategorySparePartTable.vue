@@ -139,7 +139,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModalUpdateSuccessfully">
+    <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Update Category Spare Part</span>

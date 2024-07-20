@@ -90,7 +90,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Add Category Spare Part</span>

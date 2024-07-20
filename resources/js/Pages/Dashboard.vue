@@ -682,7 +682,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddDeviceTypeSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddDeviceTypeSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Device Type</span>
@@ -709,7 +709,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddSparePartSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddSparePartSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Spare Part</span>
@@ -736,7 +736,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddCustomerSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddCustomerSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Customer</span>
@@ -763,7 +763,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddDeviceSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddDeviceSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Device</span>
@@ -791,7 +791,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddServiceSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddServiceSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Service</span>
@@ -818,7 +818,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddServiceDetailSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddServiceDetailSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Service Detail</span>
@@ -845,7 +845,7 @@ const closeModal = () => {
     </div>
   </Modal>
 
-  <Modal :show="showingModalAddPartUsageSuccessfully">
+  <Modal maxWidth="xl" :show="showingModalAddPartUsageSuccessfully">
       <div class="m-6">
           <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
               <span class="font-bold text-center w-full">Add Part Usage</span>

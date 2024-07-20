@@ -147,7 +147,7 @@ const previousPage = () => {
         </div>
     </Modal>
 
-    <Modal :show="showingModalAssignSuccessfully">
+    <Modal maxWidth="xl" :show="showingModalAssignSuccessfully">
         <div class="m-6">
             <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
                 <span class="font-bold text-center w-full">Assign User Roles</span>
