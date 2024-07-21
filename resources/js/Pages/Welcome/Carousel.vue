@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
 
 const props = defineProps({
     carousels: Array,
@@ -7,14 +7,43 @@ const props = defineProps({
 
 const currentIndex = ref(0);
 const intervalId = ref(null);
+const movingForward = ref(true); // Untuk melacak arah pergerakan carousel
 
 const next = () => {
-    currentIndex.value = (currentIndex.value + 1) % props.carousels.length;
+    if (movingForward.value) {
+        if (currentIndex.value < props.carousels.length - 1) {
+            currentIndex.value += 1;
+        } else {
+            movingForward.value = false; // Beralih ke mundur
+            currentIndex.value -= 1; // Geser satu slide kembali
+        }
+    } else {
+        if (currentIndex.value > 0) {
+            currentIndex.value -= 1;
+        } else {
+            movingForward.value = true; // Beralih ke maju
+            currentIndex.value += 1; // Geser satu slide maju
+        }
+    }
     updateCarouselPosition();
 };
 
 const prev = () => {
-    currentIndex.value = (currentIndex.value - 1 + props.carousels.length) % props.carousels.length;
+    if (movingForward.value) {
+        if (currentIndex.value > 0) {
+            currentIndex.value -= 1;
+        } else {
+            movingForward.value = false; // Beralih ke mundur
+            currentIndex.value += 1; // Geser satu slide maju
+        }
+    } else {
+        if (currentIndex.value < props.carousels.length - 1) {
+            currentIndex.value += 1;
+        } else {
+            movingForward.value = true; // Beralih ke maju
+            currentIndex.value -= 1; // Geser satu slide mundur
+        }
+    }
     updateCarouselPosition();
 };
 
@@ -42,6 +71,10 @@ onMounted(() => {
 onUnmounted(() => {
     stopAutoSlide();
 });
+
+// Computed properties for button states
+const isNextDisabled = computed(() => (movingForward.value && currentIndex.value === props.carousels.length - 1) || (!movingForward.value && currentIndex.value === 0));
+const isPrevDisabled = computed(() => (movingForward.value && currentIndex.value === 0) || (!movingForward.value && currentIndex.value === props.carousels.length - 1));
 </script>
 
 <template>
@@ -63,7 +96,7 @@ onUnmounted(() => {
             </div>
             <button type="button"
                 class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-prev @click="prev">
+                :disabled="isPrevDisabled" data-carousel-prev @click="prev">
                 <span
                     class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white">
                     <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +109,7 @@ onUnmounted(() => {
             </button>
             <button type="button"
                 class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-next @click="next">
+                :disabled="isNextDisabled" data-carousel-next @click="next">
                 <span
                     class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white">
                     <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
