@@ -38,7 +38,7 @@ const isUser = computed(() => hasRole('user'));
 </script>
 
 <template>
-    <div class="min-h-screen bg-gray-50">
+    <div class="min-h-screen">
         <nav class="bg-white border-b border-green-50">
 
             <!-- Primary Navigation Menu -->
@@ -301,7 +301,7 @@ const isUser = computed(() => hasRole('user'));
         </nav>
 
         <!-- Page Heading -->
-        <header class="bg-white shadow w-full" v-if="$slots.header">
+        <header class="bg-white shadow-md w-full" v-if="$slots.header">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-4 lg:px-6">
                 <slot name="header" />
             </div>
