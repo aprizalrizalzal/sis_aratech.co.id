@@ -46,7 +46,7 @@ const closeModal = () => {
 <template>
     <div class="grid grid-cols-1 mt-4 gap-4">
         <div v-for="header in $page.props.headers" :key="header.id"
-            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-sm bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
+            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-sm bg-white shadow-sm ring-1 ring-white/[0.05] transition duration-300 hover:text-green-900/70 hover:ring-green-900/20 focus:outline-none focus-visible:ring-green-700 md:row-span-3 lg:pb-8">
             <h2 class="text-xl font-semibold text-green-900 mt-2">
                 SIService - {{ header.company }}
             </h2>
