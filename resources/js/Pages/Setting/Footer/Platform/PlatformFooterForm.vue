@@ -25,7 +25,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.reset('platform', 'description'),
-                emit('addPlatformFooter');
+                    emit('addPlatformFooter');
             },
             onError: (errors) => {
                 if (errors.platform) {
@@ -42,7 +42,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data(),
-                emit('updatePlatformFooter');
+                    emit('updatePlatformFooter');
             },
             onError: (errors) => {
                 if (errors.platform) {
@@ -58,9 +58,9 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
-    'addPlatformFooter', 
+    'addPlatformFooter',
     'updatePlatformFooter'
-    ]);
+]);
 
 </script>
 
@@ -77,7 +77,7 @@ const emit = defineEmits([
                 <div>
                     <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
                 </div>

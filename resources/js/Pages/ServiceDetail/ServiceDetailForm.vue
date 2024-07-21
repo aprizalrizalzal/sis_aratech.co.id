@@ -89,7 +89,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data(),
-                emit('updateServiceDetail');
+                    emit('updateServiceDetail');
             },
             onError: (errors) => {
                 if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
@@ -105,7 +105,7 @@ const submitForm = () => {
 
 const emit = defineEmits(
     [
-        'addServiceDetail', 
+        'addServiceDetail',
         'updateServiceDetail'
     ]
 );
@@ -157,7 +157,7 @@ const emit = defineEmits(
                 <div>
                     <InputLabel for="notes" value="Notes" />
                     <textarea id="notes" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
                         v-model="form.notes" placeholder="Notes" required />
                     <InputError class="mt-2" :message="form.errors.notes" />
                 </div>

@@ -69,7 +69,7 @@ const closeModal = () => {
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-md p-4">
+          <div class="bg-white overflow-hidden shadow-sm sm:rounded-sm p-4">
             <!-- Your main content here -->
             <PlatformFooterTable :platformFooters="filteredPlatformFooters" />
             <SecondaryButton @click="showModalAddPlatformFooter = true" class="w-full">Add Platform Footer
@@ -88,23 +88,23 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <PlatformFooterForm @addPlatformFooter="showModalAddSuccessfully"/>
+      <PlatformFooterForm @addPlatformFooter="showModalAddSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Platform Footer</span>
-              <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Platform Footer Add Successful!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Platform Footer</span>
+        <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Platform Footer Add Successful!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 </template>

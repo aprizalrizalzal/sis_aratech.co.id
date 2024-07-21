@@ -57,9 +57,9 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
-    'addNote', 
+    'addNote',
     'updateNote'
-    ]);
+]);
 
 </script>
 
@@ -76,7 +76,7 @@ const emit = defineEmits([
                 <div>
                     <InputLabel for="description" value="Description note" />
                     <textarea id="description" type="text" v-model="form.description"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
                         placeholder="Description" autofocus />
                     <InputError :message="form.errors.description" />
                 </div>

@@ -175,12 +175,14 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
-                        index + 1 }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ (currentPage - 1) * itemsPerPage +
+                            index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                                class="h-16 object-cover rounded-md me-2" style="max-width: 128px;" />
+                                class="h-16 object-cover rounded-sm me-2" style="max-width: 128px;" />
                             <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
                                 <EditIcon />
                             </ButtonImage>
@@ -192,9 +194,9 @@ const previousPage = () => {
                             <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
                                 class="relative me-2">
                                 <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
-                                    class="h-16 object-cover rounded-md " style="max-width: 128px;" />
+                                    class="h-16 object-cover rounded-sm " style="max-width: 128px;" />
                                 <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
-                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-sm font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
                                     <EraserIcon />
                                 </ButtonImage>
                             </div>
@@ -211,23 +213,30 @@ const previousPage = () => {
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ sparePart.category_spare_part.name }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ sparePart.pieces }}
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ sparePart.pieces }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ formatCurrency(sparePart.price) }}
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ formatCurrency(sparePart.price) }}
                     </td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ sparePart.description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <PrimaryButton @click="showModalSparePartDetail(sparePart)" class="m-2">Detail
                         </PrimaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <DangerButton @click="confirmSparePartDeletion(sparePart.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
@@ -259,7 +268,8 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts" @updateSparePart="showModalUpdateSuccessfully"/>
+            <SparePartForm :sparePart="selectedSparePart" :categorySpareParts="categorySpareParts"
+                @updateSparePart="showModalUpdateSuccessfully" />
         </div>
     </Modal>
 
@@ -286,7 +296,7 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <ImageSparePartForm :sparePart="selectedSparePart" @addSparePartImages="showModalAddImageSuccessfully"/>
+            <ImageSparePartForm :sparePart="selectedSparePart" @addSparePartImages="showModalAddImageSuccessfully" />
         </div>
     </Modal>
 

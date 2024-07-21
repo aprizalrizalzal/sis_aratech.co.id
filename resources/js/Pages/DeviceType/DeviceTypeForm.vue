@@ -25,7 +25,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.reset('type_name', 'description'),
-                emit('addDeviceType');
+                    emit('addDeviceType');
             },
             onError: (errors) => {
                 if (errors.type_name) {
@@ -40,9 +40,9 @@ const submitForm = () => {
         const deviceTypeId = props.deviceType.id;
         form.put(route('update.device.type', { id: deviceTypeId }), {
             preserveScroll: true,
-            onSuccess: () =>  {
+            onSuccess: () => {
                 form.data(),
-                emit('updateDeviceType');
+                    emit('updateDeviceType');
             },
             onError: (errors) => {
                 if (errors.type_name) {
@@ -59,7 +59,7 @@ const submitForm = () => {
 
 const emit = defineEmits(
     [
-        'addDeviceType', 
+        'addDeviceType',
         'updateDeviceType'
     ]
 );
@@ -78,7 +78,7 @@ const emit = defineEmits(
                 <div>
                     <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
                 </div>

@@ -90,7 +90,7 @@ const closeModal = () => {
   <AuthenticatedLayout>
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-sm">
           <h2 class="font-bold my-4 text-green-600">Header</h2>
           <HeaderTable :headers="$page.props.headers" />
           <div class="flex flex-col my-2 items-start">
@@ -99,7 +99,7 @@ const closeModal = () => {
             </SecondaryButton>
           </div>
         </div>
-        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-sm">
           <h2 class="font-bold my-4 text-green-600">Carousels</h2>
           <CarouselTable :carousels="props.carousels" />
           <div class="flex flex-col my-2 items-start">
@@ -108,7 +108,7 @@ const closeModal = () => {
           </div>
         </div>
 
-        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-sm">
           <h2 class="font-bold my-4 text-green-600">Notes</h2>
           <NoteTable :notes="$page.props.notes" />
           <div class="flex flex-col my-2 items-start">
@@ -117,14 +117,14 @@ const closeModal = () => {
           </div>
         </div>
 
-        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-md">
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-sm">
           <div class="flex items-center gap-4">
             <div class="relative">
               <Dropdown align="left" width="48">
                 <template #trigger>
-                  <span class="inline-flex rounded-md">
+                  <span class="inline-flex rounded-sm">
                     <button type="button"
-                      class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                      class="inline-flex items-center py-4 border border-transparent text-md leading-4 font-bold rounded-sm text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
                       Footers&nbsp;
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -159,7 +159,7 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <HeaderForm @addHeader="showModalAddHeaderSuccessfully"/>
+      <HeaderForm @addHeader="showModalAddHeaderSuccessfully" />
     </div>
   </Modal>
 
@@ -169,10 +169,10 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Header</span>
         <DangerButton @click="closeModalAddHeaderSuccessfully">X</DangerButton>
       </div>
-        <hr class="mt-4 mb-2 border-green-100">
-        <p class="my-4 text-sm text-green-600">
-          Header Add Successful!
-        </p>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Header Add Successful!
+      </p>
       <div class="mt-2 flex">
         <PrimaryButton @click="closeModalAddHeaderSuccessfully">Ok</PrimaryButton>
       </div>
@@ -186,7 +186,7 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <CarouselForm @addCarousel="showModalAddCarouselSuccessfully"/>
+      <CarouselForm @addCarousel="showModalAddCarouselSuccessfully" />
     </div>
   </Modal>
 
@@ -196,10 +196,10 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Carousel</span>
         <DangerButton @click="closeModalAddCarouselSuccessfully">X</DangerButton>
       </div>
-        <hr class="mt-4 mb-2 border-green-100">
-        <p class="my-4 text-sm text-green-600">
-          Carousel Add Successful!
-        </p>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Carousel Add Successful!
+      </p>
       <div class="mt-2 flex">
         <PrimaryButton @click="closeModalAddCarouselSuccessfully">Ok</PrimaryButton>
       </div>
@@ -213,7 +213,7 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <NoteForm @addNote="showModalAddNoteSuccessfully"/>
+      <NoteForm @addNote="showModalAddNoteSuccessfully" />
     </div>
   </Modal>
 
@@ -223,10 +223,10 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Note</span>
         <DangerButton @click="closeModalAddNoteSuccessfully">X</DangerButton>
       </div>
-        <hr class="mt-4 mb-2 border-green-100">
-        <p class="my-4 text-sm text-green-600">
-          Note Add Successful!
-        </p>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Note Add Successful!
+      </p>
       <div class="mt-2 flex">
         <PrimaryButton @click="closeModalAddNoteSuccessfully">Ok</PrimaryButton>
       </div>
@@ -240,7 +240,8 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <FooterForm :typeFooters="typeFooters" :platformFooters="platformFooters" @addFooter="showModalAddFooterSuccessfully"/>
+      <FooterForm :typeFooters="typeFooters" :platformFooters="platformFooters"
+        @addFooter="showModalAddFooterSuccessfully" />
     </div>
   </Modal>
 
@@ -250,10 +251,10 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Footer</span>
         <DangerButton @click="closeModalAddFooterSuccessfully">X</DangerButton>
       </div>
-        <hr class="mt-4 mb-2 border-green-100">
-        <p class="my-4 text-sm text-green-600">
-          Footer Add Successful!
-        </p>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Footer Add Successful!
+      </p>
       <div class="mt-2 flex">
         <PrimaryButton @click="closeModalAddFooterSuccessfully">Ok</PrimaryButton>
       </div>

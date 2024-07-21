@@ -30,35 +30,32 @@ watch(() => props.sparePart.image_path, (newValue) => {
 </script>
 
 <template>
-    <h1 class="text-green-900 font-bold my-4 text-center sm:text-lg text-md">{{ sparePart.name }}</h1>
-    <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
+    <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
         <div class="h-full">
-            <img :src="selectedImage" :alt="sparePart.name" class="rounded-md shadow-md">
+            <img :src="selectedImage" :alt="sparePart.name" class="rounded-sm shadow-sm">
             <div v-if="imageSpareParts.length" class="mt-6">
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
                     <div v-for="(imageSparePart, index) in imageSpareParts" :key="index" class="relative">
-                        <img 
-                            :src="imageSparePart.image_path" 
-                            alt="Image Spare Part" 
-                            class="w-full h-auto rounded-md cursor-pointer" 
-                            @click="selectImage(imageSparePart.image_path)" 
-                        />
+                        <img :src="imageSparePart.image_path" alt="Image Spare Part"
+                            class="w-full h-auto rounded-sm cursor-pointer"
+                            @click="selectImage(imageSparePart.image_path)" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-start">
-            <p class="text-green-600 text-sm/relaxed font-bold py-1 px-2 mb-2 rounded-md text-white bg-green-600">
-                <span>Category </span>#{{ sparePart.category_spare_part.name }}
+            <h1 class="text-gray-900 font-bold sm:text-lg text-md">{{ sparePart.name }}</h1>
+            <p class="text-sm/relaxed font-bold py-1 rounded-sm text-gray-700">
+                {{ sparePart.category_spare_part.name }}
             </p>
-            <p class="text-green-900 text-sm/relaxed font-bold mb-2">
+            <p class="text-gray-500 text-sm/relaxed font-bold mb-2">
                 <span>Pieces </span>{{ sparePart.pieces }}
             </p>
             <hr>
-            <p class="text-gray-500 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
+            <p class="text-gray-700 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
             </p>
             <hr>
-            <p class="inline-block bg-green-600 py-1 px-2 rounded-md text-white mt-2">
+            <p class="inline-block py-2 rounded-sm font-bold text-gray-900 mt-2">
                 {{ formatCurrency(sparePart.price) }}
             </p>
         </div>
@@ -74,4 +71,3 @@ watch(() => props.sparePart.image_path, (newValue) => {
     cursor: pointer;
 }
 </style>
-

@@ -70,7 +70,7 @@ const emit = defineEmits(['addSparePartImages']);
                 </div>
                 <div v-if="previewUrl" class="my-4">
                     <p class="font-semibold">Preview:</p>
-                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
+                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-sm" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">

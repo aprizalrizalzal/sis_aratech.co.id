@@ -110,12 +110,14 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(header, index) in paginatedHeaders" :key="header.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
-                        index + 1 }}</td>
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        {{ (currentPage - 1) * itemsPerPage +
+                            index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${header.image_path}`" :alt="header.Company"
-                                class="h-full object-cover rounded-md me-2" style="max-width: 64px;" />
+                                class="h-full object-cover rounded-sm me-2" style="max-width: 64px;" />
                             <ButtonImage @click="showModalHeaderUpdateImage(header.id)">
                                 <EditIcon />
                             </ButtonImage>
@@ -127,11 +129,13 @@ const previousPage = () => {
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         {{ header.description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <SecondaryButton @click="showModalHeaderUpdate(header)" class="m-2">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td
+                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                         <DangerButton @click="confirmHeaderDeletion(header.id)" class="m-2">Delete</DangerButton>
                     </td>
                 </tr>
@@ -163,7 +167,7 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <HeaderForm :header="selectedHeader" @updateHeader="showModalUpdateSuccessfully"/>
+            <HeaderForm :header="selectedHeader" @updateHeader="showModalUpdateSuccessfully" />
         </div>
     </Modal>
 

@@ -25,7 +25,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.reset('name', 'description'),
-                emit('addCategorySparePart');
+                    emit('addCategorySparePart');
             },
             onError: (errors) => {
                 if (errors.name) {
@@ -58,9 +58,9 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
-    'addCategorySparePart', 
+    'addCategorySparePart',
     'updateCategorySparePart'
-    ]);
+]);
 </script>
 
 <template>
@@ -76,7 +76,7 @@ const emit = defineEmits([
                 <div>
                     <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
                 </div>

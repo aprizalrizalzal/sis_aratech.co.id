@@ -488,7 +488,7 @@ const closeModal = () => {
     <div class="flex">
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="overflow-hidden sm:rounded-md">
+          <div class="overflow-hidden sm:rounded-sm">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 gap-4 items-center">
               <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
@@ -547,7 +547,7 @@ const closeModal = () => {
               </div>
               <hr v-if="isUser">
               <div v-if="isSuperAdmin || isAdmin || isUser"
-                class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
+                class="flex flex-col gap-2 px-8 items-center bg-white shadow-sm rounded-sm p-4 my-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
                     <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date"
@@ -562,7 +562,7 @@ const closeModal = () => {
                 </div>
                 <LineChart :lableCharts="lableCharts" :dataCharts="dataCharts" />
               </div>
-              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
+              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-sm rounded-sm p-4 my-4">
                 <div class="overflow-x-auto">
                   <div class="flex w-full gap-2 justify-between my-4">
                     <div class="flex items-center gap-2 bg-white">
@@ -599,52 +599,80 @@ const closeModal = () => {
                       </thead>
                       <tbody>
                         <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) *
-                            itemsPerPage +
-                            index + 1 }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.service_code
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{ (currentPage - 1) *
+                              itemsPerPage +
+                              index + 1 }}</td>
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.service_code
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.user.name }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.user.email }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.customer.phone
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.customer.phone
                             }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             {{ service.customer.address }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.device.device_type.type_name }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.device.model }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.device.serial_number }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.status_warranty_service.status }}
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.device.device_type.type_name }}</td>
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.device.model }}</td>
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.device.serial_number }}</td>
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.status_warranty_service.status }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.date_received
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.date_received
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.estimated_completion }}
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.estimated_completion }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.problem_description }}
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.problem_description }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{
-                            service.items_brought
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{
+                              service.items_brought
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ service.status_service.status
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            {{ service.status_service.status
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                          <td
+                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
                               class="m-2">
                               Detail
@@ -678,24 +706,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <DeviceTypeForm @addDeviceType="showModalAddDeviceTypeSuccessfully"/>
+      <DeviceTypeForm @addDeviceType="showModalAddDeviceTypeSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddDeviceTypeSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Device Type</span>
-              <DangerButton @click="closeModalAddDeviceTypeSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Device Type Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddDeviceTypeSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Device Type</span>
+        <DangerButton @click="closeModalAddDeviceTypeSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Device Type Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddDeviceTypeSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalAddSparePart">
@@ -705,24 +733,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <SparePartForm :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSparePartSuccessfully"/>
+      <SparePartForm :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSparePartSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddSparePartSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Spare Part</span>
-              <DangerButton @click="closeModalAddSparePartSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Spare Parts Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddSparePartSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Spare Part</span>
+        <DangerButton @click="closeModalAddSparePartSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Spare Parts Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddSparePartSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalAddCustomer">
@@ -732,24 +760,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <CustomerForm @addCustomer="showModalAddCustomerSuccessfully"/>
+      <CustomerForm @addCustomer="showModalAddCustomerSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddCustomerSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Customer</span>
-              <DangerButton @click="closeModalAddCustomerSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Customer Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddCustomerSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Customer</span>
+        <DangerButton @click="closeModalAddCustomerSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Customer Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddCustomerSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalAddDevice">
@@ -759,24 +787,24 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <DeviceForm :deviceTypes="deviceTypes" @addDevice="showModalAddDeviceSuccessfully"/>
+      <DeviceForm :deviceTypes="deviceTypes" @addDevice="showModalAddDeviceSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddDeviceSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Device</span>
-              <DangerButton @click="closeModalAddDeviceSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Device Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddDeviceSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Device</span>
+        <DangerButton @click="closeModalAddDeviceSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Device Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddDeviceSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalAddService">
@@ -787,24 +815,24 @@ const closeModal = () => {
       </div>
       <hr class="mt-4 mb-2 border-green-100">
       <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
-        :statusServices="statusServices" @addService="showModalAddServiceSuccessfully"/>
+        :statusServices="statusServices" @addService="showModalAddServiceSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddServiceSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Service</span>
-              <DangerButton @click="closeModalAddServiceSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Service Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddServiceSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Service</span>
+        <DangerButton @click="closeModalAddServiceSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Service Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddServiceSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalAddServiceDetail">
@@ -814,24 +842,25 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices" @addServiceDetail="showModalAddServiceDetailSuccessfully"/>
+      <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices"
+        @addServiceDetail="showModalAddServiceDetailSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddServiceDetailSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Service Detail</span>
-              <DangerButton @click="closeModalAddServiceDetailSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Service Detail Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddServiceDetailSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Service Detail</span>
+        <DangerButton @click="closeModalAddServiceDetailSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Service Detail Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddServiceDetailSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalAddPartUsage">
@@ -841,24 +870,25 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" @addPartUsage="showModalAddPartUsageSuccessfully"/>
+      <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts"
+        @addPartUsage="showModalAddPartUsageSuccessfully" />
     </div>
   </Modal>
 
   <Modal maxWidth="xl" :show="showingModalAddPartUsageSuccessfully">
-      <div class="m-6">
-          <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-              <span class="font-bold text-center w-full">Add Part Usage</span>
-              <DangerButton @click="closeModalAddPartUsageSuccessfully">X</DangerButton>
-          </div>
-          <hr class="mt-4 mb-2 border-green-100">
-          <p class="my-4 text-sm text-green-600">
-              Adding Part Usage Successfully!
-          </p>
-          <div class="mt-2 flex">
-              <PrimaryButton @click="closeModalAddPartUsageSuccessfully">Ok</PrimaryButton>
-          </div>
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Add Part Usage</span>
+        <DangerButton @click="closeModalAddPartUsageSuccessfully">X</DangerButton>
       </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Adding Part Usage Successfully!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalAddPartUsageSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
   </Modal>
 
   <Modal :show="showingModalServiceDetailByServiceCode">
@@ -958,11 +988,11 @@ const closeModal = () => {
 <style scoped>
 /* Custom scrollbar style for overflow-x-auto */
 .overflow-x-auto::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .overflow-x-auto {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>
