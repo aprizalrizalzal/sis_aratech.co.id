@@ -488,7 +488,7 @@ const closeModal = () => {
     <div class="flex">
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="overflow-hidden sm:rounded-sm">
+          <div class="overflow-hidden sm:rounded-md">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 gap-4 items-center">
               <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
@@ -547,7 +547,7 @@ const closeModal = () => {
               </div>
               <hr v-if="isUser">
               <div v-if="isSuperAdmin || isAdmin || isUser"
-                class="flex flex-col gap-2 px-8 items-center bg-white shadow-sm rounded-sm p-4 my-4 ">
+                class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
                     <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date"
@@ -562,7 +562,7 @@ const closeModal = () => {
                 </div>
                 <LineChart :lableCharts="lableCharts" :dataCharts="dataCharts" />
               </div>
-              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-sm rounded-sm p-4 my-4">
+              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow-md rounded-md p-4 my-4">
                 <div class="overflow-x-auto">
                   <div class="flex w-full gap-2 justify-between my-4">
                     <div class="flex items-center gap-2 bg-white">

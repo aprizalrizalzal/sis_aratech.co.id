@@ -45,9 +45,9 @@ const isUser = computed(() => hasRole('user'));
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
                 <div class="flex justify-between h-24 ">
                     <div v-if="isSuperAdmin" :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
-                        class="me-2 flex items-center left-0 fixed bg-green-50 bg-opacity-50 rounded-sm">
+                        class="me-2 flex items-center left-0 fixed bg-green-50 bg-opacity-50 rounded-md">
                         <button @click="toggleSidebar()"
-                            class="inline-flex py-9 items-center justify-center rounded-sm p-2 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
+                            class="inline-flex py-9 items-center justify-center rounded-md p-2 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
                                 <!-- Panah ke kanan -->
@@ -125,9 +125,9 @@ const isUser = computed(() => hasRole('user'));
                         <div class="ms-3 relative">
                             <Dropdown align="right" width="48">
                                 <template #trigger>
-                                    <span class="inline-flex rounded-sm">
+                                    <span class="inline-flex rounded-md">
                                         <button type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-sm text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
                                             {{ $page.props.auth.user.name }}&nbsp;
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -151,7 +151,7 @@ const isUser = computed(() => hasRole('user'));
                     <!-- Hamburger -->
                     <div class="-me-2 flex items-center sm:hidden">
                         <button @click="showingNavigationDropdown = !showingNavigationDropdown"
-                            class="inline-flex items-center justify-center p-2 rounded-sm text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
+                            class="inline-flex items-center justify-center p-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
                             <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                                 <path :class="{
                                     hidden: showingNavigationDropdown,
@@ -238,7 +238,7 @@ const isUser = computed(() => hasRole('user'));
 
             <!-- Sidebar for Super Admins -->
             <div v-if="isSuperAdmin && showingSidebar">
-                <div class="w-64 h-full overflow-y-auto bg-white rounded-sm border-green-200 fixed top-0 left-0 z-50">
+                <div class="w-64 h-full overflow-y-auto bg-white rounded-md border-green-200 fixed top-0 left-0 z-50">
                     <div class="py-4">
                         <div class="flex items-center gap-2 px-6 pb-4 font-bold">
                             <ApplicationLogo class="block h-16 w-16" /> SIService

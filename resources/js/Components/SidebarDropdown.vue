@@ -1,7 +1,7 @@
 <template>
   <div>
     <div @click="toggleDropdown"
-      class="flex items-center p-2 text-base font-normal text-green-900 rounded-sm hover:bg-green-50 cursor-pointer"
+      class="flex items-center p-2 text-base font-normal text-green-900 rounded-md hover:bg-green-50 cursor-pointer"
       :class="{ 'bg-green-200': isActive }">
       <slot name="icon"></slot>
       <span class="ml-2">{{ label }}</span>

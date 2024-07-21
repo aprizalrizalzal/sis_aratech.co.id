@@ -69,7 +69,7 @@ const closeModal = () => {
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-sm p-4">
+          <div class="bg-white overflow-hidden shadow-md sm:rounded-md p-4">
             <!-- Your main content here -->
             <TypeFooterTable :typeFooters="filteredTypeFooters" />
             <SecondaryButton @click="showModalAddTypeFooter = true" class="w-full">Add Type Footer</SecondaryButton>

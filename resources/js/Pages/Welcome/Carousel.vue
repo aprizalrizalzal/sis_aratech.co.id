@@ -80,7 +80,7 @@ const isPrevDisabled = computed(() => (movingForward.value && currentIndex.value
 <template>
     <div v-if="carousels.length">
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
-            <div class="relative h-auto overflow-hidden rounded-sm md:h-auto">
+            <div class="relative h-auto overflow-hidden rounded-md md:h-auto">
                 <div id="carousel-wrapper" class="carousel-wrapper flex">
                     <div v-for="(carousel, index) in carousels" :key="carousel.id" class="carousel-slide">
                         <img :src="carousel.image_path" :alt="carousel.alt">

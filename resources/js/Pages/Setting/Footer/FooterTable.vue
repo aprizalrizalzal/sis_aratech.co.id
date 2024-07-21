@@ -123,7 +123,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
-                                class="h-full object-cover rounded-sm me-2" style="max-width: 64px;" />
+                                class="h-full object-cover rounded-md me-2" style="max-width: 64px;" />
                             <ButtonImage @click="showModalFooterUpdateImage(footer.id)">
                                 <EditIcon />
                             </ButtonImage>

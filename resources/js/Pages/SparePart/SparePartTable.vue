@@ -182,7 +182,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                                class="h-16 w-24 object-cover rounded-sm me-2" style="max-width: 128px;" />
+                                class="h-16 w-24 object-cover rounded-md me-2" style="max-width: 128px;" />
                             <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
                                 <EditIcon />
                             </ButtonImage>
@@ -194,9 +194,9 @@ const previousPage = () => {
                             <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
                                 class="relative me-2">
                                 <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
-                                    class="h-16 w-16 object-cover rounded-sm " style="max-width: 128px;" />
+                                    class="h-16 w-16 object-cover rounded-md " style="max-width: 128px;" />
                                 <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
-                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-sm font-semibold text-xs text-red-800 tracking-widest shadow-sm hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-md hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
                                     <EraserIcon />
                                 </ButtonImage>
                             </div>

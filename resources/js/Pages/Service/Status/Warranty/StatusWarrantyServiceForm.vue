@@ -77,7 +77,7 @@ const emit = defineEmits(
                 <div>
                     <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-md"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
                 </div>

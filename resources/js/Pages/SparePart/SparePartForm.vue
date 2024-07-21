@@ -140,13 +140,13 @@ const emit = defineEmits([
                 <div v-if="!props.sparePartId">
                     <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-sm shadow-sm"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-md"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
                 </div>
                 <div v-if="previewUrl" class="my-4">
                     <p class="font-semibold">Preview:</p>
-                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-sm" />
+                    <img :src="previewUrl" alt="Image Preview" class="w-full h-auto mt-2 rounded-md" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">

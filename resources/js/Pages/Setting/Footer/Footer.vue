@@ -63,7 +63,7 @@ const currentYear = computed(() => {
                 </div>
                 <div class="lg:mt-8 pb-6 text-start">
                     <h2 class="text-xl font-semibold text-green-900 mt-8">App Download</h2>
-                    <div class="w-full rounded-sm mt-4">
+                    <div class="w-full rounded-md mt-4">
                         <p class=" mt-4">Dapatkan pengalaman service yang lebih baik! Unduh aplikasi kami sekarang di
                             Play Store dan
                             App Store.</p>
