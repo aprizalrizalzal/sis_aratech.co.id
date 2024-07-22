@@ -6,6 +6,10 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import SparePartDetail from '../SparePart/SparePartDetail.vue';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import ButtonImage from '@/Components/ButtonImage.vue';
+import RadioButton from '@/Components/RadioButton.vue';
+import GridIcon from '@/Components/Icon/GridIcon.vue';
+import Dropdown from '@/Components/Dropdown.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -14,7 +18,7 @@ const props = defineProps({
 
 const searchQuery = ref('');
 const currentPage = ref(1);
-const itemsPerPage = 12;
+const itemsPerPage = ref(6); // Initial value
 
 const filteredSpareParts = computed(() => {
     if (!searchQuery.value) {
@@ -28,13 +32,13 @@ const filteredSpareParts = computed(() => {
 });
 
 const paginatedSpareParts = computed(() => {
-    const start = (currentPage.value - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
     return filteredSpareParts.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-    return Math.ceil(filteredSpareParts.value.length / itemsPerPage);
+    return Math.ceil(filteredSpareParts.value.length / itemsPerPage.value);
 });
 
 const formatCurrency = (value) => {
@@ -51,6 +55,11 @@ const previousPage = () => {
     if (currentPage.value > 1) {
         currentPage.value--;
     }
+};
+
+const setItemsPerPage = (value) => {
+    itemsPerPage.value = value;
+    currentPage.value = 1; // Reset to first page
 };
 
 watch(searchQuery, () => {
@@ -79,6 +88,27 @@ const closeModal = () => {
         </div>
         <div class="flex w-full items-center">
             <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or description" />
+        </div>
+        
+        <div class="relative">
+            <Dropdown align="right" width="48">
+                <template #trigger>
+                    <span class="inline-flex rounded-md">
+                        <div>
+                            <ButtonImage class="p-2">
+                                <GridIcon />
+                            </ButtonImage>
+                        </div>
+                    </span>
+                </template>
+
+                <template #content>
+                <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
+                <RadioButton name="itemsPerPage" value="18" v-model:checked="itemsPerPage">18 Product</RadioButton>
+                <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
+                <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">All Product</RadioButton>
+              </template>
+            </Dropdown>
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
