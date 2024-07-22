@@ -1,13 +1,7 @@
 <template>
     <label class="flex items-center px-3 py-1 text-green-900 gap-2">
-        <input 
-            class="border-green-300 text-green-600 shadow-md focus:ring-green-500" 
-            type="radio" 
-            :name="name" 
-            :value="value" 
-            @change="handleChange" 
-            :checked="checked === value" 
-        />
+        <input class="border-green-300 text-green-600 shadow-md focus:ring-green-500" type="radio" :name="name"
+            :value="value" @change="handleChange" :checked="checked === value" />
         <slot></slot>
     </label>
 </template>
