@@ -99,7 +99,6 @@ const closeModal = () => {
                 <template #content>
                     <RadioButton name="itemsPerPage" value="6" v-model:checked="itemsPerPage">6 Product</RadioButton>
                     <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" value="18" v-model:checked="itemsPerPage">18 Product</RadioButton>
                     <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
                     <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">
                         All Product</RadioButton>
