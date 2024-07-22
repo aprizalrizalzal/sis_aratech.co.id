@@ -1,5 +1,5 @@
 <template>
-    <label class="flex items-center gap-2 px-3 py-1 text-green-900">
+    <label class="flex items-center px-3 py-1 text-green-900 gap-2">
         <input 
             class="border-green-300 text-green-600 shadow-md focus:ring-green-500" 
             type="radio" 
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps, computed } from 'vue';
+import { defineEmits, defineProps } from 'vue';
 
 const emit = defineEmits(['update:checked']);
 

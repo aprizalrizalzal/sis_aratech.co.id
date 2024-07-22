@@ -27,7 +27,6 @@ const filteredSpareParts = computed(() => {
     return props.spareParts.filter(sparePart =>
         sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
         sparePart.description.toLowerCase().includes(searchQuery.value.toLowerCase())
-
     );
 });
 
@@ -55,11 +54,6 @@ const previousPage = () => {
     if (currentPage.value > 1) {
         currentPage.value--;
     }
-};
-
-const setItemsPerPage = (value) => {
-    itemsPerPage.value = value;
-    currentPage.value = 1; // Reset to first page
 };
 
 watch(searchQuery, () => {
@@ -103,11 +97,11 @@ const closeModal = () => {
                 </template>
 
                 <template #content>
-                <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
-                <RadioButton name="itemsPerPage" value="18" v-model:checked="itemsPerPage">18 Product</RadioButton>
-                <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
-                <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">All Product</RadioButton>
-              </template>
+                    <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
+                    <RadioButton name="itemsPerPage" value="18" v-model:checked="itemsPerPage">18 Product</RadioButton>
+                    <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
+                    <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">All Product</RadioButton>
+                </template>
             </Dropdown>
         </div>
     </div>
@@ -116,7 +110,8 @@ const closeModal = () => {
             <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
                 :price="formatCurrency(sparePart.price)">
                 <template #img>
-                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-40 w-full object-cover" </template>
+                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-40 w-full object-cover" />
+                </template>
             </CardView>
         </div>
     </div>
