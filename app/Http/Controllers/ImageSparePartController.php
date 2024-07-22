@@ -18,8 +18,8 @@ class ImageSparePartController extends Controller
 
         // Cek jumlah gambar yang ada untuk spare part ini
         $existingImagesCount = ImageSparePart::where('spare_part_id', $request->spare_part_id)->count();
-        if ($existingImagesCount >= 6) {
-            return Redirect::back()->withErrors(['image' => 'Maksimal 6 gambar per spare part.']);
+        if ($existingImagesCount >= 4) {
+            return Redirect::back()->withErrors(['image' => 'Maksimal 4 gambar per spare part.']);
         }
 
         $originalName = $request->file('image')->getClientOriginalName();

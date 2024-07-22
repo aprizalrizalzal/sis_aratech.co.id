@@ -34,10 +34,10 @@ watch(() => props.sparePart.image_path, (newValue) => {
         <div class="h-full">
             <img :src="selectedImage" :alt="sparePart.name" class="w-full rounded-md shadow-md">
             <div v-if="imageSpareParts.length" class="mt-6">
-                <div class="grid grid-cols-6 gap-4 mt-4">
+                <div class="grid grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-4 mt-4">
                     <div v-for="(imageSparePart, index) in imageSpareParts" :key="index" class="relative">
                         <img :src="imageSparePart.image_path" alt="Image Spare Part"
-                            class="h-8 object-cover rounded-md cursor-pointer"
+                            class="h-32 object-cover rounded-md cursor-pointer"
                             @click="selectImage(imageSparePart.image_path)" />
                     </div>
                 </div>
