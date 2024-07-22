@@ -51,6 +51,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
+                emit('updateImageFooter');
             },
             onError: (errors) => {
                 if (errors.image) {
@@ -99,6 +100,7 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
+    'updateImageFooter',
     'addFooter',
     'updateFooter'
 ]);

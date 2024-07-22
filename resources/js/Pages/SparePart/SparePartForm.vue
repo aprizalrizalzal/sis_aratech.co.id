@@ -50,6 +50,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
+                emit('updateImageSparePart');
             },
             onError: (errors) => {
                 if (errors.image) {
@@ -98,6 +99,7 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
+    'updateImageSparePart',
     'addSparePart',
     'updateSparePart'
 ]);

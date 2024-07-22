@@ -53,6 +53,17 @@ const deleteHeader = () => {
     });
 };
 
+const showingModalUpdateImageSuccessfully = ref(false);
+
+const showModalUpdateImageSuccessfully = () => {
+    showingModalHeaderUpdateImage.value = false;
+    showingModalUpdateImageSuccessfully.value = true;
+};
+
+const closeModalUpdateImageSuccessfully = () => {
+    showingModalUpdateImageSuccessfully.value = false;
+};
+
 const showingModalUpdateSuccessfully = ref(false);
 
 const showModalUpdateSuccessfully = () => {
@@ -156,7 +167,23 @@ const previousPage = () => {
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <HeaderForm :headerId="selectedHeaderId" />
+            <HeaderForm :headerId="selectedHeaderId" @updateImageHeader="showModalUpdateImageSuccessfully" />
+        </div>
+    </Modal>
+
+    <Modal maxWidth="xl" :show="showingModalUpdateImageSuccessfully">
+        <div class="m-6">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+                <span class="font-bold text-center w-full">Update Image Header</span>
+                <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
+            </div>
+            <hr class="mt-4 mb-2 border-green-100">
+            <p class="my-4 text-sm text-green-600">
+                Header Image Update Successful!
+            </p>
+            <div class="mt-2 flex">
+                <PrimaryButton @click="closeModalUpdateImageSuccessfully">Ok</PrimaryButton>
+            </div>
         </div>
     </Modal>
 

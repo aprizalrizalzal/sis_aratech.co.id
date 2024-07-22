@@ -39,6 +39,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
+                emit('updateImageCarousel');
             },
             onError: (errors) => {
                 if (errors.image) {
@@ -87,6 +88,7 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
+    'updateImageCarousel',
     'addCarousel',
     'updateCarousel'
 ]);

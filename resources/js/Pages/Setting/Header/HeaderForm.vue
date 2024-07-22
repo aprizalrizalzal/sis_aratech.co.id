@@ -41,6 +41,7 @@ const submitForm = () => {
             onSuccess: () => {
                 form.data();
                 previewUrl.value = null;
+                emit('updateImageHeader');
             },
             onError: (errors) => {
                 if (errors.image) {
@@ -89,6 +90,7 @@ const submitForm = () => {
 };
 
 const emit = defineEmits([
+    'updateImageHeader',
     'addHeader',
     'updateHeader'
 ]);
