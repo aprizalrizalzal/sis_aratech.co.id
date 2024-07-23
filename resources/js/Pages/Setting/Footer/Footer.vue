@@ -77,9 +77,8 @@ const currentYear = computed(() => {
                     </ul>
                 </div>
             </div>
-            <p class="relative text-black">Copyright &copy; {{ currentYear }} <a href="https://aslimandiri.com"
-                    target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">Asli Mandiri
-                        Computer</span></a> Developed by <a href="https://www.linkedin.com/in/muhamad-aprizal-hardi/"
+            <p v-for="header in $page.props.headers" :key="header.id" class="relative text-black">Copyright &copy; {{ currentYear }} <a href="https://aslimandiri.com"
+                    target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">{{ header.company }}</span></a> Developed by <a href="https://www.linkedin.com/in/muhamad-aprizal-hardi/"
                     target="_blank" rel="noopener noreferrer"><span
                         class="text-green-900 font-bold">Technician</span></a> </p>
         </div>

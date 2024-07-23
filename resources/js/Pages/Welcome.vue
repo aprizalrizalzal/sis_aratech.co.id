@@ -119,7 +119,7 @@ const props = defineProps({
 
     <div class="text-green-900/50">
         <div
-            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-green-700 selection:text-white">
+            class="relative min-h-screen flex flex-col items-center justify-center">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">
                     <div>
