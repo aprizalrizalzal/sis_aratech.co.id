@@ -143,7 +143,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/service', [ServiceController::class, 'destroy'])->name('destroy.service');
 
         Route::get('service/print/{service_code}', [ServiceController::class, 'print'])->name('service.print');
-        Route::get('service/send/{service_code}', [WhatsAppController::class, 'sendWhatsAppMessage'])->name('service.print');
     });
 
     Route::middleware(['role:user'])->group(function () {
