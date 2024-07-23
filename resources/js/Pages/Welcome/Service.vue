@@ -80,7 +80,6 @@ const closeModal = () => {
         </div>
         <div class="flex flex-col p-6 items-start gap-2 overflow-hidden rounded-md bg-white shadow-md">
             <div class="p-2">
-                <h2 class="text-xl font-semibold text-green-900">Layanan Kami</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2">
                     <ul class="mt-2 text-sm/relaxed text-gray-500">
                         <div class="flex items-center gap-2 text-green-700 mt-1">
@@ -127,10 +126,8 @@ const closeModal = () => {
 
         <div class="flex flex-col p-6 items-start gap-2 overflow-hidden rounded-md bg-white shadow-md">
             <div v-for="header in $page.props.headers" :key="header.id" class="p-2">
-                <h2 class="text-xl font-semibold text-green-900">Tentang Kami</h2>
-
                 <p class="mt-4 text-sm/relaxed text-gray-500">
-                    <span class="text-green-700 font-bold">{{ header.company }}</span> adalah spesialis dalam layanan perbaikan dan
+                    <span class="text-green-700 font-bold">{{ header.company }}</span> spesialis dalam layanan perbaikan dan
                     penjualan PC/Laptop,
                     printer, peralatan jaringan, serta aksesoris komputer. Kami berkomitmen untuk
                     menyediakan pelayanan
