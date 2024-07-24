@@ -547,7 +547,7 @@ const closeModal = () => {
               </div>
               <hr v-if="isUser">
               <div v-if="isSuperAdmin || isAdmin || isUser"
-                class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 my-4 ">
+                class="flex flex-col gap-2 px-8 items-center bg-white shadow-md rounded-md p-4 m-4 ">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
                     <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date"
