@@ -77,59 +77,11 @@ const closeModal = () => {
             <p class="text-sm/relaxed text-gray-500">Pastikan Service Code yang dimasukkan menggunakan huruf kapital agar sistem dapat
                 menemukan data yang sesuai dengan benar. Contoh: <strong>DFGYHN</strong>.</p>
             <p class="text-sm/relaxed text-gray-500">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.</p>
-        </div>
-        <div class="flex flex-col p-6 items-start gap-2 overflow-hidden rounded-md bg-white shadow-md">
-            <div class="p-2">
-                <div class="grid grid-cols-1 sm:grid-cols-2">
-                    <ul class="mt-2 text-sm/relaxed text-gray-500">
-                        <div class="flex items-center gap-2 text-green-700 mt-1">
-                            <LaptopIcon width="24" height="24" />
-                            <li class="mt-1 font-semibold">Service PC/Laptop</li>
-                        </div>
-                        <p class="mt-1 mb-4">
-                            Kami memperbaiki dan merawat semua model PC dan laptop, termasuk diagnosis, penggantian komponen, instalasi perangkat lunak, optimisasi, dan pembersihan virus.
-                        </p>
-                        <div class="flex items-center gap-2 text-green-700 mt-1">
-                            <PrinterIcon width="24" height="24" />
-                            <li class="mt-1 font-semibold">Service Printer</li>
-                        </div>
-                        <p class="mt-1 mb-4">
-                            Kami memperbaiki dan merawat berbagai jenis printer, termasuk penggantian suku cadang, pengisian tinta, kalibrasi, dan pembersihan.
-                        </p>
-                        <div class="flex items-center gap-2 text-green-700 mt-1">
-                            <ProjectorIcon width="24" height="24" />
-                            <li class="mt-1 font-semibold">Service LCD Proyektor</li>
-                        </div>
-                        <p class="mt-1 mb-4">
-                            Kami memperbaiki dan merawat LCD proyektor, termasuk pembersihan lensa, penggantian lampu, dan kalibrasi warna.
-                        </p>
-                    </ul>
-                    <ul class="sm:mt-2 text-sm/relaxed text-gray-500">
-                        <div class="flex items-center gap-2 text-green-700 mt-1">
-                            <CameraVideoIcon width="24" height="24" />
-                            <li class="mt-1 font-semibold">Service CCTV</li>
-                        </div>
-                        <p class="mt-1 mb-4">
-                            Kami memperbaiki dan merawat sistem CCTV, termasuk pemasangan kamera, konfigurasi DVR/NVR, dan pemantauan jarak jauh.
-                        </p>
-                        <div class="flex items-center gap-2 text-green-700 mt-1">
-                            <RouterIcon width="24" height="24" />
-                            <li class="mt-1 font-semibold">Service Networking</li>
-                        </div>
-                        <p class="mt-1 mb-4">
-                            Kami menangani instalasi, perbaikan, dan pemeliharaan jaringan komputer, termasuk pemasangan kabel, konfigurasi router, dan troubleshooting.
-                        </p>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col p-6 items-start gap-2 overflow-hidden rounded-md bg-white shadow-md">
-            <div v-for="header in $page.props.headers" :key="header.id" class="p-2">
+            <div v-for="header in $page.props.headers" :key="header.id">
                 <p class="mt-4 text-sm/relaxed text-gray-500">
                     <span class="text-green-700 font-bold">{{ header.company }}</span> spesialis dalam layanan perbaikan dan
-                    penjualan PC/Laptop,
-                    printer, peralatan jaringan, serta aksesoris komputer. Kami berkomitmen untuk
+                    penjualan <strong>PC/Laptop</strong>,
+                    <strong>printer</strong>, <strong>peralatan jaringan</strong>, serta <strong>aksesoris komputer</strong>. Kami berkomitmen untuk
                     menyediakan pelayanan
                     berkualitas tinggi yang memenuhi kebutuhan teknologi Anda.
                 </p>
