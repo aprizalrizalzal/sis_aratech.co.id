@@ -51,12 +51,12 @@ const deleteDevice = () => {
 const showingModalUpdateSuccessfully = ref(false);
 
 const showModalUpdateSuccessfully = () => {
-    showingModalDeviceUpdate.value = false;
-    showingModalUpdateSuccessfully.value = true;
+  showingModalDeviceUpdate.value = false;
+  showingModalUpdateSuccessfully.value = true;
 };
 
 const closeModalUpdateSuccessfully = () => {
-    showingModalUpdateSuccessfully.value = false;
+  showingModalUpdateSuccessfully.value = false;
 };
 
 const closeModal = () => {
@@ -109,8 +109,7 @@ const previousPage = () => {
           </td>
           <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
             {{ device.device_type.type_name }}</td>
-          <td
-            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
             {{ device.model }}</td>
           <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
             {{ device.serial_number }}</td>
@@ -127,7 +126,7 @@ const previousPage = () => {
 
   <div class="flex justify-center gap-4 items-center p-6">
     <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <span>{{ currentPage }} of {{ totalPages }}</span>
     <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
   </div>
 
@@ -138,27 +137,28 @@ const previousPage = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes" @updateDevice="showModalUpdateSuccessfully"/>
-        </div>
-    </Modal>
+      <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes"
+        @updateDevice="showModalUpdateSuccessfully" />
+    </div>
+  </Modal>
 
-    <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
-        <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
-                <span class="font-bold text-center w-full">Update Device</span>
-                <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
-            </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-600">
-                Device Update Successful!
-            </p>
-            <div class="mt-2 flex">
-                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
-            </div>
-        </div>
-    </Modal>
+  <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
+    <div class="m-6">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+        <span class="font-bold text-center w-full">Update Device</span>
+        <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
+      </div>
+      <hr class="mt-4 mb-2 border-green-100">
+      <p class="my-4 text-sm text-green-600">
+        Device Update Successful!
+      </p>
+      <div class="mt-2 flex">
+        <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
+      </div>
+    </div>
+  </Modal>
 
-    <Modal :show="confirmingDeviceDeletion">
+  <Modal :show="confirmingDeviceDeletion">
     <div class="p-6">
       <h2 class="text-lg font-medium text-green-900">
         Are you sure you want to delete your Device?

@@ -118,7 +118,7 @@ const closeModal = () => {
     </div>
     <div class="flex justify-center gap-4 items-center p-6">
         <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <span>{{ currentPage }} of {{ totalPages }}</span>
         <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
     </div>
 
