@@ -92,9 +92,9 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Category</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Category</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
@@ -104,10 +104,10 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ categorySparePart.name }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ categorySparePart.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalCategorySparePartUpdate(categorySparePart)">Update

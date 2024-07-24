@@ -112,9 +112,9 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Alternative</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Alternative</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
@@ -124,7 +124,7 @@ const previousPage = () => {
                         class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">
+                    <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                                 class="h-16 object-cover rounded-md mx-2" />
@@ -134,7 +134,7 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ carousel.alt }}</td>
                     <td
                         class="py-2 px-4 border-b border-green-300 text-center">

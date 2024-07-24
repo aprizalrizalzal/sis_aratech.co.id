@@ -92,9 +92,9 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Type Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Type Name</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
@@ -102,9 +102,9 @@ const previousPage = () => {
                 <tr v-for="(deviceType, index) in paginatedDeviceTypes" :key="deviceType.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ deviceType.type_name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{ deviceType.type_name }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ deviceType.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalDeviceTypeUpdate(deviceType)">Update

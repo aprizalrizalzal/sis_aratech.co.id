@@ -282,11 +282,11 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Quantity</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Spare Part</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Price</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Quantity</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
@@ -294,12 +294,12 @@ const handlePrint = () => {
                 <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{
                         partUsage.service_detail.service_detail_code }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ partUsage.spare_part.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{
+                    <td class="py-2 px-4 border-b border-green-300 truncate">{{
                         formatCurrency(partUsage.spare_part.price) }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">

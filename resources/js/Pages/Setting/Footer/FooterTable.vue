@@ -115,13 +115,13 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse divide-y divide-gray-200">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Platform</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">URL</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Username</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Value</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Type</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Platform</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">URL</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Username</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Value</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
@@ -131,7 +131,7 @@ const previousPage = () => {
                         class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">
+                    <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
                                 class="h-full object-cover rounded-md me-2" style="max-width: 40px;" />
@@ -141,20 +141,20 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.type_footer.type }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.platform_footer.platform }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.url }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.username }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.value }}
                     </td>
                     <td

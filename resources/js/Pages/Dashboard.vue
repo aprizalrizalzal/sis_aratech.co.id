@@ -579,22 +579,22 @@ const closeModal = () => {
                     <table class="min-w-full bg-white border-collapse">
                       <thead>
                         <tr>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Address</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Action</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Service Code</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Name</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Email</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Phone</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Address</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Device Type</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Model</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Serial Number</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Warranty Status</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Date Received</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Estimated Completion</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Problem Description </th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Items Brought </th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Status</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -605,69 +605,69 @@ const closeModal = () => {
                               itemsPerPage +
                               index + 1 }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.service_code
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{ service.customer.user.name }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{ service.customer.user.email }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.customer.phone
                             }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{ service.customer.address }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.device.device_type.type_name }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.device.model }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.device.serial_number }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.status_warranty_service.status }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.date_received
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.estimated_completion }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.problem_description }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{
                               service.items_brought
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300">
+                            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                             {{ service.status_service.status
                             }}
                           </td>
@@ -676,7 +676,7 @@ const closeModal = () => {
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)">
                               Detail
                             </SecondaryButton>
-                            <p v-else class="text-green-900">
+                            <p v-else class="text-green-900truncate max-w-xs">
                               Contact admin
                             </p>
                           </td>

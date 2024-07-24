@@ -103,10 +103,10 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Role</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Name</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Role</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
             </thead>
@@ -114,12 +114,12 @@ const previousPage = () => {
                 <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center ">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 ">{{ user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 ">{{ user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 ">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{ user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{ user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center ">
+                    <td class="py-2 px-4 border-b border-green-300 text-center truncate">
                         <SecondaryButton @click="showModalAssignRoles(user)">Assign Roles</SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center ">

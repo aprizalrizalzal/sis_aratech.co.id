@@ -95,10 +95,10 @@ const previousPage = () => {
     <table class="min-w-full bg-white border-collapse">
       <thead>
         <tr>
-          <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Model</th>
-          <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Model</th>
+          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial Number</th>
           <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
         </tr>
       </thead>
@@ -107,12 +107,12 @@ const previousPage = () => {
           <td class="py-2 px-4 border-b border-green-300 text-center">
             {{ (currentPage - 1) * itemsPerPage + index + 1 }}
           </td>
-          <td class="py-2 px-4 border-b border-green-300">
+          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
             {{ device.device_type.type_name }}</td>
           <td
-            class="py-2 px-4 border-b border-green-300">
+            class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
             {{ device.model }}</td>
-          <td class="py-2 px-4 border-b border-green-300">
+          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
             {{ device.serial_number }}</td>
           <td class="py-2 px-4 border-b border-green-300 text-center">
             <SecondaryButton @click="showModalDeviceUpdate(device)">Update</SecondaryButton>

@@ -261,18 +261,18 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty Status</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated Completion</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items Brought</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
@@ -283,43 +283,43 @@ const handlePrint = () => {
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.service_code }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.customer.user.email }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.customer.phone }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.device.device_type.type_name
                         }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.device.serial_number }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.status_warranty_service.status }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.date_received }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.problem_description }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.estimated_completion }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ service.items_brought }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{
                             service.status_service.status }}</td>
                     <td

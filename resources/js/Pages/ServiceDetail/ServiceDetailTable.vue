@@ -276,14 +276,14 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email Technician</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Repair Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Cost</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Notes</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
@@ -295,31 +295,31 @@ const handlePrint = () => {
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ serviceDetail.service_detail_code }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ serviceDetail.user.email }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ serviceDetail.service.service_code }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{
                             serviceDetail.service.status_service.status }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ serviceDetail.repair_description }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate">
                         {{ formatCurrency(serviceDetail.cost) }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ serviceDetail.notes }}
                     </td>
                     <td

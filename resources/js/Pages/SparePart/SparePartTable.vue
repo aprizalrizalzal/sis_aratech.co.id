@@ -173,14 +173,14 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cover</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Category</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Pieces</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Description</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Cover</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Name</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Category</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Pieces</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Price</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
                 </tr>
             </thead>
@@ -190,7 +190,7 @@ const previousPage = () => {
                         class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">
+                    <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
                                 class="h-16 w-24 object-cover rounded-md me-2" style="max-width: 128px;" />
@@ -200,7 +200,7 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex items-center">
                             <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
                                 class="relative me-2">
@@ -217,23 +217,23 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ sparePart.name }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ sparePart.category_spare_part.name }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 text-center truncate max-w-xs">
                         {{ sparePart.pieces }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate">
                         {{ formatCurrency(sparePart.price) }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300">
+                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ sparePart.description }}
                     </td>
                     <td
