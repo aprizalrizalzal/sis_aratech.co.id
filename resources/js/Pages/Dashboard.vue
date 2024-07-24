@@ -674,7 +674,7 @@ const closeModal = () => {
                           <td
                             class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
-                              class="m-2">
+                             >
                               Detail
                             </SecondaryButton>
                             <p v-else class="m-2 text-green-900">

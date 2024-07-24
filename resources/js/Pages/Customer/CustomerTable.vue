@@ -103,20 +103,20 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(customer, index) in paginatedCustomers" :key="customer.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ customer.user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ customer.phone }}</td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300">
+                        {{ customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">
                         {{ customer.address }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalCustomerUpdate(customer)" class="m-2">Update</SecondaryButton>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalCustomerUpdate(customer)">Update</SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmCustomerDeletion(customer.id)" class="m-2">Delete</DangerButton>
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmCustomerDeletion(customer.id)">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>

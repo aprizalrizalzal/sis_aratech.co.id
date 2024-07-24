@@ -102,20 +102,21 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(statusWarrantyService, index) in paginatedStatusWarrantyServices"
                     :key="statusWarrantyService.id" class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ statusWarrantyService.status }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">
+                        {{ statusWarrantyService.status }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ statusWarrantyService.description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalStatusWarrantyServiceUpdate(statusWarrantyService)"
-                            class="m-2">Update
+                           >Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmStatusWarrantyServiceDeletion(statusWarrantyService.id)"
-                            class="m-2">Delete
+                           >Delete
                         </DangerButton>
                     </td>
                 </tr>

@@ -102,20 +102,20 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(platformFooter, index) in paginatedPlatformFooters" :key="platformFooter.id"
                     class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ platformFooter.platform }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ platformFooter.description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalPlatformFooterUpdate(platformFooter)" class="m-2">Update
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalPlatformFooterUpdate(platformFooter)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmPlatformFooterDeletion(platformFooter.id)" class="m-2">Delete
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmPlatformFooterDeletion(platformFooter.id)">Delete
                         </DangerButton>
                     </td>
                 </tr>

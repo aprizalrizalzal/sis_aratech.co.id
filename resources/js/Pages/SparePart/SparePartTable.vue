@@ -187,7 +187,7 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
@@ -200,7 +200,7 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         <div class="flex items-center">
                             <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
                                 class="relative me-2">
@@ -217,38 +217,38 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ sparePart.name }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ sparePart.category_spare_part.name }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ sparePart.pieces }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ formatCurrency(sparePart.price) }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ sparePart.description }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalSparePartUpdate(sparePart)" class="m-2">Update
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalSparePartUpdate(sparePart)">Update
                         </SecondaryButton>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <PrimaryButton @click="showModalSparePartDetail(sparePart)" class="m-2">Detail
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <PrimaryButton @click="showModalSparePartDetail(sparePart)">Detail
                         </PrimaryButton>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmSparePartDeletion(sparePart.id)" class="m-2">Delete</DangerButton>
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmSparePartDeletion(sparePart.id)">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>

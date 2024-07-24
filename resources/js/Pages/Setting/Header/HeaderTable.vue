@@ -122,7 +122,7 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(header, index) in paginatedHeaders" :key="header.id" class="hover:bg-green-50">
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
@@ -135,19 +135,19 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ header.company }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ header.description }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalHeaderUpdate(header)" class="m-2">Update
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalHeaderUpdate(header)">Update
                         </SecondaryButton>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmHeaderDeletion(header.id)" class="m-2">Delete</DangerButton>
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmHeaderDeletion(header.id)">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>

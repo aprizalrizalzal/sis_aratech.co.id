@@ -279,64 +279,64 @@ const handlePrint = () => {
             <tbody>
                 <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.service_code }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.customer.user.email }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.customer.phone }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.device.device_type.type_name
                         }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.device.serial_number }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.status_warranty_service.status }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.date_received }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.problem_description }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.estimated_completion }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ service.items_brought }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{
                             service.status_service.status }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalServiceUpdate(service)" class="m-2">Update
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalServiceUpdate(service)">Update
                         </SecondaryButton>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             <PrinterIcon />
                         </a>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmServiceDeletion(service.id)" class="m-2">Delete</DangerButton>
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmServiceDeletion(service.id)">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>
@@ -375,19 +375,19 @@ const handlePrint = () => {
                 <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.device_type.type_name
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.device_type.type_name
                         }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.device.serial_number }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{
                         service.status_warranty_service.status }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.date_received }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.problem_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.estimated_completion }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ service.items_brought }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.problem_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">{{
                         service.status_service.status }}</td>
                 </tr>
             </tbody>

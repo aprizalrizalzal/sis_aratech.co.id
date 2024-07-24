@@ -102,18 +102,19 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(statusService, index) in paginatedStatusServices" :key="statusService.id"
                     class="hover:bg-green-50">
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage +
+                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ statusService.status }}</td>
+                    <td class="py-2 px-4 border-b border-green-300">
+                        {{ statusService.status }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ statusService.description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalStatusServiceUpdate(statusService)" class="m-2">Update
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalStatusServiceUpdate(statusService)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmStatusServiceDeletion(statusService.id)" class="m-2">Delete
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmStatusServiceDeletion(statusService.id)">Delete
                         </DangerButton>
                     </td>
                 </tr>

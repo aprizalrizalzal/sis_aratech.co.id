@@ -128,43 +128,43 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-50">
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
-                                class="h-full object-cover rounded-md me-2" style="max-width: 64px;" />
+                                class="h-full object-cover rounded-md me-2" style="max-width: 40px;" />
                             <ButtonImage @click="showModalFooterUpdateImage(footer.id)">
                                 <EditIcon />
                             </ButtonImage>
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ footer.type_footer.type }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ footer.platform_footer.platform }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ footer.url }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ footer.username }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ footer.value }}
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalFooterUpdate(footer)" class="m-2">Update
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalFooterUpdate(footer)">Update
                         </SecondaryButton>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmFooterDeletion(footer.id)" class="m-2">Delete</DangerButton>
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmFooterDeletion(footer.id)">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>

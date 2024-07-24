@@ -104,18 +104,21 @@ const previousPage = () => {
       </thead>
       <tbody>
         <tr v-for="(device, index) in paginatedDevices" :key="device.id" class="hover:bg-green-50">
-          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ (currentPage - 1) * itemsPerPage + index + 1 }}
+          <td class="py-2 px-4 border-b border-green-300 text-center">
+            {{ (currentPage - 1) * itemsPerPage + index + 1 }}
           </td>
-          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ device.device_type.type_name }}</td>
+          <td class="py-2 px-4 border-b border-green-300">
+            {{ device.device_type.type_name }}</td>
           <td
-            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+            class="py-2 px-4 border-b border-green-300">
             {{ device.model }}</td>
-          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">{{ device.serial_number }}</td>
-          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-            <SecondaryButton @click="showModalDeviceUpdate(device)" class="m-2">Update</SecondaryButton>
+          <td class="py-2 px-4 border-b border-green-300">
+            {{ device.serial_number }}</td>
+          <td class="py-2 px-4 border-b border-green-300 text-center">
+            <SecondaryButton @click="showModalDeviceUpdate(device)">Update</SecondaryButton>
           </td>
-          <td class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-            <DangerButton @click="confirmDeviceDeletion(device.id)" class="m-2">Delete</DangerButton>
+          <td class="py-2 px-4 border-b border-green-300 text-center">
+            <DangerButton @click="confirmDeviceDeletion(device.id)">Delete</DangerButton>
           </td>
         </tr>
       </tbody>

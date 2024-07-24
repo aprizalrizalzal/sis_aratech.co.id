@@ -121,7 +121,7 @@ const previousPage = () => {
             <tbody>
                 <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-50">
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">
@@ -134,16 +134,16 @@ const previousPage = () => {
                         </div>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                        class="py-2 px-4 border-b border-green-300">
                         {{ carousel.alt }}</td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <SecondaryButton @click="showModalCarouselUpdate(carousel)" class="m-2">Update
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <SecondaryButton @click="showModalCarouselUpdate(carousel)">Update
                         </SecondaryButton>
                     </td>
                     <td
-                        class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                        <DangerButton @click="confirmCarouselDeletion(carousel.id)" class="m-2">Delete</DangerButton>
+                        class="py-2 px-4 border-b border-green-300 text-center">
+                        <DangerButton @click="confirmCarouselDeletion(carousel.id)">Delete</DangerButton>
                     </td>
                 </tr>
             </tbody>
