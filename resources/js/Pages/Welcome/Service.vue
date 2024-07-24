@@ -78,13 +78,6 @@ const closeModal = () => {
                 menemukan data yang sesuai dengan benar. Contoh: <strong>DFGYHN</strong>.</p>
             <p class="text-sm/relaxed text-gray-500">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.</p>
             <div v-for="header in $page.props.headers" :key="header.id">
-                <p class="mt-4 text-sm/relaxed text-gray-500">
-                    <span class="text-green-700 font-bold">{{ header.company }}</span> spesialis dalam layanan perbaikan dan
-                    penjualan <strong>PC/Laptop</strong>,
-                    <strong>printer</strong>, <strong>peralatan jaringan</strong>, serta <strong>aksesoris komputer</strong>. Kami berkomitmen untuk
-                    menyediakan pelayanan
-                    berkualitas tinggi yang memenuhi kebutuhan teknologi Anda.
-                </p>
                 <p class="mt-4 text-sm/relaxed text-gray-500">Untuk mengeksplorasi berbagai produk kami,
                     kunjungi situs
                     web kami di <a target="_blank" rel="noopener noreferrer"
