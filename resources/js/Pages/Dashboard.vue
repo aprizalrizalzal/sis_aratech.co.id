@@ -600,84 +600,83 @@ const closeModal = () => {
                       <tbody>
                         <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300 text-center">
                             {{ (currentPage - 1) *
                               itemsPerPage +
                               index + 1 }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.service_code
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{ service.customer.user.name }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{ service.customer.user.email }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.customer.phone
                             }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{ service.customer.address }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.device.device_type.type_name }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.device.model }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.device.serial_number }}</td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.status_warranty_service.status }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.date_received
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.estimated_completion }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.problem_description }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{
                               service.items_brought
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
+                            class="py-2 px-4 border-b border-green-300">
                             {{ service.status_service.status
                             }}
                           </td>
                           <td
-                            class="py-2 px-4 border-b border-green-300 text-center whitespace-nowrap overflow-x-auto text-overflow-ellipsis max-w-xs">
-                            <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)"
-                             >
+                            class="py-2 px-4 border-b border-green-300 text-center">
+                            <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)">
                               Detail
                             </SecondaryButton>
-                            <p v-else class="m-2 text-green-900">
+                            <p v-else class="text-green-900">
                               Contact admin
                             </p>
                           </td>
