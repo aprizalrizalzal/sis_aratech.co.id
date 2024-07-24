@@ -580,20 +580,20 @@ const closeModal = () => {
                       <thead>
                         <tr>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Service Code</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Name</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Email</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Phone</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Address</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Device Type</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Model</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Serial Number</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Warranty Status</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Date Received</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Estimated Completion</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Problem Description </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Items Brought </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Status</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Code</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Name</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Phone</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Address</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Model</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial Number</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty Status</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date Received</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated Completion</th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem Description </th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items Brought </th>
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Action</th>
                         </tr>
                       </thead>
@@ -676,7 +676,7 @@ const closeModal = () => {
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)">
                               Detail
                             </SecondaryButton>
-                            <p v-else class="text-green-900truncate max-w-xs">
+                            <p v-else class="text-green-900 truncate max-w-xs">
                               Contact admin
                             </p>
                           </td>
