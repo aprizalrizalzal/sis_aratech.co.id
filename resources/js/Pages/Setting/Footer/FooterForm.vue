@@ -154,7 +154,7 @@ const emit = defineEmits([
 
                 <div v-if="previewUrl" class="mt-4">
                     <p class="font-semibold">Preview:</p>
-                    <img :src="previewUrl" company="Image Preview" class="w-full h-auto mt-2 rounded-md" />
+                    <img :src="previewUrl" company="Image Preview" class="w-full h-auto mt-2 rounded" />
                 </div>
                 <div>
                     <PrimaryButton class="mt-6 mb-3" :disabled="form.processing">

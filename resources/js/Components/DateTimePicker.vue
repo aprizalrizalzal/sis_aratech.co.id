@@ -2,7 +2,7 @@
   <div class="date-picker">
     <label :for="id" class="block font-medium text-sm text-green-700 mb-2">{{ label }}</label>
     <input :id="id" v-model="formattedDate"
-      class="w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded-md shadow-md"
+      class="w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded shadow"
       :placeholder="placeholder" ref="datepicker" />
   </div>
 </template>

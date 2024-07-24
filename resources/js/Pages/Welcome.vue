@@ -30,7 +30,7 @@ const props = defineProps({
 <template>
 
     <Head title="Welcome" />
-    <nav class="bg-white border-b border-green-50 shadow-md mb-4">
+    <nav class="bg-white border-b border-green-50 shadow mb-4">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24 items-center">
@@ -52,18 +52,18 @@ const props = defineProps({
                     <div v-if="canLogin" class="flex items-center text-md font-bold">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2">
                             <Link :href="route('show.dashboard')"
-                                class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
+                                class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                             Dashboard
                             </Link>
                         </div>
                         <template v-else>
                             <div class="flex items-center gap-2">
                                 <Link :href="route('login')"
-                                    class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
+                                    class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                                 Log in
                                 </Link>
                                 <Link v-if="canRegister" :href="route('register')"
-                                    class="rounded-md px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
+                                    class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
                                 Register
                                 </Link>
                             </div>
@@ -74,7 +74,7 @@ const props = defineProps({
                 <!-- Hamburger -->
                 <div class="-me-2 flex items-center sm:hidden">
                     <button @click="showingNavigationDropdown = !showingNavigationDropdown"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
+                        class="inline-flex items-center justify-center p-2 rounded text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
                         <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                             <path
                                 :class="{ hidden: showingNavigationDropdown, 'inline-flex': !showingNavigationDropdown }"
@@ -118,8 +118,7 @@ const props = defineProps({
 
 
     <div class="text-green-900/50">
-        <div
-            class="relative min-h-screen flex flex-col items-center justify-center">
+        <div class="relative min-h-screen flex flex-col items-center justify-center">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">
                     <div>

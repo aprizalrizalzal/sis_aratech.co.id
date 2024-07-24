@@ -186,28 +186,26 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                                class="h-16 w-24 object-cover rounded-md me-2" style="max-width: 128px;" />
+                                class="h-16 w-24 object-cover rounded me-2" style="max-width: 128px;" />
                             <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
                                 <EditIcon />
                             </ButtonImage>
                         </div>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex items-center">
                             <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
                                 class="relative me-2">
                                 <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
-                                    class="h-16 w-16 object-cover rounded-md " style="max-width: 128px;" />
+                                    class="h-16 w-16 object-cover rounded " style="max-width: 128px;" />
                                 <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
-                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded-md font-semibold text-xs text-red-800 tracking-widest shadow-md hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded font-semibold text-xs text-red-800 tracking-widest shadow hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
                                     <EraserIcon />
                                 </ButtonImage>
                             </div>
@@ -216,38 +214,30 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ sparePart.name }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ sparePart.category_spare_part.name }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 text-center truncate max-w-xs">
                         {{ sparePart.pieces }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-300 truncate">
                         {{ formatCurrency(sparePart.price) }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ sparePart.description }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)">Update
                         </SecondaryButton>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <PrimaryButton @click="showModalSparePartDetail(sparePart)">Detail
                         </PrimaryButton>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmSparePartDeletion(sparePart.id)">Delete</DangerButton>
                     </td>
                 </tr>

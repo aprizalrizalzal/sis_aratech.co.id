@@ -32,12 +32,12 @@ watch(() => props.sparePart.image_path, (newValue) => {
 <template>
     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
         <div class="h-full">
-            <img :src="selectedImage" :alt="sparePart.name" class="w-full rounded-md shadow-md">
+            <img :src="selectedImage" :alt="sparePart.name" class="w-full rounded shadow">
             <div v-if="imageSpareParts.length" class="mt-6">
                 <div class="grid grid-cols-4 gap-4 mt-4">
                     <div v-for="(imageSparePart, index) in imageSpareParts" :key="index" class="relative">
                         <img :src="imageSparePart.image_path" alt="Image Spare Part"
-                            class="md:h-32 sm:h-16 object-cover rounded-md cursor-pointer"
+                            class="md:h-32 sm:h-16 object-cover rounded cursor-pointer"
                             @click="selectImage(imageSparePart.image_path)" />
                     </div>
                 </div>
@@ -45,7 +45,7 @@ watch(() => props.sparePart.image_path, (newValue) => {
         </div>
         <div class="text-start">
             <h1 class="text-gray-900 font-bold sm:text-lg text-md">{{ sparePart.name }}</h1>
-            <p class="text-sm/relaxed font-bold py-1 rounded-md text-gray-700">
+            <p class="text-sm/relaxed font-bold py-1 rounded text-gray-700">
                 {{ sparePart.category_spare_part.name }}
             </p>
             <p class="text-gray-500 text-sm/relaxed font-bold mb-2">
@@ -55,7 +55,7 @@ watch(() => props.sparePart.image_path, (newValue) => {
             <p class="text-gray-700 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
             </p>
             <hr>
-            <p class="inline-block py-2 rounded-md font-bold text-gray-900 mt-2">
+            <p class="inline-block py-2 rounded font-bold text-gray-900 mt-2">
                 {{ formatCurrency(sparePart.price) }}
             </p>
         </div>

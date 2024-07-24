@@ -51,7 +51,7 @@ const closeModal = () => {
 <template>
     <div class="grid grid-cols-1 mt-4 gap-4">
         <div v-for="header in $page.props.headers" :key="header.id"
-            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded-md bg-white shadow-md">
+            class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded bg-white shadow">
             <h2 class="text-xl font-semibold text-green-900 mt-2">
                 SIService - {{ header.company }}
             </h2>
@@ -74,14 +74,15 @@ const closeModal = () => {
                     </form>
                 </div>
             </div>
-            <p class="text-sm/relaxed text-gray-500">Pastikan Service Code yang dimasukkan menggunakan huruf kapital agar sistem dapat
+            <p class="text-sm/relaxed text-gray-500">Pastikan Service Code yang dimasukkan menggunakan huruf kapital
+                agar sistem dapat
                 menemukan data yang sesuai dengan benar. Contoh: <strong>DFGYHN</strong>.</p>
-            <p class="text-sm/relaxed text-gray-500">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.</p>
+            <p class="text-sm/relaxed text-gray-500">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.
+            </p>
             <div v-for="header in $page.props.headers" :key="header.id">
                 <p class="mt-4 text-sm/relaxed text-gray-500">Untuk mengeksplorasi berbagai produk kami,
                     kunjungi situs
-                    web kami di <a target="_blank" rel="noopener noreferrer"
-                        class="text-green-700 font-bold"
+                    web kami di <a target="_blank" rel="noopener noreferrer" class="text-green-700 font-bold"
                         href="https://www.aslimandiri.com">www.aslimandiri.com.</a> Bersama kami, temukan
                     solusi terbaik
                     untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah prioritas kami.
@@ -167,7 +168,8 @@ const closeModal = () => {
             </table>
             <hr>
             <div class="mt-3">
-                <p class="text-sm/relaxed text-gray-500">Jangan lupa untuk sering cek status servis Anda agar selalu mendapatkan
+                <p class="text-sm/relaxed text-gray-500">Jangan lupa untuk sering cek status servis Anda agar selalu
+                    mendapatkan
                     informasi terbaru. Salam untuk Anda, semoga sehat selalu!</p>
             </div>
         </div>
@@ -181,9 +183,11 @@ const closeModal = () => {
             </div>
             <hr class="mt-4 mb-2 border-green-100">
             <P class="font-bold text-red-900 my-4">{{ message }}</P>
-            <p class="text-sm/relaxed text-gray-500">Pastikan Service Code yang dimasukkan menggunakan huruf kapital agar sistem dapat
+            <p class="text-sm/relaxed text-gray-500">Pastikan Service Code yang dimasukkan menggunakan huruf kapital
+                agar sistem dapat
                 menemukan data yang sesuai dengan benar. Contoh: <strong>DFGYHN</strong>.</p>
-            <p class="text-sm/relaxed text-gray-500">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.</p>
+            <p class="text-sm/relaxed text-gray-500">Harap dicatat! Service Code hanya boleh menggunakan huruf kapital.
+            </p>
         </div>
     </Modal>
 </template>

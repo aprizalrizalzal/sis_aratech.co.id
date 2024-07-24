@@ -127,43 +127,35 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-50">
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
-                                class="h-full object-cover rounded-md me-2" style="max-width: 40px;" />
+                                class="h-full object-cover rounded me-2" style="max-width: 40px;" />
                             <ButtonImage @click="showModalFooterUpdateImage(footer.id)">
                                 <EditIcon />
                             </ButtonImage>
                         </div>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.type_footer.type }}</td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.platform_footer.platform }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.url }}</td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.username }}</td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ footer.value }}
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalFooterUpdate(footer)">Update
                         </SecondaryButton>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmFooterDeletion(footer.id)">Delete</DangerButton>
                     </td>
                 </tr>

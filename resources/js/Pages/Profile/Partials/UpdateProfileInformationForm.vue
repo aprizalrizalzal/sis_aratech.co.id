@@ -55,7 +55,7 @@ const form = useForm({
                 <p class="text-sm mt-2 text-green-800">
                     Your email address is unverified.
                     <Link :href="route('verification.send')" method="post" as="button"
-                        class="underline text-sm text-green-600 hover:text-green-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        class="underline text-sm text-green-600 hover:text-green-900 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                     Click here to re-send the verification email.
                     </Link>
                 </p>

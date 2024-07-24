@@ -121,32 +121,27 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(header, index) in paginatedHeaders" :key="header.id" class="hover:bg-green-50">
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${header.image_path}`" :alt="header.Company"
-                                class="h-full object-cover rounded-md me-2" style="max-width: 64px;" />
+                                class="h-full object-cover rounded me-2" style="max-width: 64px;" />
                             <ButtonImage @click="showModalHeaderUpdateImage(header.id)">
                                 <EditIcon />
                             </ButtonImage>
                         </div>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ header.company }}</td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ header.description }}</td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <SecondaryButton @click="showModalHeaderUpdate(header)">Update
                         </SecondaryButton>
                     </td>
-                    <td
-                        class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-300 text-center">
                         <DangerButton @click="confirmHeaderDeletion(header.id)">Delete</DangerButton>
                     </td>
                 </tr>

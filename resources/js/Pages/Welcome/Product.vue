@@ -87,7 +87,7 @@ const closeModal = () => {
         <div class="relative">
             <Dropdown align="right" width="48">
                 <template #trigger>
-                    <span class="inline-flex rounded-md">
+                    <span class="inline-flex rounded">
                         <div>
                             <ButtonImage class="border-none p-2">
                                 <GridIcon />

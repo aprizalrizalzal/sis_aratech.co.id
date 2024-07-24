@@ -63,7 +63,7 @@ const currentYear = computed(() => {
                 </div>
                 <div class="lg:mt-8 pb-6 text-start">
                     <h2 class="text-xl font-semibold text-green-900 mt-8">App Download</h2>
-                    <div class="w-full rounded-md mt-4">
+                    <div class="w-full rounded mt-4">
                         <p class=" mt-4">Dapatkan pengalaman service yang lebih baik! Unduh aplikasi kami sekarang di
                             Play Store dan
                             App Store.</p>
@@ -77,10 +77,11 @@ const currentYear = computed(() => {
                     </ul>
                 </div>
             </div>
-            <p v-for="header in $page.props.headers" :key="header.id" class="relative text-black">Copyright &copy; {{ currentYear }} <a href="https://aslimandiri.com"
-                    target="_blank" rel="noopener noreferrer"><span class="text-green-900 font-bold">{{ header.company }}</span></a> Developed by <a href="https://www.linkedin.com/in/muhamad-aprizal-hardi/"
-                    target="_blank" rel="noopener noreferrer"><span
-                        class="text-green-900 font-bold">Technician</span></a> </p>
+            <p v-for="header in $page.props.headers" :key="header.id" class="relative text-black">Copyright &copy; {{
+                currentYear }} <a href="https://aslimandiri.com" target="_blank" rel="noopener noreferrer"><span
+                        class="text-green-900 font-bold">{{ header.company }}</span></a> Developed by <a
+                    href="https://www.linkedin.com/in/muhamad-aprizal-hardi/" target="_blank"
+                    rel="noopener noreferrer"><span class="text-green-900 font-bold">Technician</span></a> </p>
         </div>
     </div>
 </template>
