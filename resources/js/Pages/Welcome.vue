@@ -30,7 +30,7 @@ const props = defineProps({
 <template>
 
     <Head title="Welcome" />
-    <nav class="bg-white border-b border-green-50 shadow mb-4">
+    <nav class="bg-white border-b border-green-50 shadow-inner">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24 items-center">
@@ -117,7 +117,7 @@ const props = defineProps({
     </nav>
 
 
-    <div class="text-green-900/50">
+    <div class="text-green-900/50 bg-gray-50">
         <div class="relative min-h-screen flex flex-col items-center justify-center">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">
@@ -136,7 +136,7 @@ const props = defineProps({
                 </main>
             </div>
         </div>
-        <footer class="mt-8 pb-4 text-center text-sm text-green-900 bg-white">
+        <footer class="pb-4 text-center text-sm text-green-900 bg-white shadow-inner">
             <Footer />
         </footer>
     </div>

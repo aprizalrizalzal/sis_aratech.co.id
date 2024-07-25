@@ -39,7 +39,7 @@ const isUser = computed(() => hasRole('user'));
 
 <template>
     <div class="min-h-screen">
-        <nav class="bg-white border-b border-green-50">
+        <nav class="bg-white border-b border-green-50 shadow-inner">
 
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
@@ -308,10 +308,10 @@ const isUser = computed(() => hasRole('user'));
         </header>
 
         <!-- Page Content -->
-        <main :class="{ 'lg:ml-64 md:ml-64': isSuperAdmin && showingSidebar }">
+        <main :class="{ 'lg:ml-64 md:ml-64': isSuperAdmin && showingSidebar }" class="bg-gray-50">
             <slot />
         </main>
-        <footer class="mt-8 pb-4 text-center text-sm text-green-900 bg-white">
+        <footer class="pb-4 text-center text-sm text-green-900 bg-white shadow-inner">
             <Footer />
         </footer>
     </div>
