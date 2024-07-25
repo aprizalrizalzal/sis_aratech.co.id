@@ -24,6 +24,9 @@ import SearchInput from '@/Components/SearchInput.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ButtonImage from '@/Components/ButtonImage.vue';
+import BackIcon from '@/Components/Icon/BackIcon.vue';
+import NextIcon from '@/Components/Icon/NextIcon.vue';
 
 const showingModalAddCustomer = ref(false);
 const showingModalAddDeviceType = ref(false);
@@ -678,9 +681,9 @@ const closeModal = () => {
                     </table>
                   </div>
                   <div class="flex justify-center gap-4 items-center p-6">
-                    <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-                    <span>{{ currentPage }} of {{ totalPages }}</span>
-                    <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+                    <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+                    <span>{{ currentPage }} / {{ totalPages }}</span>
+                    <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
                   </div>
                 </div>
               </div>

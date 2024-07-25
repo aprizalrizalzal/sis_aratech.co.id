@@ -2,7 +2,6 @@
 import { ref, computed, watch } from 'vue';
 import CardView from '@/Components/CardView.vue';
 import SearchInput from '@/Components/SearchInput.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
 import SparePartDetail from '../SparePart/SparePartDetail.vue';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -11,6 +10,8 @@ import RadioButton from '@/Components/RadioButton.vue';
 import GridIcon from '@/Components/Icon/GridIcon.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import FilterIcon from '@/Components/Icon/FilterIcon.vue';
+import BackIcon from '@/Components/Icon/BackIcon.vue';
+import NextIcon from '@/Components/Icon/NextIcon.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -88,17 +89,17 @@ const closeModal = () => {
                     </span>
                 </template>
 
-<template #content>
+                <template #content>
                     <RadioButton name="itemsPerPage" value="6" v-model:checked="itemsPerPage">6 Product</RadioButton>
                     <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
                     <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
                     <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">
                         All Product</RadioButton>
                 </template>
-</Dropdown>
-</div> -->
+            </Dropdown>
+        </div> -->
         <div class="flex items-center">
-            <h2 class="flex font-semibold text-green-900 leading-tight flex-none py-4">
+            <h2 class="flex items-center gap-2 font-semibold text-green-900 leading-tight flex-none py-4">
                 <span>Spare Part</span>
             </h2>
         </div>
@@ -111,7 +112,7 @@ const closeModal = () => {
                 <template #trigger>
                     <span class="inline-flex rounded">
                         <div>
-                            <ButtonImage class="border-none p-2">
+                            <ButtonImage class="border p-2">
                                 <GridIcon />
                             </ButtonImage>
                         </div>
@@ -122,6 +123,7 @@ const closeModal = () => {
                     <RadioButton name="itemsPerPage" value="6" v-model:checked="itemsPerPage">6 Product</RadioButton>
                     <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
                     <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
+                    <RadioButton name="itemsPerPage" value="48" v-model:checked="itemsPerPage">48 Product</RadioButton>
                     <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">
                         All Product</RadioButton>
                 </template>
@@ -133,15 +135,15 @@ const closeModal = () => {
             <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
                 :price="formatCurrency(sparePart.price)">
                 <template #img>
-                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-40 w-full object-cover" />
+                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-48 w-full object-cover shadow" />
                 </template>
             </CardView>
         </div>
     </div>
     <div class="flex justify-center gap-4 items-center p-6">
-        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-        <span>{{ currentPage }} of {{ totalPages }}</span>
-        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+        <span>{{ currentPage }} / {{ totalPages }}</span>
+        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
     </div>
 
     <Modal maxWidth="7xl" :show="showingModalSparePartDetail">

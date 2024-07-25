@@ -1,6 +1,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useForm, usePage } from '@inertiajs/vue3';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import ServiceDetailForm from './ServiceDetailForm.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -8,9 +10,11 @@ import Modal from '@/Components/Modal.vue';
 import DateTimePicker from '@/Components/DateTimePicker.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
+import ButtonImage from '@/Components/ButtonImage.vue';
+import BackIcon from '@/Components/Icon/BackIcon.vue';
+import NextIcon from '@/Components/Icon/NextIcon.vue';
 
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+
 
 const page = usePage();
 
@@ -344,9 +348,9 @@ const handlePrint = () => {
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
-        <SecondaryButton @click="previousPage" :disabled="currentPage === 1">Previous</SecondaryButton>
-        <span>{{ currentPage }} of {{ totalPages }}</span>
-        <SecondaryButton @click="nextPage" :disabled="currentPage === totalPages">Next</SecondaryButton>
+        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+        <span>{{ currentPage }} / {{ totalPages }}</span>
+        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
     </div>
 
     <SecondaryButton @click="handlePrint" class="w-full my-4">
