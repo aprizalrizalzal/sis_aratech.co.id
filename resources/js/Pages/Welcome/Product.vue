@@ -6,10 +6,6 @@ import SparePartDetail from '../SparePart/SparePartDetail.vue';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
-import RadioButton from '@/Components/RadioButton.vue';
-import GridIcon from '@/Components/Icon/GridIcon.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import FilterIcon from '@/Components/Icon/FilterIcon.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
 import NextIcon from '@/Components/Icon/NextIcon.vue';
 
@@ -20,7 +16,7 @@ const props = defineProps({
 
 const searchQuery = ref('');
 const currentPage = ref(1);
-const itemsPerPage = ref(6); // Initial value
+const itemsPerPage = ref(12);
 
 const filteredSpareParts = computed(() => {
     if (!searchQuery.value) {
@@ -77,27 +73,6 @@ const closeModal = () => {
 
 <template>
     <div class="flex justify-between items-center pt-4 pb-2 gap-4">
-        <!-- <div class="relative">
-            <Dropdown align="left" width="48">
-                <template #trigger>
-                    <span class="inline-flex rounded">
-                        <div>
-                            <ButtonImage class="border-none p-2">
-                                <FilterIcon />
-                            </ButtonImage>
-                        </div>
-                    </span>
-                </template>
-
-                <template #content>
-                    <RadioButton name="itemsPerPage" value="6" v-model:checked="itemsPerPage">6 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">
-                        All Product</RadioButton>
-                </template>
-            </Dropdown>
-        </div> -->
         <div class="flex items-center">
             <h2 class="flex items-center gap-2 font-semibold text-green-900 leading-tight flex-none py-4">
                 <span>Spare Part</span>
@@ -107,35 +82,14 @@ const closeModal = () => {
             <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or description" />
         </div>
 
-        <div class="relative">
-            <Dropdown align="right" width="48">
-                <template #trigger>
-                    <span class="inline-flex rounded">
-                        <div>
-                            <ButtonImage class="border p-2">
-                                <GridIcon />
-                            </ButtonImage>
-                        </div>
-                    </span>
-                </template>
-
-                <template #content>
-                    <RadioButton name="itemsPerPage" value="6" v-model:checked="itemsPerPage">6 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" value="12" v-model:checked="itemsPerPage">12 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" value="24" v-model:checked="itemsPerPage">24 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" value="48" v-model:checked="itemsPerPage">48 Product</RadioButton>
-                    <RadioButton name="itemsPerPage" :value="filteredSpareParts.length" v-model:checked="itemsPerPage">
-                        All Product</RadioButton>
-                </template>
-            </Dropdown>
-        </div>
+        
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
             <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
                 :price="formatCurrency(sparePart.price)">
                 <template #img>
-                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-48 w-full object-cover shadow" />
+                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-32 sm:h-48 w-full object-cover shadow" />
                 </template>
             </CardView>
         </div>

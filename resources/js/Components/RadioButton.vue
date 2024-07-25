@@ -1,7 +1,11 @@
 <template>
     <label class="flex items-center px-3 py-1 text-green-900 gap-2">
-        <input class="border-green-300 text-green-600 shadow focus:ring-green-500" type="radio" :name="name"
-            :value="value" @change="handleChange" :checked="checked === value" />
+        <input class="border-green-300 text-green-600 shadow focus:ring-green-500"
+               type="radio"
+               :name="name"
+               :value="value"
+               @change="handleChange"
+               :checked="modelValue === value" />
         <slot></slot>
     </label>
 </template>
@@ -9,10 +13,10 @@
 <script setup>
 import { defineEmits, defineProps } from 'vue';
 
-const emit = defineEmits(['update:checked']);
+const emit = defineEmits(['update:modelValue']);
 
 const props = defineProps({
-    checked: {
+    modelValue: {
         type: [String, Number, Boolean],
         required: true,
     },
@@ -27,6 +31,6 @@ const props = defineProps({
 });
 
 const handleChange = () => {
-    emit('update:checked', props.value);
+    emit('update:modelValue', props.value);
 };
 </script>

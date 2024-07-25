@@ -8,7 +8,7 @@
             <p class="text-gray-900 overflow-hidden font-bold">{{ name }}</p>
         </div>
         <div class="text-end">
-            <span class="inline-block bg-green-50 rounded px-2 py-1 text-green-700 mr-2 mb-2">
+            <span class="inline-block bg-green-50 rounded mt-2 px-2 py-1 text-green-700 mr-2 mb-2">
                 {{ price }}
             </span>
         </div>
