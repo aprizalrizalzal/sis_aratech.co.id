@@ -23,8 +23,8 @@ const filteredSpareParts = computed(() => {
         return props.spareParts;
     }
     return props.spareParts.filter(sparePart =>
-        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        sparePart.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+        sparePart.category_spare_part.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        sparePart.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 
@@ -79,7 +79,7 @@ const closeModal = () => {
             </h2>
         </div>
         <div class="flex w-full items-center">
-            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or description" />
+            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name or category" />
         </div>
 
         
