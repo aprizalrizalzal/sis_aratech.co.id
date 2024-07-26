@@ -86,7 +86,7 @@ const closeModal = () => {
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
-            <CardView @click="showModalSparePartDetail(sparePart)" :name="sparePart.name"
+            <CardView @click="showModalSparePartDetail(sparePart)" :category="sparePart.category_spare_part.name" :name="sparePart.name"
                 :price="formatCurrency(sparePart.price)">
                 <template #img>
                     <img :src="sparePart.image_path" :alt="sparePart.name" class="h-32 sm:h-48 w-full object-cover shadow" />

@@ -4,11 +4,15 @@
         <div class="h-full flex justify-between items-stretch m-2">
             <slot name="img"></slot>
         </div>
-        <div class="text-start px-2 pt-4">
-            <p class="text-gray-900 overflow-hidden font-bold">{{ name }}</p>
+        <div class=" text-center px-2 pt-1 pb-2">
+            <p class="text-green-700 overflow-hidden text-xs truncate">{{ category }}</p>
+        </div>
+        <hr class="mx-2">
+        <div class="text-start px-2 pt-2">
+            <p class="text-gray-900 overflow-hidden font-bold truncate">{{ name }}</p>
         </div>
         <div class="text-end">
-            <span class="inline-block bg-green-50 rounded mt-2 px-2 py-1 text-green-700 mr-2 mb-2">
+            <span class="inline-block bg-green-50 rounded mt-2 px-2 text-green-700 mx-2 truncate">
                 {{ price }}
             </span>
         </div>
@@ -17,6 +21,10 @@
 
 <script setup>
 const props = defineProps({
+    category: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
