@@ -52,9 +52,9 @@ const closeModal = () => {
     <div class="grid grid-cols-1 mt-4 gap-4">
         <div v-for="header in $page.props.headers" :key="header.id"
             class="flex flex-col p-8 items-start gap-2 overflow-hidden rounded bg-white shadow">
-            <h2 class="text-xl font-semibold text-green-900 mt-2">
+            <h1 class="text-xl font-semibold text-green-900 mt-2">
                 SIService - {{ header.company }}
-            </h2>
+            </h1>
             <p class="text-sm/relaxed text-gray-500">
                 Sistem Informasi Service kami membantu Anda memantau layanan dengan mudah
                 dan efisien.

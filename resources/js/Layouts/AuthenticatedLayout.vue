@@ -67,7 +67,7 @@ const isUser = computed(() => hasRole('user'));
                             </Link>
                             <Link :href="route('show.welcome')"
                                 class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
-                            {{ header.company }}
+                                <h1>{{ header.company }}</h1>
                             </Link>
 
                         </div>
