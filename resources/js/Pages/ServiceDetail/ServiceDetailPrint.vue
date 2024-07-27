@@ -44,12 +44,12 @@ onMounted(() => {
         <div v-for="header in $page.props.headers" :key="header.id"
             class="flex items-stretch mb-2 gap-2 text-sm/relaxed">
             <div>
-                <ApplicationLogo class="block h-20 w-20" />
+                <ApplicationLogo class="block h-16 w-16" />
             </div>
             <div id="footer" class="mt-auto">
-                <p class="font-bold text-lg">SIService - {{ header.company }}</p>
-                <p>{{ header.description }}</p>
-                <div class="flex">
+                <p class="font-bold text-xl">SIService - {{ header.company }}</p>
+                <p class="text-sm">{{ header.description }}</p>
+                <div class="flex text-xs">
                     <div v-for="(footer, index) in contactFooters" :key="footer.id">
                         <p> {{ footer.value }} <span class="font-bold" v-if="index !== contactFooters.length - 1">/</span></p>
                     </div>
