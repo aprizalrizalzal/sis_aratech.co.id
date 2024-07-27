@@ -110,7 +110,7 @@ const emit = defineEmits([
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div v-if="!props.sparePart || !props.sparePart && props.sparePartId">
-                    <InputLabel for="image" value="Image" />
+                    <InputLabel for="image" value="Cover" />
                     <input type="file" id="image" @change="handleFileChange" class="mt-1 block w-full" />
                     <InputError :message="form.errors.image" />
                 </div>
@@ -129,13 +129,13 @@ const emit = defineEmits([
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel for="pieces" value="Pieces" />
-                    <TextInput id="pieces" type="number" class="mt-1 block w-full" v-model="form.pieces"
+                    <TextInput id="pieces" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.pieces"
                         placeholder="Pieces" required />
                     <InputError class="mt-2" :message="form.errors.pieces" />
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel for="price" value="Price" />
-                    <TextInput id="price" type="number" class="mt-1 block w-full" v-model="form.price"
+                    <TextInput id="price" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.price"
                         placeholder="Price" required />
                     <InputError class="mt-2" :message="form.errors.price" />
                 </div>

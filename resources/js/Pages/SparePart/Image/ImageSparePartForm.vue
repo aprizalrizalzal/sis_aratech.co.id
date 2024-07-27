@@ -59,7 +59,7 @@ const emit = defineEmits(['addSparePartImages']);
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div v-if="props.sparePart" class="hidden">
                     <InputLabel for="spare_part_id" value="Spare Part ID" />
-                    <TextInput id="spare_part_id" type="number" class="mt-1 block w-full" v-model="form.spare_part_id"
+                    <TextInput id="spare_part_id" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.spare_part_id"
                         placeholder="Spare Part ID" required />
                     <InputError class="mt-2" :message="form.errors.spare_part_id" />
                 </div>

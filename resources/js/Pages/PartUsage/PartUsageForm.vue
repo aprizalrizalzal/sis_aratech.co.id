@@ -135,7 +135,7 @@ const emit = defineEmits(
                 </div>
                 <div>
                     <InputLabel for="quantity" value="Quantity" />
-                    <TextInput id="quantity" type="text" class="mt-1 block w-full" v-model="form.quantity"
+                    <TextInput id="quantity" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.quantity"
                         placeholder="Quantity" required autofocus />
                     <InputError class="mt-2" :message="form.errors.quantity" />
                 </div>
