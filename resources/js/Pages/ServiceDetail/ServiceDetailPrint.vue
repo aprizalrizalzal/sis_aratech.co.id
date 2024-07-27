@@ -6,7 +6,7 @@ import { computed, onMounted } from 'vue';
 const footers = usePage().props.footers;
 
 const contactFooters = computed(() => {
-    return footers.filter(footer => footer.type === 'Contact');
+    return footers.filter(footer => footer.type_footer.type === 'Contact');
 });
 
 const props = defineProps({
@@ -49,8 +49,10 @@ onMounted(() => {
             <div id="footer" class="mt-auto">
                 <p class="font-bold text-lg">SIService - {{ header.company }}</p>
                 <p>{{ header.description }}</p>
-                <div id="text-sm" v-for="footer in contactFooters" :key="footer.id">
-                    <p>{{ footer.value }}</p>
+                <div class="flex">
+                    <div v-for="(footer, index) in contactFooters" :key="footer.id">
+                        <p> {{ footer.value }} <span class="font-bold" v-if="index !== contactFooters.length - 1">/</span></p>
+                    </div>
                 </div>
             </div>
         </div>
