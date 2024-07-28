@@ -42,7 +42,7 @@ const props = defineProps({
                     </Link>
 
                     <Link :href="route('show.welcome')"
-                        class="p-4 text-xl flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
+                        class="p-4 text-xl flex items-center font-bold text-green-900 hover:text-green-700 hover:border-green-900 focus:outline-none focus:text-green-900 focus:border-green-900 transition duration-150 ease-in-out">
                     <h1>{{ header.company }}</h1>
                     </Link>
                 </div>
@@ -52,18 +52,18 @@ const props = defineProps({
                     <div v-if="canLogin" class="flex items-center text-md font-bold">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2">
                             <Link :href="route('show.dashboard')"
-                                class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
+                                class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-700 focus:outline-none focus-visible:ring-green-700">
                             Dashboard
                             </Link>
                         </div>
                         <template v-else>
                             <div class="flex items-center gap-2">
                                 <Link :href="route('login')"
-                                    class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
+                                    class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-700 focus:outline-none focus-visible:ring-green-700">
                                 Log in
                                 </Link>
                                 <Link v-if="canRegister" :href="route('register')"
-                                    class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-900/70 focus:outline-none focus-visible:ring-green-700">
+                                    class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-700 focus:outline-none focus-visible:ring-green-700">
                                 Register
                                 </Link>
                             </div>
@@ -118,8 +118,8 @@ const props = defineProps({
 
 
     <div class="text-green-900/50 bg-gray-50">
-        <div class="relative min-h-screen flex flex-col items-center justify-center">
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+        <div class="min-h-screen flex flex-col items-center justify-center">
+            <div class="w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">
                     <div>
                         <Carousel :carousels="props.carousels" />

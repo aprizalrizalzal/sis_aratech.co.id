@@ -45,9 +45,9 @@ const isUser = computed(() => hasRole('user'));
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  ">
                 <div class="flex justify-between h-24 ">
                     <div v-if="isSuperAdmin" :class="{ 'ml-64 ': isSuperAdmin && showingSidebar }"
-                        class="me-2 flex items-center left-0 fixed bg-green-50 bg-opacity-50 rounded">
+                        class="me-2 flex items-center fixed top-0 left-0 bg-green-50 bg-opacity-50 rounded hover:shadow">
                         <button @click="toggleSidebar()"
-                            class="inline-flex py-9 items-center justify-center rounded p-2 hover:text-green-500 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-500 transition duration-150 ease-in-out">
+                            class="inline-flex py-9 items-center justify-center rounded p-2 hover:text-green-700 hover:bg-green-50 hover:bg-opacity-50 focus:outline-none focus:bg-green-50 focus:bg-opacity-50 focus:text-green-900/70 transition duration-150 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
                                 <!-- Panah ke kanan -->
@@ -66,7 +66,7 @@ const isUser = computed(() => hasRole('user'));
                             <ApplicationLogo class="ml-8 lg:ml-0 block h-16 w-16" />
                             </Link>
                             <Link :href="route('show.welcome')"
-                                class="p-4 text-xl flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
+                                class="p-4 text-xl flex items-center font-bold text-green-900 hover:text-green-700 hover:border-green-900 focus:outline-none focus:text-green-900 focus:border-green-900 transition duration-150 ease-in-out">
                             <h1>{{ header.company }}</h1>
                             </Link>
 
@@ -127,7 +127,7 @@ const isUser = computed(() => hasRole('user'));
                                 <template #trigger>
                                     <span class="inline-flex rounded">
                                         <button type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded text-green-900 bg-white hover:text-green-700 focus:outline-none transition ease-in-out duration-150">
                                             {{ $page.props.auth.user.name }}&nbsp;
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -222,7 +222,7 @@ const isUser = computed(() => hasRole('user'));
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-green-200">
                     <div class="px-4">
-                        <div class="font-medium text-base text-green-800">
+                        <div class="font-medium text-base text-green-900">
                             {{ $page.props.auth.user.name }}
                         </div>
                         <div class="font-medium text-sm text-green-500">{{ $page.props.auth.user.email }}</div>
@@ -243,9 +243,10 @@ const isUser = computed(() => hasRole('user'));
                 <div class="w-64 h-full overflow-y-auto bg-white rounded border-green-200 fixed top-0 left-0 z-50">
                     <div class="py-4">
                         <div class="flex items-center gap-4 px-6 pb-4 font-bold">
-                            <ApplicationLogo class="block h-16 w-16" /> SIService
-                            <h2 class="text-lg font-bold text-green-600 ">
-                            </h2>
+                            <ApplicationLogo class="block h-16 w-16" />
+                            <h1 class="text-xl font-bold text-green-900 ">
+                                SIService
+                            </h1>
                         </div>
                         <hr>
                         <SidebarLink class="font-bold" :href="route('show.dashboard')"

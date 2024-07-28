@@ -248,11 +248,11 @@ const previousPage = () => {
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
-        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1">
+        <ButtonImage class="py-2" @click="previousPage" :disabled="currentPage === 1">
             <BackIcon />
         </ButtonImage>
         <span>{{ currentPage }} / {{ totalPages }}</span>
-        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages">
+        <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
             <NextIcon />
         </ButtonImage>
     </div>
@@ -276,7 +276,7 @@ const previousPage = () => {
                 <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-600">
+            <p class="my-4 text-sm text-green-500">
                 Cover Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -304,7 +304,7 @@ const previousPage = () => {
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-600">
+            <p class="my-4 text-sm text-green-500">
                 Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -331,7 +331,7 @@ const previousPage = () => {
                 <DangerButton @click="closeModalAddImageSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-600">
+            <p class="my-4 text-sm text-green-500">
                 Adding Image Spare Parts Successfully!
             </p>
             <div class="mt-2 flex">
@@ -356,7 +356,7 @@ const previousPage = () => {
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your Spare Part?
             </h2>
-            <p class="mt-1 text-sm text-green-600">
+            <p class="mt-1 text-sm text-green-500">
                 Once your Spare Part is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">
@@ -374,7 +374,7 @@ const previousPage = () => {
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your Image Spare Part?
             </h2>
-            <p class="mt-1 text-sm text-green-600">
+            <p class="mt-1 text-sm text-green-500">
                 Once your Image Spare Part is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

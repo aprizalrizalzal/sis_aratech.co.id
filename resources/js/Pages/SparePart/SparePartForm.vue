@@ -129,8 +129,8 @@ const emit = defineEmits([
                 </div>
                 <div v-if="!props.sparePartId">
                     <InputLabel for="pieces" value="Pieces" />
-                    <TextInput id="pieces" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.pieces"
-                        placeholder="Pieces" required />
+                    <TextInput id="pieces" type="text" inputmode="numeric" class="mt-1 block w-full"
+                        v-model="form.pieces" placeholder="Pieces" required />
                     <InputError class="mt-2" :message="form.errors.pieces" />
                 </div>
                 <div v-if="!props.sparePartId">
@@ -142,7 +142,7 @@ const emit = defineEmits([
                 <div v-if="!props.sparePartId">
                     <InputLabel for="description" value="Description" />
                     <textarea id="description" type="text"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded shadow"
+                        class="mt-1 block w-full border-green-500 focus:border-green-500 focus:ring-green-500 rounded shadow"
                         v-model="form.description" placeholder="Description" required />
                     <InputError class="mt-2" :message="form.errors.description" />
                 </div>

@@ -480,7 +480,7 @@ const closeModal = () => {
     <template #header>
       <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-bold text-green-800 text-lg leading-4 flex-none px-2 py-4">Dashboard</h2>
+          <h2 class="font-bold text-green-500 text-lg leading-4 flex-none px-2 py-4">Dashboard</h2>
         </div>
         <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code" />
@@ -681,13 +681,11 @@ const closeModal = () => {
                     </table>
                   </div>
                   <div class="flex justify-center gap-4 items-center p-6">
-                    <ButtonImage class="py-2 border-none shadow-none" @click="previousPage"
-                      :disabled="currentPage === 1">
+                    <ButtonImage class="py-2" @click="previousPage" :disabled="currentPage === 1">
                       <BackIcon />
                     </ButtonImage>
                     <span>{{ currentPage }} / {{ totalPages }}</span>
-                    <ButtonImage class="py-2 border-none shadow-none" @click="nextPage"
-                      :disabled="currentPage === totalPages">
+                    <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
                       <NextIcon />
                     </ButtonImage>
                   </div>
@@ -718,7 +716,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddDeviceTypeSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Device Type Successfully!
       </p>
       <div class="mt-2 flex">
@@ -745,7 +743,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddSparePartSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Spare Parts Successfully!
       </p>
       <div class="mt-2 flex">
@@ -772,7 +770,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddCustomerSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Customer Successfully!
       </p>
       <div class="mt-2 flex">
@@ -799,7 +797,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddDeviceSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Device Successfully!
       </p>
       <div class="mt-2 flex">
@@ -827,7 +825,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddServiceSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Service Successfully!
       </p>
       <div class="mt-2 flex">
@@ -855,7 +853,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddServiceDetailSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Service Detail Successfully!
       </p>
       <div class="mt-2 flex">
@@ -883,7 +881,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddPartUsageSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Adding Part Usage Successfully!
       </p>
       <div class="mt-2 flex">

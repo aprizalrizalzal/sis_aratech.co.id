@@ -75,30 +75,36 @@ const closeModal = () => {
 <template>
     <div class="flex justify-between items-center pt-4 pb-2 gap-4">
         <div class="flex items-center">
-            <h2 class="flex items-center gap-2 font-semibold text-green-900 leading-tight flex-none py-4">
+            <h2 class="flex items-center gap-2 font-bold text-lg text-green-900 leading-4 flex-none py-4">
                 <span>Spare Part</span>
             </h2>
         </div>
         <div class="flex w-full items-center">
-            <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name, category or description" />
+            <SearchInput v-model:searchQuery="searchQuery"
+                placeholder="Search for the part name, category or description" />
         </div>
 
-        
+
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
-            <CardView @click="showModalSparePartDetail(sparePart)" :category="sparePart.category_spare_part.name" :name="sparePart.name"
-                :price="formatCurrency(sparePart.price)">
+            <CardView @click="showModalSparePartDetail(sparePart)" :category="sparePart.category_spare_part.name"
+                :name="sparePart.name" :price="formatCurrency(sparePart.price)">
                 <template #img>
-                    <img :src="sparePart.image_path" :alt="sparePart.name" class="h-32 sm:h-48 w-full object-cover shadow" />
+                    <img :src="sparePart.image_path" :alt="sparePart.name"
+                        class="h-32 sm:h-48 w-full object-cover shadow" />
                 </template>
             </CardView>
         </div>
     </div>
     <div class="flex justify-center gap-4 items-center p-6">
-        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+        <ButtonImage class="py-2" @click="previousPage" :disabled="currentPage === 1">
+            <BackIcon />
+        </ButtonImage>
         <span>{{ currentPage }} / {{ totalPages }}</span>
-        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
+        <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
+            <NextIcon />
+        </ButtonImage>
     </div>
 
     <Modal maxWidth="7xl" :show="showingModalSparePartDetail">

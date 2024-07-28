@@ -89,7 +89,7 @@ const closeModal = () => {
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
-          <h2 class="font-bold mb-4 text-green-600 text-lg mb-4">Header</h2>
+          <h2 class="font-bold mb-4 text-green-500 text-lg mb-4">Header</h2>
           <HeaderTable :headers="$page.props.headers" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton v-if="!$page.props.headers || $page.props.headers.length === 0"
@@ -101,7 +101,7 @@ const closeModal = () => {
         <hr>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
-          <h2 class="font-bold mb-4 text-green-600 text-lg mb-4">Carousels</h2>
+          <h2 class="font-bold mb-4 text-green-500 text-lg mb-4">Carousels</h2>
           <CarouselTable :carousels="props.carousels" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddCarousel = true" class="py-3 w-full">Add Carousel
@@ -112,7 +112,7 @@ const closeModal = () => {
         <hr>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
-          <h2 class="font-bold mb-4 text-green-600 text-lg mb-4">Notes</h2>
+          <h2 class="font-bold mb-4 text-green-500 text-lg mb-4">Notes</h2>
           <NoteTable :notes="$page.props.notes" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddNote = true" class="py-3 w-full">Add Note
@@ -128,7 +128,7 @@ const closeModal = () => {
               <template #trigger>
                 <span class="inline-flex rounded">
                   <button type="button"
-                    class="inline-flex items-center pt-2 pb-4 border border-transparent text-lg leading-4 font-bold rounded text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                    class="inline-flex items-center pt-2 pb-4 border border-transparent text-lg leading-4 font-bold rounded text-green-500 bg-white hover:text-green-900 focus:outline-none transition ease-in-out duration-150">
                     Footers&nbsp;
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -173,7 +173,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddHeaderSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Header Add Successful!
       </p>
       <div class="mt-2 flex">
@@ -200,7 +200,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddCarouselSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Carousel Add Successful!
       </p>
       <div class="mt-2 flex">
@@ -227,7 +227,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddNoteSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Note Add Successful!
       </p>
       <div class="mt-2 flex">
@@ -255,7 +255,7 @@ const closeModal = () => {
         <DangerButton @click="closeModalAddFooterSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Footer Add Successful!
       </p>
       <div class="mt-2 flex">

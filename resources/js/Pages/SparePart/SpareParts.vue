@@ -36,7 +36,7 @@ const filteredSpareParts = computed(() => {
             <template #trigger>
               <span class="inline-flex rounded">
                 <button type="button"
-                  class="inline-flex items-center py-4 border border-transparent text-lg leading-4 font-bold rounded text-green-800 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                  class="inline-flex items-center py-4 border border-transparent text-lg leading-4 font-bold rounded text-green-500 bg-white hover:text-green-900 focus:outline-none transition ease-in-out duration-150">
                   Spare&nbsp;Parts&nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-down" viewBox="0 0 16 16">

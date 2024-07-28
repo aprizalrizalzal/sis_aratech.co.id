@@ -21,8 +21,8 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'relative flex flex-row items-center py-7 focus:outline-none bg-green-50 font-bold text-green-800 border-l-4 border-green-300 my-1 pr-6'
-        : 'relative flex flex-row items-center py-4 focus:outline-none hover:bg-green-50 hover:font-bold text-green-600 hover:text-green-800 border-l-4 border-transparent hover:border-green-300 pr-6'
+        ? 'relative flex flex-row items-center py-7 focus:outline-none bg-green-50 font-bold text-green-900 border-l-4 border-green-900 my-1 pr-6'
+        : 'relative flex flex-row items-center py-4 focus:outline-none hover:bg-green-50 hover:font-bold text-green-900 hover:text-green-700 border-l-4 border-transparent hover:border-green-900 pr-6'
 );
 </script>
 
@@ -34,6 +34,6 @@ const classes = computed(() =>
         </span>
         <span class="ml-2 text-sm tracking-wide truncate">{{ label }}</span>
     </div>
-    <button class="bg-green-800 text-white rounded-full px-3 text-sm ">{{ value }}</button>
+    <button class="bg-green-900 text-white rounded-full px-3 text-sm ">{{ value }}</button>
     </Link>
 </template>

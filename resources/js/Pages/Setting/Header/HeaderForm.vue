@@ -115,7 +115,7 @@ const emit = defineEmits([
                 <div v-if="!props.headerId">
                     <InputLabel for="description" value="Description Company" />
                     <textarea id="description" type="text" v-model="form.description"
-                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded shadow"
+                        class="mt-1 block w-full border-green-500 focus:border-green-500 focus:ring-green-500 rounded shadow"
                         placeholder="Description company or address" autofocus />
                     <InputError :message="form.errors.description" />
                 </div>

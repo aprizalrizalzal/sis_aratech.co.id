@@ -39,7 +39,8 @@ onMounted(() => {
                 <p class="text-sm">{{ header.description }}</p>
                 <div class="flex text-xs">
                     <div v-for="(footer, index) in contactFooters" :key="footer.id">
-                        <p> {{ footer.value }} <span class="font-bold" v-if="index !== contactFooters.length - 1">/</span></p>
+                        <p> {{ footer.value }} <span class="font-bold"
+                                v-if="index !== contactFooters.length - 1">/</span></p>
                     </div>
                 </div>
             </div>
@@ -110,7 +111,7 @@ onMounted(() => {
         <hr>
         <p id="footer" class="mt-2 text-sm/relaxed text-left">
             Cek perkembangan perangkatmu di <a target="_blank" rel="noopener noreferrer"
-                class="text-green-800 font-bold" :href="currentUrl">{{ currentUrl }}</a> Jangan lupa cek inbox atau spam
+                class="text-green-900 font-bold" :href="currentUrl">{{ currentUrl }}</a> Jangan lupa cek inbox atau spam
             email Anda ya. Informasi login dan
             password ada di sana!
         </p>

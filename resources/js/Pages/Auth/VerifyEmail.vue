@@ -24,12 +24,12 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
         <Head title="Email Verification" />
 
-        <div class="mb-4 text-sm text-green-600">
+        <div class="mb-4 text-sm text-green-500">
             Thanks for signing up! Before getting started, could you verify your email address by clicking on the link
             we just emailed to you? If you didn't receive the email, we will gladly send you another.
         </div>
 
-        <div class="mb-4 font-medium text-sm text-green-600" v-if="verificationLinkSent">
+        <div class="mb-4 font-medium text-sm text-green-500" v-if="verificationLinkSent">
             A new verification link has been sent to the email address you provided during registration.
         </div>
 
@@ -42,7 +42,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                 </PrimaryButton>
 
                 <Link :href="route('logout')" method="post" as="button"
-                    class="underline text-sm text-green-600 hover:text-green-900 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    class="underline text-sm text-green-500 hover:text-green-700 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                 Log Out</Link>
             </div>
         </form>

@@ -128,9 +128,13 @@ const previousPage = () => {
   </div>
 
   <div class="flex justify-center gap-4 items-center p-6">
-    <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
-      <span>{{ currentPage }} / {{ totalPages }}</span>
-    <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
+    <ButtonImage class="py-2" @click="previousPage" :disabled="currentPage === 1">
+      <BackIcon />
+    </ButtonImage>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
+      <NextIcon />
+    </ButtonImage>
   </div>
 
   <Modal v-model:show="showingModalDeviceUpdate">
@@ -152,7 +156,7 @@ const previousPage = () => {
         <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-600">
+      <p class="my-4 text-sm text-green-500">
         Device Update Successful!
       </p>
       <div class="mt-2 flex">
@@ -167,7 +171,7 @@ const previousPage = () => {
         Are you sure you want to delete your Device?
       </h2>
 
-      <p class="mt-1 text-sm text-green-600">
+      <p class="mt-1 text-sm text-green-500">
         Once your Device is deleted, all of its resources and data will be permanently deleted.
       </p>
 
