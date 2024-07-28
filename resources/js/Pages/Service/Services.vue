@@ -42,7 +42,7 @@ const filteredServices = computed(() => {
               <template #trigger>
                 <span class="inline-flex rounded">
                   <button type="button"
-                    class="inline-flex items-center py-4 border border-transparent text-xl leading-4 font-bold rounded text-green-800 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                    class="inline-flex items-center py-4 border border-transparent text-lg leading-4 font-bold rounded text-green-800 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
                     Services&nbsp;
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -54,8 +54,9 @@ const filteredServices = computed(() => {
               </template>
 
               <template #content>
-                <DropdownLink :href="route('show.status.warranty.services')">Status Warranty</DropdownLink>
-                <DropdownLink :href="route('show.status.services')">Status</DropdownLink>
+                <DropdownLink class="hover:font-bold" :href="route('show.status.warranty.services')">Status Warranty
+                </DropdownLink>
+                <DropdownLink class="hover:font-bold" :href="route('show.status.services')">Status</DropdownLink>
               </template>
             </Dropdown>
           </div>

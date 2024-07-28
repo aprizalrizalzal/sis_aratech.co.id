@@ -66,7 +66,7 @@ const isUser = computed(() => hasRole('user'));
                             <ApplicationLogo class="ml-8 lg:ml-0 block h-16 w-16" />
                             </Link>
                             <Link :href="route('show.welcome')"
-                                class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
+                                class="p-4 text-xl flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
                             <h1>{{ header.company }}</h1>
                             </Link>
 
@@ -139,8 +139,10 @@ const isUser = computed(() => hasRole('user'));
                                 </template>
 
                                 <template #content>
-                                    <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                    <DropdownLink :href="route('logout')" method="post" as="button">
+                                    <DropdownLink class="hover:font-bold" :href="route('profile.edit')"> Profile
+                                    </DropdownLink>
+                                    <DropdownLink class="hover:font-bold" :href="route('logout')" method="post"
+                                        as="button">
                                         Log Out
                                     </DropdownLink>
                                 </template>

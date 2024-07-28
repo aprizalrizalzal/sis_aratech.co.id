@@ -89,7 +89,7 @@ const closeModal = () => {
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
-          <h2 class="font-bold mb-4 text-green-600 text-xl mb-4">Header</h2>
+          <h2 class="font-bold mb-4 text-green-600 text-lg mb-4">Header</h2>
           <HeaderTable :headers="$page.props.headers" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton v-if="!$page.props.headers || $page.props.headers.length === 0"
@@ -101,7 +101,7 @@ const closeModal = () => {
         <hr>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
-          <h2 class="font-bold mb-4 text-green-600 text-xl mb-4">Carousels</h2>
+          <h2 class="font-bold mb-4 text-green-600 text-lg mb-4">Carousels</h2>
           <CarouselTable :carousels="props.carousels" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddCarousel = true" class="py-3 w-full">Add Carousel
@@ -112,7 +112,7 @@ const closeModal = () => {
         <hr>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
-          <h2 class="font-bold mb-4 text-green-600 text-xl mb-4">Notes</h2>
+          <h2 class="font-bold mb-4 text-green-600 text-lg mb-4">Notes</h2>
           <NoteTable :notes="$page.props.notes" />
           <div class="flex flex-col my-2 items-start">
             <SecondaryButton @click="showModalAddNote = true" class="py-3 w-full">Add Note
@@ -128,7 +128,7 @@ const closeModal = () => {
               <template #trigger>
                 <span class="inline-flex rounded">
                   <button type="button"
-                    class="inline-flex items-center pt-2 pb-4 border border-transparent text-xl leading-4 font-bold rounded text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
+                    class="inline-flex items-center pt-2 pb-4 border border-transparent text-lg leading-4 font-bold rounded text-green-600 bg-white hover:text-green-800 focus:outline-none transition ease-in-out duration-150">
                     Footers&nbsp;
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -140,8 +140,8 @@ const closeModal = () => {
               </template>
 
               <template #content>
-                <DropdownLink :href="route('show.type.footer')">Type</DropdownLink>
-                <DropdownLink :href="route('show.platform.footer')">Platform</DropdownLink>
+                <DropdownLink class="hover:font-bold" :href="route('show.type.footer')">Type</DropdownLink>
+                <DropdownLink class="hover:font-bold" :href="route('show.platform.footer')">Platform</DropdownLink>
               </template>
             </Dropdown>
           </div>

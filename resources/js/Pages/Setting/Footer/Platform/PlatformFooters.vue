@@ -58,7 +58,7 @@ const closeModal = () => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackIcon />
           </SecondaryButton>
-          <h2 class="font-semibold text-green-800 text-xl leading-tight flex-none px-2 py-4">Platform</h2>
+          <h2 class="font-bold text-green-800 text-lg leading-4 flex-none px-2 py-4">Platform</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
