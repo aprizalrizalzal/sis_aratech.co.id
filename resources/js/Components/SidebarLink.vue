@@ -34,6 +34,6 @@ const classes = computed(() =>
         </span>
         <span class="ml-2 text-sm tracking-wide truncate">{{ label }}</span>
     </div>
-    <button class="bg-green-800 text-white rounded-full px-2 text-sm ">{{ value }}</button>
+    <button class="bg-green-800 text-white rounded-full px-3 text-sm ">{{ value }}</button>
     </Link>
 </template>
