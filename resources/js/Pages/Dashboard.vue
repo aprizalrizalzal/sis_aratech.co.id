@@ -480,7 +480,7 @@ const closeModal = () => {
     <template #header>
       <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Dashboard</h2>
+          <h2 class="font-semibold text-green-800 text-xl leading-tight flex-none px-2 py-4">Dashboard</h2>
         </div>
         <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code" />
@@ -565,7 +565,7 @@ const closeModal = () => {
                 </div>
                 <LineChart :lableCharts="lableCharts" :dataCharts="dataCharts" />
               </div>
-              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow rounded p-4 my-4">
+              <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="bg-white shadow rounded p-4 sm:p-8 my-4">
                 <div class="overflow-x-auto">
                   <div class="flex w-full gap-2 justify-between my-4">
                     <div class="flex items-center gap-2 bg-white">
@@ -681,9 +681,15 @@ const closeModal = () => {
                     </table>
                   </div>
                   <div class="flex justify-center gap-4 items-center p-6">
-                    <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+                    <ButtonImage class="py-2 border-none shadow-none" @click="previousPage"
+                      :disabled="currentPage === 1">
+                      <BackIcon />
+                    </ButtonImage>
                     <span>{{ currentPage }} / {{ totalPages }}</span>
-                    <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
+                    <ButtonImage class="py-2 border-none shadow-none" @click="nextPage"
+                      :disabled="currentPage === totalPages">
+                      <NextIcon />
+                    </ButtonImage>
                   </div>
                 </div>
               </div>

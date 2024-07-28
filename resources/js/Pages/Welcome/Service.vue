@@ -59,7 +59,7 @@ const closeModal = () => {
                 Sistem Informasi Service kami membantu Anda memantau layanan dengan mudah
                 dan efisien.
             </p>
-            <div class="relative flex w-full flex-1 items-stretch">
+            <div class="flex w-full flex-1 items-stretch">
                 <div class="w-full">
                     <form @submit.prevent="submitForm" class="mt-2 space-y-2">
                         <div>

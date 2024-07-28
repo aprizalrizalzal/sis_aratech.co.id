@@ -31,7 +31,7 @@ const filteredDevices = computed(() => {
     <template #header>
       <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Devices</h2>
+          <h2 class="font-semibold text-green-800 text-xl leading-tight flex-none px-2 py-4">Devices</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for device Model or Serial Number" />
@@ -42,7 +42,7 @@ const filteredDevices = computed(() => {
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow sm:rounded p-4">
+          <div class="bg-white overflow-hidden shadow sm:rounded p-4 sm:p-8">
             <!-- Your main content here -->
             <DeviceTable :devices="filteredDevices" :deviceTypes="deviceTypes" />
           </div>

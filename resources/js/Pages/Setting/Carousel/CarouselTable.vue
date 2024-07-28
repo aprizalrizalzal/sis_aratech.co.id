@@ -128,7 +128,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${carousel.image_path}`" :alt="carousel.alt"
-                                class="h-16 object-cover rounded mx-2" />
+                                class="h-16 object-cover rounded mx-2" style="max-width: 128px;" />
                             <ButtonImage @click="showModalCarouselUpdateImage(carousel.id)">
                                 <EditIcon />
                             </ButtonImage>
@@ -149,9 +149,13 @@ const previousPage = () => {
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
-        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1">
+            <BackIcon />
+        </ButtonImage>
         <span>{{ currentPage }} / {{ totalPages }}</span>
-        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
+        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages">
+            <NextIcon />
+        </ButtonImage>
     </div>
 
     <Modal :show="showingModalCarouselUpdateImage">

@@ -67,7 +67,7 @@ const isUser = computed(() => hasRole('user'));
                             </Link>
                             <Link :href="route('show.welcome')"
                                 class="p-4 text-lg flex items-center font-bold text-green-600 hover:text-green-800 hover:border-green-800 focus:outline-none focus:text-green-800 focus:border-green-800 transition duration-150 ease-in-out">
-                                <h1>{{ header.company }}</h1>
+                            <h1>{{ header.company }}</h1>
                             </Link>
 
                         </div>
@@ -302,7 +302,7 @@ const isUser = computed(() => hasRole('user'));
 
         <!-- Page Heading -->
         <header class="bg-white shadow w-full" v-if="$slots.header">
-            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-4 lg:px-6">
+            <div class="max-w-7xl mx-auto py-5 px-4 sm:px-4 lg:px-6">
                 <slot name="header" />
             </div>
         </header>

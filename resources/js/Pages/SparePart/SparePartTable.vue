@@ -248,9 +248,13 @@ const previousPage = () => {
     </div>
 
     <div class="flex justify-center gap-4 items-center p-6">
-        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1"><BackIcon /></ButtonImage>
+        <ButtonImage class="py-2 border-none shadow-none" @click="previousPage" :disabled="currentPage === 1">
+            <BackIcon />
+        </ButtonImage>
         <span>{{ currentPage }} / {{ totalPages }}</span>
-        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages"><NextIcon /></ButtonImage>
+        <ButtonImage class="py-2 border-none shadow-none" @click="nextPage" :disabled="currentPage === totalPages">
+            <NextIcon />
+        </ButtonImage>
     </div>
 
     <Modal :show="showingModalSparePartUpdateImage">

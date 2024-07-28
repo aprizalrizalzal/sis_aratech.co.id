@@ -58,7 +58,7 @@ const closeModal = () => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackIcon />
           </SecondaryButton>
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Type</h2>
+          <h2 class="font-semibold text-green-800 text-xl leading-tight flex-none px-2 py-4">Type</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for type" />
@@ -69,10 +69,11 @@ const closeModal = () => {
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow sm:rounded p-4">
+          <div class="bg-white overflow-hidden shadow sm:rounded p-4 sm:p-8">
             <!-- Your main content here -->
             <TypeFooterTable :typeFooters="filteredTypeFooters" />
-            <SecondaryButton @click="showModalAddTypeFooter = true" class="w-full">Add Type Footer</SecondaryButton>
+            <SecondaryButton @click="showModalAddTypeFooter = true" class="w-full py-3">Add Type Footer
+            </SecondaryButton>
           </div>
         </div>
       </div>

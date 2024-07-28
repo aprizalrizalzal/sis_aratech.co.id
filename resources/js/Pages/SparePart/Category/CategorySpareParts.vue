@@ -1,4 +1,6 @@
 <script setup>
+import { Head } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CategorySparePartTable from './CategorySparePartTable.vue';
 import Modal from '@/Components/Modal.vue';
@@ -7,8 +9,7 @@ import SearchInput from '@/Components/SearchInput.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
 import DangerButton from '@/Components/DangerButton.vue';
-import { Head } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
+
 
 const showModalAddCategorySparePart = ref(false);
 
@@ -57,7 +58,7 @@ const closeModal = () => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackIcon />
           </SecondaryButton>
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Category</h2>
+          <h2 class="font-semibold text-green-800 text-xl leading-tight flex-none px-2 py-4">Category</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Category" />
@@ -68,10 +69,10 @@ const closeModal = () => {
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow sm:rounded p-4">
+          <div class="bg-white overflow-hidden shadow sm:rounded p-4 sm:p-8">
             <!-- Your main content here -->
             <CategorySparePartTable :categorySpareParts="filteredCategorySpareParts" />
-            <SecondaryButton @click="showModalAddCategorySparePart = true" class="w-full">Add Category Spare Part
+            <SecondaryButton @click="showModalAddCategorySparePart = true" class="py-3 w-full">Add Category Spare Part
             </SecondaryButton>
           </div>
         </div>
@@ -101,7 +102,7 @@ const closeModal = () => {
         Adding Spare Parts Successfully!
       </p>
       <div class="mt-2 flex">
-        <PrimaryButton @click="closeModalAddSuccessfully">Ok</PrimaryButton>
+        <SecondaryButton @click="closeModalAddSuccessfully">Ok</SecondaryButton>
       </div>
     </div>
   </Modal>

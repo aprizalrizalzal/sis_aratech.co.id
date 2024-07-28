@@ -58,7 +58,7 @@ const closeModal = () => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackIcon />
           </SecondaryButton>
-          <h2 class="font-semibold text-green-800 leading-tight flex-none px-2 py-4">Status Warranty
+          <h2 class="font-semibold text-green-800 text-xl leading-tight flex-none px-2 py-4">Status Warranty
           </h2>
         </div>
         <div class="flex w-full items-center">
@@ -70,12 +70,14 @@ const closeModal = () => {
       <!-- Main Content -->
       <div class="py-6 flex-1 transition-all duration-300">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow sm:rounded p-4">
+          <div class="bg-white overflow-hidden shadow sm:rounded p-4 sm:p-8">
             <!-- Your main content here -->
             <StatusWarrantyServiceTable :statusWarrantyServices="filteredStatusWarrantyServices" />
-            <SecondaryButton @click="showModalAddStatusWarrantyService = true" class="w-full">Add Status Warranty
-              Service
-            </SecondaryButton>
+            <div class="flex flex-col my-2 items-start">
+              <SecondaryButton @click="showModalAddStatusWarrantyService = true" class="w-full py-3">Add Status Warranty
+                Service
+              </SecondaryButton>
+            </div>
           </div>
         </div>
       </div>
