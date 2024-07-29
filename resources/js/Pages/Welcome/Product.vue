@@ -92,7 +92,7 @@ const closeModal = () => {
                 :name="sparePart.name" :price="formatCurrency(sparePart.price)">
                 <template #img>
                     <img :src="sparePart.image_path" :alt="sparePart.name"
-                        class="h-32 sm:h-48 w-full object-cover shadow" />
+                        class="h-33 sm:h-44 w-full object-cover shadow" />
                 </template>
             </CardView>
         </div>

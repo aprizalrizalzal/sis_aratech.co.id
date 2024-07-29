@@ -194,7 +194,7 @@ const previousPage = () => {
                     <td class="py-2 px-4 border-b border-green-300 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
-                                class="h-16 w-24 object-cover rounded me-2" style="max-width: 128px;" />
+                                class="h-16 w-16 object-cover rounded me-2" style="max-width: 128px;" />
                             <ButtonImage @click="showModalSparePartUpdateImage(sparePart.id)">
                                 <EditIcon />
                             </ButtonImage>
