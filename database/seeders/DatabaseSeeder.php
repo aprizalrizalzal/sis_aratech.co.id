@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             StatusServicesTableSeeder::class,
             CategorySparePartsTableSeeder::class,
             SparePartsTableSeeder::class,
+            ImageSparePartsTableSeeder::class,
         ]);
     }
 }

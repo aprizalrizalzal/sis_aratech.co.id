@@ -12,8 +12,9 @@ class HeaderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:png|max:512',
+            'image' => 'required|image|mimes:png|max:1024',
             'company' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
@@ -29,6 +30,7 @@ class HeaderController extends Controller
         Header::create([
             'image_path' => $imagePath,
             'company' => $request->company,
+            'url' => $request->url,
             'description' => $request->description,
         ]);
 
@@ -39,7 +41,7 @@ class HeaderController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:headers,id',
-            'image' => 'nullable|image|mimes:png|max:512',
+            'image' => 'nullable|image|mimes:png|max:1024',
         ]);
 
         $header = Header::findOrFail($request->id);
@@ -64,6 +66,7 @@ class HeaderController extends Controller
         $request->validate([
             'id' => 'required|exists:headers,id',
             'company' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
@@ -71,6 +74,7 @@ class HeaderController extends Controller
 
         $header->update([
             'company' => $request->company,
+            'url' => $request->url,
             'description' => $request->description,
         ]);
 

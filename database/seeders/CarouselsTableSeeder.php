@@ -15,19 +15,19 @@ class CarouselsTableSeeder extends Seeder
     {
         $carousels = [
             [
-                'image_path' => 'storage/images/carousels/1.png',
+                'image_path' => 'storage/images/carousels/1-baner-24x....jpg',
                 'alt' => 'Satu',
             ],
             [
-                'image_path' => 'storage/images/Carousels/2.png',
+                'image_path' => 'storage/images/Carousels/2-baner-24x....jpg',
                 'alt' => 'Dua',
             ],
             [
-                'image_path' => 'storage/images/Carousels/3.png',
+                'image_path' => 'storage/images/Carousels/3-baner-24x....jpg',
                 'alt' => 'Tiga'
             ],
             [
-                'image_path' => 'storage/images/Carousels/4.png',
+                'image_path' => 'storage/images/Carousels/4-baner-24x....jpg',
                 'alt' => 'Empat'
             ]
         ];

@@ -39,7 +39,7 @@ class SparePartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'name' => 'required|string|max:255|unique:' . SparePart::class,
             'category_spare_part_id' => 'required|exists:category_spare_parts,id',
             'pieces' => 'required|integer',
@@ -67,7 +67,7 @@ class SparePartController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:spare_parts,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         $sparePart = SparePart::findOrFail($request->id);

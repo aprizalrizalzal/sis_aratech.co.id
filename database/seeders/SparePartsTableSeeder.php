@@ -15,21 +15,13 @@ class SparePartsTableSeeder extends Seeder
     {
         $spareParts = [
             [
-                'name' => 'Maxtor CTG8 thermal paste 2g',
-                'image_path' => 'storage/images/spareParts/maxtor-ctg8-prosesor-thermal.jpg',
+                'name' => 'Nama Barang',
+                'image_path' => 'storage/images/spareParts/1-product-4x4.jpg',
                 'category_spare_part_id' => 14,
-                'pieces' => 3,
-                'price' => 43000,
-                'description' => '-',
+                'pieces' => 54,
+                'price' => 54000,
+                'description' => 'Deskripsi dari product',
 
-            ],
-            [
-                'name' => 'SSD 2.5 Inch VenomRX 128GB',
-                'image_path' => 'storage/images/spareParts/ssd-venomrx-128gb.jpg',
-                'category_spare_part_id' => 6,
-                'pieces' => 3,
-                'price' => 200000,
-                'description' => '-',
             ]
         ];
 

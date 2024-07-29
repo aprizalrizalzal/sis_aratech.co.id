@@ -117,6 +117,7 @@ const previousPage = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Company</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">URL</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Description</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
                 </tr>
@@ -137,6 +138,8 @@ const previousPage = () => {
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ header.company }}</td>
+                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                        {{ header.url }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
                         {{ header.description }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">

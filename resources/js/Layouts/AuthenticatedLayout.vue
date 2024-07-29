@@ -61,13 +61,13 @@ const isUser = computed(() => hasRole('user'));
                     </div>
                     <div class="flex">
                         <!-- Logo -->
-                        <div v-for="header in $page.props.headers" :key="header.id" class="shrink-0 flex items-center">
+                        <div v-for="header in $page.props.headers" :key="header.id" class="flex items-center">
                             <Link :href="route('show.welcome')">
                             <ApplicationLogo class="ml-8 lg:ml-0 block h-16 w-16" />
                             </Link>
                             <Link :href="route('show.welcome')"
                                 class="p-4 text-xl flex items-center font-bold text-green-900 hover:text-green-700 hover:border-green-900 focus:outline-none focus:text-green-900 focus:border-green-900 transition duration-150 ease-in-out">
-                            <h1>{{ header.company }}</h1>
+                            <h1>SIService - {{ header.company }}</h1>
                             </Link>
 
                         </div>

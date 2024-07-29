@@ -13,7 +13,7 @@ class ImageSparePartController extends Controller
     {
         $request->validate([
             'spare_part_id' => 'required|exists:spare_parts,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         // Cek jumlah gambar yang ada untuk spare part ini

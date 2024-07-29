@@ -9,6 +9,7 @@ import TextInput from '@/Components/TextInput.vue';
 const form = useForm({
     image: null,
     company: '',
+    url: '',
     description: '',
 });
 
@@ -20,6 +21,7 @@ const props = defineProps({
 if (props.header) {
     form.image_path = props.header.image_path;
     form.company = props.header.company;
+    form.url = props.header.url;
     form.description = props.header.description;
 }
 
@@ -56,12 +58,12 @@ const submitForm = () => {
         form.post(route('store.header'), {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset('image_path', 'company', 'description');
+                form.reset('image_path', 'company', 'url', 'description');
                 previewUrl.value = null;
                 emit('addHeader');
             },
             onError: (errors) => {
-                if (errors.image || errors.company || errors.description) {
+                if (errors.image || errors.company || errors.url || errors.description) {
                     alert('addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -78,7 +80,7 @@ const submitForm = () => {
                 emit('updateHeader');
             },
             onError: (errors) => {
-                if (errors.company || errors.description) {
+                if (errors.company || errors.url || errors.description) {
                     alert('update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -113,10 +115,16 @@ const emit = defineEmits([
                     <InputError :message="form.errors.company" />
                 </div>
                 <div v-if="!props.headerId">
+                    <InputLabel for="url" value="URL" />
+                    <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full"
+                        placeholder="URL Website"  />
+                    <InputError :message="form.errors.url" />
+                </div>
+                <div v-if="!props.headerId">
                     <InputLabel for="description" value="Description Company" />
                     <textarea id="description" type="text" v-model="form.description"
                         class="mt-1 block w-full border-green-500 focus:border-green-500 focus:ring-green-500 rounded shadow"
-                        placeholder="Description company or address" autofocus />
+                        placeholder="Description company or address" required />
                     <InputError :message="form.errors.description" />
                 </div>
                 <div v-if="previewUrl" class="mt-4">

@@ -43,7 +43,7 @@ const props = defineProps({
 
                     <Link :href="route('show.welcome')"
                         class="p-4 text-xl flex items-center font-bold text-green-900 hover:text-green-700 hover:border-green-900 focus:outline-none focus:text-green-900 focus:border-green-900 transition duration-150 ease-in-out">
-                    <h1>{{ header.company }}</h1>
+                    <h1>SIService - {{ header.company }}</h1>
                     </Link>
                 </div>
 

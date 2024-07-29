@@ -82,8 +82,8 @@ const closeModal = () => {
             <div v-for="header in $page.props.headers" :key="header.id">
                 <p class="mt-4 text-sm/relaxed text-gray-500">Untuk mengeksplorasi berbagai produk kami,
                     kunjungi situs
-                    web kami di <a target="_blank" rel="noopener noreferrer" class="text-green-700 font-bold"
-                        href="https://www.aslimandiri.com">www.aslimandiri.com.</a> Bersama kami, temukan
+                    web kami <a target="_blank" rel="noopener noreferrer" class="text-green-700 font-bold"
+                        :href='header.url'>{{ header.company }}.</a> Bersama kami, temukan
                     solusi terbaik
                     untuk segala kebutuhan teknologi Anda, di mana kepuasan Anda adalah prioritas kami.
                 </p>

@@ -12,7 +12,7 @@ class CarouselController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'alt' => 'required|string|max:255',
         ]);
 
@@ -32,7 +32,7 @@ class CarouselController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:carousels,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:512',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         $carousel = Carousel::findOrFail($request->id);
