@@ -38,7 +38,7 @@ const currentYear = computed(() => {
             <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-8 pb-4 items-start gap-4">
                 <div class="text-start">
                     <ApplicationLogo class="block h-16 w-16" />
-                    <h1 class="text-xl font-semibold text-green-900">{{ header.company }}</h1>
+                    <h1 class="text-xl font-semibold text-green-900">SIService - {{ header.company }}</h1>
                     <p class=" mt-4">{{ header.description }}</p>
                 </div>
                 <div class="lg:mt-8 md:mt-8 pb-6 text-start">
