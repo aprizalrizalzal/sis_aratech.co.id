@@ -103,7 +103,7 @@ const previousPage = () => {
             </thead>
             <tbody>
                 <tr v-for="(platformFooter, index) in paginatedPlatformFooters" :key="platformFooter.id"
-                    class="hover:bg-green-50">
+                    class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
@@ -139,7 +139,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Platform Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <PlatformFooterForm :platformFooter="selectedPlatformFooter"
                 @updatePlatformFooter="showModalUpdateSuccessfully" />
         </div>
@@ -151,8 +151,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Platform Footer</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Platform Footer Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -167,7 +167,7 @@ const previousPage = () => {
                 Are you sure you want to delete your Platform Footer?
             </h2>
 
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your Platform Footer is deleted, all of its resources and data will be permanently deleted.
             </p>
 

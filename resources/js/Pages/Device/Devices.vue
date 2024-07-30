@@ -31,7 +31,7 @@ const filteredDevices = computed(() => {
     <template #header>
       <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-bold text-green-500 text-lg leading-4 flex-none px-2 py-4">Devices</h2>
+          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Devices</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for device Model or Serial Number" />

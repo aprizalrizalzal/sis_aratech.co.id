@@ -97,10 +97,10 @@ const closeModal = () => {
                 <span class="font-bold text-center w-full">Service Details</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <table class="table-auto w-full mt-4">
                 <tbody>
-                    <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
+                    <tr class="font-bold border border-green-300 bg-green-100 text-green-900 py-2 px-4">
                         <td class="text-green-900">Service Code</td>
                         <td> {{ service.service_code }}</td>
                     </tr>
@@ -156,7 +156,7 @@ const closeModal = () => {
                             {{ service.items_brought }}
                         </td>
                     </tr>
-                    <tr class="font-bold border border-green-50 bg-green-50 text-green-900 py-2 px-4">
+                    <tr class="font-bold border border-green-300 bg-green-100 text-green-900 py-2 px-4">
                         <td class="text-green-900">
                             Status
                         </td>
@@ -181,7 +181,7 @@ const closeModal = () => {
                 <span class="font-bold text-center w-full">Service Details</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <P class="font-bold text-red-900 my-4">{{ message }}</P>
             <p class="text-sm/relaxed text-gray-500">Pastikan Service Code yang dimasukkan menggunakan huruf kapital
                 agar sistem dapat

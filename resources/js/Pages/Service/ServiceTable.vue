@@ -271,11 +271,14 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Phone</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial Number</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date Received</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem Description
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty Status
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated Completion
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem
+                        Description
+                    </th>
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated
+                        Completion
                     </th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items Brought</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
@@ -283,7 +286,7 @@ const handlePrint = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
@@ -322,7 +325,7 @@ const handlePrint = () => {
                     </td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
-                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150">
                             <PrinterIcon />
                         </a>
                     </td>
@@ -367,7 +370,7 @@ const handlePrint = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
@@ -395,7 +398,7 @@ const handlePrint = () => {
                 <span class="font-bold text-center w-full">Update Service</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <ServiceForm :service="selectedService" :customer="selectedCustomer" :device="selectedDevice"
                 :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
                 :statusServices="statusServices" @updateService="showModalUpdateSuccessfully" />
@@ -408,8 +411,8 @@ const handlePrint = () => {
                 <span class="font-bold text-center w-full">Update Service</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Service Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -424,7 +427,7 @@ const handlePrint = () => {
                 Are you sure you want to delete your Service?
             </h2>
 
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your Service is deleted, all of its resources and data will be permanently deleted.
             </p>
 

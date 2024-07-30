@@ -117,7 +117,7 @@ class SendEmailService extends Mailable
                 .font-bold {
                     font-weight: bold;
                 }
-                .bg-green-50 {
+                .bg-green-100 {
                     background-color: #f0fdf4;
                 }
                 .text-green-900 {
@@ -132,7 +132,7 @@ class SendEmailService extends Mailable
                 <hr>
                 <table>
                     <tbody>
-                        <tr class='border bg-green-50 text-green-900 font-bold'>
+                        <tr class='border bg-green-100 text-green-900 font-bold'>
                             <td>Service Code</td>
                             <td>{$service->service_code}</td>
                         </tr>
@@ -168,7 +168,7 @@ class SendEmailService extends Mailable
                             <td class='text-green-900'>Items Brought</td>
                             <td>{$service->items_brought}</td>
                         </tr>
-                        <tr class='border bg-green-50 text-green-900 font-bold'>
+                        <tr class='border bg-green-100 text-green-900 font-bold'>
                             <td>Status</td>
                             <td>{$service->statusService->status}</td>
                         </tr>

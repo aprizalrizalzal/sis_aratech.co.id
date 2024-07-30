@@ -281,7 +281,8 @@ const handlePrint = () => {
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail Code
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail
+                        Code
                     </th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email Technician
                     </th>
@@ -296,7 +297,7 @@ const handlePrint = () => {
             </thead>
             <tbody>
                 <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
-                    class="hover:bg-green-50">
+                    class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
@@ -328,7 +329,7 @@ const handlePrint = () => {
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
                             target="_blank"
-                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150">
                             <PrinterIcon />
                         </a>
                     </td>
@@ -377,7 +378,7 @@ const handlePrint = () => {
             </thead>
             <tbody>
                 <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
-                    class="hover:bg-green-50">
+                    class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.service_detail_code }}
@@ -405,7 +406,7 @@ const handlePrint = () => {
                 <span class="font-bold text-center w-full">Update Service Detail</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <ServiceDetailForm :serviceDetail="selectedServiceDetail" :statusServices="statusServices"
                 :services="services" :user="selectedUser" :service="selectedService"
                 @updateServiceDetail="showModalUpdateSuccessfully" />
@@ -418,8 +419,8 @@ const handlePrint = () => {
                 <span class="font-bold text-center w-full">Update Service Detail</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Service Detail Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -433,7 +434,7 @@ const handlePrint = () => {
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your Service Detail?
             </h2>
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your Service Detail is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

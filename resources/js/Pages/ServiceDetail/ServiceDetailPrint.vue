@@ -51,7 +51,8 @@ onMounted(() => {
                 <p class="text-sm">{{ header.description }}</p>
                 <div class="flex text-xs">
                     <div v-for="(footer, index) in contactFooters" :key="footer.id">
-                        <p> {{ footer.value }} <span class="font-bold" v-if="index !== contactFooters.length - 1">/</span></p>
+                        <p> {{ footer.value }} <span class="font-bold"
+                                v-if="index !== contactFooters.length - 1">/</span></p>
                     </div>
                 </div>
             </div>
@@ -59,7 +60,7 @@ onMounted(() => {
         <hr>
         <table class="table-auto w-full my-2">
             <tbody>
-                <tr class="font-bold bg-green-50">
+                <tr class="font-bold bg-green-100">
                     <td class=" text-green-900"> Service Detail Code </td>
                     <td> {{ serviceDetail.service_detail_code }} </td>
                 </tr>
@@ -67,7 +68,7 @@ onMounted(() => {
                     <td class="text-green-900">Email Technician </td>
                     <td> {{ serviceDetail.user.email }} </td>
                 </tr>
-                <tr class="font-bold bg-green-50 ">
+                <tr class="font-bold bg-green-100 ">
                     <td class=" text-green-900">Service Code </td>
                     <td>{{ serviceDetail.service.service_code }} </td>
                 </tr>
@@ -107,7 +108,7 @@ onMounted(() => {
                     <td class=" text-green-900">Items Brought </td>
                     <td>{{ serviceDetail.service.items_brought }} </td>
                 </tr>
-                <tr class="font-bold bg-green-50">
+                <tr class="font-bold bg-green-100">
                     <td class=" text-green-900">Status </td>
                     <td>{{ serviceDetail.service.status_service.status }} </td>
                 </tr>
@@ -115,7 +116,7 @@ onMounted(() => {
                     <td class="text-green-900"> Repair Description </td>
                     <td> {{ serviceDetail.repair_description }} </td>
                 </tr>
-                <tr class="font-bold bg-green-50">
+                <tr class="font-bold bg-green-100">
                     <td class="text-green-900"> Spare Part</td>
                     <td class="text-green-900"> Price</td>
                 </tr>
@@ -123,7 +124,7 @@ onMounted(() => {
                     <td class="text-green-900"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
                     <td class="text-green-900"> {{ formatCurrency(partUsage.spare_part.price) }} </td>
                 </tr>
-                <tr class="font-bold bg-green-50">
+                <tr class="font-bold bg-green-100">
                     <td class="text-green-900"> Cost </td>
                     <td> {{ formatCurrency(serviceDetail.cost) }} </td>
                 </tr>

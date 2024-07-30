@@ -117,13 +117,13 @@ const emit = defineEmits([
                 <div v-if="!props.headerId">
                     <InputLabel for="url" value="URL" />
                     <TextInput id="url" type="text" v-model="form.url" class="mt-1 block w-full"
-                        placeholder="URL Website"  />
+                        placeholder="URL Website" />
                     <InputError :message="form.errors.url" />
                 </div>
                 <div v-if="!props.headerId">
                     <InputLabel for="description" value="Description Company" />
                     <textarea id="description" type="text" v-model="form.description"
-                        class="mt-1 block w-full border-green-500 focus:border-green-500 focus:ring-green-500 rounded shadow"
+                        class="mt-1 block w-full border-green-700 focus:border-green-700 focus:ring-green-700 rounded shadow"
                         placeholder="Description company or address" required />
                     <InputError :message="form.errors.description" />
                 </div>

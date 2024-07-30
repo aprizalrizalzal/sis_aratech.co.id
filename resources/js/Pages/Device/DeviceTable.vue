@@ -106,7 +106,7 @@ const previousPage = () => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(device, index) in paginatedDevices" :key="device.id" class="hover:bg-green-50">
+        <tr v-for="(device, index) in paginatedDevices" :key="device.id" class="hover:bg-green-100">
           <td class="py-2 px-4 border-b border-green-300 text-center">
             {{ (currentPage - 1) * itemsPerPage + index + 1 }}
           </td>
@@ -143,7 +143,7 @@ const previousPage = () => {
         <span class="font-bold text-center w-full">Update Device</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <DeviceForm :device="selectedDevice" :deviceType="selectedDeviceType" :deviceTypes="deviceTypes"
         @updateDevice="showModalUpdateSuccessfully" />
     </div>
@@ -155,8 +155,8 @@ const previousPage = () => {
         <span class="font-bold text-center w-full">Update Device</span>
         <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Device Update Successful!
       </p>
       <div class="mt-2 flex">
@@ -171,7 +171,7 @@ const previousPage = () => {
         Are you sure you want to delete your Device?
       </h2>
 
-      <p class="mt-1 text-sm text-green-500">
+      <p class="mt-1 text-sm text-green-700">
         Once your Device is deleted, all of its resources and data will be permanently deleted.
       </p>
 

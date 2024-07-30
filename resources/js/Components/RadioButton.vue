@@ -1,6 +1,6 @@
 <template>
     <label class="flex items-center px-3 py-1 text-green-900 gap-2">
-        <input class="border-green-300 text-green-500 shadow focus:ring-green-500" type="radio" :name="name"
+        <input class="border-green-300 text-green-700 shadow focus:ring-green-700" type="radio" :name="name"
             :value="value" @change="handleChange" :checked="modelValue === value" />
         <slot></slot>
     </label>

@@ -48,7 +48,7 @@ onMounted(() => {
         <hr>
         <table class="table-auto w-full my-2">
             <tbody>
-                <tr class="font-bold bg-green-50 ">
+                <tr class="font-bold bg-green-100 ">
                     <td class=" text-green-900">Service Code </td>
                     <td>{{ service.service_code }} </td>
                 </tr>
@@ -85,7 +85,7 @@ onMounted(() => {
                     <td class=" text-green-900">Items Brought </td>
                     <td>{{ service.items_brought }} </td>
                 </tr>
-                <tr class="font-bold bg-green-50">
+                <tr class="font-bold bg-green-100">
                     <td class=" text-green-900">Status </td>
                     <td>{{ service.status_service.status }} </td>
                 </tr>

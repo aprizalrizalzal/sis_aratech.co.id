@@ -480,7 +480,7 @@ const closeModal = () => {
     <template #header>
       <div class="flex justify-between items-center gap-4 px-2">
         <div class="flex items-center">
-          <h2 class="font-bold text-green-500 text-lg leading-4 flex-none px-2 py-4">Dashboard</h2>
+          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Dashboard</h2>
         </div>
         <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code" />
@@ -592,25 +592,28 @@ const closeModal = () => {
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type
                           </th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Model</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial Number
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial
+                            Number
                           </th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty
                             Status
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date Received
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date
+                            Received
                           </th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated
                             Completion</th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem
                             Description </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items Brought
+                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items
+                            Brought
                           </th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
                           <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                        <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-100">
                           <td class="py-2 px-4 border-b border-green-300 text-center">
                             {{ (currentPage - 1) *
                               itemsPerPage +
@@ -704,7 +707,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Device Type</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <DeviceTypeForm @addDeviceType="showModalAddDeviceTypeSuccessfully" />
     </div>
   </Modal>
@@ -715,8 +718,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Device Type</span>
         <DangerButton @click="closeModalAddDeviceTypeSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Device Type Successfully!
       </p>
       <div class="mt-2 flex">
@@ -731,7 +734,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <SparePartForm :categorySpareParts="categorySpareParts" @addSparePart="showModalAddSparePartSuccessfully" />
     </div>
   </Modal>
@@ -742,8 +745,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModalAddSparePartSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Spare Parts Successfully!
       </p>
       <div class="mt-2 flex">
@@ -758,7 +761,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Customer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <CustomerForm @addCustomer="showModalAddCustomerSuccessfully" />
     </div>
   </Modal>
@@ -769,8 +772,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Customer</span>
         <DangerButton @click="closeModalAddCustomerSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Customer Successfully!
       </p>
       <div class="mt-2 flex">
@@ -785,7 +788,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Device</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <DeviceForm :deviceTypes="deviceTypes" @addDevice="showModalAddDeviceSuccessfully" />
     </div>
   </Modal>
@@ -796,8 +799,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Device</span>
         <DangerButton @click="closeModalAddDeviceSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Device Successfully!
       </p>
       <div class="mt-2 flex">
@@ -812,7 +815,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Service</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <ServiceForm :customers="customers" :devices="devices" :statusWarrantyServices="statusWarrantyServices"
         :statusServices="statusServices" @addService="showModalAddServiceSuccessfully" />
     </div>
@@ -824,8 +827,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Service</span>
         <DangerButton @click="closeModalAddServiceSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Service Successfully!
       </p>
       <div class="mt-2 flex">
@@ -840,7 +843,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Service Detail</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <ServiceDetailForm :users="users" :services="services" :statusServices="statusServices"
         @addServiceDetail="showModalAddServiceDetailSuccessfully" />
     </div>
@@ -852,8 +855,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Service Detail</span>
         <DangerButton @click="closeModalAddServiceDetailSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Service Detail Successfully!
       </p>
       <div class="mt-2 flex">
@@ -868,7 +871,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Part Usage</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts"
         @addPartUsage="showModalAddPartUsageSuccessfully" />
     </div>
@@ -880,8 +883,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Part Usage</span>
         <DangerButton @click="closeModalAddPartUsageSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Adding Part Usage Successfully!
       </p>
       <div class="mt-2 flex">
@@ -896,10 +899,10 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Service Details</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <table class="table-auto w-full my-2">
         <tbody>
-          <tr class="font-bold bg-green-50">
+          <tr class="font-bold bg-green-100">
             <td class=" text-green-900"> Service Detail Code </td>
             <td> {{ serviceDetail.service_detail_code }} </td>
           </tr>
@@ -907,7 +910,7 @@ const closeModal = () => {
             <td class="text-green-900">Email Technician </td>
             <td> {{ serviceDetail.user.email }} </td>
           </tr>
-          <tr class="font-bold bg-green-50 ">
+          <tr class="font-bold bg-green-100 ">
             <td class=" text-green-900">Service Code </td>
             <td>{{ serviceDetail.service.service_code }} </td>
           </tr>
@@ -947,7 +950,7 @@ const closeModal = () => {
             <td class=" text-green-900">Items Brought </td>
             <td>{{ serviceDetail.service.items_brought }} </td>
           </tr>
-          <tr class="font-bold bg-green-50">
+          <tr class="font-bold bg-green-100">
             <td class=" text-green-900">Status </td>
             <td>{{ serviceDetail.service.status_service.status }} </td>
           </tr>
@@ -955,7 +958,7 @@ const closeModal = () => {
             <td class="text-green-900"> Repair Description </td>
             <td> {{ serviceDetail.repair_description }} </td>
           </tr>
-          <tr class="font-bold bg-green-50">
+          <tr class="font-bold bg-green-100">
             <td class="text-green-900"> Spare Part</td>
             <td class="text-green-900"> Price</td>
           </tr>
@@ -963,7 +966,7 @@ const closeModal = () => {
             <td class="text-green-900"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
             <td class="text-green-900"> {{ formatCurrency(partUsage.spare_part.price) }} </td>
           </tr>
-          <tr class="font-bold bg-green-50">
+          <tr class="font-bold bg-green-100">
             <td class="text-green-900"> Cost </td>
             <td> {{ formatCurrency(serviceDetail.cost) }} </td>
           </tr>

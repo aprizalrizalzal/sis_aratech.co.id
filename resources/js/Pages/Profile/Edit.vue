@@ -21,7 +21,7 @@ defineProps({
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-green-800 leading-tight">Profile</h2>
+            <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Profile</h2>
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">

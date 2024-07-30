@@ -144,7 +144,7 @@ class SendEmailServiceDetail extends Mailable
                 .font-bold {
                     font-weight: bold;
                 }
-                .bg-green-50 {
+                .bg-green-100 {
                     background-color: #f0fdf4;
                 }
                 .text-green-900 {
@@ -159,7 +159,7 @@ class SendEmailServiceDetail extends Mailable
                 <hr>
                 <table>
                     <tbody>
-                        <tr class='font-bold bg-green-50'>
+                        <tr class='font-bold bg-green-100'>
                             <td class='text-green-900'> Service Detail Code </td>
                             <td>{$serviceDetail->service_detail_code}</td>
                         </tr>
@@ -167,7 +167,7 @@ class SendEmailServiceDetail extends Mailable
                             <td class='text-green-900'>Email Technician </td>
                             <td>{$serviceDetail->user->email}</td>
                         </tr>
-                        <tr class='font-bold bg-green-50'>
+                        <tr class='font-bold bg-green-100'>
                             <td class='text-green-900'>Service Code </td>
                             <td>{$serviceDetail->service->service_code}</td>
                         </tr>
@@ -203,7 +203,7 @@ class SendEmailServiceDetail extends Mailable
                             <td class='text-green-900'>Items Brought </td>
                             <td>{$serviceDetail->service->items_brought}</td>
                         </tr>
-                        <tr class='font-bold bg-green-50'>
+                        <tr class='font-bold bg-green-100'>
                             <td class='text-green-900'>Status </td>
                             <td>{$serviceDetail->service->statusService->status}</td>
                         </tr>
@@ -211,7 +211,7 @@ class SendEmailServiceDetail extends Mailable
                             <td class='text-green-900'> Repair Description </td>
                             <td>{$serviceDetail->repair_description}</td>
                         </tr>
-                        <tr class='font-bold bg-green-50'>
+                        <tr class='font-bold bg-green-100'>
                             <td class='text-green-900'> Spare Part</td>
                             <td class='text-green-900'> Price</td>
                         ";
@@ -225,7 +225,7 @@ class SendEmailServiceDetail extends Mailable
         }
         $content .= "
                         </tr>
-                        <tr class='font-bold bg-green-50'>
+                        <tr class='font-bold bg-green-100'>
                             <td class='text-green-900'> Cost </td>
                             <td> " . $this->formatCurrency($serviceDetail->cost) . " </td>
                         </tr>

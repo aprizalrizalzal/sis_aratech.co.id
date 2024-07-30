@@ -128,7 +128,7 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-50">
+                <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
@@ -181,7 +181,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <FooterForm :footerId="selectedFooterId" @updateImageFooter="showModalUpdateImageSuccessfully" />
         </div>
     </Modal>
@@ -192,8 +192,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Footer Update Image Successful!
             </p>
             <div class="mt-2 flex">
@@ -208,7 +208,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <FooterForm :footer="selectedFooter" :typeFooters="typeFooters" :platformFooters="platformFooters"
                 @updateFooter="showModalUpdateSuccessfully" />
         </div>
@@ -220,8 +220,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Footer Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -236,7 +236,7 @@ const previousPage = () => {
                 Are you sure you want to delete this footer?
             </h2>
 
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your footer is deleted, all of its resources and data will be permanently deleted.
             </p>
 

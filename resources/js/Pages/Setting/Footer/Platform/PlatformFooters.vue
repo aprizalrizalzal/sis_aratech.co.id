@@ -58,7 +58,7 @@ const closeModal = () => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackIcon />
           </SecondaryButton>
-          <h2 class="font-bold text-green-500 text-lg leading-4 flex-none px-2 py-4">Platform</h2>
+          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Platform</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
@@ -87,7 +87,7 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Platform Footer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
+      <hr class="mt-4 mb-2">
       <PlatformFooterForm @addPlatformFooter="showModalAddSuccessfully" />
     </div>
   </Modal>
@@ -98,8 +98,8 @@ const closeModal = () => {
         <span class="font-bold text-center w-full">Add Platform Footer</span>
         <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
       </div>
-      <hr class="mt-4 mb-2 border-green-100">
-      <p class="my-4 text-sm text-green-500">
+      <hr class="mt-4 mb-2">
+      <p class="my-4 text-sm text-green-700">
         Platform Footer Add Successful!
       </p>
       <div class="mt-2 flex">

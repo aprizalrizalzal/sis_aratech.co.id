@@ -114,7 +114,7 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
+                <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center ">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{ user.name }}</td>
@@ -149,7 +149,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Assign User Roles</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <UserForm :user="selectedUser" @assignRoles="showModalAssignSuccessfully" />
         </div>
     </Modal>
@@ -160,8 +160,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Assign User Roles</span>
                 <DangerButton @click="closeModalAssignSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Assign User Roles Successful!
             </p>
             <div class="mt-2 flex">
@@ -175,7 +175,7 @@ const previousPage = () => {
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your User?
             </h2>
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your User is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

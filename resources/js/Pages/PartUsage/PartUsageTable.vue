@@ -287,7 +287,8 @@ const handlePrint = () => {
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail Code
+                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail
+                        Code
                     </th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Spare Part</th>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Price</th>
@@ -296,7 +297,7 @@ const handlePrint = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
+                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{
@@ -356,7 +357,7 @@ const handlePrint = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
+                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{
@@ -376,7 +377,7 @@ const handlePrint = () => {
                 <span class="font-bold text-center w-full">Update Part Usage</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <PartUsageForm :partUsage="selectedPartUsage" :serviceDetails="serviceDetails" :spareParts="spareParts"
                 :serviceDetail="selectedPartUsage.service_detail" :sparePart="selectedPartUsage.spare_part"
                 @updatePartUsage="showModalUpdateSuccessfully" />
@@ -389,8 +390,8 @@ const handlePrint = () => {
                 <span class="font-bold text-center w-full">Update Part Usage</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Part Usage Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -404,7 +405,7 @@ const handlePrint = () => {
             <h2 class="text-lg font-medium text-green-900">
                 Are you sure you want to delete your PartUsage?
             </h2>
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your PartUsage is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

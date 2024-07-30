@@ -121,7 +121,7 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-50">
+                <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
@@ -164,7 +164,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Carousel Image</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <CarouselForm :carouselId="selectedCarouselId" @updateImageCarousel="showModalUpdateImageSuccessfully" />
         </div>
     </Modal>
@@ -175,8 +175,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Carousel Image</span>
                 <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Carousel Image Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -191,7 +191,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Carousel</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <CarouselForm :carousel="selectedCarousel" @updateCarousel="showModalUpdateSuccessfully" />
         </div>
     </Modal>
@@ -202,8 +202,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Carousel</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Carousel Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -218,7 +218,7 @@ const previousPage = () => {
                 Are you sure you want to delete this carousel?
             </h2>
 
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your carousel is deleted, all of its resources and data will be permanently deleted.
             </p>
 

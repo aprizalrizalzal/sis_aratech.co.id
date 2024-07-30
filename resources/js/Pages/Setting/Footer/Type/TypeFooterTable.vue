@@ -102,7 +102,7 @@ const previousPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(typeFooter, index) in paginatedTypeFooters" :key="typeFooter.id" class="hover:bg-green-50">
+                <tr v-for="(typeFooter, index) in paginatedTypeFooters" :key="typeFooter.id" class="hover:bg-green-100">
                     <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
                     <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
@@ -138,7 +138,7 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Type Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
+            <hr class="mt-4 mb-2">
             <TypeFooterForm :typeFooter="selectedTypeFooter" @updateTypeFooter="showModalUpdateSuccessfully" />
         </div>
     </Modal>
@@ -149,8 +149,8 @@ const previousPage = () => {
                 <span class="font-bold text-center w-full">Update Type Footer</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
-            <hr class="mt-4 mb-2 border-green-100">
-            <p class="my-4 text-sm text-green-500">
+            <hr class="mt-4 mb-2">
+            <p class="my-4 text-sm text-green-700">
                 Type Footer Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -165,7 +165,7 @@ const previousPage = () => {
                 Are you sure you want to delete your Type Footer?
             </h2>
 
-            <p class="mt-1 text-sm text-green-500">
+            <p class="mt-1 text-sm text-green-700">
                 Once your Type Footer is deleted, all of its resources and data will be permanently deleted.
             </p>
 

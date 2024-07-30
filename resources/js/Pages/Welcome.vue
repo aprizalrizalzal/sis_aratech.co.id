@@ -30,7 +30,7 @@ const props = defineProps({
 <template>
 
     <Head title="Welcome" />
-    <nav class="bg-white border-b border-green-50 shadow-inner">
+    <nav class="bg-white border-b border-gray-100 shadow-inner">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24 items-center">
@@ -49,7 +49,7 @@ const props = defineProps({
 
                 <!-- Right Section: Navigation Links -->
                 <div class="hidden space-x-8 sm:flex items-center">
-                    <div v-if="canLogin" class="flex items-center text-md font-bold">
+                    <div v-if="canLogin" class="flex items-center font-medium font-bold">
                         <div v-if="$page.props.auth.user" class="flex items-center gap-2">
                             <Link :href="route('show.dashboard')"
                                 class="rounded px-3 py-2 text-green-900 ring-1 ring-transparent transition hover:text-green-700 focus:outline-none focus-visible:ring-green-700">
@@ -74,7 +74,7 @@ const props = defineProps({
                 <!-- Hamburger -->
                 <div class="-me-2 flex items-center sm:hidden">
                     <button @click="showingNavigationDropdown = !showingNavigationDropdown"
-                        class="inline-flex items-center justify-center p-2 rounded text-green-400 hover:text-green-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-green-500 transition duration-150 ease-in-out">
+                        class="inline-flex items-center justify-center p-2 rounded text-green-400 hover:text-green-700 hover:bg-green-100 focus:outline-none focus:bg-green-100 focus:text-green-700 transition duration-150 ease-in-out">
                         <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                             <path
                                 :class="{ hidden: showingNavigationDropdown, 'inline-flex': !showingNavigationDropdown }"
