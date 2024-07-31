@@ -9,6 +9,7 @@ import ButtonImage from '@/Components/ButtonImage.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
 import NextIcon from '@/Components/Icon/NextIcon.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -39,6 +40,15 @@ const paginatedSpareParts = computed(() => {
 const totalPages = computed(() => {
     return Math.ceil(filteredSpareParts.value.length / itemsPerPage.value);
 });
+
+const showAllProduct = () => {
+    itemsPerPage.value = props.spareParts.length;
+    currentPage.value = 1;
+};
+
+const hideSomeProduct = () => {
+    itemsPerPage.value = 12;
+};
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
@@ -98,7 +108,21 @@ const closeModal = () => {
             </CardView>
         </div>
     </div>
-    <div class="flex justify-center gap-4 items-center p-6">
+    
+    <div class="flex flex-col items-center pt-3">
+        <PrimaryButton v-if="itemsPerPage === 12" @click="showAllProduct">Show All&nbsp; 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
+            </svg>
+        </PrimaryButton>
+        <SecondaryButton v-if="itemsPerPage > 12" @click="hideSomeProduct">Hiding some &nbsp;
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894z"/>
+            </svg>
+        </SecondaryButton>
+    </div>
+    
+    <div class="flex justify-center gap-4 items-center pt-6">
         <ButtonImage class="py-2" @click="previousPage" :disabled="currentPage === 1">
             <BackIcon />
         </ButtonImage>
@@ -106,9 +130,6 @@ const closeModal = () => {
         <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
             <NextIcon />
         </ButtonImage>
-    </div>
-    <div class="flex items-center justify-center">
-        <PrimaryButton >Show All Spare Part</PrimaryButton>
     </div>
 
     <Modal maxWidth="7xl" :show="showingModalSparePartDetail">
