@@ -92,8 +92,8 @@ end_date_line_chart.value = defaultEndDate;
 let filteredDateLineChart = ref({});
 let lableCharts = ref([
   'Users',
-  'Device Types',
-  'Spare Parts',
+  
+  
   'Customers',
   'Devices',
   'Services',
@@ -105,8 +105,8 @@ const updateLableCharts = () => {
   if (isSuperAdmin.value) {
     lableCharts.value = [
       'Users',
-      'Device Types',
-      'Spare Parts',
+      
+      
       'Customers',
       'Devices',
       'Services',
@@ -130,8 +130,8 @@ const updateLableCharts = () => {
     // Default to the original labelCharts if no role matches
     lableCharts.value = [
       'Users',
-      'Device Types',
-      'Spare Parts',
+      
+      
       'Customers',
       'Devices',
       'Services',
@@ -150,18 +150,6 @@ const computeFilteredDateLineChart = () => {
     filteredDataLineChart = {
       users: props.users.filter(user => {
         const createdDate = new Date(user.created_at);
-        const start = new Date(start_date_line_chart.value);
-        const end = new Date(end_date_line_chart.value);
-        return createdDate >= start && createdDate <= end;
-      }),
-      deviceTypes: props.deviceTypes.filter(deviceType => {
-        const createdDate = new Date(deviceType.created_at);
-        const start = new Date(start_date_line_chart.value);
-        const end = new Date(end_date_line_chart.value);
-        return createdDate >= start && createdDate <= end;
-      }),
-      spareParts: props.spareParts.filter(sparePart => {
-        const createdDate = new Date(sparePart.created_at);
         const start = new Date(start_date_line_chart.value);
         const end = new Date(end_date_line_chart.value);
         return createdDate >= start && createdDate <= end;
@@ -201,8 +189,6 @@ const computeFilteredDateLineChart = () => {
     // Jika tidak ada rentang tanggal yang dipilih, gunakan semua data
     filteredDataLineChart = {
       users: props.users,
-      deviceTypes: props.deviceTypes,
-      spareParts: props.spareParts,
       customers: props.customers,
       devices: props.devices,
       services: props.services,
@@ -219,8 +205,6 @@ const updateDataCharts = () => {
   if (isSuperAdmin.value) {
     dataCharts.value = [
       filteredDateLineChart.value.users.length, // Users
-      filteredDateLineChart.value.deviceTypes.length, // Device Types
-      filteredDateLineChart.value.spareParts.length, // Spare Parts
       filteredDateLineChart.value.customers.length, // Customers
       filteredDateLineChart.value.devices.length, // Devices
       filteredDateLineChart.value.services.length, // Services
