@@ -8,6 +8,7 @@ import DangerButton from '@/Components/DangerButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
 import NextIcon from '@/Components/Icon/NextIcon.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     spareParts: Array,
@@ -105,6 +106,9 @@ const closeModal = () => {
         <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
             <NextIcon />
         </ButtonImage>
+    </div>
+    <div class="flex items-center justify-center">
+        <PrimaryButton >Show All Spare Part</PrimaryButton>
     </div>
 
     <Modal maxWidth="7xl" :show="showingModalSparePartDetail">

@@ -126,13 +126,14 @@ const props = defineProps({
                     </div>
 
                     <div>
-                        <Product :spareParts="props.spareParts" :categorySpareParts="categorySpareParts" />
-                    </div>
-
-                    <div>
                         <Service :service="props.service" :statusWarrantyServices="statusWarrantyServices"
                             :statusServices="statusServices" :message="props.message" />
                     </div>
+                    
+                    <div>
+                        <Product :spareParts="props.spareParts" :categorySpareParts="categorySpareParts" />
+                    </div>
+
                 </main>
             </div>
         </div>
