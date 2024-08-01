@@ -207,7 +207,7 @@ const previousPage = () => {
                                 <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
                                     class="h-16 w-16 object-cover rounded " style="max-width: 128px;" />
                                 <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
-                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded font-semibold text-xs text-red-800 tracking-widest shadow hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-700 rounded font-semibold text-xs text-red-900 tracking-widest shadow hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-900 disabled:opacity-25 transition ease-in-out duration-150">
                                     <EraserIcon />
                                 </ButtonImage>
                             </div>

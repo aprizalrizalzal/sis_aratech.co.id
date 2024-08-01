@@ -114,7 +114,7 @@ const previousPage = () => {
 
 <template>
     <div class=" overflow-x-auto">
-        <table class="min-w-full bg-white border-collapse divide-y divide-gray-200">
+        <table class="min-w-full bg-white border-collapse divide-y divide-gray-300">
             <thead>
                 <tr>
                     <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>

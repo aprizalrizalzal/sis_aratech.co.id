@@ -153,7 +153,7 @@ const isUser = computed(() => hasRole('user'));
                     <!-- Hamburger -->
                     <div class="-me-2 flex items-center sm:hidden">
                         <button @click="showingNavigationDropdown = !showingNavigationDropdown"
-                            class="inline-flex items-center justify-center p-2 rounded text-green-400 hover:text-green-700 hover:bg-green-100 focus:outline-none focus:bg-green-100 focus:text-green-700 transition duration-150 ease-in-out">
+                            class="inline-flex items-center justify-center p-2 rounded text-green-500 hover:text-green-700 hover:bg-green-100 focus:outline-none focus:bg-green-100 focus:text-green-700 transition duration-150 ease-in-out">
                             <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                                 <path :class="{
                                     hidden: showingNavigationDropdown,
@@ -220,7 +220,7 @@ const isUser = computed(() => hasRole('user'));
                 </div>
 
                 <!-- Responsive Settings Options -->
-                <div class="pt-4 pb-1 border-t border-green-200">
+                <div class="pt-4 pb-1 border-t border-green-300">
                     <div class="px-4">
                         <div class="font-medium text-base text-green-900">
                             {{ $page.props.auth.user.name }}
@@ -240,7 +240,7 @@ const isUser = computed(() => hasRole('user'));
 
             <!-- Sidebar for Super Admins -->
             <div v-if="isSuperAdmin && showingSidebar">
-                <div class="w-64 h-full overflow-y-auto bg-white rounded border-green-200 fixed top-0 left-0 z-50">
+                <div class="w-64 h-full overflow-y-auto bg-white rounded border-green-300 fixed top-0 left-0 z-50">
                     <div class="py-4">
                         <div class="flex items-center gap-4 px-6 pb-4 font-bold">
                             <ApplicationLogo class="block h-16 w-16" />
@@ -311,7 +311,7 @@ const isUser = computed(() => hasRole('user'));
         </header>
 
         <!-- Page Content -->
-        <main :class="{ 'lg:ml-64 md:ml-64': isSuperAdmin && showingSidebar }" class="bg-gray-50">
+        <main :class="{ 'lg:ml-64 md:ml-64': isSuperAdmin && showingSidebar }" class="bg-gray-100">
             <slot />
         </main>
         <footer class="pb-4 text-center text-sm text-green-900 bg-white shadow-inner">

@@ -74,7 +74,7 @@ const props = defineProps({
                 <!-- Hamburger -->
                 <div class="-me-2 flex items-center sm:hidden">
                     <button @click="showingNavigationDropdown = !showingNavigationDropdown"
-                        class="inline-flex items-center justify-center p-2 rounded text-green-400 hover:text-green-700 hover:bg-green-100 focus:outline-none focus:bg-green-100 focus:text-green-700 transition duration-150 ease-in-out">
+                        class="inline-flex items-center justify-center p-2 rounded text-green-500 hover:text-green-700 hover:bg-green-100 focus:outline-none focus:bg-green-100 focus:text-green-700 transition duration-150 ease-in-out">
                         <svg class="h-6 w-6" stroke="#256125" fill="none" viewBox="0 0 24 24">
                             <path
                                 :class="{ hidden: showingNavigationDropdown, 'inline-flex': !showingNavigationDropdown }"
@@ -117,7 +117,7 @@ const props = defineProps({
     </nav>
 
 
-    <div class="text-green-900/50 bg-gray-50">
+    <div class="text-green-900/50 bg-gray-100">
         <div class="min-h-screen flex flex-col items-center justify-center">
             <div class="w-full max-w-2xl px-6 lg:max-w-7xl">
                 <main class="mt-4 mb-8">

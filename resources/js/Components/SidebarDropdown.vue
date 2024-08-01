@@ -2,7 +2,7 @@
   <div>
     <div @click="toggleDropdown"
       class="flex items-center p-2 text-base font-normal text-green-900 rounded hover:bg-green-100 cursor-pointer"
-      :class="{ 'bg-green-200': isActive }">
+      :class="{ 'bg-green-300': isActive }">
       <slot name="icon"></slot>
       <span class="ml-2">{{ label }}</span>
       <svg class="ml-auto w-6 h-6 transform transition-transform duration-300" :class="{ 'rotate-180': isOpen }"
