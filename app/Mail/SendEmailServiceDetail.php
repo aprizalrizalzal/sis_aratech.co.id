@@ -29,7 +29,7 @@ class SendEmailServiceDetail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'SIService-AMITech Detail',
+            subject: 'Service Details',
         );
     }
 
@@ -104,7 +104,6 @@ class SendEmailServiceDetail extends Mailable
                     font-size: 24px;
                     font-weight: 600;
                     color: #1f2937;
-                    margin-bottom: 20px;
                 }
                 .body-text {
                     font-size: 16px;
@@ -154,8 +153,7 @@ class SendEmailServiceDetail extends Mailable
         </head>
         <body>
             <div class='container'>
-                <h1 class='title'>{$this->data['title']}</h1>
-                <p class='body-text'>{$this->data['body']}</p>
+                <p class='body-text'>{$this->data['body']} Service Detail Code {$serviceDetail->service_detail_code}</p>
                 <hr>
                 <table>
                     <tbody>
@@ -244,7 +242,7 @@ class SendEmailServiceDetail extends Mailable
                 </div>
                 <p><span class='font-bold text-green-900'>Cost</span> adalah biaya jasa service. <span class='font-bold text-green-900'>Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Technician ASLI Mandiri Computer - AMITech!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Technician ASLI Mandiri Computer!</p>
             </div>
         </body>
         </html>

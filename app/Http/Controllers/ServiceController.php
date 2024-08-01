@@ -121,8 +121,8 @@ class ServiceController extends Controller
         $notes = Note::all();
 
         $data = [
-            'title' => "ASLI Mandiri Computer - AMITech",
-            'body' => 'Rincian Service.',
+            'title' => $service->service_code,
+            'body' => 'Rincian',
             'email' => $service->customer->user->email,
             // Data
             'service' => $service,

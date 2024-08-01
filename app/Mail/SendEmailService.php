@@ -29,7 +29,7 @@ class SendEmailService extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'SIService-AMITech',
+            subject: 'Service',
         );
     }
 
@@ -77,7 +77,6 @@ class SendEmailService extends Mailable
                     font-size: 24px;
                     font-weight: 600;
                     color: #1f2937;
-                    margin-bottom: 20px;
                 }
                 .body-text {
                     font-size: 16px;
@@ -127,8 +126,7 @@ class SendEmailService extends Mailable
         </head>
         <body>
             <div class='container'>
-                <h1 class='title'>{$this->data['title']}</h1>
-                <p class='body-text'>{$this->data['body']}</p>
+                <p class='body-text'>{$this->data['body']} Service Code {$service->service_code}</p>
                 <hr>
                 <table>
                     <tbody>
@@ -193,7 +191,7 @@ class SendEmailService extends Mailable
                         untuk melihat perkembangan perangkat yang sedang diperbaiki.
                 </p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin ASLI Mandiri Computer - AMITech!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin ASLI Mandiri Computer!</p>
             </div>
         </body>
         </html>
