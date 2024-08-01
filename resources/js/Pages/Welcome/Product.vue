@@ -8,7 +8,6 @@ import DangerButton from '@/Components/DangerButton.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
 import NextIcon from '@/Components/Icon/NextIcon.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const props = defineProps({
@@ -84,7 +83,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <div class="flex justify-between items-center pt-4 pb-2 gap-4">
+    <div class="bg-white flex justify-between items-center py-4 px-8 rounded mt-2 gap-4">
         <div class="flex items-center">
             <h2 class="flex items-center gap-2 font-bold text-lg text-green-900 leading-4 flex-none py-4">
                 <span>Spare Part</span>
@@ -97,7 +96,7 @@ const closeModal = () => {
 
 
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 my-2 text-sm font-bold text-green-900">
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 my-2 text-sm font-bold text-green-900">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
             <CardView @click="showModalSparePartDetail(sparePart)" :category="sparePart.category_spare_part.name"
                 :name="sparePart.name" :price="formatCurrency(sparePart.price)">
@@ -109,13 +108,13 @@ const closeModal = () => {
         </div>
     </div>
     
-    <div class="flex flex-col items-center pt-3">
-        <PrimaryButton v-if="itemsPerPage === 12" @click="showAllProduct">Show All&nbsp; 
+    <div class="flex flex-col items-center pt-2">
+        <SecondaryButton v-if="itemsPerPage === 12" @click="showAllProduct" class="w-full justify-center">Show All &nbsp; 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
             </svg>
-        </PrimaryButton>
-        <SecondaryButton v-if="itemsPerPage > 12" @click="hideSomeProduct">Hiding some &nbsp;
+        </SecondaryButton>
+        <SecondaryButton v-if="itemsPerPage > 12" @click="hideSomeProduct" class="w-full justify-center">Hiding some &nbsp;
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894z"/>
             </svg>
