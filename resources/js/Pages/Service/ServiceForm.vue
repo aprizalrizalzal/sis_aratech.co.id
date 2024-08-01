@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import DropdownSelect from '@/Components/DropdownSelect.vue'
 import DateTimePicker from '@/Components/DateTimePicker.vue'
@@ -34,7 +34,10 @@ const props = defineProps({
     statusServices: Array,
 });
 
+const customers = ref(props.customers);
+
 const customerEmail = ref('');
+const customerPhone = ref('');
 const deviceModel = ref('');
 
 if (props.service) {
@@ -50,6 +53,7 @@ if (props.service) {
     const selectedDevice = props.devices.find(device => device.id === form.device_id);
     if (selectedCustomer) {
         customerEmail.value = selectedCustomer.user.email;
+        customerPhone.value = selectedCustomer.phone;
     }
     if (selectedDevice) {
         deviceModel.value = selectedDevice.model;
@@ -60,6 +64,7 @@ watch(() => form.customer_id, (newCustomerId) => {
     const selectedCustomer = props.customers.find(customer => customer.id === newCustomerId);
     if (selectedCustomer) {
         customerEmail.value = selectedCustomer.user.email;
+        customerPhone.value = selectedCustomer.phone;
     }
 });
 
@@ -98,7 +103,7 @@ const submitForm = () => {
             preserveScroll: true,
             onSuccess: () => {
                 form.data(),
-                emit('updateService');
+                    emit('updateService');
             },
             onError: (errors) => {
                 if (errors.customer_id || errors.device_id || errors.date_received || errors.status_warranty_service_id || errors.problem_description || errors.estimated_completion || errors.items_brought || errors.status_service_id) {
@@ -114,10 +119,16 @@ const submitForm = () => {
 
 const emit = defineEmits(
     [
-        'addService', 
+        'addService',
         'updateService'
     ]
 );
+const processedCustomers = computed(() => {
+    return customers.value.map(customer => ({
+        ...customer,
+        phone: customer.user.name // Overwrite phone property with user's name
+    }));
+});
 </script>
 
 <template>
@@ -125,14 +136,19 @@ const emit = defineEmits(
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div>
-                    <DropdownSelect id="customer_id" label="Customer Phone" optionProperty="phone" valueProperty="id"
-                        :options="customers" v-model="form.customer_id"
-                        :placeholder='props.service ? props.service.customer.phone : "Select Phone"' class="w-full" />
+                    <DropdownSelect id="customer_id" label="Customer Name" optionProperty="phone" valueProperty="id"
+                        :options="processedCustomers" v-model="form.customer_id"
+                        :placeholder='props.service ? props.service.customer.user.name : "Select Name"'
+                        class="w-full" />
                     <InputError class="mt-2" :message="form.errors.customer_id" />
                 </div>
                 <div v-if="form.customer_id">
                     <InputLabel for="email" value="Email" />
                     <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="customerEmail" disabled />
+                </div>
+                <div v-if="form.customer_id">
+                    <InputLabel for="phone" value="Phone" />
+                    <TextInput id="phone" type="text" class="mt-1 block w-full" :placeholder="customerPhone" disabled />
                 </div>
                 <hr v-if="form.customer_id">
                 <div>

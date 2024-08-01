@@ -33,6 +33,7 @@ const props = defineProps({
     service: Object,
 });
 
+const serviceName = ref('');
 const serviceEmail = ref('');
 const servicePhone = ref('');
 const serviceStatus = ref('');
@@ -45,6 +46,7 @@ if (props.serviceDetail) {
     form.notes = props.serviceDetail.notes;
     const selectedService = props.services.find(service => service.id === form.service_id);
     if (selectedService) {
+        serviceName.value = selectedService.customer.user.name;
         serviceEmail.value = selectedService.customer.user.email;
         servicePhone.value = selectedService.customer.phone;
         serviceStatus.value = selectedService.status_service.status;
@@ -55,6 +57,7 @@ if (props.serviceDetail) {
 watch(() => form.service_id, (newServiceId) => {
     const selectedService = props.services.find(service => service.id === newServiceId);
     if (selectedService) {
+        serviceName.value = selectedService.customer.user.name;
         serviceEmail.value = selectedService.customer.user.email;
         servicePhone.value = selectedService.customer.phone;
         serviceStatus.value = selectedService.status_service.status;
@@ -126,6 +129,10 @@ const emit = defineEmits(
                         valueProperty="id" :options="services" v-model="form.service_id"
                         :placeholder='props.service ? props.service.service_code : "Service Code"' class="w-full" />
                     <InputError class="mt-2" :message="form.errors.service_id" />
+                </div>
+                <div v-if="form.service_id">
+                    <InputLabel for="name" value="Customer Name" />
+                    <TextInput id="name" type="text" class="mt-1 block w-full" :placeholder="serviceName" disabled />
                 </div>
                 <div v-if="form.service_id">
                     <InputLabel for="email" value="Email" />

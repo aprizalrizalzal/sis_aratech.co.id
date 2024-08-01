@@ -105,8 +105,6 @@ const updateLableCharts = () => {
   if (isSuperAdmin.value) {
     lableCharts.value = [
       'Users',
-      
-      
       'Customers',
       'Devices',
       'Services',
@@ -130,8 +128,6 @@ const updateLableCharts = () => {
     // Default to the original labelCharts if no role matches
     lableCharts.value = [
       'Users',
-      
-      
       'Customers',
       'Devices',
       'Services',
