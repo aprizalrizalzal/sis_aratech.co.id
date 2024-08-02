@@ -21,6 +21,7 @@ const page = usePage();
 const props = defineProps({
     partUsages: Array,
     serviceDetails: Array,
+    statusServices: Array,
     spareParts: Array,
 });
 
@@ -379,7 +380,7 @@ const handlePrint = () => {
             </div>
             <hr class="mt-4 mb-2">
             <PartUsageForm :partUsage="selectedPartUsage" :serviceDetails="serviceDetails" :spareParts="spareParts"
-                :serviceDetail="selectedPartUsage.service_detail" :sparePart="selectedPartUsage.spare_part"
+                :serviceDetail="selectedPartUsage.service_detail" :sparePart="selectedPartUsage.spare_part" :statusServices="statusServices"
                 @updatePartUsage="showModalUpdateSuccessfully" />
         </div>
     </Modal>
@@ -395,7 +396,7 @@ const handlePrint = () => {
                 Part Usage Update Successful!
             </p>
             <div class="mt-2 flex">
-                <PrimaryButton @click="closeModalUpdateSuccessfully">Ok</PrimaryButton>
+                <a :href="route('show.service.details')" class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150" @click="closeModalUpdateSuccessfully">Ok</a>
             </div>
         </div>
     </Modal>

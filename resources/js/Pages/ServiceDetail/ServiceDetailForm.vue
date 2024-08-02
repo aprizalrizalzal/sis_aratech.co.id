@@ -78,7 +78,7 @@ const submitForm = () => {
                 };
             },
             onError: (errors) => {
-                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
+                if (errors.user_id || errors.service_id || errors.status_service_id || errors.repair_description || errors.cost || errors.notes) {
                     alert('addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -95,7 +95,7 @@ const submitForm = () => {
                     emit('updateServiceDetail');
             },
             onError: (errors) => {
-                if (errors.user_id || errors.service_id || errors.repair_description || errors.cost || errors.notes) {
+                if (errors.user_id || errors.service_id || errors.status_service_id || errors.repair_description || errors.cost || errors.notes) {
                     alert('update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();

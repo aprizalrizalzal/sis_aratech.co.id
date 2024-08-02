@@ -9,12 +9,16 @@ import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
     service_detail_id: '',
+    status_service_id: '',
     spare_part_id: '',
     quantity: '',
 });
 
 const props = defineProps({
     serviceDetails: Array,
+
+    statusServices: Array,
+
     spareParts: Array,
 
     partUsage: Object,
@@ -22,10 +26,14 @@ const props = defineProps({
     sparePart: Object,
 });
 
+const technicianName = ref('');
 const technicianEmail = ref('');
+const technicianPhone = ref('');
 const serviceCode = ref('');
+const serviceName = ref('');
 const serviceEmail = ref('');
 const servicePhone = ref('');
+const serviceStatus = ref('');
 
 if (props.partUsage) {
     form.service_detail_id = props.partUsage.service_detail_id;
@@ -33,20 +41,30 @@ if (props.partUsage) {
     form.quantity = props.partUsage.quantity;
     const selectedServiceDetail = props.serviceDetails.find(serviceDetail => serviceDetail.id === form.service_detail_id);
     if (selectedServiceDetail) {
+        technicianName.value = selectedServiceDetail.user.name;
         technicianEmail.value = selectedServiceDetail.user.email;
+        technicianPhone.value = selectedServiceDetail.user.customer.phone;
         serviceCode.value = selectedServiceDetail.service.service_code;
+        serviceName.value = selectedServiceDetail.service.customer.user.name;
         serviceEmail.value = selectedServiceDetail.service.customer.user.email;
         servicePhone.value = selectedServiceDetail.service.customer.phone;
+        serviceStatus.value = selectedServiceDetail.service.status_service.status;
+        form.status_service_id = selectedServiceDetail.service.status_service.id;
     }
 }
 
 watch(() => form.service_detail_id, (newServiceDetailId) => {
     const selectedServiceDetail = props.serviceDetails.find(serviceDetail => serviceDetail.id === newServiceDetailId);
     if (selectedServiceDetail) {
+        technicianName.value = selectedServiceDetail.user.name;
         technicianEmail.value = selectedServiceDetail.user.email;
+        technicianPhone.value = selectedServiceDetail.user.customer.phone;
         serviceCode.value = selectedServiceDetail.service.service_code;
+        serviceName.value = selectedServiceDetail.service.customer.user.name;
         serviceEmail.value = selectedServiceDetail.service.customer.user.email;
         servicePhone.value = selectedServiceDetail.service.customer.phone;
+        serviceStatus.value = selectedServiceDetail.service.status_service.status;
+        form.status_service_id = selectedServiceDetail.service.status_service.id;
     }
 });
 
@@ -59,7 +77,7 @@ const submitForm = () => {
                 emit('addPartUsage');
             },
             onError: (errors) => {
-                if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
+                if (errors.service_detail_id || errors.status_service_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage addition failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -76,7 +94,7 @@ const submitForm = () => {
                 emit('updatePartUsage');
             },
             onError: (errors) => {
-                if (errors.service_detail_id || errors.spare_part_id || errors.quantity) {
+                if (errors.service_detail_id || errors.status_service_id || errors.spare_part_id || errors.quantity) {
                     alert('Part usage update failed!');
                 } else {
                     const errorMessages = Object.values(errors).flat();
@@ -101,15 +119,25 @@ const emit = defineEmits(
         <div class="w-full">
             <form @submit.prevent="submitForm" class="mt-3 space-y-3">
                 <div>
-                    <DropdownSelect id="service_detail_id" label="Service Detail" optionProperty="service_detail_code"
+                    <DropdownSelect id="service_detail_id" label="Service Detail Code" optionProperty="service_detail_code"
                         valueProperty="id" :options="serviceDetails" v-model="form.service_detail_id"
                         :placeholder='props.serviceDetail ? props.serviceDetail.service_detail_code : "Select Service Detail Code"'
                         class="w-full" />
                     <InputError class="mt-2" :message="form.errors.service_detail_id" />
                 </div>
                 <div v-if="form.service_detail_id">
-                    <InputLabel for="email" value="Email Technician" />
+                    <InputLabel for="name" value="Technician Name" />
+                    <TextInput id="name" type="text" class="mt-1 block w-full" :placeholder="technicianName"
+                        disabled />
+                </div>
+                <div v-if="form.service_detail_id">
+                    <InputLabel for="email" value="Email" />
                     <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="technicianEmail"
+                        disabled />
+                </div>
+                <div v-if="form.service_detail_id">
+                    <InputLabel for="phone" value="Phone" />
+                    <TextInput id="phone" type="text" class="mt-1 block w-full" :placeholder="technicianPhone"
                         disabled />
                 </div>
                 <div v-if="form.service_detail_id">
@@ -118,12 +146,22 @@ const emit = defineEmits(
                         disabled />
                 </div>
                 <div v-if="form.service_detail_id">
+                    <InputLabel for="name" value="Customer Name" />
+                    <TextInput id="name" type="text" class="mt-1 block w-full" :placeholder="serviceName" disabled />
+                </div>
+                <div v-if="form.service_detail_id">
                     <InputLabel for="email" value="Email" />
                     <TextInput id="email" type="text" class="mt-1 block w-full" :placeholder="serviceEmail" disabled />
                 </div>
                 <div v-if="form.service_detail_id">
                     <InputLabel for="phone" value="Phone" />
                     <TextInput id="phone" type="text" class="mt-1 block w-full" :placeholder="servicePhone" disabled />
+                </div>
+                <div v-if="form.service_detail_id">
+                    <DropdownSelect id="status_service_id" label="Status" optionProperty="status" valueProperty="id"
+                        :options="statusServices" v-model="form.status_service_id"
+                        :placeholder='form.service_detail_id ? serviceStatus : "Select Status"' class="mt-1 block w-full" />
+                    <InputError class="mt-2" :message="form.errors.status_service_id" />
                 </div>
                 <hr v-if="form.service_detail_id">
                 <div>

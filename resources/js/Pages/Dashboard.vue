@@ -852,7 +852,7 @@ const closeModal = () => {
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts"
+      <PartUsageForm :serviceDetails="serviceDetails" :spareParts="spareParts" :statusServices="statusServices"
         @addPartUsage="showModalAddPartUsageSuccessfully" />
     </div>
   </Modal>
@@ -868,7 +868,7 @@ const closeModal = () => {
         Adding Part Usage Successfully!
       </p>
       <div class="mt-2 flex">
-        <PrimaryButton @click="closeModalAddPartUsageSuccessfully">Ok</PrimaryButton>
+        <a :href="route('show.service.details')" class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150" @click="closeModalAddPartUsageSuccessfully">Ok</a>
       </div>
     </div>
   </Modal>
