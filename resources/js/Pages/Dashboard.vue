@@ -92,8 +92,8 @@ end_date_line_chart.value = defaultEndDate;
 let filteredDateLineChart = ref({});
 let lableCharts = ref([
   'Users',
-  
-  
+
+
   'Customers',
   'Devices',
   'Services',
@@ -521,8 +521,8 @@ const closeModal = () => {
                   </template>
                 </CardButton>
                 <CardButton @click="showingModalAddPartUsage = true" title="Add Part Usage"
-                  description="Mendokumentasikan penggunaan suku cadang selama perbaikan."
-                  :tags="['penggunaan suku cadang', 'dokumentasi', 'perbaikan']">
+                  description="Mendokumentasikan penggunaan suku cadang."
+                  :tags="['suku cadang', 'dokumentasi', 'perbaikan']">
                   <template #svg>
                     <PartUsageIcon width="32" height="32" fill="#0f4d0f" />
                   </template>
@@ -868,7 +868,9 @@ const closeModal = () => {
         Adding Part Usage Successfully!
       </p>
       <div class="mt-2 flex">
-        <a :href="route('show.service.details')" class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150" @click="closeModalAddPartUsageSuccessfully">Ok</a>
+        <a :href="route('show.service.details')"
+          class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150"
+          @click="closeModalAddPartUsageSuccessfully">Ok</a>
       </div>
     </div>
   </Modal>
