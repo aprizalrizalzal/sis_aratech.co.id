@@ -19,15 +19,15 @@ class CarouselsTableSeeder extends Seeder
                 'alt' => 'Satu',
             ],
             [
-                'image_path' => 'storage/images/Carousels/2-baner-24x....jpg',
+                'image_path' => 'storage/images/carousels/2-baner-24x....jpg',
                 'alt' => 'Dua',
             ],
             [
-                'image_path' => 'storage/images/Carousels/3-baner-24x....jpg',
+                'image_path' => 'storage/images/carousels/3-baner-24x....jpg',
                 'alt' => 'Tiga'
             ],
             [
-                'image_path' => 'storage/images/Carousels/4-baner-24x....jpg',
+                'image_path' => 'storage/images/carousels/4-baner-24x....jpg',
                 'alt' => 'Empat'
             ]
         ];
