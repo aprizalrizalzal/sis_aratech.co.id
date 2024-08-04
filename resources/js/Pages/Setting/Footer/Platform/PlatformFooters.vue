@@ -9,7 +9,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
-import BackIcon from '@/Components/Icon/BackIcon.vue';
+import BackWindowIcon from '@/Components/Icon/BackWindowIcon.vue';
 
 const showModalAddPlatformFooter = ref(false);
 
@@ -53,12 +53,12 @@ const closeModal = () => {
   <Head title="Platform Footers" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4 px-2">
+      <div class="flex justify-between items-center gap-2 px-2">
         <div class="flex items-center">
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
-            <BackIcon />
+            <BackWindowIcon />
           </SecondaryButton>
-          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Platform</h2>
+          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-4 py-4">Platform</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
@@ -67,7 +67,7 @@ const closeModal = () => {
     </template>
     <div class="flex overflow-x-auto">
       <!-- Main Content -->
-      <div class="py-6 flex-1 transition-all duration-300">
+      <div class="py-8 flex-1">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow sm:rounded p-4 sm:p-8">
             <!-- Your main content here -->

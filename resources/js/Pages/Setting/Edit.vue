@@ -16,12 +16,17 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import BackWindowIcon from '@/Components/Icon/BackWindowIcon.vue';
 
 const props = defineProps({
   carousels: Array,
   typeFooters: Array,
   platformFooters: Array,
 });
+
+const previousPage = () => {
+  window.history.back();
+}
 
 const showModalAddHeader = ref(false);
 const showModalAddCarousel = ref(false);
@@ -87,9 +92,14 @@ const closeModal = () => {
 
   <AuthenticatedLayout>
     <template #header>
-      <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Setting</h2>
+      <div class="flex items-center ms-2">
+        <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
+          <BackWindowIcon />
+        </SecondaryButton>
+        <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Setting</h2>
+      </div>
     </template>
-    <div class="py-12">
+    <div class="py-8">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded">
           <h2 class="font-bold mb-4 text-green-700 text-lg mb-4">Header</h2>

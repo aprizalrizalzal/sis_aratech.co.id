@@ -458,9 +458,9 @@ const closeModal = () => {
   <Head title="Dashboard" />
   <AuthenticatedLayout>
     <template #header>
-      <div class="flex justify-between items-center gap-4 px-2">
+      <div class="flex justify-between items-center gap-2 px-2">
         <div class="flex items-center">
-          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Dashboard</h2>
+          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none py-4">Dashboard</h2>
         </div>
         <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code" />
@@ -469,12 +469,12 @@ const closeModal = () => {
 
     </template>
     <div class="flex">
-      <div class="py-6 flex-1 transition-all duration-300">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="py-6 flex-1">
+        <div class="max-w-7xl mx-auto sm:px-4 lg:px-8">
           <div class="overflow-hidden sm:rounded">
             <!-- Your main content here -->
             <div class="grid grid-cols-1 gap-4 items-center">
-              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
+              <div v-if="isSuperAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-2">
                 <CardButton @click="showingModalAddDeviceType = true" title="Add Device Type"
                   description="Menambahkan jenis perangkat baru ke sistem."
                   :tags="['jenis perangkat', 'kategori', 'spesifikasi']">
@@ -491,7 +491,7 @@ const closeModal = () => {
                 </CardButton>
               </div>
               <hr v-if="isSuperAdmin">
-              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
+              <div v-if="isAdmin" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-2">
                 <CardButton @click="showingModalAddCustomer = true" title="Add Customer"
                   description="Mendaftarkan pelanggan baru." :tags="['pelanggan', 'registrasi', 'kontak']">
                   <template #svg>
@@ -512,7 +512,7 @@ const closeModal = () => {
                 </CardButton>
               </div>
               <hr v-if="isAdmin">
-              <div v-if="isUser" class="grid grid-cols-1 sm:grid-cols-3 gap-4 m-4">
+              <div v-if="isUser" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-2">
                 <CardButton @click="showingModalAddServiceDetail = true" title="Add Service Detail"
                   description="Menambahkan detail tambahan untuk layanan."
                   :tags="['detail layanan', 'catatan', 'spesifikasi']">
@@ -530,7 +530,7 @@ const closeModal = () => {
               </div>
               <hr v-if="isUser">
               <div v-if="isSuperAdmin || isAdmin || isUser"
-                class="flex flex-col gap-2 px-8 items-center bg-white shadow rounded p-4 m-4 ">
+                class="flex flex-col gap-2 px-8 items-center bg-white shadow rounded p-4 my-2">
                 <div class="flex w-full gap-2 justify-between overflow-x-auto">
                   <div class="flex items-center gap-2 bg-white">
                     <DateTimePicker :key="datePickerKeys.startDate" id="start_date_line_chart" label="Start Date"

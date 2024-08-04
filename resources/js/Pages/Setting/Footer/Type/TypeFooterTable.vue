@@ -7,7 +7,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import Modal from '@/Components/Modal.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
-import BackIcon from '@/Components/Icon/BackIcon.vue';
+import BackWindowIcon from '@/Components/Icon/BackWindowIcon.vue';
 import NextIcon from '@/Components/Icon/NextIcon.vue';
 
 const props = defineProps({
@@ -124,7 +124,7 @@ const previousPage = () => {
 
     <div class="flex justify-center gap-4 items-center p-6">
         <ButtonImage class="py-2" @click="previousPage" :disabled="currentPage === 1">
-            <BackIcon />
+            <BackWindowIcon />
         </ButtonImage>
         <span>{{ currentPage }} / {{ totalPages }}</span>
         <ButtonImage class="py-2" @click="nextPage" :disabled="currentPage === totalPages">
