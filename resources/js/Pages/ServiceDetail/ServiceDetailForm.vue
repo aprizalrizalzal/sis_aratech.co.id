@@ -164,7 +164,7 @@ const emit = defineEmits(
                 <div>
                     <InputLabel for="notes" value="Notes" />
                     <textarea id="notes" type="text"
-                        class="mt-1 block w-full border-green-700 focus:border-green-700 focus:ring-green-700 rounded shadow"
+                        class="mt-1 block w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded shadow"
                         v-model="form.notes" placeholder="Notes" required />
                     <InputError class="mt-2" :message="form.errors.notes" />
                 </div>

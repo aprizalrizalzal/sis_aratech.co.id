@@ -114,18 +114,18 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Alternative</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Image</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Alternative</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                <tr v-for="(carousel, index) in paginatedCarousels" :key="carousel.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-200 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${carousel.image_path}`" :alt="carousel.alt"
                                 class="h-16 object-cover rounded mx-2" style="max-width: 128px;" />
@@ -134,13 +134,13 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ carousel.alt }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalCarouselUpdate(carousel)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmCarouselDeletion(carousel.id)">Delete</DangerButton>
                     </td>
                 </tr>
@@ -160,7 +160,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalCarouselUpdateImage">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Carousel Image</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -171,12 +171,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateImageSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Carousel Image</span>
                 <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Carousel Image Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -187,7 +187,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalCarouselUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Carousel</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -198,12 +198,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Carousel</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Carousel Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -214,11 +214,11 @@ const previousPage = () => {
 
     <Modal :show="confirmingCarouselDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete this carousel?
             </h2>
 
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your carousel is deleted, all of its resources and data will be permanently deleted.
             </p>
 

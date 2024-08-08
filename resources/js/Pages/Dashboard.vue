@@ -460,7 +460,7 @@ const closeModal = () => {
     <template #header>
       <div class="flex justify-between items-center gap-2 px-2">
         <div class="flex items-center">
-          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none py-4">Dashboard</h2>
+          <h2 class="font-bold text-green-600 text-lg leading-4 flex-none py-4">Dashboard</h2>
         </div>
         <div v-if="!isSuperAdmin && !isAdmin && !isUser" class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for Service Code" />
@@ -562,100 +562,100 @@ const closeModal = () => {
                     <table class="min-w-full bg-white border-collapse">
                       <thead>
                         <tr>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Code
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Service Code
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Name</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Phone</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Address</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Name</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Email</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Phone</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Address</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Device Type
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Model</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Model</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Serial
                             Number
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Warranty
                             Status
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Date
                             Received
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Estimated
                             Completion</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Problem
                             Description </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Items
                             Brought
                           </th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
-                          <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Action</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Status</th>
+                          <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-100">
-                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                        <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                          <td class="py-2 px-4 border-b border-green-200 text-center">
                             {{ (currentPage - 1) *
                               itemsPerPage +
                               index + 1 }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.service_code
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{ service.customer.user.name }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{ service.customer.user.email }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.customer.phone
                             }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{ service.customer.address }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.device.device_type.type_name }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.device.model }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.device.serial_number }}</td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.status_warranty_service.status }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.date_received
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.estimated_completion }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.problem_description }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{
                               service.items_brought
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                          <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                             {{ service.status_service.status
                             }}
                           </td>
-                          <td class="py-2 px-4 border-b border-green-300 text-center">
+                          <td class="py-2 px-4 border-b border-green-200 text-center">
                             <SecondaryButton v-if="serviceDetail" @click="showModalServiceDetailByServiceCode(service)">
                               Detail
                             </SecondaryButton>
-                            <p v-else class="text-green-900 truncate max-w-xs">
+                            <p v-else class="text-green-800 truncate max-w-xs">
                               Contact admin
                             </p>
                           </td>
@@ -683,7 +683,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddDeviceType">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Device Type</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -694,12 +694,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddDeviceTypeSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Device Type</span>
         <DangerButton @click="closeModalAddDeviceTypeSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Device Type Successfully!
       </p>
       <div class="mt-2 flex">
@@ -710,7 +710,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddSparePart">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -721,12 +721,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddSparePartSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Spare Part</span>
         <DangerButton @click="closeModalAddSparePartSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Spare Parts Successfully!
       </p>
       <div class="mt-2 flex">
@@ -737,7 +737,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddCustomer">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Customer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -748,12 +748,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddCustomerSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Customer</span>
         <DangerButton @click="closeModalAddCustomerSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Customer Successfully!
       </p>
       <div class="mt-2 flex">
@@ -764,7 +764,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddDevice">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Device</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -775,12 +775,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddDeviceSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Device</span>
         <DangerButton @click="closeModalAddDeviceSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Device Successfully!
       </p>
       <div class="mt-2 flex">
@@ -791,7 +791,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddService">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Service</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -803,12 +803,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddServiceSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Service</span>
         <DangerButton @click="closeModalAddServiceSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Service Successfully!
       </p>
       <div class="mt-2 flex">
@@ -819,7 +819,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddServiceDetail">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Service Detail</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -831,12 +831,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddServiceDetailSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Service Detail</span>
         <DangerButton @click="closeModalAddServiceDetailSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Service Detail Successfully!
       </p>
       <div class="mt-2 flex">
@@ -847,7 +847,7 @@ const closeModal = () => {
 
   <Modal :show="showingModalAddPartUsage">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Part Usage</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -859,17 +859,17 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddPartUsageSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Part Usage</span>
         <DangerButton @click="closeModalAddPartUsageSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Adding Part Usage Successfully!
       </p>
       <div class="mt-2 flex">
         <a :href="route('show.service.details')"
-          class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150"
+          class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-600 active:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition ease-in-out duration-150"
           @click="closeModalAddPartUsageSuccessfully">Ok</a>
       </div>
     </div>
@@ -877,91 +877,91 @@ const closeModal = () => {
 
   <Modal :show="showingModalServiceDetailByServiceCode">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Service Details</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
       <table class="table-auto w-full my-2">
         <tbody>
-          <tr class="font-bold bg-green-100">
-            <td class=" text-green-900"> Service Detail Code </td>
+          <tr class="font-bold bg-green-50">
+            <td class=" text-green-800"> Service Detail Code </td>
             <td> {{ serviceDetail.service_detail_code }} </td>
           </tr>
           <tr>
-            <td class="text-green-900">Email Technician </td>
+            <td class="text-green-800">Email Technician </td>
             <td> {{ serviceDetail.user.email }} </td>
           </tr>
-          <tr class="font-bold bg-green-100 ">
-            <td class=" text-green-900">Service Code </td>
+          <tr class="font-bold bg-green-50 ">
+            <td class=" text-green-800">Service Code </td>
             <td>{{ serviceDetail.service.service_code }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Name</td>
+            <td class=" text-green-800">Name</td>
             <td>{{ serviceDetail.service.customer.user.name }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Email / Phone</td>
+            <td class=" text-green-800">Email / Phone</td>
             <td>{{ serviceDetail.service.customer.user.email }}<span> / </span>{{
               serviceDetail.service.customer.phone }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Address </td>
+            <td class=" text-green-800">Address </td>
             <td>{{ serviceDetail.service.customer.address }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Device Type / Model</td>
+            <td class=" text-green-800">Device Type / Model</td>
             <td>{{ serviceDetail.service.device.device_type.type_name }}<span> / </span>{{
               serviceDetail.service.device.model }}</td>
           </tr>
           <tr>
-            <td class=" text-green-900">Serial Number / Warranty Status </td>
+            <td class=" text-green-800">Serial Number / Warranty Status </td>
             <td>{{ serviceDetail.service.device.serial_number }}<span> / </span>{{
               serviceDetail.service.status_warranty_service.status }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Date Received / Estimated Completion </td>
+            <td class=" text-green-800">Date Received / Estimated Completion </td>
             <td>{{ serviceDetail.service.date_received }}<span> / </span>{{
               serviceDetail.service.estimated_completion }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Problem Description </td>
+            <td class=" text-green-800">Problem Description </td>
             <td>{{ serviceDetail.service.problem_description }} </td>
           </tr>
           <tr>
-            <td class=" text-green-900">Items Brought </td>
+            <td class=" text-green-800">Items Brought </td>
             <td>{{ serviceDetail.service.items_brought }} </td>
           </tr>
-          <tr class="font-bold bg-green-100">
-            <td class=" text-green-900">Status </td>
+          <tr class="font-bold bg-green-50">
+            <td class=" text-green-800">Status </td>
             <td>{{ serviceDetail.service.status_service.status }} </td>
           </tr>
           <tr>
-            <td class="text-green-900"> Repair Description </td>
+            <td class="text-green-800"> Repair Description </td>
             <td> {{ serviceDetail.repair_description }} </td>
           </tr>
-          <tr class="font-bold bg-green-100">
-            <td class="text-green-900"> Spare Part</td>
-            <td class="text-green-900"> Price</td>
+          <tr class="font-bold bg-green-50">
+            <td class="text-green-800"> Spare Part</td>
+            <td class="text-green-800"> Price</td>
           </tr>
           <tr v-for="(partUsage, index) in partUsages" :key="partUsage.id">
-            <td class="text-green-900"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
-            <td class="text-green-900"> {{ formatCurrency(partUsage.spare_part.price) }} </td>
+            <td class="text-green-800"> {{ index + 1 }}. {{ partUsage.spare_part.name }} </td>
+            <td class="text-green-800"> {{ formatCurrency(partUsage.spare_part.price) }} </td>
           </tr>
-          <tr class="font-bold bg-green-100">
-            <td class="text-green-900"> Cost </td>
+          <tr class="font-bold bg-green-50">
+            <td class="text-green-800"> Cost </td>
             <td> {{ formatCurrency(serviceDetail.cost) }} </td>
           </tr>
           <tr class="font-bold">
-            <td class="text-green-900"> Total </td>
+            <td class="text-green-800"> Total </td>
             <td> {{ formatCurrency(serviceDetailTotal) }} </td>
           </tr>
         </tbody>
       </table>
       <hr>
       <div id="footer" class="my-2 text-sm/relaxed">
-        <p><span class="font-bold text-green-900">Cost</span> adalah biaya jasa service. <span
-            class="font-bold text-green-900">Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part
+        <p><span class="font-bold text-green-800">Cost</span> adalah biaya jasa service. <span
+            class="font-bold text-green-800">Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part
           yang diganti jika ada.</p>
       </div>
 

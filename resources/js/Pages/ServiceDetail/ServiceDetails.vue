@@ -41,7 +41,7 @@ const filteredServiceDetails = computed(() => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackWindowIcon />
           </SecondaryButton>
-          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-4 py-4">Service Details</h2>
+          <h2 class="font-bold text-green-600 text-lg leading-4 flex-none px-4 py-4">Service Details</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery"

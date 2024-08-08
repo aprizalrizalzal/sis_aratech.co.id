@@ -41,7 +41,7 @@ const filteredPartUsages = computed(() => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackWindowIcon />
           </SecondaryButton>
-          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-4 py-4">Part Usages</h2>
+          <h2 class="font-bold text-green-600 text-lg leading-4 flex-none px-4 py-4">Part Usages</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for service detail codes or part names" />
@@ -50,7 +50,7 @@ const filteredPartUsages = computed(() => {
     </template>
     <div class="flex overflow-x-auto">
       <!-- Main Content -->
-      <div class="py-8 flex-1 transition-all duration-300">
+      <div class="py-8 flex-1 transition-all duration-200">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow sm:rounded p-4 sm:p-8">
             <!-- Your main content here -->

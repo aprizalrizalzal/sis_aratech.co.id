@@ -175,23 +175,23 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Cover</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Category</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Pieces</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Price</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Cover</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Image</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Name</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Category</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Pieces</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Price</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Description</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                <tr v-for="(sparePart, index) in paginatedSpareParts" :key="sparePart.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-200 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${sparePart.image_path}`" :alt="sparePart.name"
                                 class="h-16 w-16 object-cover rounded me-2" style="max-width: 128px;" />
@@ -200,14 +200,14 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-200 truncate">
                         <div class="flex items-center">
                             <div v-for="(imageSparePart) in sparePart.image_spare_parts" :key="imageSparePart.id"
                                 class="relative me-2">
                                 <img :src="`${imageSparePart.image_path}`" :alt="sparePart.name"
                                     class="h-16 w-16 object-cover rounded " style="max-width: 128px;" />
                                 <ButtonImage @click="confirmImageSparePartDeletion(imageSparePart.id)"
-                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-700 rounded font-semibold text-xs text-red-900 tracking-widest shadow hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-900 disabled:opacity-25 transition ease-in-out duration-150">
+                                    class="absolute top-0.5 right-0.5 inline-flex items-center p-0.5 bg-white border border-red-600 rounded font-semibold text-xs text-red-800 tracking-widest shadow hover:bg-red-50 focus:outline-none focus:ring-1 focus:ring-red-800 disabled:opacity-25 transition ease-in-out duration-150">
                                     <EraserIcon />
                                 </ButtonImage>
                             </div>
@@ -216,30 +216,30 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ sparePart.name }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ sparePart.category_spare_part.name }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 text-center truncate max-w-xs">
                         {{ sparePart.pieces }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-200 truncate">
                         {{ formatCurrency(sparePart.price) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ sparePart.description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalSparePartUpdate(sparePart)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <PrimaryButton @click="showModalSparePartDetail(sparePart)">Detail
                         </PrimaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmSparePartDeletion(sparePart.id)">Delete</DangerButton>
                     </td>
                 </tr>
@@ -259,7 +259,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalSparePartUpdateImage">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Cover Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -271,12 +271,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateImageSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Cover Spare Part</span>
                 <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Cover Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -287,7 +287,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalSparePartUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -299,12 +299,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Spare Part</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Spare Parts Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -315,7 +315,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalSparePartAddImages">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Add Image Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -326,12 +326,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalAddImageSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Add Image Spare Part</span>
                 <DangerButton @click="closeModalAddImageSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Adding Image Spare Parts Successfully!
             </p>
             <div class="mt-2 flex">
@@ -342,7 +342,7 @@ const previousPage = () => {
 
     <Modal maxWidth="7xl" :show="showingModalSparePartDetail">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -353,10 +353,10 @@ const previousPage = () => {
 
     <Modal :show="confirmingSparePartDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your Spare Part?
             </h2>
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your Spare Part is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">
@@ -371,10 +371,10 @@ const previousPage = () => {
 
     <Modal :show="confirmingImageSparePartDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your Image Spare Part?
             </h2>
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your Image Spare Part is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

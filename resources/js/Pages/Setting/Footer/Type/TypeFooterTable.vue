@@ -95,25 +95,25 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Type</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Description</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(typeFooter, index) in paginatedTypeFooters" :key="typeFooter.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                <tr v-for="(typeFooter, index) in paginatedTypeFooters" :key="typeFooter.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ typeFooter.type }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ typeFooter.description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalTypeFooterUpdate(typeFooter)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmTypeFooterDeletion(typeFooter.id)">Delete
                         </DangerButton>
                     </td>
@@ -134,7 +134,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalTypeFooterUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Type Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -145,12 +145,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Type Footer</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Type Footer Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -161,11 +161,11 @@ const previousPage = () => {
 
     <Modal :show="confirmingTypeFooterDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your Type Footer?
             </h2>
 
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your Type Footer is deleted, all of its resources and data will be permanently deleted.
             </p>
 

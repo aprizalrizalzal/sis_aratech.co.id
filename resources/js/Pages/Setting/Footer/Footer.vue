@@ -38,11 +38,11 @@ const currentYear = computed(() => {
             <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-8 pb-4 items-start gap-4">
                 <div class="text-start">
                     <ApplicationLogo class="block h-16 w-16" />
-                    <h1 class="text-xl font-semibold text-green-900">SIService - {{ header.company }}</h1>
+                    <h1 class="text-xl font-semibold text-green-800">SIService - {{ header.company }}</h1>
                     <p class=" mt-4">{{ header.description }}</p>
                 </div>
                 <div class="lg:mt-8 md:mt-8 pb-6 text-start">
-                    <h2 class="text-xl font-semibold text-green-900 mt-8">Contact</h2>
+                    <h2 class="text-xl font-semibold text-green-800 mt-8">Contact</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in contactFooters" :key="footer.id" class="flex items-center space-x-2 mt-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
@@ -52,7 +52,7 @@ const currentYear = computed(() => {
                     </ul>
                 </div>
                 <div class="lg:mt-8 pb-6 text-start">
-                    <h2 class="text-xl font-semibold text-green-900 mt-8">Social Media</h2>
+                    <h2 class="text-xl font-semibold text-green-800 mt-8">Social Media</h2>
                     <ul class="mt-4 text-sm/relaxed">
                         <li v-for="footer in socialMediaFooters" :key="footer.id" class="flex items-center space-x-2">
                             <img :src="footer.image_path" :alt="footer.platform" class="w-4 h-auto">
@@ -62,7 +62,7 @@ const currentYear = computed(() => {
                     </ul>
                 </div>
                 <div class="lg:mt-8 pb-6 text-start">
-                    <h2 class="text-xl font-semibold text-green-900 mt-8">App Download</h2>
+                    <h2 class="text-xl font-semibold text-green-800 mt-8">App Download</h2>
                     <div class="w-full rounded mt-4">
                         <p class=" mt-4">Dapatkan pengalaman service yang lebih baik! Unduh aplikasi kami sekarang di
                             Play Store dan
@@ -79,9 +79,9 @@ const currentYear = computed(() => {
             </div>
             <p v-for="header in $page.props.headers" :key="header.id" class="relative text-black">Copyright &copy; {{
                 currentYear }} <a :href='header.url' target="_blank" rel="noopener noreferrer"><span
-                        class="text-green-900 font-bold">{{ header.company }}</span></a> Developed by <a
+                        class="text-green-800 font-bold">{{ header.company }}</span></a> Developed by <a
                     href="https://www.linkedin.com/in/muhamad-aprizal-hardi/" target="_blank"
-                    rel="noopener noreferrer"><span class="text-green-900 font-bold">Technician</span></a> </p>
+                    rel="noopener noreferrer"><span class="text-green-800 font-bold">Technician</span></a> </p>
         </div>
     </div>
 </template>

@@ -32,7 +32,7 @@ const previousPage = () => {
                 <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
                     <BackWindowIcon />
                 </SecondaryButton>
-                <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-2 py-4">Profile</h2>
+                <h2 class="font-bold text-green-600 text-lg leading-4 flex-none px-2 py-4">Profile</h2>
             </div>
         </template>
         <div class="py-12">

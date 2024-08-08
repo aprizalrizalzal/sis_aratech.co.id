@@ -85,7 +85,7 @@ const closeModal = () => {
 <template>
     <div class="bg-white flex justify-between items-center py-4 px-8 rounded mt-2 gap-4">
         <div class="flex items-center">
-            <h2 class="flex items-center gap-2 font-bold text-lg text-green-900 leading-4 flex-none py-4">
+            <h2 class="flex items-center gap-2 font-bold text-lg text-green-800 leading-4 flex-none py-4">
                 <span>Spare Part</span>
             </h2>
         </div>
@@ -96,7 +96,7 @@ const closeModal = () => {
 
 
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 my-2 text-sm font-bold text-green-900">
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 my-2 text-sm font-bold text-green-800">
         <div v-for="sparePart in paginatedSpareParts" :key="sparePart.id">
             <CardView @click="showModalSparePartDetail(sparePart)" :category="sparePart.category_spare_part.name"
                 :name="sparePart.name" :price="formatCurrency(sparePart.price)">
@@ -140,7 +140,7 @@ const closeModal = () => {
 
     <Modal maxWidth="7xl" :show="showingModalSparePartDetail">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Detail Spare Part</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>

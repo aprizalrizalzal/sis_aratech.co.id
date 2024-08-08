@@ -48,45 +48,45 @@ onMounted(() => {
         <hr>
         <table class="table-auto w-full my-2">
             <tbody>
-                <tr class="font-bold bg-green-100 ">
-                    <td class=" text-green-900">Service Code </td>
+                <tr class="font-bold bg-green-50 ">
+                    <td class=" text-green-800">Service Code </td>
                     <td>{{ service.service_code }} </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Name</td>
+                    <td class=" text-green-800">Name</td>
                     <td>{{ service.customer.user.name }} </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Email / Phone</td>
+                    <td class=" text-green-800">Email / Phone</td>
                     <td>{{ service.customer.user.email }}<span> / </span>{{ service.customer.phone }} </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Address </td>
+                    <td class=" text-green-800">Address </td>
                     <td>{{ service.customer.address }} </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Device Type / Model</td>
+                    <td class=" text-green-800">Device Type / Model</td>
                     <td>{{ service.device.device_type.type_name }}<span> / </span>{{ service.device.model }}</td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Serial Number / Warranty Status </td>
+                    <td class=" text-green-800">Serial Number / Warranty Status </td>
                     <td>{{ service.device.serial_number }}<span> / </span>{{ service.status_warranty_service.status }}
                     </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Date Received / Estimated Completion</td>
+                    <td class=" text-green-800">Date Received / Estimated Completion</td>
                     <td>{{ service.date_received }}<span> / </span>{{ service.estimated_completion }} </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Problem Description </td>
+                    <td class=" text-green-800">Problem Description </td>
                     <td>{{ service.problem_description }} </td>
                 </tr>
                 <tr>
-                    <td class=" text-green-900">Items Brought </td>
+                    <td class=" text-green-800">Items Brought </td>
                     <td>{{ service.items_brought }} </td>
                 </tr>
-                <tr class="font-bold bg-green-100">
-                    <td class=" text-green-900">Status </td>
+                <tr class="font-bold bg-green-50">
+                    <td class=" text-green-800">Status </td>
                     <td>{{ service.status_service.status }} </td>
                 </tr>
             </tbody>
@@ -111,7 +111,7 @@ onMounted(() => {
         <hr>
         <p id="footer" class="mt-2 text-sm/relaxed text-left">
             Cek perkembangan perangkatmu di <a target="_blank" rel="noopener noreferrer"
-                class="text-green-900 font-bold" :href="currentUrl">{{ currentUrl }}</a> Jangan lupa cek inbox atau spam
+                class="text-green-800 font-bold" :href="currentUrl">{{ currentUrl }}</a> Jangan lupa cek inbox atau spam
             email Anda ya. Informasi login dan
             password ada di sana!
         </p>

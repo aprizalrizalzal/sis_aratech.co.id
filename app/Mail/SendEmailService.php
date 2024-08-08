@@ -116,10 +116,10 @@ class SendEmailService extends Mailable
                 .font-bold {
                     font-weight: bold;
                 }
-                .bg-green-100 {
+                .bg-green-50 {
                     background-color: #f0fdf4;
                 }
-                .text-green-900 {
+                .text-green-800 {
                     color: #0f4d0f;
                 }
             </style>
@@ -130,43 +130,43 @@ class SendEmailService extends Mailable
                 <hr>
                 <table>
                     <tbody>
-                        <tr class='border bg-green-100 text-green-900 font-bold'>
+                        <tr class='border bg-green-50 text-green-800 font-bold'>
                             <td>Service Code</td>
                             <td>{$service->service_code}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Name</td>
+                            <td class='text-green-800'>Name</td>
                             <td>{$service->customer->user->name}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Email / Phone</td>
+                            <td class='text-green-800'>Email / Phone</td>
                             <td>{$service->customer->user->email} / {$service->customer->phone}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Address</td>
+                            <td class='text-green-800'>Address</td>
                             <td>{$service->customer->address}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Device Type / Model</td>
+                            <td class='text-green-800'>Device Type / Model</td>
                             <td>{$service->device->deviceType->type_name} / {$service->device->model}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Serial Number / Warranty Status</td>
+                            <td class='text-green-800'>Serial Number / Warranty Status</td>
                             <td>{$service->device->serial_number} / {$service->statusWarrantyService->status}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Date Received / Estimated Completion</td>
+                            <td class='text-green-800'>Date Received / Estimated Completion</td>
                             <td>{$service->date_received} / {$service->estimated_completion}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Problem Description</td>
+                            <td class='text-green-800'>Problem Description</td>
                             <td>{$service->problem_description}</td>
                         </tr>
                         <tr class='border'>
-                            <td class='text-green-900'>Items Brought</td>
+                            <td class='text-green-800'>Items Brought</td>
                             <td>{$service->items_brought}</td>
                         </tr>
-                        <tr class='border bg-green-100 text-green-900 font-bold'>
+                        <tr class='border bg-green-50 text-green-800 font-bold'>
                             <td>Status</td>
                             <td>{$service->statusService->status}</td>
                         </tr>
@@ -175,7 +175,7 @@ class SendEmailService extends Mailable
                 <hr>
                 <div class='border'>
                     <ul class='list'>
-                        <li class='list-item font-bold text-green-900'>Notes!</li>";
+                        <li class='list-item font-bold text-green-800'>Notes!</li>";
         foreach ($notes as $index => $note) {
             $content .= "
             <li class='list-item'>" . $note->description . "</li>
@@ -185,9 +185,9 @@ class SendEmailService extends Mailable
                     </ul>
                 </div>
                 <p>
-                    Silakan kunjungi situs web kami di <a target='_blank' rel='noopener noreferrer' class='text-green-900 font-bold'
+                    Silakan kunjungi situs web kami di <a target='_blank' rel='noopener noreferrer' class='text-green-800 font-bold'
                         href='{$host_url}'>{$host_url}</a> dan masuk menggunakan email
-                    <span class='font-bold text-green-900'>{$service->customer->user->email}</span> kata sandi <span class='font-bold text-green-900'>@amitech</span>
+                    <span class='font-bold text-green-800'>{$service->customer->user->email}</span> kata sandi <span class='font-bold text-green-800'>@amitech</span>
                         untuk melihat perkembangan perangkat yang sedang diperbaiki.
                 </p>
                 <hr>

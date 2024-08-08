@@ -17,7 +17,7 @@ watch(searchQuery, (newQuery) => {
 
 <template>
     <div class="flex w-full justify-end ms-6">
-        <input id="search" class="w-full border-green-700 focus:border-green-700 focus:ring-green-700 rounded shadow"
+        <input id="search" class="w-full border-green-600 focus:border-green-600 focus:ring-green-600 rounded shadow"
             type="text" v-model="searchQuery" :placeholder="props.placeholder" />
     </div>
 </template>

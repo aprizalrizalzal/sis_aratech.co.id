@@ -106,26 +106,26 @@ const previousPage = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Name</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Role</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Name</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Email</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Role</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center ">{{ (currentPage - 1) * itemsPerPage +
+                <tr v-for="(user, index) in paginatedUsers" :key="user.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center ">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{ user.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{ user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">{{ user.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">{{ user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         <span v-for="role in getUserRoles(user)" :key="role.id">#{{ role.name }}</span>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center truncate">
+                    <td class="py-2 px-4 border-b border-green-200 text-center truncate">
                         <SecondaryButton @click="showModalAssignRoles(user)">Assign Roles</SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center ">
+                    <td class="py-2 px-4 border-b border-green-200 text-center ">
                         <DangerButton @click="confirmUserDeletion(user.id)">Delete</DangerButton>
                     </td>
                 </tr>
@@ -145,7 +145,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalAssignRoles">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Assign User Roles</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -156,12 +156,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalAssignSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Assign User Roles</span>
                 <DangerButton @click="closeModalAssignSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Assign User Roles Successful!
             </p>
             <div class="mt-2 flex">
@@ -172,10 +172,10 @@ const previousPage = () => {
 
     <Modal :show="confirmingUserDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your User?
             </h2>
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your User is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

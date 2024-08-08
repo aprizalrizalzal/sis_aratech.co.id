@@ -114,25 +114,25 @@ const previousPage = () => {
 
 <template>
     <div class=" overflow-x-auto">
-        <table class="min-w-full bg-white border-collapse divide-y divide-gray-300">
+        <table class="min-w-full bg-white border-collapse divide-y divide-gray-200">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Image</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Platform</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">URL</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Username</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Value</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Image</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Type</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Platform</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">URL</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Username</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Value</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                <tr v-for="(footer, index) in paginatedFooters" :key="footer.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-200 truncate">
                         <div class="flex justify-center items-center m-2">
                             <img :src="`${footer.image_path}`" :alt="footer.type_footer.type"
                                 class="h-full object-cover rounded me-2" style="max-width: 40px;" />
@@ -141,23 +141,23 @@ const previousPage = () => {
                             </ButtonImage>
                         </div>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ footer.type_footer.type }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ footer.platform_footer.platform }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ footer.url }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ footer.username }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ footer.value }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalFooterUpdate(footer)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmFooterDeletion(footer.id)">Delete</DangerButton>
                     </td>
                 </tr>
@@ -177,7 +177,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalFooterUpdateImage">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -188,12 +188,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateImageSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Image Footer</span>
                 <DangerButton @click="closeModalUpdateImageSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Footer Update Image Successful!
             </p>
             <div class="mt-2 flex">
@@ -204,7 +204,7 @@ const previousPage = () => {
 
     <Modal :show="showingModalFooterUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -216,12 +216,12 @@ const previousPage = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Footer</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Footer Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -232,11 +232,11 @@ const previousPage = () => {
 
     <Modal :show="confirmingFooterDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete this footer?
             </h2>
 
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your footer is deleted, all of its resources and data will be permanently deleted.
             </p>
 

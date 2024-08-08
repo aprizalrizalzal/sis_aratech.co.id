@@ -265,71 +265,71 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Phone</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Device Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Serial Number</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Warranty Status
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Email</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Device Type</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Warranty Status
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Date Received</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Problem
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Problem
                         Description
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Estimated
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Estimated
                         Completion
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Items Brought</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Items Brought</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Status</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.customer.user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.device.device_type.type_name
                         }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.device.serial_number }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.status_warranty_service.status }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.date_received }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.problem_description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.estimated_completion }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.items_brought }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{
                             service.status_service.status }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalServiceUpdate(service)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
-                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150">
+                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-600 active:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition ease-in-out duration-150">
                             <PrinterIcon />
                         </a>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmServiceDeletion(service.id)">Delete</DangerButton>
                     </td>
                 </tr>
@@ -355,37 +355,37 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Phone</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Device Type</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Serial Number</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Warranty Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Date Received</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Problem Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Estimated Completion</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Items Brought</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Email</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Phone</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Device Type</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Serial Number</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Warranty Status</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Date Received</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Problem Description</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Estimated Completion</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Items Brought</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.service_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.customer.phone }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.device_type.type_name
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.service_code }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.customer.user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.customer.phone }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.device.device_type.type_name
                         }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.device.serial_number }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.device.serial_number }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{
                         service.status_warranty_service.status }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.date_received }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.problem_description }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.estimated_completion }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ service.items_brought }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.date_received }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.problem_description }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.estimated_completion }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ service.items_brought }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{
                         service.status_service.status }}</td>
                 </tr>
             </tbody>
@@ -394,7 +394,7 @@ const handlePrint = () => {
 
     <Modal :show="showingModalServiceUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Service</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -407,12 +407,12 @@ const handlePrint = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Service</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Service Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -423,11 +423,11 @@ const handlePrint = () => {
 
     <Modal :show="confirmingServiceDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your Service?
             </h2>
 
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your Service is deleted, all of its resources and data will be permanently deleted.
             </p>
 

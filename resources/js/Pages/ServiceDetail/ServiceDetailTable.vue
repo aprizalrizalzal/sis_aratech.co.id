@@ -280,60 +280,60 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Service Detail
                         Code
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Email Technician
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Email Technician
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Repair Description
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Status</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Repair Description
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Cost</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Notes</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="3">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Cost</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Notes</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
-                    class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         {{ (currentPage - 1) * itemsPerPage +
                             index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ serviceDetail.service_detail_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ serviceDetail.user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{
                             serviceDetail.service.status_service.status }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ serviceDetail.repair_description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">
+                    <td class="py-2 px-4 border-b border-green-200 truncate">
                         {{ formatCurrency(serviceDetail.cost) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ serviceDetail.notes }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalServiceDetailUpdate(serviceDetail)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <a :href="route('service.detail.print', { service_detail_code: serviceDetail.service_detail_code })"
                             target="_blank"
-                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150">
+                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-600 active:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition ease-in-out duration-150">
                             <PrinterIcon />
                         </a>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmServiceDetailDeletion(serviceDetail.id)">Delete
                         </DangerButton>
                     </td>
@@ -342,8 +342,8 @@ const handlePrint = () => {
         </table>
     </div>
     <div class="flex flex-row w-full text-center">
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Cost</p>
-        <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{
+        <p class="py-2 px-4 border-b border-green-200 font-semibold w-full">Total Cost</p>
+        <p class="py-2 px-4 border-b border-green-200 font-semibold w-full">{{
             formatCurrency(totalCost) }}</p>
 
     </div>
@@ -366,34 +366,34 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Email Technician</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Status</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Repair Description</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Cost</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Notes</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Email Technician</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Service Code</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Status</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Repair Description</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Cost</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Notes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(serviceDetail, index) in paginatedServiceDetails" :key="serviceDetail.id"
-                    class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                    class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.service_detail_code }}
+                    <td class="py-2 px-4 border-b border-green-200">{{ serviceDetail.service_detail_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.user.email }}</td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.service.service_code }}
+                    <td class="py-2 px-4 border-b border-green-200">{{ serviceDetail.user.email }}</td>
+                    <td class="py-2 px-4 border-b border-green-200">{{ serviceDetail.service.service_code }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{
+                    <td class="py-2 px-4 border-b border-green-200">{{
                         serviceDetail.service.status_service.status }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.repair_description }}
+                    <td class="py-2 px-4 border-b border-green-200">{{ serviceDetail.repair_description }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ formatCurrency(serviceDetail.cost) }}
+                    <td class="py-2 px-4 border-b border-green-200">{{ formatCurrency(serviceDetail.cost) }}
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300">{{ serviceDetail.notes }}
+                    <td class="py-2 px-4 border-b border-green-200">{{ serviceDetail.notes }}
                     </td>
                 </tr>
             </tbody>
@@ -402,7 +402,7 @@ const handlePrint = () => {
 
     <Modal :show="showingModalServiceDetailUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Service Detail</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -415,12 +415,12 @@ const handlePrint = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Service Detail</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Service Detail Update Successful!
             </p>
             <div class="mt-2 flex">
@@ -431,10 +431,10 @@ const handlePrint = () => {
 
     <Modal :show="confirmingServiceDetailDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your Service Detail?
             </h2>
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your Service Detail is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">

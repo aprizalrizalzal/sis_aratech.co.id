@@ -58,7 +58,7 @@ const closeModal = () => {
           <SecondaryButton @click="previousPage" style="padding-inline: 8px; border: none; box-shadow: none;">
             <BackWindowIcon />
           </SecondaryButton>
-          <h2 class="font-bold text-green-700 text-lg leading-4 flex-none px-4 py-4">Platform</h2>
+          <h2 class="font-bold text-green-600 text-lg leading-4 flex-none px-4 py-4">Platform</h2>
         </div>
         <div class="flex w-full items-center">
           <SearchInput v-model:searchQuery="searchQuery" placeholder="Search for the part name" />
@@ -83,7 +83,7 @@ const closeModal = () => {
 
   <Modal :show="showModalAddPlatformFooter">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Platform Footer</span>
         <DangerButton @click="closeModal">X</DangerButton>
       </div>
@@ -94,12 +94,12 @@ const closeModal = () => {
 
   <Modal maxWidth="xl" :show="showingModalAddSuccessfully">
     <div class="m-6">
-      <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+      <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
         <span class="font-bold text-center w-full">Add Platform Footer</span>
         <DangerButton @click="closeModalAddSuccessfully">X</DangerButton>
       </div>
       <hr class="mt-4 mb-2">
-      <p class="my-4 text-sm text-green-700">
+      <p class="my-4 text-sm text-green-600">
         Platform Footer Add Successful!
       </p>
       <div class="mt-2 flex">

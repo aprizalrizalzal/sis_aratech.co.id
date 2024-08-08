@@ -143,10 +143,10 @@ class SendEmailServiceDetail extends Mailable
                 .font-bold {
                     font-weight: bold;
                 }
-                .bg-green-100 {
+                .bg-green-50 {
                     background-color: #f0fdf4;
                 }
-                .text-green-900 {
+                .text-green-800 {
                     color: #0f4d0f;
                 }
             </style>
@@ -157,78 +157,78 @@ class SendEmailServiceDetail extends Mailable
                 <hr>
                 <table>
                     <tbody>
-                        <tr class='font-bold bg-green-100'>
-                            <td class='text-green-900'> Service Detail Code </td>
+                        <tr class='font-bold bg-green-50'>
+                            <td class='text-green-800'> Service Detail Code </td>
                             <td>{$serviceDetail->service_detail_code}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Email Technician </td>
+                            <td class='text-green-800'>Email Technician </td>
                             <td>{$serviceDetail->user->email}</td>
                         </tr>
-                        <tr class='font-bold bg-green-100'>
-                            <td class='text-green-900'>Service Code </td>
+                        <tr class='font-bold bg-green-50'>
+                            <td class='text-green-800'>Service Code </td>
                             <td>{$serviceDetail->service->service_code}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Name</td>
+                            <td class='text-green-800'>Name</td>
                             <td>{$serviceDetail->service->customer->user->name}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Email / Phone</td>
+                            <td class='text-green-800'>Email / Phone</td>
                             <td>{$serviceDetail->service->customer->user->email}<span> / </span>{$serviceDetail->service->customer->phone}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Address </td>
+                            <td class='text-green-800'>Address </td>
                             <td>{$serviceDetail->service->customer->address}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Device Type / Model</td>
+                            <td class='text-green-800'>Device Type / Model</td>
                             <td>{$serviceDetail->service->device->deviceType->type_name}<span> / </span>{$serviceDetail->service->device->model}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Serial Number / Warranty Status </td>
+                            <td class='text-green-800'>Serial Number / Warranty Status </td>
                             <td>{$serviceDetail->service->device->serial_number}<span> / </span>{$serviceDetail->service->statusWarrantyService->status}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Date Received / Estimated Completion </td>
+                            <td class='text-green-800'>Date Received / Estimated Completion </td>
                             <td>{$serviceDetail->service->date_received}<span> / </span>{$serviceDetail->service->estimated_completion}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Problem Description </td>
+                            <td class='text-green-800'>Problem Description </td>
                             <td>{$serviceDetail->service->problem_description}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'>Items Brought </td>
+                            <td class='text-green-800'>Items Brought </td>
                             <td>{$serviceDetail->service->items_brought}</td>
                         </tr>
-                        <tr class='font-bold bg-green-100'>
-                            <td class='text-green-900'>Status </td>
+                        <tr class='font-bold bg-green-50'>
+                            <td class='text-green-800'>Status </td>
                             <td>{$serviceDetail->service->statusService->status}</td>
                         </tr>
                         <tr>
-                            <td class='text-green-900'> Repair Description </td>
+                            <td class='text-green-800'> Repair Description </td>
                             <td>{$serviceDetail->repair_description}</td>
                         </tr>
-                        <tr class='font-bold bg-green-100'>
-                            <td class='text-green-900'> Spare Part</td>
-                            <td class='text-green-900'> Price</td>
+                        <tr class='font-bold bg-green-50'>
+                            <td class='text-green-800'> Spare Part</td>
+                            <td class='text-green-800'> Price</td>
                         ";
         foreach ($partUsages as $index => $partUsage) {
             $content .= "
                         <tr>
-                            <td class='text-green-900'> " . ($index + 1) . ". {$partUsage->sparePart->name}</td>
-                            <td class='text-green-900'>" . $this->formatCurrency($partUsage->sparePart->price) . " </td>
+                            <td class='text-green-800'> " . ($index + 1) . ". {$partUsage->sparePart->name}</td>
+                            <td class='text-green-800'>" . $this->formatCurrency($partUsage->sparePart->price) . " </td>
                         </tr>
                                     ";
         }
         $content .= "
                         </tr>
-                        <tr class='font-bold bg-green-100'>
-                            <td class='text-green-900'> Cost </td>
+                        <tr class='font-bold bg-green-50'>
+                            <td class='text-green-800'> Cost </td>
                             <td> " . $this->formatCurrency($serviceDetail->cost) . " </td>
                         </tr>
                         <tr class='font-bold'>
-                            <td class='text-green-900'> Total </td>
+                            <td class='text-green-800'> Total </td>
                             <td> " . $this->formatCurrency($serviceDetailTotal) . " </td>
                         </tr>
                     </tbody>
@@ -236,11 +236,11 @@ class SendEmailServiceDetail extends Mailable
                 <hr>
                 <div class='border'>
                     <ul class='list'>
-                        <li class='list-item font-bold text-green-900'>Notes!</li>
+                        <li class='list-item font-bold text-green-800'>Notes!</li>
                         <li class='list-item'>{$serviceDetail->notes}</li>
                     </ul>
                 </div>
-                <p><span class='font-bold text-green-900'>Cost</span> adalah biaya jasa service. <span class='font-bold text-green-900'>Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
+                <p><span class='font-bold text-green-800'>Cost</span> adalah biaya jasa service. <span class='font-bold text-green-800'>Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
                 <hr>
                 <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Technician ASLI Mandiri Computer!</p>
             </div>

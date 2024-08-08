@@ -44,18 +44,18 @@ watch(() => props.sparePart.image_path, (newValue) => {
             </div>
         </div>
         <div class="text-start">
-            <h1 class="text-gray-900 font-bold sm:text-lg text-md">{{ sparePart.name }}</h1>
-            <p class="text-sm/relaxed font-bold py-1 rounded text-gray-700">
+            <h1 class="text-gray-800 font-bold sm:text-lg text-md">{{ sparePart.name }}</h1>
+            <p class="text-sm/relaxed font-bold py-1 rounded text-gray-600">
                 {{ sparePart.category_spare_part.name }}
             </p>
-            <p class="text-gray-500 text-sm/relaxed font-bold mb-2">
+            <p class="text-gray-400 text-sm/relaxed font-bold mb-2">
                 <span>Pieces </span>{{ sparePart.pieces }}
             </p>
             <hr>
-            <p class="text-gray-700 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
+            <p class="text-gray-600 text-sm/relaxed overflow-hidden" v-html="formatDescription(sparePart.description)">
             </p>
             <hr>
-            <p class="inline-block py-2 rounded font-bold text-gray-900 mt-2">
+            <p class="inline-block py-2 rounded font-bold text-gray-800 mt-2">
                 {{ formatCurrency(sparePart.price) }}
             </p>
         </div>

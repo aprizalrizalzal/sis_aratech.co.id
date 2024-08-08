@@ -287,32 +287,32 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Service Detail
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Service Detail
                         Code
                     </th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Spare Part</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 text-left truncate">Price</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300 truncate">Quantity</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300" colspan="2">Action</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Spare Part</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Price</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 truncate">Quantity</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">{{
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">{{
                         partUsage.service_detail.service_detail_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate max-w-xs">
+                    <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ partUsage.spare_part.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 truncate">{{
+                    <td class="py-2 px-4 border-b border-green-200 truncate">{{
                         formatCurrency(partUsage.spare_part.price) }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ partUsage.quantity }}</td>
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <SecondaryButton @click="showModalPartUsageUpdate(partUsage)">Update
                         </SecondaryButton>
                     </td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">
                         <DangerButton @click="confirmPartUsageDeletion(partUsage.id)">Delete</DangerButton>
                     </td>
                 </tr>
@@ -322,13 +322,13 @@ const handlePrint = () => {
 
     <div class="flex flex-col w-full text-center">
         <div class="flex flex-row w-full">
-            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Price</p>
-            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{ formatCurrency(totalPrice)
+            <p class="py-2 px-4 border-b border-green-200 font-semibold w-full">Total Price</p>
+            <p class="py-2 px-4 border-b border-green-200 font-semibold w-full">{{ formatCurrency(totalPrice)
                 }}</p>
         </div>
         <div class="flex flex-row w-full">
-            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">Total Quantity</p>
-            <p class="py-2 px-4 border-b border-green-300 font-semibold w-full">{{ totalQuantity }}</p>
+            <p class="py-2 px-4 border-b border-green-200 font-semibold w-full">Total Quantity</p>
+            <p class="py-2 px-4 border-b border-green-200 font-semibold w-full">{{ totalQuantity }}</p>
         </div>
     </div>
 
@@ -350,23 +350,23 @@ const handlePrint = () => {
         <table class="min-w-full bg-white border-collapse">
             <thead>
                 <tr>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">No</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Service Detail Code</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Spare Part</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Price</th>
-                    <th class="py-4 px-4 border-b border-green-300 bg-green-300">Quantity</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">No</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Service Detail Code</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Spare Part</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Price</th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200">Quantity</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-100">
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ (currentPage - 1) * itemsPerPage +
+                <tr v-for="(partUsage, index) in paginatedPartUsages" :key="partUsage.id" class="hover:bg-green-50">
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ (currentPage - 1) * itemsPerPage +
                         index + 1 }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{
                         partUsage.service_detail.service_detail_code }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center ">{{ partUsage.spare_part.name }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{
+                    <td class="py-2 px-4 border-b border-green-200 text-center ">{{ partUsage.spare_part.name }}</td>
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{
                         formatCurrency(partUsage.spare_part.price) }}</td>
-                    <td class="py-2 px-4 border-b border-green-300 text-center">{{ partUsage.quantity }}</td>
+                    <td class="py-2 px-4 border-b border-green-200 text-center">{{ partUsage.quantity }}</td>
                 </tr>
             </tbody>
         </table>
@@ -374,7 +374,7 @@ const handlePrint = () => {
 
     <Modal :show="showingModalPartUsageUpdate">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Part Usage</span>
                 <DangerButton @click="closeModal">X</DangerButton>
             </div>
@@ -387,26 +387,26 @@ const handlePrint = () => {
 
     <Modal maxWidth="xl" :show="showingModalUpdateSuccessfully">
         <div class="m-6">
-            <div class="flex justify-between items-center ps-6 ms-6 text-green-900">
+            <div class="flex justify-between items-center ps-6 ms-6 text-green-800">
                 <span class="font-bold text-center w-full">Update Part Usage</span>
                 <DangerButton @click="closeModalUpdateSuccessfully">X</DangerButton>
             </div>
             <hr class="mt-4 mb-2">
-            <p class="my-4 text-sm text-green-700">
+            <p class="my-4 text-sm text-green-600">
                 Part Usage Update Successful!
             </p>
             <div class="mt-2 flex">
-                <a :href="route('show.service.details')" class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-900 focus:bg-green-700 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150" @click="closeModalUpdateSuccessfully">Ok</a>
+                <a :href="route('show.service.details')" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-600 active:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition ease-in-out duration-150" @click="closeModalUpdateSuccessfully">Ok</a>
             </div>
         </div>
     </Modal>
 
     <Modal :show="confirmingPartUsageDeletion">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-green-900">
+            <h2 class="text-lg font-medium text-green-800">
                 Are you sure you want to delete your PartUsage?
             </h2>
-            <p class="mt-1 text-sm text-green-700">
+            <p class="mt-1 text-sm text-green-600">
                 Once your PartUsage is deleted, all of its resources and data will be permanently deleted.
             </p>
             <div class="mt-6 flex justify-end">
