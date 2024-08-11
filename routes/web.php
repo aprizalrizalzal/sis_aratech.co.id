@@ -9,6 +9,7 @@ use App\Http\Controllers\DeviceTypeController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\ImageSparePartController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PartUsageController;
 use App\Http\Controllers\PlatformFooterController;
@@ -23,7 +24,6 @@ use App\Http\Controllers\StatusWarrantyServiceController;
 use App\Http\Controllers\TypeFooterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\WhatsAppController;
 use Illuminate\Support\Facades\Route;
 
 // WelcomeController
@@ -143,6 +143,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/service', [ServiceController::class, 'destroy'])->name('destroy.service');
 
         Route::get('service/print/{service_code}', [ServiceController::class, 'print'])->name('service.print');
+        Route::post('service/messages/{service_code}', [MessageController::class, 'send_service'])->name('service.messages');
     });
 
     Route::middleware(['role:user'])->group(function () {
@@ -154,6 +155,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/service-detail', [ServiceDetailController::class, 'destroy'])->name('destroy.service.detail');
 
         Route::get('service/detail/print/{service_detail_code}', [ServiceDetailController::class, 'print'])->name('service.detail.print');
+        Route::post('service/detail/messages/{service_detail_code}', [MessageController::class, 'send_service_detail'])->name('service.detail.messages');
 
         // PartUsageController
         Route::get('/part-usages', [PartUsageController::class, 'show'])->name('show.part.usages');

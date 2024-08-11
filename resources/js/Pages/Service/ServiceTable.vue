@@ -13,8 +13,7 @@ import PrinterIcon from '@/Components/Icon/PrinterIcon.vue';
 import ButtonImage from '@/Components/ButtonImage.vue';
 import BackIcon from '@/Components/Icon/BackIcon.vue';
 import NextIcon from '@/Components/Icon/NextIcon.vue';
-
-
+import SendIcon from '@/Components/Icon/SendIcon.vue';
 
 const page = usePage();
 
@@ -32,6 +31,15 @@ const showingModalServiceUpdate = ref(false);
 const selectedService = ref(null);
 const selectedCustomer = ref(null);
 const selectedDevice = ref(null);
+const isHovered = ref([]);
+
+function handleMouseEnter(index) {
+    isHovered.value[index] = true;
+}
+
+function handleMouseLeave(index) {
+    isHovered.value[index] = false;
+}
 
 const showModalServiceUpdate = (service) => {
     selectedService.value = service;
@@ -271,14 +279,11 @@ const handlePrint = () => {
                     <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Phone</th>
                     <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Device Type</th>
                     <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Serial Number</th>
-                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Warranty Status
-                    </th>
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Warranty Status</th>
                     <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Date Received</th>
-                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Problem
-                        Description
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Problem Description
                     </th>
-                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Estimated
-                        Completion
+                    <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Estimated Completion
                     </th>
                     <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Items Brought</th>
                     <th class="py-4 px-4 border-b border-green-200 bg-green-200 text-left truncate">Status</th>
@@ -288,19 +293,23 @@ const handlePrint = () => {
             <tbody>
                 <tr v-for="(service, index) in paginatedServices" :key="service.id" class="hover:bg-green-50">
                     <td class="py-2 px-4 border-b border-green-200 text-center">
-                        {{ (currentPage - 1) * itemsPerPage +
-                            index + 1 }}</td>
+                        {{ (currentPage - 1) * itemsPerPage + index + 1 }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
-                        {{ service.service_code }}</td>
+                        {{ service.service_code }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
-                        {{ service.customer.user.email }}</td>
+                        {{ service.customer.user.email }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
-                        {{ service.customer.phone }}</td>
+                        {{ service.customer.phone }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
-                        {{ service.device.device_type.type_name
-                        }}</td>
+                        {{ service.device.device_type.type_name }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
-                        {{ service.device.serial_number }}</td>
+                        {{ service.device.serial_number }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
                         {{ service.status_warranty_service.status }}
                     </td>
@@ -317,16 +326,18 @@ const handlePrint = () => {
                         {{ service.items_brought }}
                     </td>
                     <td class="py-2 px-4 border-b border-green-200 truncate max-w-xs">
-                        {{
-                            service.status_service.status }}</td>
+                        {{ service.status_service.status }}
+                    </td>
                     <td class="py-2 px-4 border-b border-green-200 text-center">
-                        <SecondaryButton @click="showModalServiceUpdate(service)">Update
-                        </SecondaryButton>
+                        <SecondaryButton @click="showModalServiceUpdate(service)">Update</SecondaryButton>
                     </td>
                     <td class="py-2 px-4 border-b border-green-200 text-center">
                         <a :href="route('service.print', { service_code: service.service_code })" target="_blank"
-                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-600 active:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition ease-in-out duration-150">
-                            <PrinterIcon />
+                            class="gap-2 inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-600 active:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition ease-in-out duration-150"
+                            @mouseover="handleMouseEnter(index)" @mouseleave="handleMouseLeave(index)">
+
+                            <PrinterIcon v-if="!isHovered[index]" />
+                            <SendIcon v-else />
                         </a>
                     </td>
                     <td class="py-2 px-4 border-b border-green-200 text-center">

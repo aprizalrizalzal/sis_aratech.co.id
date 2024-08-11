@@ -1,6 +1,6 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head, router, usePage } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
 
 const footers = usePage().props.footers;
@@ -18,7 +18,13 @@ const currentUrl = computed(() => {
     return `${url.host}`;
 });
 
+function sendMessage(serviceCode) {
+    router.post(route('service.messages', { service_code: serviceCode }));
+}
+
 onMounted(() => {
+    sendMessage(props.service.service_code);
+
     setTimeout(() => {
         window.print();
     }, 500);

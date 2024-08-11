@@ -242,7 +242,7 @@ class SendEmailServiceDetail extends Mailable
                 </div>
                 <p><span class='font-bold text-green-800'>Cost</span> adalah biaya jasa service. <span class='font-bold text-green-800'>Total</span> mencakup biaya jasa dan biaya tambahan untuk Spare Part yang diganti jika ada.</p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Technician ASLI Mandiri Computer!</p>
+                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Technician!</p>
             </div>
         </body>
         </html>

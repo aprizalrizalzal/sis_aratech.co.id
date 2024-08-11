@@ -186,12 +186,12 @@ class SendEmailService extends Mailable
                 </div>
                 <p>
                     Silakan kunjungi situs web kami di <a target='_blank' rel='noopener noreferrer' class='text-green-800 font-bold'
-                        href='{$host_url}'>{$host_url}</a> dan masuk menggunakan email
-                    <span class='font-bold text-green-800'>{$service->customer->user->email}</span> kata sandi <span class='font-bold text-green-800'>@amitech</span>
+                        href='{$host_url}'>{$host_url}</a> masuk menggunakan email
+                    <span class='font-bold text-green-800'>{$service->customer->user->email}</span> dan kata sandi <span class='font-bold text-green-800'>@aratech</span>
                         untuk melihat perkembangan perangkat yang sedang diperbaiki.
                 </p>
                 <hr>
-                <p>Info status terbaru akan kami kirim lewat email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin ASLI Mandiri Computer!</p>
+                <p>Info status terbaru akan kami kirim lewat WhatsApp dan Email ya. Terima kasih sudah pilih layanan kami. Salam hangat dari Admin!</p>
             </div>
         </body>
         </html>

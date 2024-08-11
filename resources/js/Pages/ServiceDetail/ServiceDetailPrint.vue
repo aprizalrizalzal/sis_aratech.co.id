@@ -1,6 +1,6 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head, router, usePage } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
 
 const footers = usePage().props.footers;
@@ -31,7 +31,13 @@ const formatCurrency = (value) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 };
 
+function sendMessage(serviceDetailCode) {
+    router.post(route('service.detail.messages', { service_detail_code: serviceDetailCode }));
+}
+
 onMounted(() => {
+    sendMessage(props.serviceDetail.service_detail_code);
+
     setTimeout(() => {
         window.print();
     }, 500);
